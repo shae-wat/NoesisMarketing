@@ -13,12 +13,13 @@ public class WebinarConnector {
 		
 		 // /rest/{service name}  
 		try {
-			Utils.readFromURL(contactURL);
-			System.out.println("Try successful");
+			String result = Utils.readFromURL(contactURL);
+			System.out.println("result = " + result);
+			System.out.println("Utils.readFromURL successful");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("try unsuccessful");
+			System.out.println("Utils.readFromURL unsuccessful");
 		}
 	}
 	
