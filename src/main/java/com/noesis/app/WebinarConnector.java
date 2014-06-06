@@ -8,6 +8,10 @@ public class WebinarConnector {
 	
 	public WebinarConnector() {
 		System.out.println("Webinar Constructer");
+		
+		String contactURL = "http://www.iflscience.com/brain/five-cool-ways-trick-your-brain";
+		
+		 // /rest/{service name}  
 	}
 	
 
