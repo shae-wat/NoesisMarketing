@@ -211,7 +211,8 @@ public class Utils {
 		List<String> emails = new ArrayList<String>();
 		Matcher m = Pattern.compile("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+").matcher(input);
 	    while (m.find()) {
-	        emails.add(m.group());
+	    	if(!emails.contains(m.group()))
+	    		emails.add(m.group());
 	    }
 	    return emails;
 	}
