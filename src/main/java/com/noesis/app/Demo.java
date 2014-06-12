@@ -10,17 +10,14 @@ public class Demo {
 	public static void main (String args[])
 	{
 		try {
-			Utils.httpGetFromUrl("test");
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (HttpException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			
+			String response = "";
+			
+			response = Utils.httpsGet("https://api.citrixonline.com/oauth/access_token?grant_type=password&user_id=rallen@noesis.com&password=Austin2013&client_id=WUKeRBGxGEyH0gTEe2UG1ijANkaWL8Gy");
+			
+			System.out.println(response);
+			
+		} catch (Exception e) { e.printStackTrace(); }
 	}
 	
 }
