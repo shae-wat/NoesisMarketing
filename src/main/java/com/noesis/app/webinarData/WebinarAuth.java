@@ -2,11 +2,11 @@ package com.noesis.app.webinarData;
 
 public class WebinarAuth {
 	
+	/*Tokens needed to sign a user into the webinar*/
 	String access_token = "";
 	String organizer_key = "";
 	
 	public WebinarAuth() {
-		//String access_token
 		
 	}
 
