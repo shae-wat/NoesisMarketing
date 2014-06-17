@@ -11,21 +11,34 @@ public class EmailCollector {
 	
 	public static void main(String args[]){
 		EmailCollector ec = new EmailCollector();
-		ec.collect();
+		ec.collectPDF();
+		//ec.collectHTML();
 		
 	}
 	
-	public void collect(){
+	public void collectPDF(){
 		try {
-			/* Code to take email addresses out of an email */
-//			String pdfContent = Utils.pullPDFTextFromURL("http://www.kcpl.com/~/media/Files/Save%20Energy%20and%20Money/Missourirenewableresourcedirectory.pdf");
-//			System.out.println("pdf = " + pdfContent);  //Sanity check
-//			List<String> emailList = Utils.pullEmailAddressesFromString(pdfContent);
+			String pdfFile = "http://www.xcelenergy.com/staticfiles/xe/Marketing/Managed%20Documents/north-trade-Account-Managers-List.pdf";
+			String pdfContent = Utils.pullPDFTextFromURL(pdfFile);
+			System.out.println("pdf = " + pdfContent);  //Sanity check
+			List<String> emailList = Utils.pullEmailAddressesFromString(pdfContent);
 			
-			/* Code to take email addresses out of a HTML page */
+			System.out.println("EMAILS: \n");
+			for (String email : emailList){
+				System.out.println(email);
+			}
+			System.out.println("\n");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void collectHTML(){
+		try{
 			String url = "http://websafe.kemainc.com/ContractorMapreport/cemap/Reportpopup.aspx?ISDI=&TNAME=SouthEastern";
 			String htmlContent = Utils.readFromURL(url);
-			//System.out.println("web = " + htmlContent);  //Sanity check
+			System.out.println("web = " + htmlContent);  //Sanity check
 			List<String> emailList = Utils.pullEmailAddressesFromString(htmlContent);
 			
 			System.out.println("EMAILS: \n");
@@ -33,6 +46,7 @@ public class EmailCollector {
 				System.out.println(email);
 			}
 			System.out.println("\n");
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
