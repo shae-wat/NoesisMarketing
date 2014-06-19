@@ -223,6 +223,17 @@ public class Utils {
 	    return emails;
 	}
 	
+	public static List<String> trickyEmail(String input)
+	{
+		List<String> emails = new ArrayList<String>();
+		Matcher m = Pattern.compile("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+").matcher(input);
+	    while (m.find()) {
+	    	if(!emails.contains(m.group()))
+	    		emails.add(m.group());
+	    }
+	    return emails;
+	}
+	
 	public static List<String> jsonLinkExtractor(String jsonFile)
 	{
 		List<String> links = new ArrayList<String>();
@@ -233,16 +244,15 @@ public class Utils {
 			JSONObject jsonObject = (JSONObject) obj;
 			JSONObject results = (JSONObject) jsonObject.get("results");
 			JSONArray collection = (JSONArray) results.get("collection1"); //.getClass("links").getClass("href");
-			System.out.println("collection array = " + collection);
+			//System.out.println("collection array = " + collection);
 			
 			Iterator<JSONObject> iterator = collection.iterator();
 			while (iterator.hasNext()) {
 				JSONObject linkObject = iterator.next();
-				System.out.println("linkObject = " + linkObject);
 				JSONObject lObject = (JSONObject) linkObject.get("links");
-				System.out.println("lObject = " + lObject);
 				String l = (String) lObject.get("href");
-				System.out.println(l);
+				//System.out.println(l);
+				links.add(l);
 			}
 			
 		} catch (FileNotFoundException e) {

@@ -1,6 +1,8 @@
 package com.noesis.app.emailCollection;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import com.noesis.app.Utils;
 
 public class EmailCollector {
@@ -55,8 +57,21 @@ public class EmailCollector {
 	}
 	
 	public void jsonLinkSearch(){
+		List<String> emailList = new ArrayList<String>();
 		String jsonFile = "necaLinks.json";
 		List<String> links = Utils.jsonLinkExtractor(jsonFile);
+		System.out.println("LINKS: \n");
+		try{
+			for (String url : links){
+				System.out.println(url);
+				String htmlContent = Utils.readFromURL(url);
+				//System.out.println(htmlContent);
+				emailList = Utils.trickyEmail(htmlContent);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
