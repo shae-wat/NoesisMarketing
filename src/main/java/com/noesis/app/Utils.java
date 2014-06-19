@@ -223,15 +223,20 @@ public class Utils {
 	    return emails;
 	}
 	
-	public static List<String> trickyEmail(String input)
+	public static String trickyEmail(String input)
 	{
 		List<String> emails = new ArrayList<String>();
-		Matcher m = Pattern.compile("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+").matcher(input);
-	    while (m.find()) {
-	    	if(!emails.contains(m.group()))
-	    		emails.add(m.group());
-	    }
-	    return emails;
+		String email = "";
+		//System.out.println("tricky Email input = " + input);
+		try{
+			email = input.substring(input.indexOf("strMailToAddress"), input.indexOf(";", input.indexOf("strMailToAddress"))).replace(" + ", "").replace("\"", "");
+			email = email.substring(26);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		
+	    return email;
 	}
 	
 	public static List<String> jsonLinkExtractor(String jsonFile)

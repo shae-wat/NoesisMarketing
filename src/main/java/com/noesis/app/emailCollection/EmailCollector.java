@@ -60,13 +60,15 @@ public class EmailCollector {
 		List<String> emailList = new ArrayList<String>();
 		String jsonFile = "necaLinks.json";
 		List<String> links = Utils.jsonLinkExtractor(jsonFile);
-		System.out.println("LINKS: \n");
+		System.out.println("EMAILS: \n");
 		try{
 			for (String url : links){
-				System.out.println(url);
+				//System.out.println(url);
 				String htmlContent = Utils.readFromURL(url);
 				//System.out.println(htmlContent);
-				emailList = Utils.trickyEmail(htmlContent);
+				String email = Utils.trickyEmail(htmlContent);
+				if (email.length() > 1)
+					System.out.println(email);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
