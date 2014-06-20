@@ -1,18 +1,20 @@
 package com.noesis.app;
 
 import java.io.BufferedReader;
-
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -28,6 +30,10 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class Utils {
 
@@ -215,6 +221,56 @@ public class Utils {
 	    		emails.add(m.group());
 	    }
 	    return emails;
+	}
+	
+	public static String trickyEmail(String input)
+	{
+		List<String> emails = new ArrayList<String>();
+		String email = "";
+		//System.out.println("tricky Email input = " + input);
+		try{
+			email = input.substring(input.indexOf("strMailToAddress"), input.indexOf(";", input.indexOf("strMailToAddress"))).replace(" + ", "").replace("\"", "");
+			email = email.substring(26);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		
+	    return email;
+	}
+	
+	public static List<String> jsonLinkExtractor(String jsonFile)
+	{
+		List<String> links = new ArrayList<String>();
+		
+		JSONParser parser = new JSONParser();
+		try{
+			Object obj = parser.parse(new FileReader(jsonFile));
+			JSONObject jsonObject = (JSONObject) obj;
+			JSONObject results = (JSONObject) jsonObject.get("results");
+			JSONArray collection = (JSONArray) results.get("collection1"); //.getClass("links").getClass("href");
+			//System.out.println("collection array = " + collection);
+			
+			Iterator<JSONObject> iterator = collection.iterator();
+			while (iterator.hasNext()) {
+				JSONObject linkObject = iterator.next();
+				JSONObject lObject = (JSONObject) linkObject.get("links");
+				String l = (String) lObject.get("href");
+				//System.out.println(l);
+				links.add(l);
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return links;
+		
 	}
 
 }
