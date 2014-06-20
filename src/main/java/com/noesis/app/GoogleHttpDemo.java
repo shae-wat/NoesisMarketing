@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.api.client.http.ByteArrayContent;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpHeaders;
 import com.google.api.client.http.HttpRequest;
@@ -55,15 +56,40 @@ public class GoogleHttpDemo {
 		content = response.parseAsString();
 		System.out.println("----------------------------------------");
 		System.out.println(content);
+		System.out.println("----------------------------------------");
+		
+		url = new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/" + wa.getOrganizer_key() +"/webinars/871855095/registrants/fields");
+		
+		request = requestFactory.buildGetRequest(url);
+		request.setHeaders(headers);
+		response = request.execute();
+		content = response.parseAsString();
+		System.out.println(content);
+		
+		
+		
+		System.out.println("----------------------------------------");
+		
+//		Map<String, String> paramsMap = new HashMap<String, String>();
+//		paramsMap.put("firstName", "Scott");
+//		paramsMap.put("lastName", "Carter");
+//		paramsMap.put("email", "scarter@noesis.com");
+		
+//		HttpRequest req = requestFactory.buildPostRequest(new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/"  + wa.getOrganizer_key() + "/webinars/871855095/registrants"), new UrlEncodedContent(paramsMap));
+		
+		
+		String registrationJSON = "{\"firstName\":\"Saumil\",\"lastName\":\"Jhaveri\",\"email\":\"test@test.com\"}";
+		byte[] b = registrationJSON.getBytes();
+		
+		HttpRequest req = requestFactory.buildPostRequest(new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/"  + wa.getOrganizer_key() + "/webinars/871855095/registrants"), new ByteArrayContent("application/json", b));
+		
+		
+		
+		req.setHeaders(headers);
+		response = req.execute();
+		content = response.parseAsString();
+		System.out.println(content);
 	}
 	
-	public void putDemo () throws IOException
-	{
-		HttpRequestFactory requestFactory = HTTP_TRANSPORT.createRequestFactory();
-		Map<String, String> paramsMap = new HashMap<String, String>();
-		paramsMap.put("param1", "value1");
-		paramsMap.put("param2", "value2");
-		// HttpRequest req = requestFactory.buildPostRequest(new GenericUrl(url), new UrlEncodedContent(paramsMap));
-		
-	}
+	
 }
