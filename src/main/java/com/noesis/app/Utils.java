@@ -247,8 +247,8 @@ public class Utils {
 		try{
 			Object obj = parser.parse(new FileReader(jsonFile));
 			JSONObject jsonObject = (JSONObject) obj;
-			JSONObject results = (JSONObject) jsonObject.get("results");
-			JSONArray collection = (JSONArray) results.get("collection1"); //.getClass("links").getClass("href");
+			//JSONObject results = (JSONObject) jsonObject.get("results");
+			JSONArray collection = (JSONArray) jsonObject.get("collection1"); //.getClass("links").getClass("href");
 			//System.out.println("collection array = " + collection);
 			
 			Iterator<JSONObject> iterator = collection.iterator();

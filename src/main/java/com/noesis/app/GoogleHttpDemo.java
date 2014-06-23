@@ -86,7 +86,7 @@ public class GoogleHttpDemo {
 		
 		
 		req.setHeaders(headers);
-		response = req.execute();
+		response = req.execute();  //try catch to avoid "user already registered"
 		content = response.parseAsString();
 		System.out.println(content);
 	}

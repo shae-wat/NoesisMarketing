@@ -14,14 +14,14 @@ public class EmailCollector {
 	public static void main(String args[]){
 		EmailCollector ec = new EmailCollector();
 		//ec.collectPDF();
-		//ec.collectHTML();
-		ec.jsonLinkSearch();
+		ec.collectHTML();
+		//ec.jsonLinkSearch();
 		
 	}
 	
 	public void collectPDF(){
 		try {
-			String pdfFile = "http://www.xcelenergy.com/staticfiles/xe/Marketing/Managed%20Documents/north-trade-Account-Managers-List.pdf";
+			String pdfFile = "http://entergy-arkansas.com/content/energy_efficiency/docs/Commercial_Trade_Ally_List.pdf";
 			String pdfContent = Utils.pullPDFTextFromURL(pdfFile);
 			//System.out.println("pdf = " + pdfContent);  //Sanity check
 			List<String> emailList = Utils.pullEmailAddressesFromString(pdfContent);
@@ -39,7 +39,7 @@ public class EmailCollector {
 	
 	public void collectHTML(){
 		try{
-			String url = "http://websafe.kemainc.com/ContractorMapreport/cemap/Reportpopup.aspx?ISDI=&TNAME=SouthEastern";
+			String url = "http://www.ctcleanenergy.com/YourHome/ResidentialSolarInvestmentProgram/SolarRebatesFindanApprovedContractorTable/tabid/632/Default.aspx";
 			String htmlContent = Utils.readFromURL(url);
 			System.out.println("web = " + htmlContent);  //Sanity check
 			List<String> emailList = Utils.pullEmailAddressesFromString(htmlContent);
@@ -58,21 +58,22 @@ public class EmailCollector {
 	
 	public void jsonLinkSearch(){
 		List<String> emailList = new ArrayList<String>();
-		String jsonFile = "necaLinks.json";
+		String jsonFile = "greenBuilding.json";
 		List<String> links = Utils.jsonLinkExtractor(jsonFile);
 		System.out.println("EMAILS: \n");
 		try{
 			for (String url : links){
 				//System.out.println(url);
 				String htmlContent = Utils.readFromURL(url);
-				//System.out.println(htmlContent);
-				String email = Utils.trickyEmail(htmlContent);
-				if (email.length() > 1)
-					System.out.println(email);
+				List<String> emails = Utils.pullEmailAddressesFromString(htmlContent);
+				for (String email : emails){
+					if (!email.equals("events@informacanada.com"))
+						System.out.println(email);
+				}
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 
