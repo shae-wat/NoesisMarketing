@@ -43,8 +43,8 @@ public class GoogleHttpDemo {
 		String content = response.parseAsString();
 		WebinarAuth wa = gson.fromJson(content, WebinarAuth.class);
 		
-		System.out.println(content);
-		System.out.println(wa.getAccess_token());
+		System.out.println("GET = " + content);
+		//System.out.println(wa.getAccess_token());
 		
 		url = new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/" + wa.getOrganizer_key() + "/upcomingWebinars");
 		request = requestFactory.buildGetRequest(url);
@@ -55,7 +55,7 @@ public class GoogleHttpDemo {
 		response = request.execute();
 		content = response.parseAsString();
 		System.out.println("----------------------------------------");
-		System.out.println(content);
+		System.out.println("GET webinar info = " + content);
 		System.out.println("----------------------------------------");
 		
 		url = new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/" + wa.getOrganizer_key() +"/webinars/871855095/registrants/fields");
@@ -64,7 +64,7 @@ public class GoogleHttpDemo {
 		request.setHeaders(headers);
 		response = request.execute();
 		content = response.parseAsString();
-		System.out.println(content);
+		System.out.println("GET webinar fields= " + content);
 		
 		
 		
@@ -83,12 +83,10 @@ public class GoogleHttpDemo {
 		
 		HttpRequest req = requestFactory.buildPostRequest(new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/"  + wa.getOrganizer_key() + "/webinars/871855095/registrants"), new ByteArrayContent("application/json", b));
 		
-		
-		
 		req.setHeaders(headers);
 		response = req.execute();  //try catch to avoid "user already registered"
 		content = response.parseAsString();
-		System.out.println(content);
+		System.out.println("Registered user = " + content);
 	}
 	
 	
