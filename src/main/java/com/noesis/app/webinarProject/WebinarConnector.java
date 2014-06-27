@@ -70,15 +70,16 @@ public class WebinarConnector {
 			
 			WebinarUser wu = new WebinarUser("Shaelyn", "Watson", "shaelynjoy@gmail.com", "0000");
 			//String registrationJSON = "{\"firstName\":"+ wu.getFirstName() +",\"lastName\":" + wu.getLastName() +",\"email\":"+ wu.getEmail() +"}";
-			String registrationJSON = "{\"firstName\":\"Shaelyn\",\"lastName\":\"Watson\",\"email\":\"shaelynjoy@gmail.com\"}";
+			String registrationJSON = "{\"firstName\":\""+wu.getFirstName()+"\",\"lastName\":\""+wu.getLastName()+"\",\"email\":\""+wu.getEmail()+"\"}";
 			byte[] b = registrationJSON.getBytes();
 			
-			HttpRequest req = requestFactory.buildPostRequest(new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/"  + wa.getOrganizer_key() + "/webinars/871855095/registrants"), new ByteArrayContent("application/json", b));
+			HttpRequest req = requestFactory.buildPostRequest(new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/"  + wa.getOrganizer_key() + "/webinars/"+wd.getWebinarKey()+"/registrants"), new ByteArrayContent("application/json", b));
 			
 			req.setHeaders(headers);
 			response = req.execute();  //try catch to avoid "user already registered"
 			content = response.parseAsString();
 			System.out.println("Registered user = " + content);
+			//Registered user = {"registrantKey":106478128,"joinUrl":"https://www4.gotomeeting.com/join/872916911/106478128"}
 		} catch (JsonSyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
