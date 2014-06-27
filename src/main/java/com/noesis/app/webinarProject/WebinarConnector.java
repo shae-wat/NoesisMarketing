@@ -31,7 +31,7 @@ public class WebinarConnector {
 	
 	public WebinarConnector() {
 		try {
-			/* Fill WebinarAuth object */
+			/* Authorize */
 			Gson gson = new Gson();
 			GenericUrl url = new GenericUrl("https://api.citrixonline.com/oauth/access_token?grant_type=password&user_id=rallen@noesis.com&password=Austin2013&client_id=WUKeRBGxGEyH0gTEe2UG1ijANkaWL8Gy");
 			
@@ -44,27 +44,27 @@ public class WebinarConnector {
 			System.out.println("access token = " + wa.getAccess_token());
 			System.out.println("organizer key = " + wa.getOrganizer_key());
 			
-			url = new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/" + wa.getOrganizer_key() + "/upcomingWebinars");
-			request = requestFactory.buildGetRequest(url);
-			headers.setAuthorization("OAuth oauth_token=" + wa.getAccess_token());
-			
-			request.setHeaders(headers);
-			response = request.execute();
-			content = response.parseAsString();
-			content = content.substring(2, (content.indexOf(",")));
-			
-			/* Fill WebinarData object */
-			wd = new WebinarData();
-			wd.setWebinarKey(content.substring(content.indexOf(":")+1));
-			System.out.println("\nwebinar key = " + wd.getWebinarKey());
-
-					
-			/* Prepare to register user and make call to register*/
-			GenericUrl webinarUrl = new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/" + wa.getOrganizer_key() +"/webinars/" + wd.getWebinarKey() + "/registrants/fields");
-			List<WebinarUser> users = new ArrayList<WebinarUser>();
-			WebinarUser wu = new WebinarUser("Shaelyn", "Watson", "shaelynjoy@gmail.com", "0000");
-			users.add(wu);
-			registerUsers(webinarUrl, users);
+//			url = new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/" + wa.getOrganizer_key() + "/upcomingWebinars");
+//			request = requestFactory.buildGetRequest(url);
+//			headers.setAuthorization("OAuth oauth_token=" + wa.getAccess_token());
+//			
+//			request.setHeaders(headers);
+//			response = request.execute();
+//			content = response.parseAsString();
+//			content = content.substring(2, (content.indexOf(",")));
+//			
+//			/* Fill WebinarData object */
+//			wd = new WebinarData();
+//			wd.setWebinarKey(content.substring(content.indexOf(":")+1));
+//			System.out.println("\nwebinar key = " + wd.getWebinarKey());
+//
+//					
+//			/* Prepare to register user and make call to register*/
+//			GenericUrl webinarUrl = new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/" + wa.getOrganizer_key() +"/webinars/" + wd.getWebinarKey() + "/registrants/fields");
+//			List<WebinarUser> users = new ArrayList<WebinarUser>();
+//			WebinarUser wu = new WebinarUser("Shaelyn", "Watson", "shaelynjoy@gmail.com", "0000");
+//			users.add(wu);
+//			registerUsers(webinarUrl, users);
 
 		} catch (JsonSyntaxException e) {
 			// TODO Auto-generated catch block
@@ -82,32 +82,27 @@ public class WebinarConnector {
 	
 	//public List<WebinarUser> getUsers(WebinarData wd)
 	
-	public List<WebinarUser> registerUsers(GenericUrl webinarUrl,List<WebinarUser> listUsers){
+	public List<WebinarUser> registerUsers(String webinarId,List<WebinarUser> listUsers){
 		String content = "";
-		try {
-			request = requestFactory.buildGetRequest(webinarUrl);
-			request.setHeaders(headers);
-			response = request.execute();
-			content = response.parseAsString();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		String registerUrl = "https://api.citrixonline.com/G2W/rest/organizers/"  + wa.getOrganizer_key() + "/webinars/"+webinarId+"/registrants";
+
 		System.out.println("GET webinar fields= " + content);
 		
 		for (WebinarUser wu:listUsers){
 			try {
+				//request = requestFactory.buildGetRequest(registerUrl);
+
 				String registrationJSON = "{\"firstName\":\""+wu.getFirstName()+"\",\"lastName\":\""+wu.getLastName()+"\",\"email\":\""+wu.getEmail()+"\"}";
 				byte[] b = registrationJSON.getBytes();
-				
-				HttpRequest req = requestFactory.buildPostRequest(new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/"  + wa.getOrganizer_key() + "/webinars/"+wd.getWebinarKey()+"/registrants"), new ByteArrayContent("application/json", b));
+				HttpRequest req = requestFactory.buildPostRequest(new GenericUrl(registerUrl), new ByteArrayContent("application/json", b)); //build request
 				
 				req.setHeaders(headers);
-				response = req.execute();  //try catch to avoid "user already registered"
+				response = req.execute();
 				content = response.parseAsString();
+				
 				System.out.println("Registered user = " + content);
 				//Registered user = {"registrantKey":106478128,"joinUrl":"https://www4.gotomeeting.com/join/872916911/106478128"}
-				//add to hashmap
+				//add to WebinarUser
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

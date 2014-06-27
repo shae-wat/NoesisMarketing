@@ -8,7 +8,8 @@ public class WebinarUser {
 	public String firstName;
 	public String lastName;
 	public String email;
-	public String sfdcID;
+	public String registrantKey = "";
+	public String joinUrl = "";
 	
 	//map webinarID to userUniqueWebinarID
 	Map<String, String> web2UserID = new HashMap<String, String>();
@@ -16,11 +17,10 @@ public class WebinarUser {
 	//HashMPap<webinarData, webinarPoll>
 	//Map<WebinarData, WebinarPoll> = new HashMap<WebinarData, WebinarPoll>();
 	
-	public WebinarUser(String first, String last, String e, String sID) {
+	public WebinarUser(String first, String last, String e) {
 		this.firstName = first;
 		this.lastName = last;
 		this.email = e;
-		this.sfdcID = sID;
 	}
 
 	public String getFirstName() {
@@ -46,13 +46,21 @@ public class WebinarUser {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getSfdcID() {
-		return sfdcID;
+	
+	public String getRegistrantKey() {
+		return registrantKey;
 	}
 
-	public void setSfdcID(String sfdcID) {
-		this.sfdcID = sfdcID;
+	public void setRegistrantKey(String registrantKey) {
+		this.registrantKey = registrantKey;
+	}
+
+	public String getJoinUrl() {
+		return joinUrl;
+	}
+
+	public void setJoinUrl(String joinUrl) {
+		this.joinUrl = joinUrl;
 	}
 
 }
