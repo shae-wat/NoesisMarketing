@@ -44,9 +44,11 @@ public class WebinarConnector {
 			System.out.println("access token = " + wa.getAccess_token());
 			System.out.println("organizer key = " + wa.getOrganizer_key());
 			
+			headers.setAuthorization("OAuth oauth_token=" + wa.getAccess_token());
+			
 //			url = new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/" + wa.getOrganizer_key() + "/upcomingWebinars");
 //			request = requestFactory.buildGetRequest(url);
-//			headers.setAuthorization("OAuth oauth_token=" + wa.getAccess_token());
+
 //			
 //			request.setHeaders(headers);
 //			response = request.execute();

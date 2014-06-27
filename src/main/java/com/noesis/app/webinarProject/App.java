@@ -22,7 +22,7 @@ public class App
     	userList.add(user1);
     	userList.add(user2);
     	
-    	String webinarId = "871855095";
+    	String webinarId = "767279767";
     	
     	wc.registerUsers(webinarId, userList);
     	
