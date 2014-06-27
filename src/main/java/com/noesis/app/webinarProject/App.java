@@ -1,4 +1,5 @@
-package com.noesis.app;
+package com.noesis.app.webinarProject;
+
 
 /**
  * Hello world!
@@ -10,6 +11,6 @@ public class App
     {
     	WebinarConnector wc = new WebinarConnector();
     	
-        System.out.println( "Hello WebinarConnector!" );
+        System.out.println( "Completed run of WebinarConnector" );
     }
 }

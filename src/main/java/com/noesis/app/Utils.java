@@ -202,12 +202,13 @@ public class Utils {
 		return result;
 	}
 	
+	
 	public static String pullPDFTextFromURL (String urlStr) throws Exception
 	{
 		PDFTextStripper stripper = new PDFTextStripper();
 		PDDocument doc;
-		URL url = new URL(urlStr);
-		doc = PDDocument.load(url);
+		//URL url = new URL(urlStr);
+		doc = PDDocument.load(urlStr);
 		String content = stripper.getText(doc);
 		return content;
 	}

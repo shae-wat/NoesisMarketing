@@ -19,7 +19,7 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.JsonObjectParser;
 import com.google.api.client.util.Key;
 import com.google.gson.Gson;
-import com.noesis.app.webinarData.WebinarAuth;
+import com.noesis.app.webinarProject.WebinarAuth;
 
 public class GoogleHttpDemo {
 	
@@ -78,7 +78,7 @@ public class GoogleHttpDemo {
 //		HttpRequest req = requestFactory.buildPostRequest(new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/"  + wa.getOrganizer_key() + "/webinars/871855095/registrants"), new UrlEncodedContent(paramsMap));
 		
 		
-		String registrationJSON = "{\"firstName\":\"Saumil\",\"lastName\":\"Jhaveri\",\"email\":\"test@test.com\"}";
+		String registrationJSON = "{\"firstName\":\"Shaelyn\",\"lastName\":\"Watson\",\"email\":\"shaelynjoy@gmail.com\"}";
 		byte[] b = registrationJSON.getBytes();
 		
 		HttpRequest req = requestFactory.buildPostRequest(new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/"  + wa.getOrganizer_key() + "/webinars/871855095/registrants"), new ByteArrayContent("application/json", b));

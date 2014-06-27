@@ -21,7 +21,7 @@ public class EmailCollector {
 	
 	public void collectPDF(){
 		try {
-			String pdfFile = "http://entergy-arkansas.com/content/energy_efficiency/docs/Commercial_Trade_Ally_List.pdf";
+			String pdfFile = "http://www.mbawpa.org/documents/TheGreenBuildersProfessionalDirectory_003.pdf";
 			String pdfContent = Utils.pullPDFTextFromURL(pdfFile);
 			//System.out.println("pdf = " + pdfContent);  //Sanity check
 			List<String> emailList = Utils.pullEmailAddressesFromString(pdfContent);
@@ -30,7 +30,7 @@ public class EmailCollector {
 			for (String email : emailList){
 				System.out.println(email);
 			}
-			System.out.println("\n");
+			System.out.println("\nPDF done");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,7 +39,7 @@ public class EmailCollector {
 	
 	public void collectHTML(){
 		try{
-			String url = "http://www.ctcleanenergy.com/YourHome/ResidentialSolarInvestmentProgram/SolarRebatesFindanApprovedContractorTable/tabid/632/Default.aspx";
+			String url = "http://www.ases.org/local/";
 			String htmlContent = Utils.readFromURL(url);
 			System.out.println("web = " + htmlContent);  //Sanity check
 			List<String> emailList = Utils.pullEmailAddressesFromString(htmlContent);
@@ -48,7 +48,7 @@ public class EmailCollector {
 			for (String email : emailList){
 				System.out.println(email);
 			}
-			System.out.println("\n");
+			System.out.println("\nHTML done");
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

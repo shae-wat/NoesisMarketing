@@ -2,9 +2,11 @@ package com.noesis.app;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+
 import org.apache.http.HttpException;
+
 import com.google.gson.Gson;
-import com.noesis.app.webinarData.WebinarAuth;
+import com.noesis.app.webinarProject.WebinarAuth;
 
 public class Demo {
 

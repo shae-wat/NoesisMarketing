@@ -1,14 +1,10 @@
-package com.noesis.app.webinarData;
+package com.noesis.app.webinarProject;
 
 public class WebinarAuth {
 	
 	/*Tokens needed to sign a user into the webinar*/
 	String access_token = "";
 	String organizer_key = "";
-	
-	public WebinarAuth() {
-		
-	}
 
 	public String getAccess_token() {
 		return access_token;
