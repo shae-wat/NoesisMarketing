@@ -17,7 +17,6 @@ public class App
     	
     	WebinarUser user1 = new WebinarUser("User1", "Lastname1", "shaelynjoy@gmail.com");
     	WebinarUser user2 = new WebinarUser("User2", "Lastname2", "swatson@noesis.com");
-    	
     	List<WebinarUser> userList = new ArrayList<WebinarUser>();
     	userList.add(user1);
     	userList.add(user2);
@@ -25,9 +24,6 @@ public class App
     	String webinarId = "767279767";
     	
     	wc.registerUsers(webinarId, userList);
-    	
-    	
-    	
     	
         System.out.println( "Completed run of WebinarConnector" );
     }

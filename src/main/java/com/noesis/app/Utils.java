@@ -207,8 +207,8 @@ public class Utils {
 	{
 		PDFTextStripper stripper = new PDFTextStripper();
 		PDDocument doc;
-		//URL url = new URL(urlStr);
-		doc = PDDocument.load(urlStr);
+		URL url = new URL(urlStr);
+		doc = PDDocument.load(url);
 		String content = stripper.getText(doc);
 		return content;
 	}
@@ -255,7 +255,7 @@ public class Utils {
 			Iterator<JSONObject> iterator = collection.iterator();
 			while (iterator.hasNext()) {
 				JSONObject linkObject = iterator.next();
-				JSONObject lObject = (JSONObject) linkObject.get("links");
+				JSONObject lObject = (JSONObject) linkObject.get("property1");
 				String l = (String) lObject.get("href");
 				//System.out.println(l);
 				links.add(l);

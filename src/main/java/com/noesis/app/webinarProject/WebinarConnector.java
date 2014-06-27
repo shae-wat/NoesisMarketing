@@ -46,27 +46,6 @@ public class WebinarConnector {
 			
 			headers.setAuthorization("OAuth oauth_token=" + wa.getAccess_token());
 			
-//			url = new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/" + wa.getOrganizer_key() + "/upcomingWebinars");
-//			request = requestFactory.buildGetRequest(url);
-
-//			
-//			request.setHeaders(headers);
-//			response = request.execute();
-//			content = response.parseAsString();
-//			content = content.substring(2, (content.indexOf(",")));
-//			
-//			/* Fill WebinarData object */
-//			wd = new WebinarData();
-//			wd.setWebinarKey(content.substring(content.indexOf(":")+1));
-//			System.out.println("\nwebinar key = " + wd.getWebinarKey());
-//
-//					
-//			/* Prepare to register user and make call to register*/
-//			GenericUrl webinarUrl = new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/" + wa.getOrganizer_key() +"/webinars/" + wd.getWebinarKey() + "/registrants/fields");
-//			List<WebinarUser> users = new ArrayList<WebinarUser>();
-//			WebinarUser wu = new WebinarUser("Shaelyn", "Watson", "shaelynjoy@gmail.com", "0000");
-//			users.add(wu);
-//			registerUsers(webinarUrl, users);
 
 		} catch (JsonSyntaxException e) {
 			// TODO Auto-generated catch block
@@ -76,13 +55,6 @@ public class WebinarConnector {
 			e.printStackTrace();
 		}
 	}
-	
-	//public WebinarAuth login(String email, String password)
-		//kickoff
-	
-	//public List<WebinarData> getUpcomingWebinars (WebinarAuth auth)
-	
-	//public List<WebinarUser> getUsers(WebinarData wd)
 	
 	public List<WebinarUser> registerUsers(String webinarId,List<WebinarUser> listUsers){
 		String content = "";
@@ -113,10 +85,37 @@ public class WebinarConnector {
 		return listUsers;
 	}
 	
+	
+	//public List<WebinarData> getUpcomingWebinars (WebinarAuth auth)
+	
+	//public List<WebinarUser> getUsers(WebinarData wd)
+	
 	//public List<WebinarData> getHistoricalWebinars(WebinarAuth)
 	
 	//public WebinarUser getPollAnswers(WData)
 		//populate poll results
+	
+//	url = new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/" + wa.getOrganizer_key() + "/upcomingWebinars");
+//	request = requestFactory.buildGetRequest(url);
+
+//	
+//	request.setHeaders(headers);
+//	response = request.execute();
+//	content = response.parseAsString();
+//	content = content.substring(2, (content.indexOf(",")));
+//	
+//	/* Fill WebinarData object */
+//	wd = new WebinarData();
+//	wd.setWebinarKey(content.substring(content.indexOf(":")+1));
+//	System.out.println("\nwebinar key = " + wd.getWebinarKey());
+//
+//			
+//	/* Prepare to register user and make call to register*/
+//	GenericUrl webinarUrl = new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/" + wa.getOrganizer_key() +"/webinars/" + wd.getWebinarKey() + "/registrants/fields");
+//	List<WebinarUser> users = new ArrayList<WebinarUser>();
+//	WebinarUser wu = new WebinarUser("Shaelyn", "Watson", "shaelynjoy@gmail.com", "0000");
+//	users.add(wu);
+//	registerUsers(webinarUrl, users);
 	
 
 }
