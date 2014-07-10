@@ -1,0 +1,2 @@
+serviceClass: webinar.client.GreetingService
+path: 264D5A41201E51CF574DDA086EBBE96F.gwt.rpc
