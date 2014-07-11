@@ -23,7 +23,8 @@ public class App
     	
     	String webinarId = "767279767";
     	
-    	wc.registerUsers(webinarId, userList);
+    	//wc.registerUsers(webinarId, userList);
+    	wc.getUpcomingWebinars();
     	
         System.out.println( "Completed run of WebinarConnector" );
     }

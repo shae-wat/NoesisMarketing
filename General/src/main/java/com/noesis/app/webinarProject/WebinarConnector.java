@@ -33,6 +33,7 @@ public class WebinarConnector {
 		try {
 			/* Authorize */
 			Gson gson = new Gson();
+			//Auth login
 			GenericUrl url = new GenericUrl("https://api.citrixonline.com/oauth/access_token?grant_type=password&user_id=rallen@noesis.com&password=Austin2013&client_id=WUKeRBGxGEyH0gTEe2UG1ijANkaWL8Gy");
 			
 			request = requestFactory.buildGetRequest(url);
@@ -86,7 +87,26 @@ public class WebinarConnector {
 	}
 	
 	
-	//public List<WebinarData> getUpcomingWebinars (WebinarAuth auth)
+	public List<WebinarData> getUpcomingWebinars (){
+		List<WebinarData> upcomingList = new ArrayList<WebinarData>();
+		//headers.setAuthorization("OAuth oauth_token=" + wa.getAccess_token());
+		System.out.println("OAuth oauth_token=" + wa.getAccess_token());
+		request.setHeaders(headers);
+		GenericUrl upcomingUrl = new GenericUrl("https://api.citrixonline.com/G2W/rest/organizers/" + wa.getOrganizer_key() + "/upcomingWebinars");
+		try{
+			request = requestFactory.buildGetRequest(upcomingUrl);
+			response = request.execute();
+			String content = response.parseAsString();
+			System.out.println("*****" + content);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return upcomingList;
+	}
+	
 	
 	//public List<WebinarUser> getUsers(WebinarData wd)
 	
