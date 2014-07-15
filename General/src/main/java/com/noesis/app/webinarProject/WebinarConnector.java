@@ -26,22 +26,20 @@ public class WebinarConnector {
 	private static HttpHeaders headers = new HttpHeaders();
 	private static HttpRequest request;
 	private static HttpResponse response;
+	
 	private static WebinarAuth wa;
-	private static WebinarData wd;
 	
 	public WebinarConnector() {
 		try {
 			/* Authorize */
 			Gson gson = new Gson();
-			//Auth login
 			GenericUrl url = new GenericUrl("https://api.citrixonline.com/oauth/access_token?grant_type=password&user_id=rallen@noesis.com&password=Austin2013&client_id=WUKeRBGxGEyH0gTEe2UG1ijANkaWL8Gy");
-			
 			request = requestFactory.buildGetRequest(url);
 			response = request.execute();
 			String content = response.parseAsString();
 			
 			wa = gson.fromJson(content, WebinarAuth.class);
-			System.out.println("GET = " + content);
+			System.out.println("GET auth data = " + content);
 			System.out.println("access token = " + wa.getAccess_token());
 			System.out.println("organizer key = " + wa.getOrganizer_key());
 			

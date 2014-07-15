@@ -21,7 +21,7 @@ public class EmailCollector {
 	
 	public void collectPDF(){
 		try {
-			String pdfFile = "http://www.mbawpa.org/documents/TheGreenBuildersProfessionalDirectory_003.pdf";
+			String pdfFile = "http://www.alliantenergy.com/wcm/groups/wcm_internet/@int/@ae/documents/application/mdaw/mdiz/~edisp/023496.pdf";
 			String pdfContent = Utils.pullPDFTextFromURL(pdfFile);
 			System.out.println("pdf = " + pdfContent);  //Sanity check
 			List<String> emailList = Utils.pullEmailAddressesFromString(pdfContent);
@@ -39,7 +39,7 @@ public class EmailCollector {
 	
 	public void collectHTML(){
 		try{
-			String url = "http://www.seia.org/about/seia/official-state-chapters";
+			String url = "http://www.pnmenergyefficiency.com/Projects/LinkClick.aspx?fileticket=fb019bAvXW8%3D&tabid=2058";
 			String htmlContent = Utils.readFromURL(url);
 			System.out.println("web = " + htmlContent);  //Sanity check
 			List<String> emailList = Utils.pullEmailAddressesFromString(htmlContent);
@@ -59,19 +59,20 @@ public class EmailCollector {
 	
 	public void jsonLinkSearch(){
 		List<String> emailList = new ArrayList<String>();
-		String jsonFile = "dvgbc7.json";
+		String jsonFile = "franklinEnergy.json";
 		List<String> links = Utils.jsonLinkExtractor(jsonFile);
 		System.out.println("EMAILS: \n");
 		try{
 			for (String url : links){
 				//System.out.println(url);
-				String htmlContent = Utils.readFromURL(url);
-				List<String> emails = Utils.pullEmailAddressesFromString(htmlContent);
+				//String htmlContent = Utils.readFromURL(url);
+				List<String> emails = Utils.pullEmailAddressesFromString(url);
 				for (String email : emails){
 					if (!email.equals("info@dvgbc.org"))
 						System.out.println(email);
 				}
 			}
+			System.out.println("\nJSON done");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
