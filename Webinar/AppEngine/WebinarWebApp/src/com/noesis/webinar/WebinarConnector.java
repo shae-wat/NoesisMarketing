@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 
 import com.google.gson.Gson;
+import com.noesis.webinar.WebinarAuth;
 
 public class WebinarConnector {
 
