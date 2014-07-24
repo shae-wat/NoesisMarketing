@@ -3,9 +3,11 @@ package com.noesis.webinar;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +34,7 @@ public class WebinarConnector {
 		    
 		    gson = new Gson();
 		    wa = gson.fromJson(line, WebinarAuth.class);
-			System.out.println("GET auth data = " + line);
+			System.out.println("\nGET auth data = " + line);
 			System.out.println("access token = " + wa.getAccess_token());
 			System.out.println("organizer key = " + wa.getOrganizer_key());
 
@@ -43,32 +45,65 @@ public class WebinarConnector {
 		}
 	}
 	
-	public void getUpcomingWebinars () throws IOException
+	public List<WebinarData> getUpcomingWebinars () throws IOException
 	{
 		List<WebinarData> upcomingWebinars = new ArrayList<WebinarData>();
 		URL url = new URL("https://api.citrixonline.com/G2W/rest/organizers/" + wa.getOrganizer_key() + "/upcomingWebinars");
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestMethod("GET");
 		connection.setRequestProperty("Authorization", "OAuth oauth_token="+wa.getAccess_token());
-		
 		connection.connect();
 		
-		
-		
 		String line = "";
-		
 		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 		while((line = in.readLine()) != null)
 		{
-			System.out.println(line);
+			System.out.println("\nGET upcoming webinars = "+line);
 			upcomingWebinars = gson.fromJson(line, new TypeToken<List<WebinarData>>(){}.getType());
 		}
 		in.close();
 		
 		for (WebinarData webinar:upcomingWebinars){
-			System.out.println(webinar.getSubject());
+			System.out.println(webinar.getSubject() + " : " + webinar.getWebinarKey());
 		}
+		
+		return upcomingWebinars;
 
+	}
+	
+	public List<WebinarUser> registerUsers(String webinarId,List<WebinarUser> listUsers) throws IOException{
+
+			URL url = new URL("https://api.citrixonline.com/G2W/rest/organizers/"  + wa.getOrganizer_key() + "/webinars/"+ webinarId +"/registrants");
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setDoOutput(true);
+			connection.setRequestMethod("POST");
+			connection.setRequestProperty("Authorization", "OAuth oauth_token="+wa.getAccess_token());
+
+			for (WebinarUser wu:listUsers){
+				try {
+					System.out.println("\nRegistering " + wu.getFirstName() + " for " + webinarId);
+	
+					String registrationJSON = "{\"firstName\":\""+wu.getFirstName()+"\",\"lastName\":\""+wu.getLastName()+"\",\"email\":\""+wu.getEmail()+"\"}";
+					String message = URLEncoder.encode(registrationJSON, "UTF-8");
+					OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+		            writer.write(message);
+		            writer.close();
+		    
+		            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+		            	System.out.println("OK");
+		            } else {
+		            	System.out.println("Error: Server returned HTTP error code");
+		            }
+
+					//Registered user = {"registrantKey":106478128,"joinUrl":"https://www4.gotomeeting.com/join/872916911/106478128"}
+					//add to WebinarUser
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+	        } catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return listUsers;
 	}
 	
 }
