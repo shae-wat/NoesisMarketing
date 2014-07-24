@@ -91,7 +91,10 @@ public class WebinarConnector {
 		    
 		            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
 		            	System.out.println("OK");
-		            } else {
+		            } else if (connection.getResponseCode() == HttpURLConnection.HTTP_UNAUTHORIZED){
+		            	System.out.println("Error: UNAUTHORIZED");
+		            }
+		            else {
 		            	System.out.println("Error: Server returned HTTP error code");
 		            }
 
