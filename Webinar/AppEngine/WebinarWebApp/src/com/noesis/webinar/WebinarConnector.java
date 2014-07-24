@@ -6,12 +6,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class WebinarConnector {
 
@@ -46,6 +45,7 @@ public class WebinarConnector {
 	
 	public void getUpcomingWebinars () throws IOException
 	{
+		List<WebinarData> upcomingWebinars = new ArrayList<WebinarData>();
 		URL url = new URL("https://api.citrixonline.com/G2W/rest/organizers/" + wa.getOrganizer_key() + "/upcomingWebinars");
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestMethod("GET");
@@ -61,8 +61,14 @@ public class WebinarConnector {
 		while((line = in.readLine()) != null)
 		{
 			System.out.println(line);
+			upcomingWebinars = gson.fromJson(line, new TypeToken<List<WebinarData>>(){}.getType());
 		}
+		in.close();
 		
+		for (WebinarData webinar:upcomingWebinars){
+			System.out.println(webinar.getSubject());
+		}
+
 	}
 	
 }
