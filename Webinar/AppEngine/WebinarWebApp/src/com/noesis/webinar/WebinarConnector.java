@@ -1,10 +1,12 @@
 package com.noesis.webinar;
 
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 import com.google.gson.Gson;
 import com.noesis.webinar.WebinarAuth;
@@ -38,6 +40,24 @@ public class WebinarConnector {
 		} catch (IOException e) {
 		    // ...
 		}
+	}
+	
+	public void getUpcomingWebinars () throws IOException
+	{
+		URL url = new URL("https://api.citrixonline.com/G2W/rest/organizers/" + wa.getOrganizer_key() + "/upcomingWebinars");
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+		connection.setRequestProperty("OAuth oauth_token=" , wa.getAccess_token());
+		
+		connection.connect();
+		String line = "";
+		
+		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+		while((line = in.readLine()) != null)
+		{
+			System.out.println(line);
+		}
+		
+		
 	}
 	
 }

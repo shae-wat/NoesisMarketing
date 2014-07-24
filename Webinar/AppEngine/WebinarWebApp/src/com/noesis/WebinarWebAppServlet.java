@@ -13,6 +13,7 @@ public class WebinarWebAppServlet extends HttpServlet {
 		resp.setContentType("text/plain");
 		resp.getWriter().println("Hello, world");
 		WebinarConnector wc = new WebinarConnector();
+		wc.getUpcomingWebinars();
 		
 	}
 }
