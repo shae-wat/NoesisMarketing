@@ -32,7 +32,7 @@ public class WebinarWebAppServlet extends HttpServlet {
 		List<WebinarUser> regUsers = new ArrayList<WebinarUser>();
 		regUsers.add(shaelyn);
 		
-		wc.registerUsers(registrationTestWebinar.getWebinarKey(), regUsers);
+		wc.registerUsers("550321143", regUsers);
 		
 	}
 }

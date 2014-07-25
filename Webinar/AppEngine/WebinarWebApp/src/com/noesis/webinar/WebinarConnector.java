@@ -66,7 +66,7 @@ public class WebinarConnector {
 		for (WebinarData webinar:upcomingWebinars){
 			System.out.println(webinar.getSubject() + " : " + webinar.getWebinarKey());
 		}
-		
+		connection.disconnect();
 		return upcomingWebinars;
 
 	}
@@ -75,18 +75,24 @@ public class WebinarConnector {
 
 			URL url = new URL("https://api.citrixonline.com/G2W/rest/organizers/"  + wa.getOrganizer_key() + "/webinars/"+ webinarId +"/registrants");
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			connection.setDoOutput(true);
 			connection.setRequestMethod("POST");
+			connection.setDoOutput(true);
+			connection.setRequestProperty("Accept", "application/json");
+			//connection.setRequestProperty("Accept", "application/vnd.citrix.g2wapi-v1.1+json");
+			connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
 			connection.setRequestProperty("Authorization", "OAuth oauth_token="+wa.getAccess_token());
+			//connection.connect();
+			
+			System.out.println("\nREGISTRATION POST webinarId = " + webinarId);
 
 			for (WebinarUser wu:listUsers){
 				try {
 					System.out.println("\nRegistering " + wu.getFirstName() + " for " + webinarId);
 	
 					String registrationJSON = "{\"firstName\":\""+wu.getFirstName()+"\",\"lastName\":\""+wu.getLastName()+"\",\"email\":\""+wu.getEmail()+"\"}";
-					String message = URLEncoder.encode(registrationJSON, "UTF-8");
+					//String message = URLEncoder.encode(registrationJSON, "UTF-8");
 					OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-		            writer.write(message);
+		            writer.write(registrationJSON);
 		            writer.close();
 		    
 		            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
@@ -95,8 +101,17 @@ public class WebinarConnector {
 		            	System.out.println("Error: UNAUTHORIZED");
 		            }
 		            else {
-		            	System.out.println("Error: Server returned HTTP error code");
+		            	System.out.println("Error: Server returned HTTP error code: " + connection.getResponseCode());
 		            }
+		            
+		            String line = "";
+		    		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+		    		while((line = in.readLine()) != null)
+		    		{
+		    			System.out.println(line);
+		    			//upcomingWebinars = gson.fromJson(line, new TypeToken<List<WebinarData>>(){}.getType());
+		    		}
+		    		in.close();
 
 					//Registered user = {"registrantKey":106478128,"joinUrl":"https://www4.gotomeeting.com/join/872916911/106478128"}
 					//add to WebinarUser
