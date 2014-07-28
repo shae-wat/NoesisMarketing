@@ -21,18 +21,19 @@ public class WebinarWebAppServlet extends HttpServlet {
 		WebinarConnector wc = new WebinarConnector();
 		
 		List<WebinarData> upcomingWebinars = wc.getUpcomingWebinars();
-		WebinarData registrationTestWebinar = new WebinarData();
+
 		for (WebinarData webinar:upcomingWebinars){
 			resp.getWriter().println(webinar.getSubject());
-			if (webinar.getSubject().equals("The ABC's of Shared Savings Agreements"))
-				registrationTestWebinar = webinar;
 		}
-		
+		 
 		WebinarUser shaelyn = new WebinarUser("shaelyn", "watson", "shaelynjoy@gmail.com");
+		WebinarUser shae = new WebinarUser("shaelyn", "watson", "swatson@noesis.com");
 		List<WebinarUser> regUsers = new ArrayList<WebinarUser>();
 		regUsers.add(shaelyn);
+		regUsers.add(shae);
 		
-		wc.registerUsers("550321143", regUsers);
+		wc.registerUser("802162383", shaelyn);
+		wc.registerUser("802162383", shae);
 		
 	}
 }

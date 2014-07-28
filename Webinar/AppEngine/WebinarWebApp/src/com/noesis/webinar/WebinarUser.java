@@ -3,6 +3,7 @@ package com.noesis.webinar;
 import java.util.HashMap;
 import java.util.Map;
 
+/* Created for each instance of a webinar registration */
 public class WebinarUser {
 
 	public String firstName;
@@ -11,8 +12,9 @@ public class WebinarUser {
 	public String registrantKey = "";
 	public String joinUrl = "";
 
+	public WebinarUser(){}
 	//map webinarID to userUniqueWebinarID
-	Map<String, String> web2UserID = new HashMap<String, String>();
+	//Map<String, String> web2UserID = new HashMap<String, String>();
 
 	//HashMPap<webinarData, webinarPoll>
 	//Map<WebinarData, WebinarPoll> = new HashMap<WebinarData, WebinarPoll>();
@@ -52,6 +54,7 @@ public class WebinarUser {
 	}
 
 	public void setRegistrantKey(String registrantKey) {
+		System.out.println("setting reg key to = " + registrantKey);
 		this.registrantKey = registrantKey;
 	}
 
@@ -60,6 +63,7 @@ public class WebinarUser {
 	}
 
 	public void setJoinUrl(String joinUrl) {
+		System.out.println("setting join url to = " + joinUrl);
 		this.joinUrl = joinUrl;
 	}
 	

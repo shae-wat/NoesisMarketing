@@ -71,57 +71,56 @@ public class WebinarConnector {
 
 	}
 	
-	public List<WebinarUser> registerUsers(String webinarId,List<WebinarUser> listUsers) throws IOException{
+	public WebinarUser registerUser(String webinarId, WebinarUser user) throws IOException{
 
-			URL url = new URL("https://api.citrixonline.com/G2W/rest/organizers/"  + wa.getOrganizer_key() + "/webinars/"+ webinarId +"/registrants");
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			connection.setRequestMethod("POST");
-			connection.setDoOutput(true);
-			connection.setRequestProperty("Accept", "application/json");
-			//connection.setRequestProperty("Accept", "application/vnd.citrix.g2wapi-v1.1+json");
-			connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-			connection.setRequestProperty("Authorization", "OAuth oauth_token="+wa.getAccess_token());
-			//connection.connect();
-			
-			System.out.println("\nREGISTRATION POST webinarId = " + webinarId);
+		URL url = new URL("https://api.citrixonline.com/G2W/rest/organizers/"  + wa.getOrganizer_key() + "/webinars/"+ webinarId +"/registrants");
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+		connection.setRequestMethod("POST");
+		connection.setDoOutput(true);
+		connection.setRequestProperty("Accept", "application/json");
+		connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+		connection.setRequestProperty("Authorization", "OAuth oauth_token="+wa.getAccess_token());
+		System.out.println("\nPOST registrant(s) to webinarId = " + webinarId);
+		
+			try {
+				System.out.println("\nRegistering " + user.getFirstName() + " for " + webinarId);
 
-			for (WebinarUser wu:listUsers){
-				try {
-					System.out.println("\nRegistering " + wu.getFirstName() + " for " + webinarId);
-	
-					String registrationJSON = "{\"firstName\":\""+wu.getFirstName()+"\",\"lastName\":\""+wu.getLastName()+"\",\"email\":\""+wu.getEmail()+"\"}";
-					//String message = URLEncoder.encode(registrationJSON, "UTF-8");
-					OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-		            writer.write(registrationJSON);
-		            writer.close();
-		    
-		            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-		            	System.out.println("OK");
-		            } else if (connection.getResponseCode() == HttpURLConnection.HTTP_UNAUTHORIZED){
-		            	System.out.println("Error: UNAUTHORIZED");
-		            }
-		            else {
-		            	System.out.println("Error: Server returned HTTP error code: " + connection.getResponseCode());
-		            }
-		            
-		            String line = "";
-		    		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-		    		while((line = in.readLine()) != null)
-		    		{
-		    			System.out.println(line);
-		    			//upcomingWebinars = gson.fromJson(line, new TypeToken<List<WebinarData>>(){}.getType());
-		    		}
-		    		in.close();
+				String registrationJSON = "{\"firstName\":\""+ user.getFirstName()+"\",\"lastName\":\""+ user.getLastName()+"\",\"email\":\""+ user.getEmail()+"\"}";
+				//String message = URLEncoder.encode(registrationJSON, "UTF-8");
+				OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+	            writer.write(registrationJSON);
+	            writer.close();
+	    
+	            if (connection.getResponseCode() == 409){
+	            	System.out.println(user.getFirstName() + " is already registered for webinar " + webinarId);
+	            }
+	            else {
+	            	System.out.println("POST register user: Server returned HTTP code: " + connection.getResponseCode());
+	            }
+	            
+	            String regReponse = "";
+	    		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+	    		while((regReponse = in.readLine()) != null)
+	    		{
+	    			System.out.println(regReponse);
+	    			gson = new Gson();
+	    		    user = gson.fromJson(regReponse, WebinarUser.class);
+	    		}
+	    		in.close();
+	    		
+	    		System.out.println("Registered " + user.email + " for webinar " + webinarId);
+	    		System.out.println("joinUrl = " + user.joinUrl);
+	    		System.out.println("registrantKey = " + user.registrantKey);	
 
-					//Registered user = {"registrantKey":106478128,"joinUrl":"https://www4.gotomeeting.com/join/872916911/106478128"}
-					//add to WebinarUser
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-	        } catch (IOException e) {
-				e.printStackTrace();
-			}
+				
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+        } catch (IOException e) {
+			e.printStackTrace();
 		}
-		return listUsers;
+				
+				
+		return user;
 	}
 	
 }
