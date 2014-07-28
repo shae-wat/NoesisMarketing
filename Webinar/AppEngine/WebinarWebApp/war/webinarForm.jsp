@@ -25,16 +25,20 @@
 
 %>
 
+	<nav>
+		<ul>
 <% if (upcomingWebinars != null)
 	{
 		for (WebinarData webinar : upcomingWebinars)
 		{
 %>
-			<p><%=webinar.getSubject()%></p>
+			<li><a href="index.html"><%=webinar.getSubject()%></a></li>
 <%
 		}
 	}
 %>
+		</ul>
+	</nav>
 
 </body>
 </html>
