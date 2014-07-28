@@ -20,12 +20,13 @@ public class WebinarWebAppServlet extends HttpServlet {
 		resp.getWriter().println("Upcoming Webinars\n");
 		WebinarConnector wc = new WebinarConnector();
 		
+		/* First display list of upcoming webinars to select from */
 		List<WebinarData> upcomingWebinars = wc.getUpcomingWebinars();
-
 		for (WebinarData webinar:upcomingWebinars){
 			resp.getWriter().println(webinar.getSubject());
 		}
 		 
+		
 		WebinarUser shaelyn = new WebinarUser("shaelyn", "watson", "shaelynjoy@gmail.com");
 		WebinarUser shae = new WebinarUser("shaelyn", "watson", "swatson@noesis.com");
 		List<WebinarUser> regUsers = new ArrayList<WebinarUser>();
