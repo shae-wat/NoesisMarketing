@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,21 +21,20 @@ public class WebinarWebAppServlet extends HttpServlet {
 		resp.getWriter().println("Upcoming Webinars\n");
 		WebinarConnector wc = new WebinarConnector();
 		
-		/* First display list of upcoming webinars to select from */
-		List<WebinarData> upcomingWebinars = wc.getUpcomingWebinars();
-		for (WebinarData webinar:upcomingWebinars){
-			resp.getWriter().println(webinar.getSubject());
-		}
-		 
 		
-		WebinarUser shaelyn = new WebinarUser("shaelyn", "watson", "shaelynjoy@gmail.com");
-		WebinarUser shae = new WebinarUser("shaelyn", "watson", "swatson@noesis.com");
-		List<WebinarUser> regUsers = new ArrayList<WebinarUser>();
-		regUsers.add(shaelyn);
-		regUsers.add(shae);
 		
-		wc.registerUser("802162383", shaelyn);
-		wc.registerUser("802162383", shae);
+//		wc.registerUser("802162383", shaelyn);
+//		wc.registerUser("802162383", shae);
 		
 	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		WebinarConnector wc = new WebinarConnector();
+		if (request.getParameter("First Name") != null) {
+			System.out.println("!!!!!!!!!!!");
+            //wc.registerUser(, user)
+        }
+		
+	}
+        
 }

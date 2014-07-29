@@ -90,8 +90,6 @@ public class WebinarConnector {
 		}
 		in.close();
 		
-		System.out.println("getWebinarInfo = " + webinar.getSubject());
-		
 		return webinar;
 	}
 	
