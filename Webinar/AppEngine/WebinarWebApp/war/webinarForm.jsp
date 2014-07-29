@@ -31,7 +31,8 @@
 	{
 		for (WebinarData webinar : upcomingWebinars)
 		{
-		String url = "webinarSignUp.jsp?webinarID="+webinar.getWebinarKey()+"?webinarName="+webinar.getSubject();
+		String url = "webinarSignUp.jsp?webinarID="+webinar.getWebinarKey();
+		//System.out.println("url passed = " + url);
 %>
 			<li>
 				<a href=<%=url%>><%=webinar.getSubject()%></a>

@@ -71,6 +71,31 @@ public class WebinarConnector {
 
 	}
 	
+	
+	public WebinarData getWebinarInfo(String webinarId) throws IOException{
+		
+		WebinarData webinar = new WebinarData();
+		URL url = new URL("https://api.citrixonline.com/G2W/rest/organizers/"  + wa.getOrganizer_key() + "/webinars/" + webinarId);
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+		connection.setRequestMethod("GET");
+		connection.setRequestProperty("Authorization", "OAuth oauth_token="+wa.getAccess_token());
+		connection.connect();
+		
+		String line = "";
+		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+		while((line = in.readLine()) != null)
+		{
+			System.out.println("\nGET webinar info = "+line);
+			webinar = gson.fromJson(line, WebinarData.class);
+		}
+		in.close();
+		
+		System.out.println("getWebinarInfo = " + webinar.getSubject());
+		
+		return webinar;
+	}
+	
+	
 	public WebinarUser registerUser(String webinarId, WebinarUser user) throws IOException{
 
 		URL url = new URL("https://api.citrixonline.com/G2W/rest/organizers/"  + wa.getOrganizer_key() + "/webinars/"+ webinarId +"/registrants");

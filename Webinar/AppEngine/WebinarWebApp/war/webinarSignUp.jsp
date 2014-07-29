@@ -19,22 +19,20 @@
 	</header>
 
 <%
-	String webinarId = request.getParameter("webinarId");
+	String webinarId = request.getParameter("webinarID");
 	if (webinarId == null) {
 		webinarId = "default";
 	}
 	pageContext.setAttribute("webinarId", webinarId);
 
-	String webinarName = request.getParameter("webinarName");
-	if (webinarName == null) {
-		webinarName = "default";
-	}
-	pageContext.setAttribute("webinarName", webinarName);
+	WebinarConnector wc = new WebinarConnector();
+	WebinarData webinar = wc.getWebinarInfo(webinarId);
+
+
 
 %>
 
-<p> ${fn:escapeXml(webinarId)} 
-	${fn:escapeXml(webinarName)} </p>
+<p> ${fn:escapeXml(webinarId)} </p>
 
 </body>
 </html>
