@@ -6,10 +6,11 @@
 
 <html>
 <head>
-<title>Thank you for registering</title>
+	<title>Thank you for registering</title>
 </head>
+
 <body>
-<center>
+	<center>
 <%
 	String webinarId = request.getParameter("webinarID");
 	pageContext.setAttribute("webinarId", webinarId);
@@ -23,21 +24,19 @@
 	
 
 	WebinarUser user = new WebinarUser(first_name,last_name,email);
-	wc.registerUser(webinarId, user);
+	user = wc.registerUser(webinarId, user);
 
 %>
-<p>Thank you, <%= first_name %>  <%= last_name %>, for registering for <%=webinar.getSubject()%>
-</p>
-<ul>
-<li><p><b>First Name:</b>
-   <%= first_name %>
-</p></li>
-<li><p><b>Last  Name:</b>
-   <%= last_name %>
-</p></li>
-<li><p><b>Email:</b>
-   <%= email %>
-</p></li>
-</ul>
+	<p>Thank you, <%= first_name %>  <%= last_name %>, for registering for <%=webinar.getSubject()%>
+		at <%=webinar.getTimes()%>  <%=webinar.getTimeZone()%>
+	</p>
+	<p>An email has been sent to <%=email%> with the 
+	<a href=<%=user.getJoinUrl()%>>link</a>
+	to join the webinar</p>
+
+	<p><b>Here are some more resources from Noesis Energy that may interest you:</b></p>
+
+
+	<a href=https://www.noesisenergy.com/site/>Back to Noesis home page</a>
 </body>
 </html>

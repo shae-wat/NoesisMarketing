@@ -103,7 +103,7 @@ public class WebinarConnector {
 		connection.setRequestProperty("Accept", "application/json");
 		connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
 		connection.setRequestProperty("Authorization", "OAuth oauth_token="+wa.getAccess_token());
-		System.out.println("\nPOST registrant(s) to webinarId = " + webinarId);
+		//System.out.println("\nPOST registrant(s) to webinarId = " + webinarId);
 		
 			try {
 				System.out.println("\nRegistering " + user.getFirstName() + " for " + webinarId);
