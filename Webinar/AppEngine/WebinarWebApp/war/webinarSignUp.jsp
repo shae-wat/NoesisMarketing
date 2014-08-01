@@ -10,14 +10,6 @@
     <title>Registration</title>
 </head>
 
-<body>
-	<header>
-		<div id="reg">
-	        <h1>Register for webinar</h1>
-        </div>
-		<hr>
-	</header>
-
 <%
 	String webinarId = request.getParameter("webinarID");
 	if (webinarId == null) {
@@ -32,10 +24,19 @@
 	System.out.println(action);
 	pageContext.setAttribute("action", action);
 
+	DateAndTime when = new DateAndTime(webinar.getTimes());
+
 %>
 
+<body>
+	<header>
+		<div id="reg">
+	        <h1>Register for webinar: <%=webinar.getSubject()%></h1>
+        </div>
+		<hr>
+	</header>
+
 <p> 
-	<%=webinar.getSubject()%>
 	<%=webinar.getDescription()%>
 	<li><%=webinar.getTimes()%></li>
 	<li><%=webinar.getTimeZone()%></li>

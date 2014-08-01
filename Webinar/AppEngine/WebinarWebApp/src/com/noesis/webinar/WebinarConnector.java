@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -48,6 +49,7 @@ public class WebinarConnector {
 	public List<WebinarData> getUpcomingWebinars () throws IOException
 	{
 		List<WebinarData> upcomingWebinars = new ArrayList<WebinarData>();
+		List<WebinarData> officialWebinars = new ArrayList<WebinarData>();
 		URL url = new URL("https://api.citrixonline.com/G2W/rest/organizers/" + wa.getOrganizer_key() + "/upcomingWebinars");
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestMethod("GET");
@@ -65,9 +67,12 @@ public class WebinarConnector {
 		
 		for (WebinarData webinar:upcomingWebinars){
 			System.out.println(webinar.getSubject() + " : " + webinar.getWebinarKey());
+			//Check for test webinars, which must include TEST in all caps in their title
+			if(!webinar.getSubject().contains("TEST"))
+				officialWebinars.add(webinar);
 		}
 		connection.disconnect();
-		return upcomingWebinars;
+		return officialWebinars;
 
 	}
 	
@@ -131,9 +136,8 @@ public class WebinarConnector {
 	    		}
 	    		in.close();
 	    		
-	    		System.out.println("Registered " + user.email + " for webinar " + webinarId);
-	    		System.out.println("joinUrl = " + user.joinUrl);
-	    		System.out.println("registrantKey = " + user.registrantKey);	
+	    		System.out.println("joinUrl = " + user.getJoinUrl());
+	    		System.out.println("registrantKey = " + user.getRegistrantKey());	
 
 				
 		} catch (MalformedURLException e) {
@@ -145,5 +149,11 @@ public class WebinarConnector {
 				
 		return user;
 	}
+	
+//	public String utf8String(String str) throws UnsupportedEncodingException{
+//		byte ptext[] = str.getBytes("UTF-8");
+//		String value = new String(ptext, "UTF-8");
+//		return value;
+//	}
 	
 }
