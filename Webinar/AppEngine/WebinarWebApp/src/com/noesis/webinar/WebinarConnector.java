@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -65,12 +66,15 @@ public class WebinarConnector {
 		}
 		in.close();
 		
+		//Collections.sort(upcomingWebinars);
+		
 		for (WebinarData webinar:upcomingWebinars){
 			System.out.println(webinar.getSubject() + " : " + webinar.getWebinarKey());
 			//Check for test webinars, which must include TEST in all caps in their title
 			if(!webinar.getSubject().contains("TEST"))
 				officialWebinars.add(webinar);
 		}
+		Collections.sort(officialWebinars);
 		connection.disconnect();
 		return officialWebinars;
 

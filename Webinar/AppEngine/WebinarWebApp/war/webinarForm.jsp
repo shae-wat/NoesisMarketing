@@ -32,10 +32,11 @@
 		for (WebinarData webinar : upcomingWebinars)
 		{
 		String url = "webinarSignUp.jsp?webinarID="+webinar.getWebinarKey();
-		//System.out.println("url passed = " + url);
+		System.out.println("url passed = " + url);
+		DateAndTime when = new DateAndTime(webinar.getTimes());
 %>
 			<li>
-				<a href=<%=url%>><%=webinar.getSubject()%></a>
+				<a href=<%=url%>><%=webinar.getSubject()%></a><p> <%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> EDT</p>
 			</li>
 <%
 		}

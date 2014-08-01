@@ -15,15 +15,16 @@ public class DateAndTime {
 	public String date;
 	public String startTime;
 	public String endTime;
+	public Date dateObj;
 	
 	public DateAndTime(ArrayList<Map<String,String>> data) throws ParseException {
 
-		System.out.println("\n\n DATE AND TIME");
+		//System.out.println("\n\n DATE AND TIME");
 		Date startDate = null;
 		Date endDate = null;
 		for (Map<String,String> ele : data){
 			System.out.println(ele);
-			Iterator it = ele.entrySet().iterator();
+			Iterator<Map.Entry<String,String>> it = ele.entrySet().iterator();
 			int counter = 0;
 		    while (it.hasNext()) {
 		        Map.Entry<String,String> pairs = (Map.Entry<String,String>)it.next();
@@ -31,12 +32,13 @@ public class DateAndTime {
 		        if (counter == 0){
 		        	startTime = pairs.getValue();
 		        	startDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0100"));
+		        	dateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0100"));
 		        }
 		        else if (counter == 1){
 		        	endTime= pairs.getValue();
 		        	endDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(endTime.replaceAll("Z$", "-0100"));
 		        }
-		        it.remove(); // avoids a ConcurrentModificationException
+		        //it.remove(); // avoids a ConcurrentModificationException
 		        counter++;
 		    }
 			
@@ -44,23 +46,23 @@ public class DateAndTime {
 		
 		
 		String defaultTimezone = TimeZone.getDefault().getID();
-		System.out.println("defaultTimezone: " + defaultTimezone);
+		//System.out.println("defaultTimezone: " + defaultTimezone);
 		
 		day = (new SimpleDateFormat("EEEEEEEE")).format(startDate);
-		System.out.println("day = " + day);
+		//System.out.println("day = " + day);
 		
 		date = (new SimpleDateFormat("MMM' 'dd,' 'yyyy")).format(startDate);
-		System.out.println("date = " + date);
+		//System.out.println("date = " + date);
 		
 		startTime = (new SimpleDateFormat("hh:mm a")).format(startDate);
 		if (startTime.startsWith("0"))
 			startTime = startTime.substring(1);
-		System.out.println("startTime = " + startTime);
+		//System.out.println("startTime = " + startTime);
 		
 		endTime = (new SimpleDateFormat("hh:mm a")).format(endDate);
 		if (endTime.startsWith("0"))
 			endTime = endTime.substring(1);
-		System.out.println("endTime = " + endTime);
+		//System.out.println("endTime = " + endTime);
 		
 	}
 	
