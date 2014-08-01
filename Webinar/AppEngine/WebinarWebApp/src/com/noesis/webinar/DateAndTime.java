@@ -46,13 +46,20 @@ public class DateAndTime {
 		String defaultTimezone = TimeZone.getDefault().getID();
 		System.out.println("defaultTimezone: " + defaultTimezone);
 		
-		date = (new SimpleDateFormat("MMM' 'dd' 'yyyy")).format(startDate);
+		day = (new SimpleDateFormat("EEEEEEEE")).format(startDate);
+		System.out.println("day = " + day);
+		
+		date = (new SimpleDateFormat("MMM' 'dd,' 'yyyy")).format(startDate);
 		System.out.println("date = " + date);
 		
-		startTime = (new SimpleDateFormat("HH:mm")).format(startDate);
+		startTime = (new SimpleDateFormat("hh:mm a")).format(startDate);
+		if (startTime.startsWith("0"))
+			startTime = startTime.substring(1);
 		System.out.println("startTime = " + startTime);
 		
-		endTime = (new SimpleDateFormat("HH:mm")).format(endDate);
+		endTime = (new SimpleDateFormat("hh:mm a")).format(endDate);
+		if (endTime.startsWith("0"))
+			endTime = endTime.substring(1);
 		System.out.println("endTime = " + endTime);
 		
 	}

@@ -38,8 +38,7 @@
 
 <p> 
 	<%=webinar.getDescription()%>
-	<li><%=webinar.getTimes()%></li>
-	<li><%=webinar.getTimeZone()%></li>
+	<li><%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> EDT</li>
 </p>
 
 <form name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST">
