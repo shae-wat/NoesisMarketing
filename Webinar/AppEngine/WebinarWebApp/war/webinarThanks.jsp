@@ -7,6 +7,10 @@
 <html>
 <head>
 	<title>Thank you for registering</title>
+	
+	<link rel="stylesheet" type="text/css" href="webinar.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
 </head>
 
 <%
@@ -32,8 +36,8 @@
 	<header>
 		<div id="success">
 			<center>
-	        <h2>Successful Registration for</h2>
-	        <h1> <%=webinar.getSubject()%> </h1>
+	        <h2 class="text-info">Successful Registration for</h2>
+	        <h1 class="text-info"> <%=webinar.getSubject()%> </h1>
         </div>
 		<hr>
 	</header>
