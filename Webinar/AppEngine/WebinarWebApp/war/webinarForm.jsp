@@ -32,7 +32,6 @@
 		for (WebinarData webinar : upcomingWebinars)
 		{
 		String url = "webinarSignUp.jsp?webinarID="+webinar.getWebinarKey();
-		System.out.println("url passed = " + url);
 		DateAndTime when = new DateAndTime(webinar.getTimes());
 %>
 			<li>

@@ -1,0 +1,19 @@
+<style type="text/css">
+	#errorContainer {
+	    display: none;
+	    overflow: auto;
+	    background-color: #FFDDDD;
+	    border: 1px solid #FF2323;
+	    padding-top: 1;
+	}
+	
+	#errorContainer label {
+	    float: none;
+	    width: auto;
+	}
+	
+	input.error {
+	    border: 1px solid #FF2323;
+	}
+
+</style>

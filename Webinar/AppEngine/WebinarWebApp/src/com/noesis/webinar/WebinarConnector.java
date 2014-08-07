@@ -71,7 +71,7 @@ public class WebinarConnector {
 		for (WebinarData webinar:upcomingWebinars){
 			System.out.println(webinar.getSubject() + " : " + webinar.getWebinarKey());
 			//Check for test webinars, which must include TEST in all caps in their title
-			if(!webinar.getSubject().contains("TEST"))
+			if(!webinar.getSubject().contains("TEST") && !webinar.getSubject().contains("NEEDED"))
 				officialWebinars.add(webinar);
 		}
 		Collections.sort(officialWebinars);
@@ -112,13 +112,11 @@ public class WebinarConnector {
 		connection.setRequestProperty("Accept", "application/json");
 		connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
 		connection.setRequestProperty("Authorization", "OAuth oauth_token="+wa.getAccess_token());
-		//System.out.println("\nPOST registrant(s) to webinarId = " + webinarId);
 		
 			try {
 				System.out.println("\nRegistering " + user.getFirstName() + " for " + webinarId);
 
 				String registrationJSON = "{\"firstName\":\""+ user.getFirstName()+"\",\"lastName\":\""+ user.getLastName()+"\",\"email\":\""+ user.getEmail()+"\"}";
-				//String message = URLEncoder.encode(registrationJSON, "UTF-8");
 				OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
 	            writer.write(registrationJSON);
 	            writer.close();
@@ -153,11 +151,5 @@ public class WebinarConnector {
 				
 		return user;
 	}
-	
-//	public String utf8String(String str) throws UnsupportedEncodingException{
-//		byte ptext[] = str.getBytes("UTF-8");
-//		String value = new String(ptext, "UTF-8");
-//		return value;
-//	}
 	
 }

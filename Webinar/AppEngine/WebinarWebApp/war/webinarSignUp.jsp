@@ -3,7 +3,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="com.noesis.webinar.*" %>
 
-
 <html>
 <head>
     <!-- <link type="text/css" rel="stylesheet" href="/stylesheets/main.css"/> -->

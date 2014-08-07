@@ -23,7 +23,7 @@ public class DateAndTime {
 		Date startDate = null;
 		Date endDate = null;
 		for (Map<String,String> ele : data){
-			System.out.println(ele);
+			//System.out.println(ele);
 			Iterator<Map.Entry<String,String>> it = ele.entrySet().iterator();
 			int counter = 0;
 		    while (it.hasNext()) {

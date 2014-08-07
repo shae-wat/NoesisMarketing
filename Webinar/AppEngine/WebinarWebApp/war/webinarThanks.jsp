@@ -39,7 +39,7 @@
 	</header>
 	<center>
 
-	<p>Thank you, <%= first_name %>  <%= last_name %>, for registering for the <b><%=webinar.getSubject()%></b> webinar hosted by Noesis Energy</p>
+	<p>Thank you, <%= first_name %>  <%= last_name %>, you have registered to attend the <b><%=webinar.getSubject()%></b> webinar hosted by Noesis Energy</p>
 	<p>The webinar is on <%=when.getDay()%> <%=when.getDate()%> at <%=when.getStartTime()%> <b>EDT</b></p>
 	<p>*Please note that the start time is Eastern Daylight Time*</p>
 	<p>An email has been sent to <%=email%> with the <a href=<%=user.getJoinUrl()%>>link</a> to join the webinar</p>
@@ -47,6 +47,9 @@
 	<p><b>Here are some more resources from Noesis Energy that may interest you:</b></p>
 
 	<a href="https://www.noesisenergy.com/site/content/noesis-resource-library"><img src="noesis_resources.png" alt="resource_redirect"</a>
+
+
+	<!-- <p>*Share your registration for this webinar on Twitter or LinkedIn</p> -->
 
 
 	<footer>
