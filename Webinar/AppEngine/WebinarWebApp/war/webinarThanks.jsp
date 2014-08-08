@@ -28,7 +28,7 @@
 	WebinarUser user = new WebinarUser(first_name,last_name,email);
 	user = wc.registerUser(webinarId, user);
 
-	DateAndTime when = new DateAndTime(webinar.getTimes());
+	DateAndTime when = new DateAndTime(webinar.getTimes().get(0));
 
 %>
 
@@ -44,7 +44,7 @@
 	<center>
 
 	<p>Thank you, <%= first_name %>  <%= last_name %>, you have registered to attend the <b><%=webinar.getSubject()%></b> webinar hosted by Noesis Energy</p>
-	<p>The webinar is on <%=when.getDays().get(0)%> <%=when.getDates().get(0)%> at <%=when.getStartTimes().get(0)%> <b>EDT</b></p>
+	<p>The webinar is on <%=when.getDay()%> <%=when.getDate()%> at <%=when.getStartTime()%> <b>EDT</b></p>
 	<p>*Please note that the start time is Eastern Daylight Time*</p>
 	<p>An email has been sent to <%=email%> with the <a href=<%=user.getJoinUrl()%>>link</a> to join the webinar</p>
 

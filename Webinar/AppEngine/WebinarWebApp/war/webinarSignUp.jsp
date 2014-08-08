@@ -29,7 +29,7 @@
 	System.out.println(action);
 	pageContext.setAttribute("action", action);
 
-	DateAndTime when = new DateAndTime(webinar.getTimes());
+	DateAndTime when = new DateAndTime(webinar.getTimes().get(0));
 
 %>
 
@@ -46,7 +46,7 @@
 <p style="color:#FFFFFF;"> 
 	<span class="label label-info">About this webinar : </span><br><br> <%=webinar.getDescription()%>
 	<br><br>
-	<%=when.getDays().get(0)%> <%=when.getDates().get(0)%> <%=when.getStartTimes().get(0)%> - <%=when.getEndTimes().get(0)%> EDT
+	<%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> EDT
 </p>
 
 <form name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST">
