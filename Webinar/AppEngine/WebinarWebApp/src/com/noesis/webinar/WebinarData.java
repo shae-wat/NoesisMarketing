@@ -1,8 +1,8 @@
 package com.noesis.webinar;
 
-import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class WebinarData implements Comparable<WebinarData>{
@@ -11,6 +11,8 @@ public class WebinarData implements Comparable<WebinarData>{
 	public String subject;
 	public String description;
 	public ArrayList<Map<String,String>> times;
+	public ArrayList<DateAndTime> datesAndKeys = new ArrayList<DateAndTime>();
+
 	public String timeZone;
 
 	public String getWebinarKey() {
@@ -69,6 +71,14 @@ public class WebinarData implements Comparable<WebinarData>{
 		}
 		//System.out.println(" when2.dateObj.compareTo(when1.dateObj) = " + when2.dateObj.compareTo(when1.dateObj));
 		return when2.dateObj.compareTo(when1.dateObj);
+	}
+
+	public ArrayList<DateAndTime> getDatesAndTimes() {
+		return datesAndKeys;
+	}
+
+	public void setDatesAndTimes(ArrayList<DateAndTime> datesAndTimes) {
+		this.datesAndKeys = datesAndTimes;
 	}
 	
 }

@@ -70,27 +70,38 @@ public class WebinarConnector {
 		
 		for (WebinarData webinar:upcomingWebinars){
 			System.out.println(webinar.getSubject() + " : " + webinar.getWebinarKey());
-			
+			DateAndTime dateAndKey = null;
+			try {
+				dateAndKey = new DateAndTime(webinar.times.get(0));  //shouldbe only ele at this point
+				dateAndKey.setWebinarKey(webinar.getWebinarKey());
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+			//Remove list duplicates
 			for(WebinarData web:officialWebinars){
 				if (web.getSubject().equals(webinar.getSubject())){
 					System.out.println("Added " + webinar.getSubject() + " times to " + web.getSubject());
+					web.datesAndKeys.add(dateAndKey);
 					web.times.add(webinar.times.get(0));
 					webinar.setSubject("NEEDED");  //filters this webinar out after adding its times
 				}
 			}
 			//Check for test webinars, which must include TEST in all caps in their title
-			if(upcomingWebinars.contains(webinar) && !webinar.getSubject().contains("TEST") && !webinar.getSubject().contains("NEEDED"))
+			if(upcomingWebinars.contains(webinar) && !webinar.getSubject().contains("TEST") && !webinar.getSubject().contains("NEEDED")){
+				webinar.datesAndKeys.add(dateAndKey);
 				officialWebinars.add(webinar);
+			}
 		}
 		Collections.sort(officialWebinars);
 		
 		for(WebinarData w : officialWebinars){
-			System.out.println(w.getSubject() + " = ");
+			//System.out.println(w.getSubject() + " = ");
 			List<Map<String,String>> times = w.getTimes();
 			try {
 				for (Map<String,String> time : times){
 					DateAndTime when = new DateAndTime(time);
-					System.out.println(w.getSubject() + " = " + when.getDay() + when.getDate());
+					//System.out.println(w.getSubject() + " = " + when.getDay() + when.getDate());
 				}
 				
 			} catch (ParseException e) {

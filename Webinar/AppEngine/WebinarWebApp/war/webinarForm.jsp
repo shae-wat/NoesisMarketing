@@ -35,16 +35,14 @@
 	{
 		for (WebinarData webinar : upcomingWebinars)
 		{
-		String url = "webinarSignUp.jsp?webinarID="+webinar.getWebinarKey();
-		List<Map<String,String>> times = webinar.getTimes();
-
+		List<DateAndTime> times = webinar.getDatesAndTimes();
 		
 %>
 			<li>
-				<a href=<%=url%>><%=webinar.getSubject()%></a> 
-				<%for (Map<String,String> time : times){
-					DateAndTime when = new DateAndTime(time); %>
-					<p> <%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> EDT</p>
+				<p> <%=webinar.getSubject()%> </p>
+				<%for (DateAndTime when : times){
+					String url = "webinarSignUp.jsp?webinarID="+when.getWebinarKey();%>
+					<a href=<%=url%>><%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> EDT</a>
 				<%}%>
 			</li>
 <%
