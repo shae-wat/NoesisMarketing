@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.TimeZone;
 
 
-public class DateAndTime {
+public class DateAndTime implements Comparable<DateAndTime>{
 
 
 	public String day;
@@ -20,7 +20,7 @@ public class DateAndTime {
 	public Date dateObj;
 	public String webinarKey;
 	
-	public DateAndTime(Map<String,String> data) throws ParseException {
+	public DateAndTime(Map<String,String> data) {
 
 		//System.out.println("data = " + data);
 		Date startDate = null;
@@ -33,12 +33,22 @@ public class DateAndTime {
 	        //System.out.println(pairs.getKey() + " *= " + pairs.getValue());
 	        if (counter == 0){
 	        	startTime = pairs.getValue();
-	        	startDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0100"));
-	        	dateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0100"));
+	        	try {
+					startDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0000"));
+					dateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0000"));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	        }
 	        else if (counter == 1){
 	        	endTime= pairs.getValue();
-	        	endDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(endTime.replaceAll("Z$", "-0100"));
+	        	try {
+					endDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(endTime.replaceAll("Z$", "-0000"));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	        }
 	        counter++;
 	    }
@@ -112,5 +122,8 @@ public class DateAndTime {
 		this.webinarKey = webinarKey;
 	}
 
+	public int compareTo(DateAndTime d){
+		return this.getDateObj().compareTo(d.getDateObj());
+	}
 
 }

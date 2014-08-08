@@ -207,8 +207,8 @@ public class Utils {
 	{
 		PDFTextStripper stripper = new PDFTextStripper();
 		PDDocument doc;
-		URL url = new URL(urlStr);
-		doc = PDDocument.load(url);
+		//URL url = new URL(urlStr);
+		doc = PDDocument.load(urlStr);
 		String content = stripper.getText(doc);
 		return content;
 	}

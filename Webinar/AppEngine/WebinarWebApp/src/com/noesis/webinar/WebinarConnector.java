@@ -53,6 +53,7 @@ public class WebinarConnector {
 	{
 		List<WebinarData> upcomingWebinars = new ArrayList<WebinarData>();
 		List<WebinarData> officialWebinars = new ArrayList<WebinarData>();
+		
 		URL url = new URL("https://api.citrixonline.com/G2W/rest/organizers/" + wa.getOrganizer_key() + "/upcomingWebinars");
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestMethod("GET");
@@ -71,19 +72,17 @@ public class WebinarConnector {
 		for (WebinarData webinar:upcomingWebinars){
 			System.out.println(webinar.getSubject() + " : " + webinar.getWebinarKey());
 			DateAndTime dateAndKey = null;
-			try {
-				dateAndKey = new DateAndTime(webinar.times.get(0));  //shouldbe only ele at this point
-				dateAndKey.setWebinarKey(webinar.getWebinarKey());
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
+			
+			dateAndKey = new DateAndTime(webinar.times.get(0));  //shouldbe only ele at this point
+			dateAndKey.setWebinarKey(webinar.getWebinarKey());
+			System.out.println(dateAndKey.getStartTime());
+			
 			//Remove list duplicates
 			for(WebinarData web:officialWebinars){
-				if (web.getSubject().equals(webinar.getSubject())){
+				if (webinar.getSubject().equals(web.getSubject())){
 					System.out.println("Added " + webinar.getSubject() + " times to " + web.getSubject());
 					web.datesAndKeys.add(dateAndKey);
-					web.times.add(webinar.times.get(0));
+					//web.times.add(webinar.times.get(0));
 					webinar.setSubject("NEEDED");  //filters this webinar out after adding its times
 				}
 			}
@@ -94,22 +93,6 @@ public class WebinarConnector {
 			}
 		}
 		Collections.sort(officialWebinars);
-		
-		for(WebinarData w : officialWebinars){
-			//System.out.println(w.getSubject() + " = ");
-			List<Map<String,String>> times = w.getTimes();
-			try {
-				for (Map<String,String> time : times){
-					DateAndTime when = new DateAndTime(time);
-					//System.out.println(w.getSubject() + " = " + when.getDay() + when.getDate());
-				}
-				
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
 		
 		connection.disconnect();
 		return officialWebinars;

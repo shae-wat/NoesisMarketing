@@ -2,6 +2,7 @@ package com.noesis.webinar;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -62,18 +63,14 @@ public class WebinarData implements Comparable<WebinarData>{
 	public int compareTo(WebinarData webinar){
 		DateAndTime when1 = null;
 		DateAndTime when2 = null;
-		try {
-			when1 = new DateAndTime(webinar.getEarliestStartTime());
-			when2 = new DateAndTime(this.getEarliestStartTime());
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-		}
+		when1 = new DateAndTime(webinar.getEarliestStartTime());
+		when2 = new DateAndTime(this.getEarliestStartTime());
 		//System.out.println(" when2.dateObj.compareTo(when1.dateObj) = " + when2.dateObj.compareTo(when1.dateObj));
 		return when2.dateObj.compareTo(when1.dateObj);
 	}
 
 	public ArrayList<DateAndTime> getDatesAndTimes() {
+		Collections.sort(datesAndKeys);
 		return datesAndKeys;
 	}
 
