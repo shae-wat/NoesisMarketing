@@ -1,12 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.List" %>
+<%@ page import="java.util.*" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="com.noesis.webinar.*" %>
 
 
 <html>
 <head>
-    <!-- <link type="text/css" rel="stylesheet" href="/stylesheets/main.css"/> -->
     <title>Upcoming webinars</title>
     
     <link rel="stylesheet" type="text/css" href="webinar.css">
@@ -26,6 +25,7 @@
 	WebinarConnector wc = new WebinarConnector();
 
 	List<WebinarData> upcomingWebinars = wc.getUpcomingWebinars();
+	//Set<WebinarData> setWebinars = new HashSet<WebinarData>(upcomingWebinars);
 
 %>
 
@@ -36,10 +36,16 @@
 		for (WebinarData webinar : upcomingWebinars)
 		{
 		String url = "webinarSignUp.jsp?webinarID="+webinar.getWebinarKey();
-		DateAndTime when = new DateAndTime(webinar.getTimes());
+		List<Map<String,String>> times = webinar.getTimes();
+
+		
 %>
 			<li>
-				<a href=<%=url%>><%=webinar.getSubject()%></a><p> <%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> EDT</p>
+				<a href=<%=url%>><%=webinar.getSubject()%></a> 
+				<%for (Map<String,String> time : times){
+					DateAndTime when = new DateAndTime(time); %>
+					<p> <%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> EDT</p>
+				<%}%>
 			</li>
 <%
 		}

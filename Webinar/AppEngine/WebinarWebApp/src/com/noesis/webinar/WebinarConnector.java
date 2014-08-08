@@ -9,9 +9,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -66,15 +68,38 @@ public class WebinarConnector {
 		}
 		in.close();
 		
-		//Collections.sort(upcomingWebinars);
-		
 		for (WebinarData webinar:upcomingWebinars){
 			System.out.println(webinar.getSubject() + " : " + webinar.getWebinarKey());
+			
+			for(WebinarData web:officialWebinars){
+				if (web.getSubject().equals(webinar.getSubject())){
+					System.out.println("Added " + webinar.getSubject() + " times to " + web.getSubject());
+					web.times.add(webinar.times.get(0));
+					webinar.setSubject("NEEDED");  //filters this webinar out after adding its times
+				}
+			}
 			//Check for test webinars, which must include TEST in all caps in their title
-			if(!webinar.getSubject().contains("TEST") && !webinar.getSubject().contains("NEEDED"))
+			if(upcomingWebinars.contains(webinar) && !webinar.getSubject().contains("TEST") && !webinar.getSubject().contains("NEEDED"))
 				officialWebinars.add(webinar);
 		}
 		Collections.sort(officialWebinars);
+		
+		for(WebinarData w : officialWebinars){
+			System.out.println(w.getSubject() + " = ");
+			List<Map<String,String>> times = w.getTimes();
+			try {
+				for (Map<String,String> time : times){
+					DateAndTime when = new DateAndTime(time);
+					System.out.println(w.getSubject() + " = " + when.getDay() + when.getDate());
+				}
+				
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
 		connection.disconnect();
 		return officialWebinars;
 

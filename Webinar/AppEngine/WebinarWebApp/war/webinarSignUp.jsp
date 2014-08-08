@@ -46,7 +46,7 @@
 <p style="color:#FFFFFF;"> 
 	<span class="label label-info">About this webinar : </span><br><br> <%=webinar.getDescription()%>
 	<br><br>
-	<%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> EDT
+	<%=when.getDays().get(0)%> <%=when.getDates().get(0)%> <%=when.getStartTimes().get(0)%> - <%=when.getEndTimes().get(0)%> EDT
 </p>
 
 <form name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST">

@@ -40,6 +40,10 @@ public class WebinarData implements Comparable<WebinarData>{
 	public ArrayList<Map<String, String>> getTimes() {
 		return times;
 	}
+	
+	public Map<String, String> getEarliestStartTime() {
+		return times.get(0);
+	}
 
 	public void setTimes(ArrayList<Map<String, String>> times) {
 		this.times = times;
@@ -57,8 +61,8 @@ public class WebinarData implements Comparable<WebinarData>{
 		DateAndTime when1 = null;
 		DateAndTime when2 = null;
 		try {
-			when1 = new DateAndTime(webinar.getTimes());
-			when2 = new DateAndTime(this.getTimes());
+			when1 = new DateAndTime(webinar.getEarliestStartTime());
+			when2 = new DateAndTime(this.getEarliestStartTime());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
