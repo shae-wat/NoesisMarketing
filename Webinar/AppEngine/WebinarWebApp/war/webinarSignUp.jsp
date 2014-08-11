@@ -46,13 +46,14 @@
 </header>
 <table>
 <tr>
-<td style="width:55%"> 
+<td style="width:55%; vertical-align:top;"> 
 <div>
     <form name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST">
     <table>
     		<tr>
                 <td colspan="2">
                     <h4><span class="label label-info">Register for this webinar : </span></h4><span style="font-size:12px;"> (all fields required)</span>
+                    <br>
                 </td>
             </tr>
 
@@ -538,7 +539,7 @@
 </div>
 </td>
 
-<td colspan="2" style="width:45%">
+<td colspan="2" style="width:45%; vertical-align:top; horizontal-align:left">
     <h4><span class="label label-info">About this webinar : </span></h4>
     <p> <br>
         <%=webinar.getDescription()%> 

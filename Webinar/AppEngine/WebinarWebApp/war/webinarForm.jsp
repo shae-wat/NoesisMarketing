@@ -18,6 +18,8 @@
 		<div id="upcoming">
 	        <h1 class="text-info">Upcoming Webinars</h1>
         </div>
+
+
 		<hr>
 	</header>
 
@@ -38,7 +40,27 @@
 		List<DateAndTime> times = webinar.getDatesAndTimes();	
 		%>
 
-		<h4 class="text-info"> <%=webinar.getSubject()%> </h4>
+		<div class="media">
+			<span class="pull-left">
+
+			<img class="img-circle" src="lacey-avatar-small.png" style="background:#E1E1E1;max-width: 7em;border: .35em solid #F1F1F1;"/>
+
+			</span>
+			<td style="margin: 0; padding: 0;"> 
+			<div class="media-body" style="display: block; position: relative; margin: 0 auto; padding: 10px;"> <table style="margin: 0; padding: 0;"><tr style="margin: 0; padding: 0;"><td style="margin: 0; padding: 0;"> 
+			<p class="well ne-5-bg">
+
+			<span class="handwritten text-primary lead"><%=webinar.getSubject()%></span><br><span style="position: absolute; top: 20%; left: 0px; margin: 0; padding: 0;"><img src="http://noesisimg.s3.amazonaws.com/Marketing/pages/triangle-sm-blu-left.png" style="max-width: 100%; margin: 0; padding: 0;"></span> </p>
+
+			</td>
+			</tr></table></div> 
+			</td> 
+		</div>
+
+
+
+
+
 			<%for (DateAndTime when : times){
 				String url = "webinarSignUp.jsp?webinarID="+when.getWebinarKey();%>
 				<li><a href=<%=url%>><%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> CDT</a>
