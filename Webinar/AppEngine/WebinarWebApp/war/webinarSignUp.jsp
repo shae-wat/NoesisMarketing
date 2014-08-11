@@ -39,40 +39,32 @@
 	<div id="reg">
         <h1 class="text-info"><%=webinar.getSubject()%></h1>
     </div>
-	<hr>
-</header>
-
-<div class="jumbotron ne-cloud-bg" style="float:left; width:45%;">
-    <h4><span class="label label-info">About this webinar : </span></h4>
-    <p> 
-        <br> 
-        <%=webinar.getDescription()%> 
-    	<br> 
-    </p>
-        
     <h4>    
-    	<%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> CDT
+        <%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> CDT
     </h4>
-</div>
-
-<div style="float:left; width:55%;">
+    <hr>
+</header>
+<table>
+<tr>
+<td style="width:55%"> 
+<div>
     <form name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST">
     <table>
-    		<tr><td colspan="2">
-    		<h4><span class="label label-info">Register for this webinar : </span></h4>
-            <span style="font-size:12px;"> (all fields required)</span>
-    		
-    		</td></tr>
+    		<tr>
+                <td colspan="2">
+                    <h4><span class="label label-info">Register for this webinar : </span></h4><span style="font-size:12px;"> (all fields required)</span>
+                </td>
+            </tr>
 
-    	  	<tr><td>
-    	  		
-    	        First Name * 
-    	    </td><td>
+    	  	<tr>
+                <td>First Name * </td>
+                <td>
     	        <input type="text" 
     	                name="first_name" class="form-control" ne-hint="First Name" 
     	                tooltip="{{(form.First_Name_Casual__c.$dirty && (form.First_Name_Casual__c.$error.required || form.First_Name_Casual__c.$error.maxlength)) ? 'Your first name is required and must be less than 255 characters' : ''}}"         
     	                ng-required="true" ng-maxlength="255" ng-model="$parent.First_Name_Casual__c">
-    		</td></tr>
+    		    </td>
+            </tr>
 
     		<tr><td>
     	        Last Name *
@@ -533,17 +525,31 @@
                                     
                                 
     	<tr><td colspan="2">
-    	<hr>
-    		
-    		<button type="input" class="btn btn-primary">Register</button>
+    	   <hr>
+           <button type="input" class="btn btn-primary">Register</button>
     	</td></tr>
+        <tr> <td colspan="2">
+            <br>
+            <a href="/webinarForm.jsp"> << Back to webinar list </a>
+            <td>
+        </tr>    
     </table>
     </form>
 </div>
+</td>
 
-<div style="clear:both">
-    <a href="/webinarForm.jsp"> << Back to webinar list </a>
-</div>
+<td colspan="2" style="width:45%">
+    <h4><span class="label label-info">About this webinar : </span></h4>
+    <p> <br>
+        <%=webinar.getDescription()%> 
+        <br> 
+    </p>
+        
+<td>
+</tr>
+</table>
+
+
 
 <script>
     $(document).ready(function() {
