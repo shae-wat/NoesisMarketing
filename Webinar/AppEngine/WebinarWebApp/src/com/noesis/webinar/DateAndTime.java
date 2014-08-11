@@ -22,7 +22,6 @@ public class DateAndTime implements Comparable<DateAndTime>{
 	
 	public DateAndTime(Map<String,String> data) {
 
-		//System.out.println("data = " + data);
 		Date startDate = null;
 		Date endDate = null;
 

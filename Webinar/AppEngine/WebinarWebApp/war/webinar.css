@@ -4654,7 +4654,7 @@ a.list-group-item.active>.badge,.nav-pills>.active>a>.badge {
 
 .jumbotron p {
 	margin-bottom: 15px;
-	font-size: 21px;
+	font-size: 15px;
 	font-weight: 200
 }
 
@@ -4668,8 +4668,8 @@ a.list-group-item.active>.badge,.nav-pills>.active>a>.badge {
 
 @media screen and (min-width:768px) {
 	.jumbotron {
-		padding-top: 48px;
-		padding-bottom: 48px
+		padding-top: 30px;
+		padding-bottom: 30px
 	}
 	.container .jumbotron {
 		padding-left: 60px;
