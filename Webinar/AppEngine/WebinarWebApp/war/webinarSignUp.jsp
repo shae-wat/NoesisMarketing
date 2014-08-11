@@ -46,19 +46,19 @@
 </header>
 <table>
 <tr>
-<td style="width:400px; vertical-align:top;"> 
+<td style="width:410px; vertical-align:top;"> 
 <div>
-    <form name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST">
+    <form name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" style="background-color: #f1f1ce; border-color: #adadad;">
     <table>
     		<tr>
                 <td colspan="2">
-                    <h4><span class="label label-info">Register for this webinar : </span></h4><span style="font-size:12px;"> (all fields required)</span>
+                    <h4><span class="label label-info">Register for this webinar : </span></h4><span style="font-size:12px; color:#777;"> (all fields required)</span>
                     <br>
                 </td>
             </tr>
 
     	  	<tr>
-                <td>First Name * </td>
+                <td style="color:#777;">First Name * </td>
                 <td>
     	        <input type="text" 
     	                name="first_name" class="form-control" ne-hint="First Name" 
@@ -67,7 +67,7 @@
     		    </td>
             </tr>
 
-    		<tr><td>
+    		<tr><td style="color:#777;">
     	        Last Name *
     	    </td><td>
     	        <input type="text" 
@@ -76,7 +76,7 @@
     	                ng-required="true" ng-maxlength="255" ng-model="$parent.LastName">
     		</td></tr>
 
-    		<tr><td>
+    		<tr><td style="color:#777;">
     	        Email *
     	    </td><td>
     	        <input type="email" 
@@ -85,7 +85,7 @@
     	                ng-required="true" ng-maxlength="255" ng-model="$parent.Email">
     		</td></tr>
     	
-    		<tr><td>
+    		<tr><td style="color:#777;">
                             Phone *
             </td><td>
                             <input type="tel" 
@@ -94,7 +94,7 @@
                                     ng-required="true" ng-minlength="10" ng-maxlength="16" ng-model="$parent.Phone">
             </td></tr>
             
-            <tr><td>
+            <tr><td style="color:#777;">
                             Company Name *
            	</td><td>
                             <input type="text" 
@@ -103,7 +103,7 @@
                                     ng-required="true" ng-maxlength="255" ng-model="$parent.Company">
              </td></tr>
              
-             <tr><td>
+             <tr><td style="color:#777;">
              				Company Location *
              </td><td>
                     
@@ -452,7 +452,7 @@
                                     </select>
                     </td></tr>
                     
-                    <tr><td>
+                    <tr><td style="color:#777;">
                     				Business Type *
                     </td><td>
                                 
@@ -476,17 +476,17 @@
                      
                      <tr><td colspan="2">
                                		<hr>
-                                    <p class="ne-11">Do you sell energy projects and/or services to building owners?</p>
+                                    <p class="ne-11" style="color:#777;">Do you sell energy projects and/or services to building owners?</p>
                                     <ul class="list-inline">
                                         <li><input type="radio"
                                             onChange="showSellSideQuestions();_gaq.push(['_trackEvent', 'MarketingForms', 'SellSideOptIn', 'Pro']);"
                                             name="Sell_Side_Opt_In__c" value="Pro"
                                             ng-model="$parent.Sell_Side_Opt_In__c"> <span
-                                            class="ne-11"> Yes</span</li>
+                                            class="ne-11" style="color:#777;"> Yes</span</li>
                                         <li><input type="radio" onChange="hideSellSideQuestions();"
                                             name="Sell_Side_Opt_In__c"
                                             value="NA" ng-model="$parent.Sell_Side_Opt_In__c">
-                                            <span class="ne-11"> No</span></li>
+                                            <span class="ne-11" style="color:#777;"> No</span></li>
                                     </ul>
                      </td></tr>
                      
@@ -532,6 +532,8 @@
         <tr> <td colspan="2">
             <br>
             <a href="/webinarForm.jsp"> << Back to webinar list </a>
+            <br>
+            <br>
             <td>
         </tr>    
     </table>

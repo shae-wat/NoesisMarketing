@@ -60,12 +60,13 @@
 
 
 
-
+		<ul style="list-style-position:inside;">
 			<%for (DateAndTime when : times){
 				String url = "webinarSignUp.jsp?webinarID="+when.getWebinarKey();%>
 				<li><a href=<%=url%>><%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> CDT</a>
 			<%}%>
 			</li>
+		</ul>
 <%
 		}
 	}

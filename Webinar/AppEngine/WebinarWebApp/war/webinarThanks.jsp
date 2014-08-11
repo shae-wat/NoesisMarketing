@@ -43,12 +43,12 @@
 	</header>
 	<center>
 
-	<p>Thank you, <%= first_name %>  <%= last_name %>, you have registered to attend the <b><%=webinar.getSubject()%></b> webinar hosted by Noesis Energy</p>
-	<p>The webinar is on <%=when.getDay()%> <%=when.getDate()%> at <%=when.getStartTime()%> <b>CDT</b></p>
-	<p>*Please note that the start time is Central Daylight Time*</p>
-	<p>An email has been sent to <%=email%> with the <a href=<%=user.getJoinUrl()%>>link</a> to join the webinar</p>
+	<p style="color:#fff;">Thank you, <%= first_name %>  <%= last_name %>, you have registered to attend the <b><%=webinar.getSubject()%></b> webinar hosted by Noesis Energy</p>
+	<p style="color:#fff;">The webinar is on <%=when.getDay()%> <%=when.getDate()%> at <%=when.getStartTime()%> <b>CDT</b></p>
+	<p style="color:#fff;">*Please note that the start time is Central Daylight Time*</p>
+	<p style="color:#fff;">An email has been sent to <%=email%> with the <a href=<%=user.getJoinUrl()%>>link</a> to join the webinar</p>
 
-	<p><b>Here are some more resources from Noesis Energy that may interest you:</b></p>
+	<p style="color:#fff;"><b>Here are some more resources from Noesis Energy that may interest you:</b></p>
 
 	<a href="https://www.noesisenergy.com/site/content/noesis-resource-library"><img src="noesis_resources.png" alt="resource_redirect"</a>
 
@@ -57,7 +57,7 @@
 
 
 	<footer>
-		<hr>
+		<hr><p style="color:#fff;">Connect with us:</p>
 		<div id="socialLinks">
 			<a href="https://www.noesisenergy.com/site/"><img src="noesis_logo.png" alt="company logo" width="90" height="30"></a>
 
