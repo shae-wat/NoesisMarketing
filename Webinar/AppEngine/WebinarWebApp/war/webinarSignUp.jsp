@@ -51,7 +51,7 @@
 <tr>
 <td style="width:410px; vertical-align:top;"> 
 <div>
-    <form id="regFrom" name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" style="background-color: #f1f1ce; border-color: #adadad;">
+    <form id="regFrom" name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" style="background-color: #f1f1ce; border-color: #adadad; border-radius: 7px; padding:10px;">
     <table>
     		<tr>
                 <td colspan="2">

@@ -32,7 +32,7 @@ div.calendar th
 div.calendar td.title
 {
   font-weight: bold;
-  color: #999;
+  color: #555;
 }
 
 div.calendar th
@@ -47,14 +47,14 @@ div.calendar th
 div.calendar tr.days td {
   width: 2em;
   color: #555;
-  text-align: center;
+  text-align: left;
   cursor: pointer;
 }
 
 div.calendar tr.days td:hover,
 div.calendar td.button:hover
 {
-  background-color: #999;
+  background-color: #f90;
   cursor: pointer;
 }
 

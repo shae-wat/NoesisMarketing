@@ -18,27 +18,23 @@
 
     <style>
       div.calendar {
-        max-width: 600px;
+        max-width: 500px;
         margin-left: auto;
         margin-right: auto;
       }
       div.calendar table {
         width: 100%;
+
       }
       div.dateField {
         width: 140px;
         padding: 6px;
-        -webkit-border-radius: 6px;
-        -moz-border-radius: 6px;
+        border-radius: 6px;
         color: #555;
         background-color: white;
         margin-left: auto;
         margin-right: auto;
         text-align: center;
-      }
-      div#popupDateField:hover {
-        background-color: #999;
-        cursor: pointer;
       }
     </style>
 
@@ -74,6 +70,10 @@
 	List<WebinarData> upcomingWebinars = wc.getUpcomingWebinars();
 %>
 
+<div id="embeddedCalendar" style="margin-left: auto; margin-right: auto">
+	</div>
+	<br>
+
 	<nav>
 		<ul>
 <% if (upcomingWebinars != null)
@@ -100,25 +100,24 @@
 		</ul>
 	</nav>
 
-<script type="text/javascript">
-  window.onload = function() {
-    Calendar.setup(
-      {
-        dateField      : 'embeddedDateField',
-        parentElement  : 'embeddedCalendar'
+<script>
+  function setupCalendars() {
+        // Embedded Calendar
+        Calendar.setup(
+          {
+        
+            parentElement: 'embeddedCalendar'
+          }
+        )
+
+        
       }
-    )
-  }
+  Event.observe(window, 'load', function() { setupCalendars() })
 </script>
-<div id="embeddedExample" style="">
-            <div id="embeddedCalendar" style="margin-left: auto; margin-right: auto">
-            </div>
-            <br />
-            <div id="embeddedDateField" class="dateField">
-              Select Date
-            </div>
-            <br />
-          </div>
+
+	
+
+
 
 
 </body>
