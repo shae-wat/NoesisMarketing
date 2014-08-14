@@ -555,10 +555,10 @@
 </tr>
 </table>
 
-<div id="errorContainer">
+<!-- <div id="errorContainer">
     <p>&nbsp;Please correct the following errors and try again:</p>
     <ul />
-</div>
+</div> -->
 
 <script>
     $(document).ready(function() {
