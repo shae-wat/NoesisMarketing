@@ -12,6 +12,8 @@
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
     
 </head>
 
@@ -44,11 +46,12 @@
     </h4>
     <hr>
 </header>
+
 <table>
 <tr>
 <td style="width:410px; vertical-align:top;"> 
 <div>
-    <form name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" style="background-color: #f1f1ce; border-color: #adadad;">
+    <form id="regFrom" name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" style="background-color: #f1f1ce; border-color: #adadad;">
     <table>
     		<tr>
                 <td colspan="2">
@@ -60,7 +63,7 @@
     	  	<tr>
                 <td style="color:#777;">First Name * </td>
                 <td>
-    	        <input type="text" 
+    	        <input id="firstName" type="text" 
     	                name="first_name" class="form-control" ne-hint="First Name" 
     	                tooltip="{{(form.First_Name_Casual__c.$dirty && (form.First_Name_Casual__c.$error.required || form.First_Name_Casual__c.$error.maxlength)) ? 'Your first name is required and must be less than 255 characters' : ''}}"         
     	                ng-required="true" ng-maxlength="255" ng-model="$parent.First_Name_Casual__c">
@@ -70,7 +73,7 @@
     		<tr><td style="color:#777;">
     	        Last Name *
     	    </td><td>
-    	        <input type="text" 
+    	        <input id="lastName" type="text" 
     	                name="last_name" class="form-control" ne-hint="Last Name"
     	                tooltip="{{(form.LastName.$dirty && (form.LastName.$error.required || form.LastName.$error.maxlength)) ? 'Your last name is required and must be less than 255 characters' : ''}}"         
     	                ng-required="true" ng-maxlength="255" ng-model="$parent.LastName">
@@ -79,7 +82,7 @@
     		<tr><td style="color:#777;">
     	        Email *
     	    </td><td>
-    	        <input type="email" 
+    	        <input id="email" type="email" 
     	                name="email" class="form-control" ne-hint="Email"
     	                tooltip="{{(form.Email.$dirty && (form.Email.$error.required || form.Email.$error.maxlength || form.Email.$error.email)) ? 'A valid email address is required' : ''}}"         
     	                ng-required="true" ng-maxlength="255" ng-model="$parent.Email">
@@ -88,7 +91,7 @@
     		<tr><td style="color:#777;">
                             Phone *
             </td><td>
-                            <input type="tel" 
+                            <input id="phone" type="tel" 
                                     name="Phone" class="form-control" ne-hint="Phone (xxx-xxx-xxxx)"
                                     tooltip="{{(form.Phone.$dirty && (form.Phone.$error.required || form.Phone.$error.maxlength || form.Phone.$error.minlength || form.Phone.$error.tel)) ? 'A valid phone number is required' : ''}}"         
                                     ng-required="true" ng-minlength="10" ng-maxlength="16" ng-model="$parent.Phone">
@@ -97,7 +100,7 @@
             <tr><td style="color:#777;">
                             Company Name *
            	</td><td>
-                            <input type="text" 
+                            <input id="companyName" type="text" 
                                     name="Company" class="form-control" ne-hint="Company"
                                     tooltip="{{(form.Company.$dirty && (form.Company.$error.required || form.Company.$error.maxlength)) ? 'Your company name is required and must be less than 255 characters' : ''}}"         
                                     ng-required="true" ng-maxlength="255" ng-model="$parent.Company">
@@ -107,7 +110,7 @@
              				Company Location *
              </td><td>
                     
-                                    <select name="Company_Headquarter_State__c" class="form-control"
+                                    <select id="companyLocation" name="Company_Headquarter_State__c" class="form-control"
                                         ng-model="$parent.Company_Headquarter_State__c"
                                         ng-required="true"
                                         tooltip="{{(form.Company_Headquarter_State__c.$dirty && form.Company_Headquarter_State__c.$error.required) ? 'Select a valid Company Location' : ''}}">
@@ -456,7 +459,7 @@
                     				Business Type *
                     </td><td>
                                 
-                                    <select name="Job_Category__c" class="form-control"
+                                    <select id="busType" name="Job_Category__c" class="form-control"
                                         ng-model="$parent.Job_Category__c" ng-required="true"
                                         tooltip="{{(form.Job_Category__c.$dirty && form.Job_Category__c.$error.required) ? 'Select a valid job role' : ''}}">
                                         <option value="">Select Business Type</option>
@@ -477,7 +480,7 @@
                      <tr><td colspan="2">
                                		<hr>
                                     <p class="ne-11" style="color:#777;">Do you sell energy projects and/or services to building owners?</p>
-                                    <ul class="list-inline">
+                                    <ul id="sellQ" class="list-inline">
                                         <li><input type="radio"
                                             onChange="showSellSideQuestions();_gaq.push(['_trackEvent', 'MarketingForms', 'SellSideOptIn', 'Pro']);"
                                             name="Sell_Side_Opt_In__c" value="Pro"
@@ -492,7 +495,7 @@
                      
                      <tr><td colspan="2">
                                 
-                                    <select id="companysize" name="Company_Size__c" class="form-control"
+                                    <select id="companySize" name="Company_Size__c" class="form-control"
                                         ng-model="$parent.Company_Size__c" ng-required="false"
                                         tooltip="{{(form.Company_Size__c.$dirty && form.Company_Size__c.$error.required) ? 'Select a valid company size' : ''}}">
                                         <option value="">Select Number of Employees in Company</option>
@@ -510,7 +513,7 @@
                      
                      <tr><td colspan="2">
                                 
-                                    <select id="companyrevenue" name="Annual_Revenue_Picklist__c" class="form-control"
+                                    <select id="companyRevenue" name="Annual_Revenue_Picklist__c" class="form-control"
                                         ng-model="$parent.Annual_Revenue_Picklist__c" ng-required="false"
                                         tooltip="{{(form.Annual_Revenue_Picklist__c.$dirty && form.Annual_Revenue_Picklist__c.$error.required) ? 'Select a valid annual revenue' : ''}}">
                                             <option value="">Select Annual Company Revenue</option>
@@ -552,7 +555,10 @@
 </tr>
 </table>
 
-
+<div id="errorContainer">
+    <p>&nbsp;Please correct the following errors and try again:</p>
+    <ul />
+</div>
 
 <script>
     $(document).ready(function() {
@@ -575,6 +581,40 @@
         document.getElementById("companyrevenue").setAttribute("ng-required", "false");
     }
 </script>
+
+
+<script type="text/javascript">
+        $(function(){
+
+            $('#regForm').validate({
+                submitHandler: function(form) {
+                    
+                rules: {
+                    firstName: "required",
+                    lastName: "required",
+                    email: "required",
+                    phone: "required",
+                    companyName: "required",
+                    companyLocation: "required",
+                    sellQ: "required",
+
+                },
+                errorContainer: $('#errorContainer'),
+                errorLabelContainer: $('#errorContainer ul'),
+                wrapper: 'li'
+
+                $.ajax({    // submit form using ajax
+                  type: "POST",
+                  url: url,
+                  data: data,
+                  success: function(result){ console.log("success!", result);},
+                  dataType: dataType
+                });
+                return false;  // block default form action  
+            });
+
+        });
+    </script>
 
 </body>
 </html>
