@@ -2,7 +2,6 @@
 div.calendar
 {
   font-size: smaller;
-  color: #000;
 }
 
 div.calendar.popup
@@ -27,11 +26,13 @@ div.calendar th
 {
   padding: 3px;
   text-align: center;
+  color: #999;
 }
 
 div.calendar td.title
 {
   font-weight: bold;
+  color: #999;
 }
 
 div.calendar th
@@ -53,7 +54,7 @@ div.calendar tr.days td {
 div.calendar tr.days td:hover,
 div.calendar td.button:hover
 {
-  background-color: #34ABFA;
+  background-color: #999;
   cursor: pointer;
 }
 
@@ -73,7 +74,7 @@ div.calendar tr.days td.selected
 div.calendar tr.days td.today
 {
   font-weight: bold;
-  color: #D50000;
+  color: #999;
 }
 
 div.calendar tr.days td.otherDay

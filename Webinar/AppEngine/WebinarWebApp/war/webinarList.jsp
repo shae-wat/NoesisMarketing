@@ -16,6 +16,32 @@
     <script src="prototype.js" type="text/javascript"></script>
     <script src="calendarview.js" type="text/javascript"></script>
 
+    <style>
+      div.calendar {
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      div.calendar table {
+        width: 100%;
+      }
+      div.dateField {
+        width: 140px;
+        padding: 6px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        color: #555;
+        background-color: white;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+      div#popupDateField:hover {
+        background-color: #999;
+        cursor: pointer;
+      }
+    </style>
+
 </head>
 
 <body style="padding:15px;">
