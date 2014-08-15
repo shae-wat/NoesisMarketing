@@ -19,22 +19,10 @@
     <style>
       div.calendar {
         max-width: 500px;
-        margin-left: auto;
-        margin-right: auto;
       }
       div.calendar table {
         width: 100%;
-
-      }
-      div.dateField {
-        width: 140px;
-        padding: 6px;
-        border-radius: 6px;
-        color: #555;
-        background-color: white;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
+        height: 100%;
       }
     </style>
 
@@ -47,7 +35,7 @@
         <div class="media">
 			<span class="pull-left">
 
-			<img class="img-circle" src="lacey-avatar-small.png" style="background:#E1E1E1;max-width: 5em;border: .35em solid #F1F1F1;"/>
+			<img class="img-circle" src="lacey-avatar-small.png" style="background:#E1E1E1;max-width: 7em;border: .35em solid #F1F1F1;"/>
 
 			</span>
 			<td style="margin: 0; padding: 0;"> 
@@ -70,10 +58,14 @@
 	List<WebinarData> upcomingWebinars = wc.getUpcomingWebinars();
 %>
 
-<div id="embeddedCalendar" style="margin-left: auto; margin-right: auto">
-	</div>
-	<br>
+<table>
+<tr>
+<td style="width:500px; vertical-align:top;">
+	<div id="embeddedCalendar" style="margin-left: auto; margin-right: auto"></div>
 
+	<br>
+</td>
+<td>
 	<nav>
 		<ul>
 <% if (upcomingWebinars != null)
@@ -83,7 +75,7 @@
 		List<DateAndTime> times = webinar.getDatesAndTimes();	
 		%>
 
-		<p><%=webinar.getSubject()%></p>
+		<h4><%=webinar.getSubject()%></h4>
 
 
 		<ul style="list-style-position:inside;">
@@ -99,25 +91,23 @@
 %>
 		</ul>
 	</nav>
+</td>
+</tr>
+</table>
 
 <script>
-  function setupCalendars() {
+  function setupCalendar() {
         // Embedded Calendar
         Calendar.setup(
-          {
-        
+          {     
             parentElement: 'embeddedCalendar'
           }
         )
 
         
       }
-  Event.observe(window, 'load', function() { setupCalendars() })
+  Event.observe(window, 'load', function() { setupCalendar() })
 </script>
-
-	
-
-
 
 
 </body>
