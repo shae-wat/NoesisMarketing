@@ -7,8 +7,8 @@
 <head>
     <!-- <link type="text/css" rel="stylesheet" href="/stylesheets/main.css"/> -->
     <title>Registeration</title>
-    
-    <link rel="stylesheet" type="text/css" href="webinar.css">
+    <link rel="stylesheet" type="text/css" href="http://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="http://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/noesis-theme.css">
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
@@ -41,7 +41,7 @@
 	<div id="reg">
         <h1 class="text-info"><%=webinar.getSubject()%></h1>
     </div>
-    <h4>    
+    <h4 style="color:#fff;">    
         <%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> CDT
     </h4>
     <hr>
@@ -49,7 +49,7 @@
 
 <table>
 <tr>
-<td style="width:410px; vertical-align:top;"> 
+<td style="width:460px; padding-right:50px; vertical-align:top;"> 
 <div>
     <form id="regFrom" name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" style="background-color: #f1f1ce; border-color: #adadad; border-radius: 7px; padding:10px;">
     <table>
@@ -546,7 +546,7 @@
 
 <td colspan="2" style="vertical-align:top; horizontal-align:left">
     <h4><span class="label label-info">About this webinar : </span></h4>
-    <p> <br>
+    <p style="color:#fff;"> <br>
         <%=webinar.getDescription()%> 
         <br> 
     </p>

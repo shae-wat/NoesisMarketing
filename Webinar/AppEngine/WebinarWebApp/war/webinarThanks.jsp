@@ -8,7 +8,8 @@
 <head>
 	<title>Thank you for registering</title>
 	
-	<link rel="stylesheet" type="text/css" href="webinar.css">
+	<link rel="stylesheet" type="text/css" href="http://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="http://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/noesis-theme.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
 </head>
@@ -32,31 +33,77 @@
 
 %>
 
-<body>
+<body style="padding:15px;">
 	<header>
 		<div id="success">
-			<center>
-	        <h2 class="text-info">Successful Registration for</h2>
+			
+	        <h4 style="color:#fff;">Successful Registration for</h4>
 	        <h1 class="text-info"> <%=webinar.getSubject()%> </h1>
         </div>
 		<hr>
 	</header>
-	<center>
+	
+	<table>
+	<tr>
+	<td style="width:500px; padding-right:50px; vertical-align:top;">
+		<p style="color:#fff;">Thank you, <%= first_name %>  <%= last_name %>, you have registered to attend the <b><%=webinar.getSubject()%></b> webinar hosted by Noesis Energy</p>
+		<p style="color:#fff;">The webinar is on <%=when.getDay()%> <%=when.getDate()%> at <%=when.getStartTime()%> <b>CDT</b></p>
+		<p style="color:#fff;">*Please note that the start time is Central Daylight Time*</p>
+		<p style="color:#fff;">An email has been sent to <%=email%> with the <a href=<%=user.getJoinUrl()%>>link</a> to join the webinar</p>
+	</td>
+	<td>
+		<center>
+		<p style="color:#fff;"><b>Here are some more resources from Noesis Energy that may interest you:</b></p>
+		<br>
+		</center>
+		<table>
+		<tr>
+		<td>
+			<center>
+			<div>
+			<img src="https://noesisimg.s3.amazonaws.com/nb-images/content-type-icons/blog-icon.png"</img>
+			<br>
+			<button type="input" class="btn btn-primary">Blog</button>
+			</div>
+			</center>
+		</td>
 
-	<p style="color:#fff;">Thank you, <%= first_name %>  <%= last_name %>, you have registered to attend the <b><%=webinar.getSubject()%></b> webinar hosted by Noesis Energy</p>
-	<p style="color:#fff;">The webinar is on <%=when.getDay()%> <%=when.getDate()%> at <%=when.getStartTime()%> <b>CDT</b></p>
-	<p style="color:#fff;">*Please note that the start time is Central Daylight Time*</p>
-	<p style="color:#fff;">An email has been sent to <%=email%> with the <a href=<%=user.getJoinUrl()%>>link</a> to join the webinar</p>
+		<td>
+			<center>
+			<div>
+			<img src="https://noesisimg.s3.amazonaws.com/nb-images/content-type-icons/downloads-icon.png"</img>
+			<br>
+			<button type="input" class="btn btn-primary">Downloads</button>
+			</div>
+			</center>	
+		</td>
 
-	<p style="color:#fff;"><b>Here are some more resources from Noesis Energy that may interest you:</b></p>
+		<td>
+			<center>
+			<div>
+			<img src="https://noesisimg.s3.amazonaws.com/nb-images/support-icons/sales-icon.png"</img>
+			<br>
+			<button type="input" class="btn btn-primary">Sales</button>
+			</div>
+			</center>
+		</td>
+		</tr>
+		</table>
 
-	<a href="https://www.noesisenergy.com/site/content/noesis-resource-library"><img src="noesis_resources.png" alt="resource_redirect"</a>
 
+		<br>
+		<br>
+		<br>
+		<br>
 
-	<!-- <p>*Share your registration for this webinar on Twitter or LinkedIn</p> -->
-
+		<p>*Share your registration for this webinar on Twitter or LinkedIn*</p>
+		<p>*Email invitation for this webinar to friends and colleagues*</p>
+	</td>
+	</tr>
+	</table>
 
 	<footer>
+		<center>
 		<hr><p style="color:#fff;">Connect with us:</p>
 		<div id="socialLinks">
 			<a href="https://www.noesisenergy.com/site/"><img src="noesis_logo.png" alt="company logo" width="90" height="30"></a>
@@ -67,6 +114,7 @@
 		
 		<p>&copy; 2014 Noesis Energy</p>
 		</div>
+	</center>
 	</footer>
 </body>
 </html>
