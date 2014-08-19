@@ -17,14 +17,15 @@
 </head>
 
 <%
-	String webinarId = request.getParameter("webinarID");
-	if (webinarId == null) {
-		webinarId = "default";
-	}
-	pageContext.setAttribute("webinarId", webinarId);
+    
+    	String webinarId = request.getParameter("webinarID");
+	
+    	pageContext.setAttribute("webinarId", webinarId);
 
-	WebinarConnector wc = new WebinarConnector();
-	WebinarData webinar = wc.getWebinarInfo(webinarId);
+    	WebinarConnector wc = new WebinarConnector();
+    	WebinarData webinar = wc.getWebinarInfo(webinarId);
+    
+
 
 	String action = "webinarThanks.jsp?webinarID="+ webinar.getWebinarKey();
 	System.out.println(action);
