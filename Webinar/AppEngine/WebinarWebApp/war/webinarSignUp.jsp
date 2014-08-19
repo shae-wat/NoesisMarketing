@@ -39,7 +39,7 @@
         <h1 class="text-info"><%=webinar.getSubject()%></h1>
     </div>
     <h4 style="color:#fff;">    
-        <%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> CDT
+        <%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> <%=webinar.getTimeZone()%>
     </h4>
     <hr>
 </header>
@@ -531,7 +531,7 @@
     	</td></tr>
         <tr> <td colspan="2">
             <br>
-            <a href="/webinarForm.jsp"> << Back to webinar list </a>
+            <a href="/webinarList.jsp"> << Back to webinar list </a>
             <br>
             <br>
             <td>

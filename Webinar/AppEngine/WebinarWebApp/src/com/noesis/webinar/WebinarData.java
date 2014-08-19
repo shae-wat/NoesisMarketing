@@ -52,7 +52,12 @@ public class WebinarData implements Comparable<WebinarData>{
 	}
 
 	public String getTimeZone() {
-		return timeZone;
+		if (timeZone.equals("America/Chicago"))
+			return "CDT";
+		else if (timeZone.equals("America/New_York"))
+			return "EDT";
+		else
+			return timeZone;
 	}
 
 	public void setTimeZone(String timeZone) {
