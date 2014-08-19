@@ -38,7 +38,7 @@
 	    	<div>
 			<img src="https://noesisimg.s3.amazonaws.com/nb-images/support-icons/sales-icon.png"</img>
 			<br>
-			<button type="input" class="btn btn-primary">Contact Sales</button>
+			<a href="https://www.noesisenergy.com/site/"><button type="input" class="btn btn-primary">Contact Sales</button></a>
 			</div>
     	</td>
 	    </tr>

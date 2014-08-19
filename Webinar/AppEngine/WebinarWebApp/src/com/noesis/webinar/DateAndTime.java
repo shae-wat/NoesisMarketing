@@ -30,7 +30,7 @@ public class DateAndTime implements Comparable<DateAndTime>{
 		int counter = 0;
 	    while (it.hasNext()) {
 	        Map.Entry<String,String> pairs = (Map.Entry<String,String>)it.next();
-	        System.out.println(pairs.getKey() + " *= " + pairs.getValue());
+	        //System.out.println(pairs.getKey() + " *= " + pairs.getValue());
 	        if (counter == 0){
 	        	startTime = pairs.getValue();
 	        	try {

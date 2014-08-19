@@ -69,7 +69,7 @@
 			<div>
 			<img src="https://noesisimg.s3.amazonaws.com/nb-images/content-type-icons/blog-icon.png"</img>
 			<br>
-			<button type="input" class="btn btn-primary">Blog</button>
+			<a href="https://www.noesisenergy.com/site/"><button type="input" class="btn btn-primary">Blog</button></a>
 			</div>
 			</center>
 		</td>
@@ -79,7 +79,7 @@
 			<div>
 			<img src="https://noesisimg.s3.amazonaws.com/nb-images/content-type-icons/downloads-icon.png"</img>
 			<br>
-			<button type="input" class="btn btn-primary">Downloads</button>
+			<a href="https://www.noesisenergy.com/site/"><button type="input" class="btn btn-primary">Downloads</button></a>
 			</div>
 			</center>	
 		</td>
@@ -89,7 +89,7 @@
 			<div>
 			<img src="https://noesisimg.s3.amazonaws.com/nb-images/support-icons/sales-icon.png"</img>
 			<br>
-			<button type="input" class="btn btn-primary">Sales</button>
+			<a href="https://www.noesisenergy.com/site/"><button type="input" class="btn btn-primary">Sales</button></a>
 			</div>
 			</center>
 		</td>
