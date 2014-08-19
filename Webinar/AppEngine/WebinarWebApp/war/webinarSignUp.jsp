@@ -5,14 +5,15 @@
 
 <html>
 <head>
-    <title>Registeration</title>
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/jquery.validate.min.js"></script>
+    
+    <title>Registration</title>
     <link rel="stylesheet" type="text/css" href="http://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/bootstrap.min.css"> 
     <link rel="stylesheet" type="text/css" href="http://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/noesis-theme.css">
+
     
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
-      
 </head>
 
 <%
@@ -553,54 +554,60 @@
 </tr>
 </table>
 
-<div id="errorContainer">
-    <p>&nbsp;Please correct the following errors and try again:</p>
-    
-</div> 
-
 <script>
     $(document).ready(function() {
-        $("#companysize").hide();
-        $("#companyrevenue").hide();
+        $("#companySize").hide();
+        $("#companyRevenue").hide();
+        
+     // validate signup form on keyup and submits
+		var validator = $("#regForm").validate({
+			rules: {
+				
+				first_name: "required"
+				
+			},
+			messages: {
+				
+				first_name: "Enter your firstname"
+			},
+			// the errorPlacement has to take the table layout into account
+			errorPlacement: function(error, element) {
+				if (element.is(":radio"))
+					error.appendTo(element.parent().next().next());
+				else if (element.is(":checkbox"))
+					error.appendTo(element.next());
+				else
+					error.appendTo(element.parent().next());
+			},
+			// specifying a submitHandler prevents the default submit, good for the demo
+			/* submitHandler: function() {
+				alert("submitted!");
+			}, */
+			// set this class to error-labels to indicate valid fields
+			success: function(label) {
+				// set &nbsp; as text for IE
+				label.html("&nbsp;").addClass("checked");
+			},
+			highlight: function(element, errorClass) {
+				$(element).parent().next().find("." + errorClass).removeClass("checked");
+			}
+		});
     });
 
     function showSellSideQuestions() {
-        $("#companysize").show();
-        $("#companyrevenue").show();
+        $("#companySize").show();
+        $("#companyRevenue").show();
 
-        document.getElementById("companysize").setAttribute("ng-required", "true");
-        document.getElementById("companyrevenue").setAttribute("ng-required", "true");
     }
 
     function hideSellSideQuestions() {
-        $("#companysize").hide();
-        $("#companyrevenue").hide();
-        document.getElementById("companysize").setAttribute("ng-required", "false");
-        document.getElementById("companyrevenue").setAttribute("ng-required", "false");
+        $("#companySize").hide();
+        $("#companyRevenue").hide();
     }
 </script>
 
+<script>var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-25040971-4"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();</script>
 
-<script type="text/javascript">
-        $(function(){
-
-            $('#regForm').validate({
-                submitHandler: function(form) {
-                    
-                rules: {
-                    firstName: "required"
-                    
-
-                },
-                errorContainer: $('#errorContainer'),
-                errorLabelContainer: $('#errorContainer ul'),
-                wrapper: 'li'
-
-                return false;  // block default form action  
-            });
-
-        });
-    </script>
 
 </body>
 </html>
