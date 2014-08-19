@@ -29,7 +29,7 @@
 	System.out.println(action);
 	pageContext.setAttribute("action", action);
 
-	DateAndTime when = new DateAndTime(webinar.getTimes().get(0));
+	DateAndTime when = new DateAndTime(webinar.getTimes().get(0), webinar.getTimeZone());
 %>
 
 <body style="padding:15px;">

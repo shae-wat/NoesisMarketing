@@ -29,7 +29,7 @@
 	WebinarUser user = new WebinarUser(first_name,last_name,email);
 	user = wc.registerUser(webinarId, user);
 
-	DateAndTime when = new DateAndTime(webinar.getTimes().get(0));
+	DateAndTime when = new DateAndTime(webinar.getTimes().get(0), webinar.getTimeZone());
 	String timeZone = webinar.getTimeZone();
 
 %>

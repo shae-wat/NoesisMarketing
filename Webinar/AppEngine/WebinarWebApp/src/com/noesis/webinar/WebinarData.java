@@ -67,8 +67,8 @@ public class WebinarData implements Comparable<WebinarData>{
 	public int compareTo(WebinarData webinar){
 		DateAndTime when1 = null;
 		DateAndTime when2 = null;
-		when1 = new DateAndTime(webinar.getEarliestStartTime());
-		when2 = new DateAndTime(this.getEarliestStartTime());
+		when1 = new DateAndTime(webinar.getEarliestStartTime(), webinar.getTimeZone());
+		when2 = new DateAndTime(this.getEarliestStartTime(), this.getTimeZone());
 		//System.out.println(" when2.dateObj.compareTo(when1.dateObj) = " + when2.dateObj.compareTo(when1.dateObj));
 		return when2.dateObj.compareTo(when1.dateObj);
 	}

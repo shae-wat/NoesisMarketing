@@ -73,7 +73,7 @@ public class WebinarConnector {
 			System.out.println(webinar.getSubject() + " : " + webinar.getWebinarKey());
 			DateAndTime dateAndKey = null;
 			
-			dateAndKey = new DateAndTime(webinar.times.get(0));  //shouldbe only ele at this point
+			dateAndKey = new DateAndTime(webinar.times.get(0), webinar.getTimeZone());  //shouldbe only ele at this point
 			dateAndKey.setWebinarKey(webinar.getWebinarKey());
 			System.out.println(dateAndKey.getStartTime());
 			System.out.println(webinar.getTimeZone());

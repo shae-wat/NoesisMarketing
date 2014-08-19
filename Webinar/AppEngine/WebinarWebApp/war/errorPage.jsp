@@ -5,7 +5,7 @@
 
 <html>
 <head>
-	<title>Error page</title>
+	<title>Error</title>
 	
 	<link rel="stylesheet" type="text/css" href="http://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/bootstrap.min.css"> 
     <link rel="stylesheet" type="text/css" href="http://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/noesis-theme.css">
