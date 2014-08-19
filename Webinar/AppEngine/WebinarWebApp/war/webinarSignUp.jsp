@@ -5,15 +5,13 @@
 
 <html>
 <head>
-    <!-- <link type="text/css" rel="stylesheet" href="/stylesheets/main.css"/> -->
-    <title>Registeration</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/jquery.validate.min.js"></script>
+    
+    <title>Registration</title>
     <link rel="stylesheet" type="text/css" href="http://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/bootstrap.min.css"> 
     <link rel="stylesheet" type="text/css" href="http://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/noesis-theme.css">
     
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
     
 </head>
 
@@ -562,59 +560,57 @@
 
 <script>
     $(document).ready(function() {
-        $("#companysize").hide();
-        $("#companyrevenue").hide();
+        $("#companySize").hide();
+        $("#companyRevenue").hide();
+        
+     // validate signup form on keyup and submits
+		var validator = $("#regFrom").validate({
+			rules: {
+				
+				first_name: "required"
+				
+			},
+			messages: {
+				
+				first_name: "Enter your firstname"
+			},
+			// the errorPlacement has to take the table layout into account
+			errorPlacement: function(error, element) {
+				if (element.is(":radio"))
+					error.appendTo(element.parent().next().next());
+				else if (element.is(":checkbox"))
+					error.appendTo(element.next());
+				else
+					error.appendTo(element.parent().next());
+			},
+			
+			
+			// set this class to error-labels to indicate valid fields
+			success: function(label) {
+				// set &nbsp; as text for IE
+				label.html("&nbsp;").addClass("checked");
+			},
+			highlight: function(element, errorClass) {
+				$(element).parent().next().find("." + errorClass).removeClass("checked");
+			}
+		});
     });
 
     function showSellSideQuestions() {
-        $("#companysize").show();
-        $("#companyrevenue").show();
+        $("#companySize").show();
+        $("#companyRevenue").show();
 
-        document.getElementById("companysize").setAttribute("ng-required", "true");
-        document.getElementById("companyrevenue").setAttribute("ng-required", "true");
     }
 
     function hideSellSideQuestions() {
-        $("#companysize").hide();
-        $("#companyrevenue").hide();
-        document.getElementById("companysize").setAttribute("ng-required", "false");
-        document.getElementById("companyrevenue").setAttribute("ng-required", "false");
+        $("#companySize").hide();
+        $("#companyRevenue").hide();
     }
 </script>
 
+<script>var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-25040971-4"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();</script>
 
-<script type="text/javascript">
-        $(function(){
 
-            $('#regForm').validate({
-                submitHandler: function(form) {
-                    
-                rules: {
-                    firstName: "required",
-                    lastName: "required",
-                    email: "required",
-                    phone: "required",
-                    companyName: "required",
-                    companyLocation: "required",
-                    sellQ: "required",
-
-                },
-                errorContainer: $('#errorContainer'),
-                errorLabelContainer: $('#errorContainer ul'),
-                wrapper: 'li'
-
-                $.ajax({    // submit form using ajax
-                  type: "POST",
-                  url: url,
-                  data: data,
-                  success: function(result){ console.log("success!", result);},
-                  dataType: dataType
-                });
-                return false;  // block default form action  
-            });
-
-        });
-    </script>
 
 </body>
 </html>
