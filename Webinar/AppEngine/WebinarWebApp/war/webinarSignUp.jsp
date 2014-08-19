@@ -5,16 +5,14 @@
 
 <html>
 <head>
-    <!-- <link type="text/css" rel="stylesheet" href="/stylesheets/main.css"/> -->
     <title>Registeration</title>
+
     <link rel="stylesheet" type="text/css" href="http://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/bootstrap.min.css"> 
     <link rel="stylesheet" type="text/css" href="http://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/noesis-theme.css">
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-    
+      
 </head>
 
 <%
@@ -32,7 +30,6 @@
 	pageContext.setAttribute("action", action);
 
 	DateAndTime when = new DateAndTime(webinar.getTimes().get(0));
-
 %>
 
 <body style="padding:15px;">
@@ -51,7 +48,7 @@
 <tr>
 <td style="width:460px; padding-right:50px; vertical-align:top;"> 
 <div>
-    <form id="regFrom" name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" style="background-color: #f1f1ce; border-color: #adadad; border-radius: 7px; padding:10px;">
+    <form id="regForm" name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" style="background-color: #f1f1ce; border-color: #adadad; border-radius: 7px; padding:10px;">
     <table>
     		<tr>
                 <td colspan="2">
@@ -555,10 +552,10 @@
 </tr>
 </table>
 
-<!-- <div id="errorContainer">
+<div id="errorContainer">
     <p>&nbsp;Please correct the following errors and try again:</p>
-    <ul />
-</div> -->
+    
+</div> 
 
 <script>
     $(document).ready(function() {
@@ -590,26 +587,14 @@
                 submitHandler: function(form) {
                     
                 rules: {
-                    firstName: "required",
-                    lastName: "required",
-                    email: "required",
-                    phone: "required",
-                    companyName: "required",
-                    companyLocation: "required",
-                    sellQ: "required",
+                    firstName: "required"
+                    
 
                 },
                 errorContainer: $('#errorContainer'),
                 errorLabelContainer: $('#errorContainer ul'),
                 wrapper: 'li'
 
-                $.ajax({    // submit form using ajax
-                  type: "POST",
-                  url: url,
-                  data: data,
-                  success: function(result){ console.log("success!", result);},
-                  dataType: dataType
-                });
                 return false;  // block default form action  
             });
 

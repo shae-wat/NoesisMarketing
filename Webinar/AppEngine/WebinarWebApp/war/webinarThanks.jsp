@@ -35,8 +35,7 @@
 
 <body style="padding:15px;">
 	<header>
-		<div id="success">
-			
+		<div id="success">	
 	        <h4 style="color:#fff;">Successful Registration for</h4>
 	        <h1 class="text-info"> <%=webinar.getSubject()%> </h1>
         </div>

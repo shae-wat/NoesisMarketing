@@ -73,7 +73,8 @@
 	{
 		for (WebinarData webinar : upcomingWebinars)
 		{
-		List<DateAndTime> times = webinar.getDatesAndTimes();	
+		List<DateAndTime> times = webinar.getDatesAndTimes();
+		String timeZone = webinar.getTimeZone();	
 		%>
 
 		<h4 class="text-info"><%=webinar.getSubject()%></h4>
@@ -82,7 +83,7 @@
 		<ul style="list-style-position:inside;">
 			<%for (DateAndTime when : times){
 				String url = "webinarSignUp.jsp?webinarID="+when.getWebinarKey();%>
-				<li><a href=<%=url%>><%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> CDT</a>
+				<li><a href=<%=url%>><%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> <%=when.getTimeZone()%></a>
 			<%}%>
 			</li>
 		</ul>

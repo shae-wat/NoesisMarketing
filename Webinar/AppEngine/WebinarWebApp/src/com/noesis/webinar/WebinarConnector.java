@@ -76,6 +76,8 @@ public class WebinarConnector {
 			dateAndKey = new DateAndTime(webinar.times.get(0));  //shouldbe only ele at this point
 			dateAndKey.setWebinarKey(webinar.getWebinarKey());
 			System.out.println(dateAndKey.getStartTime());
+			System.out.println(webinar.getTimeZone());
+			dateAndKey.setTimeZone(webinar.getTimeZone());
 			
 			//Remove list duplicates
 			for(WebinarData web:officialWebinars){

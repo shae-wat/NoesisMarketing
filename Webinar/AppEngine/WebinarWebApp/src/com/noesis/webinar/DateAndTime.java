@@ -19,6 +19,7 @@ public class DateAndTime implements Comparable<DateAndTime>{
 	public String endTime;
 	public Date dateObj;
 	public String webinarKey;
+	public String timeZone;
 	
 	public DateAndTime(Map<String,String> data) {
 
@@ -29,7 +30,7 @@ public class DateAndTime implements Comparable<DateAndTime>{
 		int counter = 0;
 	    while (it.hasNext()) {
 	        Map.Entry<String,String> pairs = (Map.Entry<String,String>)it.next();
-	        //System.out.println(pairs.getKey() + " *= " + pairs.getValue());
+	        System.out.println(pairs.getKey() + " *= " + pairs.getValue());
 	        if (counter == 0){
 	        	startTime = pairs.getValue();
 	        	try {
@@ -119,6 +120,19 @@ public class DateAndTime implements Comparable<DateAndTime>{
 
 	public void setWebinarKey(String webinarKey) {
 		this.webinarKey = webinarKey;
+	}
+	
+	public String getTimeZone(){
+		if (timeZone.equals("America/Chicago"))
+			return "CDT";
+		else if (timeZone.equals("America/New_York"))
+			return "EDT";
+		else
+			return timeZone;
+	}
+	
+	public void setTimeZone(String timeZone) {
+		this.timeZone = timeZone;
 	}
 
 	public int compareTo(DateAndTime d){

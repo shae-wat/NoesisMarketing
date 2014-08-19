@@ -13,7 +13,6 @@ public class WebinarData implements Comparable<WebinarData>{
 	public String description;
 	public ArrayList<Map<String,String>> times;
 	public ArrayList<DateAndTime> datesAndKeys = new ArrayList<DateAndTime>();
-
 	public String timeZone;
 
 	public String getWebinarKey() {
