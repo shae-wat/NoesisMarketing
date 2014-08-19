@@ -19,8 +19,9 @@ public class DateAndTime implements Comparable<DateAndTime>{
 	public String endTime;
 	public Date dateObj;
 	public String webinarKey;
+	public String timeZone;
 	
-	public DateAndTime(Map<String,String> data) {
+	public DateAndTime(Map<String,String> data, String timeZone) {
 
 		Date startDate = null;
 		Date endDate = null;
@@ -29,13 +30,23 @@ public class DateAndTime implements Comparable<DateAndTime>{
 		int counter = 0;
 	    while (it.hasNext()) {
 	        Map.Entry<String,String> pairs = (Map.Entry<String,String>)it.next();
-	        //System.out.println(pairs.getKey() + " *= " + pairs.getValue());
+	        System.out.println(pairs.getKey() + " *= " + pairs.getValue());
 	        if (counter == 0){
 	        	startTime = pairs.getValue();
 	        	try {
-					startDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0000"));
-					dateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0000"));
-				} catch (ParseException e) {
+	        		if (timeZone.equals("CDT")){
+	        			startDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0000"));
+						dateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0000"));
+	        		}
+	        		else if (timeZone.equals("EDT")){
+	        			startDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0100"));
+						dateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0100"));
+	        		}
+	        		else{
+	        			startDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0000"));
+						dateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0000"));
+	        		}
+        		} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -43,8 +54,16 @@ public class DateAndTime implements Comparable<DateAndTime>{
 	        else if (counter == 1){
 	        	endTime= pairs.getValue();
 	        	try {
-					endDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(endTime.replaceAll("Z$", "-0000"));
-				} catch (ParseException e) {
+	        		if (timeZone.equals("CDT")){
+	        			endDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(endTime.replaceAll("Z$", "-0000"));
+	        		}
+	        		else if (timeZone.equals("EDT")){
+	        			endDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(endTime.replaceAll("Z$", "-0100"));	
+	        		}
+	        		else{
+	        			endDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(endTime.replaceAll("Z$", "-0000"));
+	        		}
+        		} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -119,6 +138,19 @@ public class DateAndTime implements Comparable<DateAndTime>{
 
 	public void setWebinarKey(String webinarKey) {
 		this.webinarKey = webinarKey;
+	}
+	
+	public String getTimeZone(){
+		if (timeZone.equals("America/Chicago"))
+			return "CDT";
+		else if (timeZone.equals("America/New_York"))
+			return "EDT";
+		else
+			return timeZone;
+	}
+	
+	public void setTimeZone(String timeZone) {
+		this.timeZone = timeZone;
 	}
 
 	public int compareTo(DateAndTime d){

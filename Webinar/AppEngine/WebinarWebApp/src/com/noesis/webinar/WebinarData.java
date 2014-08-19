@@ -13,7 +13,6 @@ public class WebinarData implements Comparable<WebinarData>{
 	public String description;
 	public ArrayList<Map<String,String>> times;
 	public ArrayList<DateAndTime> datesAndKeys = new ArrayList<DateAndTime>();
-
 	public String timeZone;
 
 	public String getWebinarKey() {
@@ -53,7 +52,12 @@ public class WebinarData implements Comparable<WebinarData>{
 	}
 
 	public String getTimeZone() {
-		return timeZone;
+		if (timeZone.equals("America/Chicago"))
+			return "CDT";
+		else if (timeZone.equals("America/New_York"))
+			return "EDT";
+		else
+			return timeZone;
 	}
 
 	public void setTimeZone(String timeZone) {
@@ -63,8 +67,8 @@ public class WebinarData implements Comparable<WebinarData>{
 	public int compareTo(WebinarData webinar){
 		DateAndTime when1 = null;
 		DateAndTime when2 = null;
-		when1 = new DateAndTime(webinar.getEarliestStartTime());
-		when2 = new DateAndTime(this.getEarliestStartTime());
+		when1 = new DateAndTime(webinar.getEarliestStartTime(), webinar.getTimeZone());
+		when2 = new DateAndTime(this.getEarliestStartTime(), this.getTimeZone());
 		//System.out.println(" when2.dateObj.compareTo(when1.dateObj) = " + when2.dateObj.compareTo(when1.dateObj));
 		return when2.dateObj.compareTo(when1.dateObj);
 	}

@@ -5,13 +5,14 @@
 
 <html>
 <head>
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="/jquery.validate.min.js"></script>
     
     <title>Registration</title>
     <link rel="stylesheet" type="text/css" href="http://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/bootstrap.min.css"> 
     <link rel="stylesheet" type="text/css" href="http://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/noesis-theme.css">
-    
+
     
 </head>
 
@@ -29,8 +30,7 @@
 	System.out.println(action);
 	pageContext.setAttribute("action", action);
 
-	DateAndTime when = new DateAndTime(webinar.getTimes().get(0));
-
+	DateAndTime when = new DateAndTime(webinar.getTimes().get(0), webinar.getTimeZone());
 %>
 
 <body style="padding:15px;">
@@ -40,7 +40,7 @@
         <h1 class="text-info"><%=webinar.getSubject()%></h1>
     </div>
     <h4 style="color:#fff;">    
-        <%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> CDT
+        <%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> <%=webinar.getTimeZone()%>
     </h4>
     <hr>
 </header>
@@ -49,7 +49,7 @@
 <tr>
 <td style="width:460px; padding-right:50px; vertical-align:top;"> 
 <div>
-    <form id="regFrom" name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" style="background-color: #f1f1ce; border-color: #adadad; border-radius: 7px; padding:10px;">
+    <form id="regForm" name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" style="background-color: #f1f1ce; border-color: #adadad; border-radius: 7px; padding:10px;">
     <table>
     		<tr>
                 <td colspan="2">
@@ -532,7 +532,7 @@
     	</td></tr>
         <tr> <td colspan="2">
             <br>
-            <a href="/webinarForm.jsp"> << Back to webinar list </a>
+            <a href="/webinarList.jsp"> << Back to webinar list </a>
             <br>
             <br>
             <td>
@@ -553,18 +553,13 @@
 </tr>
 </table>
 
-<!-- <div id="errorContainer">
-    <p>&nbsp;Please correct the following errors and try again:</p>
-    <ul />
-</div> -->
-
 <script>
     $(document).ready(function() {
         $("#companySize").hide();
         $("#companyRevenue").hide();
         
      // validate signup form on keyup and submits
-		var validator = $("#regFrom").validate({
+		var validator = $("#regForm").validate({
 			rules: {
 				
 				first_name: "required"
@@ -583,8 +578,10 @@
 				else
 					error.appendTo(element.parent().next());
 			},
-			
-			
+			// specifying a submitHandler prevents the default submit, good for the demo
+			/* submitHandler: function() {
+				alert("submitted!");
+			}, */
 			// set this class to error-labels to indicate valid fields
 			success: function(label) {
 				// set &nbsp; as text for IE
@@ -609,7 +606,6 @@
 </script>
 
 <script>var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-25040971-4"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();</script>
-
 
 
 </body>

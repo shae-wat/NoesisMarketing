@@ -29,14 +29,14 @@
 	WebinarUser user = new WebinarUser(first_name,last_name,email);
 	user = wc.registerUser(webinarId, user);
 
-	DateAndTime when = new DateAndTime(webinar.getTimes().get(0));
+	DateAndTime when = new DateAndTime(webinar.getTimes().get(0), webinar.getTimeZone());
+	String timeZone = webinar.getTimeZone();
 
 %>
 
 <body style="padding:15px;">
 	<header>
-		<div id="success">
-			
+		<div id="success">	
 	        <h4 style="color:#fff;">Successful Registration for</h4>
 	        <h1 class="text-info"> <%=webinar.getSubject()%> </h1>
         </div>
@@ -47,8 +47,14 @@
 	<tr>
 	<td style="width:500px; padding-right:50px; vertical-align:top;">
 		<p style="color:#fff;">Thank you, <%= first_name %>  <%= last_name %>, you have registered to attend the <b><%=webinar.getSubject()%></b> webinar hosted by Noesis Energy</p>
-		<p style="color:#fff;">The webinar is on <%=when.getDay()%> <%=when.getDate()%> at <%=when.getStartTime()%> <b>CDT</b></p>
-		<p style="color:#fff;">*Please note that the start time is Central Daylight Time*</p>
+		<p style="color:#fff;">The webinar is on <%=when.getDay()%> <%=when.getDate()%> at <%=when.getStartTime()%> <b><%=timeZone%></b></p>
+		<% if(timeZone.equals("CDT")) {%>
+			<p style="color:#fff;">*Please note that the start time is Central Daylight Time*</p>
+		<%} else if(timeZone.equals("EDT")) {%>
+			<p style="color:#fff;">*Please note that the start time is Eastern Daylight Time*</p>
+		<%} else {%>
+			<p style="color:#fff;">*Please note the time zone associated with this webinar*</p>
+		<%}%>
 		<p style="color:#fff;">An email has been sent to <%=email%> with the <a href=<%=user.getJoinUrl()%>>link</a> to join the webinar</p>
 	</td>
 	<td>
