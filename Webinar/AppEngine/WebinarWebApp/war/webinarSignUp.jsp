@@ -10,8 +10,8 @@
     <script src="/jquery.validate.min.js"></script>
     
     <title>Registration</title>
-    <link rel="stylesheet" type="text/css" href="http://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/bootstrap.min.css"> 
-    <link rel="stylesheet" type="text/css" href="http://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/noesis-theme.css">
+    <link rel="stylesheet" type="text/css" href="https://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="https://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/noesis-theme.css">
 
     
 </head>
@@ -48,17 +48,18 @@
 
 <div class="row">
 <div class="col-md-6">
-    <form id="regForm" name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" style="background-color: #f1f1ce; border-color: #adadad; border-radius: 7px; padding:10px;">
+    <form id="regForm" name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" class="well ne-6-bg">
     <table>
     		<tr>
                 <td colspan="2">
-                    <h4><span class="label label-info">Register for this webinar : </span></h4><span style="font-size:12px; color:#777;"> (all fields required)</span>
-                    <br>
+                    <h3 class="ne-11 handwritten" style="margin-top: 0px;">Register for this webinar : </h3>
+                    <span style="font-size:12px; color:#fff;"> (all fields required)</span>
+                    <hr class="dashed-line-lt" /><br />
                 </td>
             </tr>
 
     	  	<tr>
-                <td style="color:#777;">First Name * </td>
+                <td style="color:#fff;">First Name * </td>
                 <td>
     	        <input id="firstName" type="text" 
     	                name="first_name" class="form-control" ne-hint="First Name" 
@@ -67,7 +68,7 @@
     		    </td>
             </tr>
 
-    		<tr><td style="color:#777;">
+    		<tr><td style="color:#fff;">
     	        Last Name *
     	    </td><td>
     	        <input id="lastName" type="text" 
@@ -76,7 +77,7 @@
     	                ng-required="true" ng-maxlength="255" ng-model="$parent.LastName">
     		</td></tr>
 
-    		<tr><td style="color:#777;">
+    		<tr><td style="color:#fff;">
     	        Email *
     	    </td><td>
     	        <input id="email" type="email" 
@@ -85,7 +86,7 @@
     	                ng-required="true" ng-maxlength="255" ng-model="$parent.Email">
     		</td></tr>
     	
-    		<tr><td style="color:#777;">
+    		<tr><td style="color:#fff;">
                             Phone *
             </td><td>
                             <input id="phone" type="tel" 
@@ -94,7 +95,7 @@
                                     ng-required="true" ng-minlength="10" ng-maxlength="16" ng-model="$parent.Phone">
             </td></tr>
             
-            <tr><td style="color:#777;">
+            <tr><td style="color:#fff;">
                             Company Name *
            	</td><td>
                             <input id="companyName" type="text" 
@@ -103,7 +104,7 @@
                                     ng-required="true" ng-maxlength="255" ng-model="$parent.Company">
              </td></tr>
              
-             <tr><td style="color:#777;">
+             <tr><td style="color:#fff;">
              				Company Location *
              </td><td>
                     
@@ -452,7 +453,7 @@
                                     </select>
                     </td></tr>
                     
-                    <tr><td style="color:#777;">
+                    <tr><td style="color:#fff;">
                     				Business Type *
                     </td><td>
                                 
@@ -476,17 +477,17 @@
                      
                      <tr><td colspan="2">
                                		<hr>
-                                    <p class="ne-11" style="color:#777;">Do you sell energy projects and/or services to building owners?</p>
+                                    <p class="ne-11" style="color:#fff;">Do you sell energy projects and/or services to building owners?</p>
                                     <ul id="sellQ" class="list-inline">
                                         <li><input type="radio"
                                             onChange="showSellSideQuestions();_gaq.push(['_trackEvent', 'MarketingForms', 'SellSideOptIn', 'Pro']);"
                                             name="Sell_Side_Opt_In__c" value="Pro"
                                             ng-model="$parent.Sell_Side_Opt_In__c"> <span
-                                            class="ne-11" style="color:#777;"> Yes</span</li>
+                                            class="ne-11" style="color:#fff;"> Yes</span</li>
                                         <li><input type="radio" onChange="hideSellSideQuestions();"
                                             name="Sell_Side_Opt_In__c"
                                             value="NA" ng-model="$parent.Sell_Side_Opt_In__c">
-                                            <span class="ne-11" style="color:#777;"> No</span></li>
+                                            <span class="ne-11" style="color:#fff;"> No</span></li>
                                     </ul>
                      </td></tr>
                      
@@ -542,12 +543,13 @@
 
 
 <div class="col-md-6">
+    <div class="well">
     <h4><span class="label label-info">About this webinar : </span></h4>
-    <p style="color:#fff;"> <br>
+    <p> <br>
         <%=webinar.getDescription()%> 
         <br> 
     </p>
-        
+        </div>
 </div>
 </div> <!-- end container -->
 
@@ -561,11 +563,23 @@
 			rules: {
 				
 				first_name: "required"
+                last_name: "required",
+                email: "required",
+                Phone: "required",
+                Company: "required",
+                Company_Headquarter_State__c: "required",
+                Job_Category__c: "required"
 				
 			},
 			messages: {
 				
-				first_name: "Enter your firstname"
+				first_name: "Enter your first name"
+                last_name: "Enter your last name",
+                email: "Enter your email",
+                Phone: "Enter your phone number",
+                Company: "Enter your company name",
+                Company_Headquarter_State__c: "Enter your company location",
+                Job_Category__c: "Enter your business category"
 			},
 			// the errorPlacement has to take the table layout into account
 			errorPlacement: function(error, element) {

@@ -8,8 +8,8 @@
 <head>
     <title>Upcoming webinars</title>
     
-    <link rel="stylesheet" type="text/css" href="http://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/bootstrap.min.css"> 
-    <link rel="stylesheet" type="text/css" href="http://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/noesis-theme.css">
+    <link rel="stylesheet" type="text/css" href="https://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="https://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/noesis-theme.css">
     <link rel="stylesheet" href="calendarview.css" type="text/css" />
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -73,7 +73,9 @@
 		String timeZone = webinar.getTimeZone();	
 		%>
 
-		<h4 class="text-info"><%=webinar.getSubject()%></h4>
+		
+        <div class="well">
+		<h4 class="greeting lead text-primary"><%=webinar.getSubject()%></h4>
 
 
 		<ul style="list-style-position:inside;">
@@ -83,6 +85,9 @@
 			<%}%>
 			</li>
 		</ul>
+		</div>
+		
+		
 <%
 		}
 	}
