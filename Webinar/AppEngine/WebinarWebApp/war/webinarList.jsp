@@ -29,11 +29,11 @@
 
 </head>
 
-<body style="padding:15px;">
+<body>
 <div class="container">
 	<header>
 
-		<br>
+		
         <div class="media">
 			<span class="pull-left"><img class="img-circle" src="lacey-avatar-small.png" style="background:#E1E1E1;max-width: 10em;border: .35em solid #F1F1F1;"/></span>
 
@@ -66,7 +66,7 @@
 
 		
         <div class="well">
-		<h4 class="greeting lead text-primary"><%=webinar.getSubject()%></h4>
+		<h4 class="lead text-primary"><%=webinar.getSubject()%></h4>
 
 
 		<ul style="list-style-position:inside;">
