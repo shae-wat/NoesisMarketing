@@ -30,6 +30,7 @@
 </head>
 
 <body style="padding:15px;">
+<div class="container">
 	<header>
 
 		<br>
@@ -59,14 +60,9 @@
 	List<WebinarData> upcomingWebinars = wc.getUpcomingWebinars();
 %>
 
-<table>
-<tr>
-<td style="width:500px; vertical-align:top;">
-	<div id="embeddedCalendar" style="margin-left: auto; margin-right: auto"></div>
 
-	<br>
-</td>
-<td>
+<div class="row">
+<div class="col-md-6">
 	<nav>
 		<ul>
 <% if (upcomingWebinars != null)
@@ -93,9 +89,19 @@
 %>
 		</ul>
 	</nav>
-</td>
-</tr>
-</table>
+	
+	</div>
+	<div class="col-md-6">
+
+	<div id="embeddedCalendar" style="margin-left: auto; margin-right: auto"></div>
+	
+	</div>
+	</div>
+	</div> <!-- end container -->
+
+	
+	
+
 
 <script>
   function setupCalendar() {
