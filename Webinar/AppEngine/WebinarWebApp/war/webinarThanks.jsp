@@ -35,6 +35,7 @@
 %>
 
 <body style="padding:15px;">
+	<div class="container">
 	<header>
 		<div id="success">	
 	        <h4 style="color:#fff;">Successful Registration for</h4>
@@ -43,9 +44,8 @@
 		<hr>
 	</header>
 	
-	<table>
-	<tr>
-	<td style="width:500px; padding-right:50px; vertical-align:top;">
+	<div class="row">
+	<div class="col-md-6">
 		<p style="color:#fff;">Thank you, <%= first_name %>  <%= last_name %>, you have registered to attend the <b><%=webinar.getSubject()%></b> webinar hosted by Noesis Energy</p>
 		<p style="color:#fff;">The webinar is on <%=when.getDay()%> <%=when.getDate()%> at <%=when.getStartTime()%> <b><%=timeZone%></b></p>
 		<% if(timeZone.equals("CDT")) {%>
@@ -56,8 +56,8 @@
 			<p style="color:#fff;">*Please note the time zone associated with this webinar*</p>
 		<%}%>
 		<p style="color:#fff;">An email has been sent to <%=email%> with the <a href=<%=user.getJoinUrl()%>>link</a> to join the webinar</p>
-	</td>
-	<td>
+	</div>
+	<div class="col-md-6">
 		<center>
 		<p style="color:#fff;"><b>Here are some more resources from Noesis Energy that may interest you:</b></p>
 		<br>
@@ -104,9 +104,7 @@
 
 		<p>*Share your registration for this webinar on Twitter or LinkedIn*</p>
 		<p>*Email invitation for this webinar to friends and colleagues*</p>
-	</td>
-	</tr>
-	</table>
+	</div>
 
 	<footer>
 		<center>
@@ -122,5 +120,6 @@
 		</div>
 	</center>
 	</footer>
+	</div> <!-- end container -->
 </body>
 </html>

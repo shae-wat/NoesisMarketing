@@ -35,7 +35,7 @@
 %>
 
 <body style="padding:15px;">
-
+<div class="container">
 <header>
 	<div id="reg">
         <h1 class="text-info"><%=webinar.getSubject()%></h1>
@@ -46,10 +46,8 @@
     <hr>
 </header>
 
-<table>
-<tr>
-<td style="width:460px; padding-right:50px; vertical-align:top;"> 
-<div>
+<div class="row">
+<div class="col-md-6">
     <form id="regForm" name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" style="background-color: #f1f1ce; border-color: #adadad; border-radius: 7px; padding:10px;">
     <table>
     		<tr>
@@ -541,18 +539,17 @@
     </table>
     </form>
 </div>
-</td>
 
-<td colspan="2" style="vertical-align:top; horizontal-align:left">
+
+<div class="col-md-6">
     <h4><span class="label label-info">About this webinar : </span></h4>
     <p style="color:#fff;"> <br>
         <%=webinar.getDescription()%> 
         <br> 
     </p>
         
-<td>
-</tr>
-</table>
+</div>
+</div> <!-- end container -->
 
 <script>
     $(document).ready(function() {
