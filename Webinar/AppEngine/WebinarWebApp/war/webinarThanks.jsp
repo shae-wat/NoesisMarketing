@@ -36,32 +36,39 @@
 
 <body style="padding:15px;">
 	<div class="container">
-	<header>
+	<!-- <header>
 		<div id="success">	
 	        <h4 style="color:#fff;">Successful Registration for</h4>
 	        <h1 class="text-info"> <%=webinar.getSubject()%> </h1>
         </div>
 		<hr>
-	</header>
+	</header> -->
 	
 	<div class="row">
 	<div class="col-md-6">
-		<p style="color:#fff;">Thank you, <%= first_name %>  <%= last_name %>, you have registered to attend the <b><%=webinar.getSubject()%></b> webinar hosted by Noesis Energy</p>
-		<p style="color:#fff;">The webinar is on <%=when.getDay()%> <%=when.getDate()%> at <%=when.getStartTime()%> <b><%=timeZone%></b></p>
-		<% if(timeZone.equals("CDT")) {%>
-			<p style="color:#fff;">*Please note that the start time is Central Daylight Time*</p>
-		<%} else if(timeZone.equals("EDT")) {%>
-			<p style="color:#fff;">*Please note that the start time is Eastern Daylight Time*</p>
-		<%} else {%>
-			<p style="color:#fff;">*Please note the time zone associated with this webinar*</p>
-		<%}%>
-		<p style="color:#fff;">An email has been sent to <%=email%> with the <a href=<%=user.getJoinUrl()%>>link</a> to join the webinar</p>
+
+		<div class="jumbotron ne-cloud-bg">
+			<h2 class="text-info">Successful Registration for <%=webinar.getSubject()%> </h2>
+
+			<p>Thank you, <%= first_name %>  <%= last_name %>, you have registered to attend the <b><%=webinar.getSubject()%></b> webinar hosted by Noesis Energy</p>
+			<p>The webinar is on <%=when.getDay()%> <%=when.getDate()%> at <%=when.getStartTime()%> <b><%=timeZone%></b></p>
+			<% if(timeZone.equals("CDT")) {%>
+				<p>*Please note that the start time is Central Daylight Time*</p>
+			<%} else if(timeZone.equals("EDT")) {%>
+				<p>*Please note that the start time is Eastern Daylight Time*</p>
+			<%} else {%>
+				<p>*Please note the time zone associated with this webinar*</p>
+			<%}%>
+			<p>An email has been sent to <%=email%> with the <a href=<%=user.getJoinUrl()%>>link</a> to join the webinar</p>
+
+		</div>
+
 	</div>
 	<div class="col-md-6">
 		<center>
-		<p style="color:#fff;"><b>Here are some more resources from Noesis Energy that may interest you:</b></p>
+			<br>
+		<h3 style="color:#fff;"><b>Here are some more resources from Noesis Energy that may interest you:</b></h3>
 		<br>
-		</center>
 		<table>
 		<tr>
 		<td>
@@ -95,9 +102,9 @@
 		</td>
 		</tr>
 		</table>
+		</center>
 
 
-		<br>
 		<br>
 		<br>
 		<br>
@@ -105,6 +112,7 @@
 		<p>*Share your registration for this webinar on Twitter or LinkedIn*</p>
 		<p>*Email invitation for this webinar to friends and colleagues*</p>
 	</div>
+</div>
 
 	<footer>
 		<center>
