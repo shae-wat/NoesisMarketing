@@ -528,7 +528,7 @@
                                 
     	<tr><td colspan="2">
     	   <hr>
-           <button type="input" class="btn btn-primary">Register</button>
+           <button type="input" class="btn btn-primary">Register for Webinar</button>
     	</td></tr>
         <tr> <td colspan="2">
             <br>
