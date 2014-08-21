@@ -142,9 +142,10 @@ public class WebinarConnector {
 		}
 		in.close();
 		
-		System.out.println(webinar.questions.get(0).getQuestion());
 		
-		return webinar.questions.get(0).getQuestion();
+		
+		try { return webinar.questions.get(0).getQuestion(); }
+		catch (IndexOutOfBoundsException e) { return ""; }
 	}
 	
 	

@@ -77,7 +77,7 @@
 			<div>
 			<img src="https://noesisimg.s3.amazonaws.com/nb-images/content-type-icons/blog-icon.png"</img>
 			<br>
-			<a href="https://www.noesisenergy.com/site/"><button type="input" class="btn btn-primary">Blog</button></a>
+			<a href="https://www.noesisenergy.com/site/noesis-blog"><button type="input" class="btn btn-primary">Blog</button></a>
 			</div>
 			</center>
 		</td>
@@ -87,7 +87,7 @@
 			<div>
 			<img src="https://noesisimg.s3.amazonaws.com/nb-images/content-type-icons/downloads-icon.png"</img>
 			<br>
-			<a href="https://www.noesisenergy.com/site/"><button type="input" class="btn btn-primary">Downloads</button></a>
+			<a href="https://www.noesisenergy.com/site/content/noesis-resource-library"><button type="input" class="btn btn-primary">Resource Library</button></a>
 			</div>
 			</center>	
 		</td>
@@ -97,7 +97,7 @@
 			<div>
 			<img src="https://noesisimg.s3.amazonaws.com/nb-images/support-icons/sales-icon.png"</img>
 			<br>
-			<a href="https://www.noesisenergy.com/site/"><button type="input" class="btn btn-primary">Sales</button></a>
+			<a href="https://www.noesisenergy.com/site/content/contact-us"><button type="input" class="btn btn-primary">Contact Us</button></a>
 			</div>
 			</center>
 		</td>
