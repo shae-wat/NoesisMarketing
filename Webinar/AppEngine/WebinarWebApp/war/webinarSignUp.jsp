@@ -561,25 +561,23 @@
      // validate signup form on keyup and submits
 		var validator = $("#regForm").validate({
 			rules: {
-				
-				first_name: "required"
-                last_name: "required",
-                email: "required",
-                Phone: "required",
-                Company: "required",
-                Company_Headquarter_State__c: "required",
-                Job_Category__c: "required"
-				
+				first_name: "required",
+				last_name: "required",
+				email: "required",
+				phone: "required",
+				companyName: "required",
+				Company_Headquarter_State__c: "required",
+				Job_Category__c: "required"
 			},
 			messages: {
 				
-				first_name: "Enter your first name"
-                last_name: "Enter your last name",
-                email: "Enter your email",
-                Phone: "Enter your phone number",
-                Company: "Enter your company name",
-                Company_Headquarter_State__c: "Enter your company location",
-                Job_Category__c: "Enter your business category"
+				first_name: "Enter your first name",
+				last_name: "Enter your last name",
+				email: "Enter your email",
+				phone: "Enter your phone",
+				companyName: "Enter company name",
+				Company_Headquarter_State__c: "Enter company location",
+				Job_Category__c: "Enter business type"
 			},
 			// the errorPlacement has to take the table layout into account
 			errorPlacement: function(error, element) {
