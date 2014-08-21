@@ -14,6 +14,7 @@ public class WebinarData implements Comparable<WebinarData>{
 	public ArrayList<Map<String,String>> times;
 	public ArrayList<DateAndTime> datesAndKeys = new ArrayList<DateAndTime>();
 	public String timeZone;
+	public ArrayList<WebinarQuestion> questions;
 
 	public String getWebinarKey() {
 		return webinarKey;
@@ -81,5 +82,7 @@ public class WebinarData implements Comparable<WebinarData>{
 	public void setDatesAndTimes(ArrayList<DateAndTime> datesAndTimes) {
 		this.datesAndKeys = datesAndTimes;
 	}
+
+	
 	
 }

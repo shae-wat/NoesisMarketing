@@ -89,7 +89,7 @@ public class WebinarConnector {
 				}
 			}
 			//Check for test webinars, which must include TEST in all caps in their title
-			if(upcomingWebinars.contains(webinar) && !webinar.getSubject().contains("TEST") && !webinar.getSubject().contains("NEEDED")){
+			if(upcomingWebinars.contains(webinar) && !webinar.getSubject().contains("NEEDED")){
 				webinar.datesAndKeys.add(dateAndKey);
 				officialWebinars.add(webinar);
 			}
@@ -121,6 +121,30 @@ public class WebinarConnector {
 		in.close();
 		
 		return webinar;
+	}
+	
+	public String getCustomQuestion(String webinarId) throws IOException{
+		
+		WebinarData webinar = new WebinarData();
+		URL url = new URL("https://api.citrixonline.com/G2W/rest/organizers/"  + wa.getOrganizer_key() + "/webinars/"  + webinarId + "/registrants/fields");
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+		connection.setRequestMethod("GET");
+		connection.setRequestProperty("Authorization", "OAuth oauth_token="+wa.getAccess_token());
+		connection.connect();
+		
+		
+		String line = "";
+		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+		while((line = in.readLine()) != null)
+		{
+			System.out.println("\nGET customQuestion = "+line);
+			webinar = gson.fromJson(line, WebinarData.class);
+		}
+		in.close();
+		
+		System.out.println(webinar.questions.get(0).getQuestion());
+		
+		return webinar.questions.get(0).getQuestion();
 	}
 	
 	

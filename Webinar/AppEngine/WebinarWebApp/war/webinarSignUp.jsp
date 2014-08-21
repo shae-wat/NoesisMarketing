@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.List" %>
+<%@ page import="java.util.*" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="com.noesis.webinar.*" %>
 
@@ -24,6 +24,8 @@
 
     	WebinarConnector wc = new WebinarConnector();
     	WebinarData webinar = wc.getWebinarInfo(webinarId);
+        String customQuestion = wc.getCustomQuestion(webinarId);
+        pageContext.setAttribute("customQuestion", customQuestion);
     
 
 
@@ -523,6 +525,21 @@
                                            
                                             
                                     </select>
+                     </td></tr>
+
+                     <tr><td colspan="2">
+                                    <hr>
+                                    <p class="ne-11" style="color:#fff;"><%=customQuestion%></p>
+                                    <ul id="customQuestion" class="list-inline">
+                                        <li><input type="radio"
+                                            
+                                            
+                                            <span
+                                            class="ne-11" style="color:#fff;"> Yes</span</li>
+                                        <li><input type="radio"
+                                            
+                                            <span class="ne-11" style="color:#fff;"> No</span></li>
+                                    </ul>
                      </td></tr>
                                     
                                 
