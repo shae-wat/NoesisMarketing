@@ -69,6 +69,7 @@
 			<br>
 		<h3 style="color:#fff;"><b>Here are some more resources from Noesis Energy that may interest you:</b></h3>
 		<br>
+		<br>
 		<table>
 		<tr>
 		<td>
@@ -104,13 +105,38 @@
 		</table>
 		</center>
 
-
 		<br>
 		<br>
 		<br>
 
-		<p>*Share your registration for this webinar on Twitter or LinkedIn*</p>
-		<p>*Email invitation for this webinar to friends and colleagues*</p>
+		<center>
+			<p style="color:#fff;">Share your registration with your social networks</p>
+		<table>
+		<tr>
+		<td>
+			
+			<img src="linkedinShare.png"></img>
+			
+		</td>
+		<td>
+			
+			<img src="twitterShare.png"></img>
+			
+		</td>
+		</tr>
+		</table>
+		</center>
+
+	
+		<br>
+		<br>
+		<center>	
+			<p style="color:#fff;">Email invitation for this webinar to friends and colleagues</p>
+			<img src="email.png"></img>
+		</center>
+
+
+		
 	</div>
 </div>
 
