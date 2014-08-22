@@ -527,6 +527,7 @@
                                     </select>
                      </td></tr>
 
+                     <% if(!customQuestion.equals("")){   %>
                      <tr><td colspan="2">
                                     <hr>
                                     <p class="ne-11" style="color:#fff;"><%=customQuestion%></p>
@@ -541,6 +542,7 @@
                                             <span class="ne-11" style="color:#fff;"> No</span></li>
                                     </ul>
                      </td></tr>
+                     <% } %>
                                     
                                 
     	<tr><td colspan="2">

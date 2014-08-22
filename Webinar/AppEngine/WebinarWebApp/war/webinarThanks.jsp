@@ -72,7 +72,7 @@
 		<br>
 		<table>
 		<tr>
-		<td>
+		<td style="padding-right:10px;">
 			<center>
 			<div>
 			<img src="https://noesisimg.s3.amazonaws.com/nb-images/content-type-icons/blog-icon.png"</img>
@@ -82,7 +82,7 @@
 			</center>
 		</td>
 
-		<td>
+		<td style="padding-right:10px;">
 			<center>
 			<div>
 			<img src="https://noesisimg.s3.amazonaws.com/nb-images/content-type-icons/downloads-icon.png"</img>
@@ -92,7 +92,7 @@
 			</center>	
 		</td>
 
-		<td>
+		<td style="padding-right:10px;">
 			<center>
 			<div>
 			<img src="https://noesisimg.s3.amazonaws.com/nb-images/support-icons/sales-icon.png"</img>
@@ -146,9 +146,12 @@
 		<div id="socialLinks">
 			<a href="https://www.noesisenergy.com/site/"><img src="noesis_logo.png" alt="company logo" width="90" height="30"></a>
 
-			<a href="https://twitter.com/noesisenergy"><img src="twitter.png" alt="twitter logo" width="30" height="30"></a>
 
-			<a href="https://www.linkedin.com/company/noesis-energy"><img src="linkedin.png" alt="linkedin logo" width="30" height="30"></a>
+			<a href="https://twitter.com/noesisenergy" class="twitter-follow-button" data-show-count="false">Follow @noesisenergy</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+			<script src="//platform.linkedin.com/in.js" type="text/javascript">
+  			lang: en_US </script> <script type="IN/FollowCompany" data-id="460089" data-counter="none"></script>
 		
 		<p>&copy; 2014 Noesis Energy</p>
 		</div>
