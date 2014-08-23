@@ -12,6 +12,11 @@
     <link rel="stylesheet" type="text/css" href="https://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/noesis-theme.css">
     <link rel="stylesheet" href="calendarview.css" type="text/css" />
 
+    <!-- FONTS BEGIN -->
+	  <link href='//fonts.googleapis.com/css?family=Kreon:300,400,700|Architects+Daughter|Pacifico' rel='stylesheet' type='text/css'>
+	  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	  <!-- FONTS END -->
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
     <script src="prototype.js" type="text/javascript"></script>
@@ -66,7 +71,7 @@
 
 		
         <div class="well">
-		<h4 class="lead text-primary"><%=webinar.getSubject()%></h4>
+		<h4><%=webinar.getSubject()%></h4>
 
 
 		<ul style="list-style-position:inside;">

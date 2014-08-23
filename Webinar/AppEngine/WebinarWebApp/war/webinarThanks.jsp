@@ -12,6 +12,12 @@
     <link rel="stylesheet" type="text/css" href="https://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/noesis-theme.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53f78ec6770bb0ee"></script>
+    <!-- FONTS BEGIN -->
+	  <link href='//fonts.googleapis.com/css?family=Kreon:300,400,700|Architects+Daughter|Pacifico' rel='stylesheet' type='text/css'>
+	  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	  <!-- FONTS END -->
 </head>
 
 <%
@@ -111,20 +117,9 @@
 
 		<center>
 			<p style="color:#fff;">Share your registration with your social networks</p>
-		<table>
-		<tr>
-		<td>
-			
-			<img src="linkedinShare.png"></img>
-			
-		</td>
-		<td>
-			
-			<img src="twitterShare.png"></img>
-			
-		</td>
-		</tr>
-		</table>
+					
+			<!-- Go to www.addthis.com/dashboard to customize your tools -->
+			<div class="addthis_native_toolbox"></div>
 		</center>
 
 	
