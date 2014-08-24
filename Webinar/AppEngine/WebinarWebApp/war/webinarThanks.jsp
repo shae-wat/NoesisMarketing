@@ -12,12 +12,11 @@
     <link rel="stylesheet" type="text/css" href="https://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/noesis-theme.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
-    <!-- Go to www.addthis.com/dashboard to customize your tools -->
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53f78ec6770bb0ee"></script>
     <!-- FONTS BEGIN -->
 	  <link href='//fonts.googleapis.com/css?family=Kreon:300,400,700|Architects+Daughter|Pacifico' rel='stylesheet' type='text/css'>
 	  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 	  <!-- FONTS END -->
+
 </head>
 
 <%
@@ -41,6 +40,11 @@
 %>
 
 <body style="padding:15px;">
+
+<meta name=”twitter:url” content=”http://localhost:8888/webinarSignUp.jsp?webinarID=webinarId“>
+<meta name=”twitter:title” content=”I just registered for <%=webinar.getSubject()%>”>
+
+
 	<div class="container">
 	<!-- <header>
 		<div id="success">	
@@ -117,9 +121,15 @@
 
 		<center>
 			<p style="color:#fff;">Share your registration with your social networks</p>
-					
-			<!-- Go to www.addthis.com/dashboard to customize your tools -->
-			<div class="addthis_native_toolbox"></div>
+			<table>
+			<tr>
+				<td>		
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://localhost:8888/webinarSignUp.jsp?webinarID=webinarId" data-text="I just registered for <%=webinar.getSubject()%>" data-count="none">Tweet</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+				</td>
+			</tr>
+			
+			</table>
 		</center>
 
 	
@@ -135,23 +145,10 @@
 	</div>
 </div>
 
-	<footer>
-		<center>
-		<hr><p style="color:#fff;">Connect with us:</p>
-		<div id="socialLinks">
-			<a href="https://www.noesisenergy.com/site/"><img src="noesis_logo.png" alt="company logo" width="90" height="30"></a>
-
-
-			<a href="https://twitter.com/noesisenergy" class="twitter-follow-button" data-show-count="false">Follow @noesisenergy</a>
-			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-			<script src="//platform.linkedin.com/in.js" type="text/javascript">
-  			lang: en_US </script> <script type="IN/FollowCompany" data-id="460089" data-counter="none"></script>
-		
-		<p>&copy; 2014 Noesis Energy</p>
-		</div>
-	</center>
-	</footer>
+	
 	</div> <!-- end container -->
+
+	<!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53f78ec6770bb0ee"></script>
 </body>
 </html>
