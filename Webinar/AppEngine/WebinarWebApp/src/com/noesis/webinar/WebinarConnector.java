@@ -89,7 +89,7 @@ public class WebinarConnector {
 				}
 			}
 			//Check for test webinars, which must include TEST in all caps in their title
-			if(upcomingWebinars.contains(webinar) && !webinar.getSubject().contains("NEEDED")){
+			if(upcomingWebinars.contains(webinar) && !webinar.getSubject().contains("TEST") && !webinar.getSubject().contains("NEEDED")){
 				webinar.datesAndKeys.add(dateAndKey);
 				officialWebinars.add(webinar);
 			}
