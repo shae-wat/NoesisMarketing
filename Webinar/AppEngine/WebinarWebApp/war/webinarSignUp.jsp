@@ -27,11 +27,20 @@
     	String webinarId = request.getParameter("webinarID");
 	
     	pageContext.setAttribute("webinarId", webinarId);
+        WebinarData webinar = null;
+        String customQuestion = null;
 
-    	WebinarConnector wc = new WebinarConnector();
-    	WebinarData webinar = wc.getWebinarInfo(webinarId);
-        String customQuestion = wc.getCustomQuestion(webinarId);
-        pageContext.setAttribute("customQuestion", customQuestion);
+        try{
+        	WebinarConnector wc = new WebinarConnector();
+        	webinar = wc.getWebinarInfo(webinarId);
+            customQuestion = wc.getCustomQuestion(webinarId);
+            pageContext.setAttribute("customQuestion", customQuestion);
+        } catch (NullPointerException e){
+            // New location to be redirected
+           String errorPage = new String("errorPage.jsp");
+           
+           response.sendRedirect(errorPage); 
+        }
     
 
 
@@ -491,7 +500,7 @@
                                             onChange="showSellSideQuestions();_gaq.push(['_trackEvent', 'MarketingForms', 'SellSideOptIn', 'Pro']);"
                                             name="Sell_Side_Opt_In__c" value="Pro"
                                             ng-model="$parent.Sell_Side_Opt_In__c"> <span
-                                            class="ne-11" style="color:#fff;"> Yes</span</li>
+                                            class="ne-11" style="color:#fff;"> Yes</span></li>
                                         <li><input type="radio" onChange="hideSellSideQuestions();"
                                             name="Sell_Side_Opt_In__c"
                                             value="NA" ng-model="$parent.Sell_Side_Opt_In__c">
@@ -538,12 +547,11 @@
                                     <hr>
                                     <p class="ne-11" style="color:#fff;"><%=customQuestion%></p>
                                     <ul id="customQuestion" class="list-inline">
-                                        <li><input type="radio"
-                                            
+                                        <li><input type="radio" name="customQ" value="yes">
                                             
                                             <span
-                                            class="ne-11" style="color:#fff;"> Yes</span</li>
-                                        <li><input type="radio"
+                                            class="ne-11" style="color:#fff;"> Yes</span></li>
+                                        <li><input type="radio" name="customQ" value="no">
                                             
                                             <span class="ne-11" style="color:#fff;"> No</span></li>
                                     </ul>
