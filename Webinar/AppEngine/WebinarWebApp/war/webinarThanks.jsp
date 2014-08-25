@@ -75,10 +75,9 @@
 
 	</div>
 	<div class="col-md-6">
+		<center><h3 class="text-info">NEXT STEPS</h3></center>
+		<h3 class="ne-11 handwritten">1. Check out other resources by Noesis Energy</h3>
 		<center>
-			<br>
-		<h3 style="color:#fff;"><b>Here are some more resources from Noesis Energy that may interest you:</b></h3>
-		<br>
 		<br>
 		<table>
 		<tr>
@@ -119,8 +118,9 @@
 		<br>
 		<br>
 
+		
+		<h3 class="ne-11 handwritten">2. Share your registration with your social networks</h3>
 		<center>
-			<p style="color:#fff;">Share your registration with your social networks</p>
 			<table>
 			<tr>
 				<td>		
@@ -138,8 +138,9 @@
 	
 		<br>
 		<br>
+		<h3 class="ne-11 handwritten">3. Email invitation for this webinar to friends and colleagues</h3>
 		<center>	
-			<p style="color:#fff;">Email invitation for this webinar to friends and colleagues</p>
+			
 			<img src="email.png"></img>
 		</center>
 
