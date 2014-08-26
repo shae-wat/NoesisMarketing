@@ -17,33 +17,32 @@
 	  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 	  <!-- FONTS END -->
 
+	  <%
+		String webinarId = request.getParameter("webinarID");
+		pageContext.setAttribute("webinarId", webinarId);
+		String webinarUrl="http://localhost:8888/webinarSignUp.jsp?webinarID="+webinarId;
+		pageContext.setAttribute("webinarUrl", webinarUrl);
+
+		WebinarConnector wc = new WebinarConnector();
+		WebinarData webinar = wc.getWebinarInfo(webinarId);
+
+		String first_name = request.getParameter("first_name");
+		String last_name = request.getParameter("last_name");
+		String email = request.getParameter("email");
+		
+
+		WebinarUser user = new WebinarUser(first_name,last_name,email);
+		user = wc.registerUser(webinarId, user);
+
+		DateAndTime when = new DateAndTime(webinar.getTimes().get(0), webinar.getTimeZone());
+		String timeZone = webinar.getTimeZone();
+
+	%>
+
 </head>
 
-<%
-	String webinarId = request.getParameter("webinarID");
-	pageContext.setAttribute("webinarId", webinarId);
-
-	WebinarConnector wc = new WebinarConnector();
-	WebinarData webinar = wc.getWebinarInfo(webinarId);
-
-	String first_name = request.getParameter("first_name");
-	String last_name = request.getParameter("last_name");
-	String email = request.getParameter("email");
-	
-
-	WebinarUser user = new WebinarUser(first_name,last_name,email);
-	user = wc.registerUser(webinarId, user);
-
-	DateAndTime when = new DateAndTime(webinar.getTimes().get(0), webinar.getTimeZone());
-	String timeZone = webinar.getTimeZone();
-
-%>
 
 <body style="padding:15px;">
-
-<meta name=”twitter:url” content=”http://localhost:8888/webinarSignUp.jsp?webinarID=webinarId“>
-<meta name=”twitter:title” content=”I just registered for <%=webinar.getSubject()%>”>
-
 
 	<div class="container">
 	<!-- <header>
@@ -118,30 +117,28 @@
 		<br>
 		<br>
 
-		
-		<h3 class="ne-11 handwritten">2. Share your registration with your social networks</h3>
+		<h3 class="ne-11 handwritten">2. Email invitation for this webinar to friends and colleagues</h3>
+		<center>	
+			
+			<img src="email.png"></img>
+		</center>
+
+		<br>
+		<h3 class="ne-11 handwritten">3. Share your registration with your social networks</h3>
 		<center>
 			<table>
 			<tr>
-				<td>		
-				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://localhost:8888/webinarSignUp.jsp?webinarID=webinarId" data-text="I just registered for <%=webinar.getSubject()%>" data-count="none">Tweet</a>
+				<td style="padding-right:20px;">
+
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="<%=webinarUrl%>" data-count="none">Tweet</a>
 				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 				</td>
 				<td>
-					<script src="//platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script><script type="IN/Share" data-url="http://localhost:8888/webinarSignUp.jsp?webinarID=webinarId"></script>
+					<script src="//platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script><script type="IN/Share" data-url="http://localhost:8888/webinarSignUp.jsp?webinarID="+webinarId></script>
 				</td>
 			</tr>
 			
 			</table>
-		</center>
-
-	
-		<br>
-		<br>
-		<h3 class="ne-11 handwritten">3. Email invitation for this webinar to friends and colleagues</h3>
-		<center>	
-			
-			<img src="email.png"></img>
 		</center>
 
 
@@ -152,7 +149,6 @@
 	
 	</div> <!-- end container -->
 
-	<!-- Go to www.addthis.com/dashboard to customize your tools -->
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53f78ec6770bb0ee"></script>
+	
 </body>
 </html>

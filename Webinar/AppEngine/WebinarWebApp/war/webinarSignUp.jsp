@@ -8,8 +8,6 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="/jquery.validate.min.js"></script>
-
-
     
     <title>Registration</title>
     <link rel="stylesheet" type="text/css" href="https://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/bootstrap.min.css"> 
@@ -19,20 +17,17 @@
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
       <!-- FONTS END -->
 
+      <%
     
-</head>
-
-<%
+        String webinarId = request.getParameter("webinarID");
     
-    	String webinarId = request.getParameter("webinarID");
-	
-    	pageContext.setAttribute("webinarId", webinarId);
+        pageContext.setAttribute("webinarId", webinarId);
         WebinarData webinar = null;
         String customQuestion = null;
 
         try{
-        	WebinarConnector wc = new WebinarConnector();
-        	webinar = wc.getWebinarInfo(webinarId);
+            WebinarConnector wc = new WebinarConnector();
+            webinar = wc.getWebinarInfo(webinarId);
             customQuestion = wc.getCustomQuestion(webinarId);
             pageContext.setAttribute("customQuestion", customQuestion);
         } catch (NullPointerException e){
@@ -42,14 +37,33 @@
            response.sendRedirect(errorPage); 
         }
     
+        String action = "webinarThanks.jsp?webinarID="+ webinar.getWebinarKey();
+        System.out.println(action);
+        pageContext.setAttribute("action", action);
+
+        DateAndTime when = new DateAndTime(webinar.getTimes().get(0), webinar.getTimeZone());
+    %>
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:title" content="I just registered for <%=webinar.getSubject()%>">
+    <meta name="twitter:description" content="<%=webinar.getDescription()%>">
+    <meta name="twitter:creator" content="">
+    <meta name="twitter:image:src" content="https://noesisimg.s3.amazonaws.com/nb-images/brand/NoesisGlyph.png">
+    <meta name="twitter:domain" content="">
+    <meta name="twitter:app:name:iphone" content="">
+    <meta name="twitter:app:name:ipad" content="">
+    <meta name="twitter:app:name:googleplay" content="">
+    <meta name="twitter:app:url:iphone" content="">
+    <meta name="twitter:app:url:ipad" content="">
+    <meta name="twitter:app:url:googleplay" content="">
+    <meta name="twitter:app:id:iphone" content="">
+    <meta name="twitter:app:id:ipad" content="">
+    <meta name="twitter:app:id:googleplay" content="">
+    
+</head>
 
 
-	String action = "webinarThanks.jsp?webinarID="+ webinar.getWebinarKey();
-	System.out.println(action);
-	pageContext.setAttribute("action", action);
-
-	DateAndTime when = new DateAndTime(webinar.getTimes().get(0), webinar.getTimeZone());
-%>
 
 <body style="padding:15px;">
 <div class="container">
