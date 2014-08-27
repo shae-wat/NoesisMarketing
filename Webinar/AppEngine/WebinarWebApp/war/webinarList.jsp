@@ -34,10 +34,9 @@
 
 </head>
 
-<body>
+<body class="ne-11-bg">
 <div class="container">
 	<header>
-
 		
         <div class="media">
 			<span class="pull-left"><img class="img-circle" src="lacey-avatar-small.png" style="background:#E1E1E1;max-width: 10em;border: .35em solid #F1F1F1;"/></span>
@@ -70,14 +69,14 @@
 		%>
 
 		
-        <div class="well">
-		<h4><%=webinar.getSubject()%></h4>
+        <div class="well ne-3-bg">
+		<h4 class="text-info"><%=webinar.getSubject()%></h4>
 
 
 		<ul style="list-style-position:inside;">
 			<%for (DateAndTime when : times){
 				String url = "webinarSignUp.jsp?webinarID="+when.getWebinarKey();%>
-				<li><a href=<%=url%>><%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> <%=when.getTimeZone()%></a>
+				<li class="well well-sm ne-6-bg"><a href=<%=url%>><%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> <%=when.getTimeZone()%></a>
 			<%}%>
 			</li>
 		</ul>
@@ -90,9 +89,11 @@
 %>
 		</ul>
 	</nav>
+	<br>
+	<br>
 	
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-6 hidden-xs">
 
 	<div id="embeddedCalendar" style="margin-left: auto; margin-right: auto"></div>
 	

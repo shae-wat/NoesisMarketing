@@ -42,7 +42,7 @@
 </head>
 
 
-<body style="padding:15px;">
+<body class="ne-11-bg">
 
 	<div class="container">
 	<!-- <header>
