@@ -70,16 +70,19 @@
 
 		
         <div class="well ne-8-bg">
-		<h4 class="text-info"><%=webinar.getSubject()%></h4>
+		<h4><%=webinar.getSubject()%></h4>
 
 
-		<ul style="list-style-position:inside;">
+		<ul>
 			<%for (DateAndTime when : times){
 				String url = "webinarSignUp.jsp?webinarID="+when.getWebinarKey();%>
-				<li class="well well-sm ne-6-bg"><a href=<%=url%>><%=when.getDay()%> <%=when.getPresentableDate()%> <%=when.getStartTime()%>-<%=when.getEndTime()%> <%=when.getTimeZone()%></a>
+				
+					<a href=<%=url%>><button type="input" class="btn btn-info"><%=when.getDay()%> <%=when.getPresentableDate()%> <%=when.getStartTime()%>-<%=when.getEndTime()%> <%=when.getTimeZone()%></button></a>
+				
+
 			<%}%>
-			</li>
 		</ul>
+			
 		</div>
 		
 		
