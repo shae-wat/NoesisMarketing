@@ -96,31 +96,11 @@
 	<br>
 	
 	</div>
-	<div class="col-md-6 hidden-xs">
-
-	<div id="embeddedCalendar" style="margin-left: auto; margin-right: auto"></div>
-	
-	</div>
 	</div>
 	</div> <!-- end container -->
 
 	
-	
 
-
-<script>
-  function setupCalendar() {
-        // Embedded Calendar
-        Calendar.setup(
-          {     
-            parentElement: 'embeddedCalendar'
-          }
-        )
-
-        
-      }
-  Event.observe(window, 'load', function() { setupCalendar() })
-</script>
 
 
 </body>

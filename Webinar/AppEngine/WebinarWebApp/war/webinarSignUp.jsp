@@ -17,6 +17,7 @@
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
       <!-- FONTS END -->
 
+
       <%
     
         String webinarId = request.getParameter("webinarID");
@@ -68,12 +69,18 @@
 <body class="ne-11-bg">
 <div class="container">
 <header>
+    <table><tr>
+    <td style="padding-right:50px;">
 	<div id="reg">
         <h1 class="text-info"><%=webinar.getSubject()%></h1>
     </div>
-    <h4 class="text-muted">    
-        <%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> <%=webinar.getTimeZone()%>
+    <h4>Join us on <%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> <%=webinar.getTimeZone()%>
     </h4>
+    </td>
+    <td>
+    <img src="webinarPic.jpg"></img>
+    </td>
+    </tr></table>
     <hr>
 </header>
 
@@ -98,7 +105,7 @@
                     <div class="input-group margin-bottom-sm">
                       <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
                       <input id="lastName" type="text" 
-                        name="last_name" class="form-control" ng-required="true" ng-maxlength="255" ng-model="$parent.LastName" type="text" placeholder="Last Name">
+                        name="last_name" class="form-control ng-scope ng-invalid ng-invalid-required ng-valid-maxlength ng-dirty" tooltip="Your last name is required and must be less that 255 characters" ng-required="true" ng-maxlength="255" ng-model="$parent.LastName" type="text" placeholder="Last Name">
                     </div>
                   </div>
 
@@ -307,12 +314,12 @@
 
 <div class="col-md-6">
     <div class="well">
-    <h4><span class="label label-info">About this webinar : </span></h4>
-    <p> <br>
+    <h3><span class="label label-info">About this webinar : </span></h3>
+    <p style="color:#444444"> <br>
         <%=webinar.getDescription()%> 
         <br> 
     </p>
-        </div>
+    </div>
 </div>
 </div> <!-- end container -->
 
@@ -332,16 +339,7 @@
 				Company_Headquarter_State__c: "required",
 				Job_Category__c: "required"
 			},
-			messages: {
-				
-				first_name: "Enter your first name",
-				last_name: "Enter your last name",
-				email: "Enter your email",
-				phone: "Enter your phone",
-				companyName: "Enter company name",
-				Company_Headquarter_State__c: "Enter company location",
-				Job_Category__c: "Enter business type"
-			},
+			
 			// the errorPlacement has to take the table layout into account
 			errorPlacement: function(error, element) {
 				if (element.is(":radio"))
@@ -351,15 +349,12 @@
 				else
 					error.appendTo(element.parent().next());
 			},
-			// specifying a submitHandler prevents the default submit, good for the demo
-			/* submitHandler: function() {
-				alert("submitted!");
-			}, */
-			// set this class to error-labels to indicate valid fields
+
 			success: function(label) {
 				// set &nbsp; as text for IE
 				label.html("&nbsp;").addClass("checked");
 			},
+
 			highlight: function(element, errorClass) {
 				$(element).parent().next().find("." + errorClass).removeClass("checked");
 			}
