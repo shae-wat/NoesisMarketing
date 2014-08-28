@@ -80,7 +80,7 @@
 <div class="row">
 <div class="col-md-6">
     <div class="well ne-6-bg">
-              <form class="bs-example form-horizontal">
+              <form id="regForm" name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" class="bs-example form-horizontal">
                 <fieldset>
                   <h3 class="ne-11 handwritten" style="margin-top: 0px;">Register for this webinar : </h3>
                     <span style="font-size:12px; color:#fff;"> (all fields required)</span>
@@ -89,145 +89,45 @@
                   <div class="form-group">
                     <div class="input-group margin-bottom-sm">
                       <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                      <input class="form-control" type="text" placeholder="First Name">
+                      <input id="firstName" type="text" 
+                        name="first_name" class="form-control" ng-required="true" ng-maxlength="255" ng-model="$parent.First_Name_Casual__c" type="text" placeholder="First Name">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <div class="input-group margin-bottom-sm">
                       <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                      <input class="form-control" type="text" placeholder="Last Name">
+                      <input id="lastName" type="text" 
+                        name="last_name" class="form-control" ng-required="true" ng-maxlength="255" ng-model="$parent.LastName" type="text" placeholder="Last Name">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <div class="input-group margin-bottom-sm">
                       <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-                      <input class="form-control" type="text" placeholder="Email">
+                      <input id="email" type="email" 
+                        name="email" class="form-control" ng-required="true" ng-maxlength="255" ng-model="$parent.Email" type="text" placeholder="Email">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <div class="input-group margin-bottom-sm">
                       <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
-                      <input class="form-control" type="text" placeholder="Phone (xxx-xxx-xxxx)">
+                      <input id="phone" type="tel" 
+                        name="Phone" class="form-control" ng-required="true" ng-minlength="10" ng-maxlength="16" ng-model="$parent.Phone" type="text" placeholder="Phone (xxx-xxx-xxxx)">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <div class="input-group margin-bottom-sm">
                       <span class="input-group-addon"><i class="fa fa-building-o fa-fw"></i></span>
-                      <input class="form-control" type="text" placeholder="Company Name">
+                      <input id="companyName" type="text" 
+                        name="Company" class="form-control" ng-required="true" ng-maxlength="255" ng-model="$parent.Company" type="text" placeholder="Company Name">
                     </div>
                   </div>
-
-
-
-                  <div class="form-group">
-                    <label class="col-lg-2 control-label">Radios</label>
-                    <div class="col-lg-10">
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-                          Option one is this
-                        </label>
-                      </div>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                          Option two can be something else
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="select" class="col-lg-2 control-label">Selects</label>
-                    <div class="col-lg-10">
-                      <select class="form-control" id="select">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                      <br>
-                      <select multiple="" class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                      <button class="btn btn-default">Cancel</button> 
-                      <button type="submit" class="btn btn-primary">Submit</button> 
-                    </div>
-                  </div>
-                </fieldset>
-              </form>
-            </div>
-          
-    <form id="regForm" name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" class="well ne-6-bg">
-    <table>
-    		<tr>
-                <td colspan="2">
-                    <h3 class="ne-11 handwritten" style="margin-top: 0px;">Register for this webinar : </h3>
-                    <span style="font-size:12px; color:#fff;"> (all fields required)</span>
-                    <hr class="dashed-line-lt" /><br />
-                </td>
-            </tr>
-
-    	  	<tr>
-                <td style="color:#fff;">First Name * </td>
-                <td>
-    	        <input id="firstName" type="text" 
-    	                name="first_name" class="form-control" ne-hint="First Name" 
-    	                tooltip="{{(form.First_Name_Casual__c.$dirty && (form.First_Name_Casual__c.$error.required || form.First_Name_Casual__c.$error.maxlength)) ? 'Your first name is required and must be less than 255 characters' : ''}}"         
-    	                ng-required="true" ng-maxlength="255" ng-model="$parent.First_Name_Casual__c">
-    		    </td>
-            </tr>
-
-    		<tr><td style="color:#fff;">
-    	        Last Name *
-    	    </td><td>
-    	        <input id="lastName" type="text" 
-    	                name="last_name" class="form-control" ne-hint="Last Name"
-    	                tooltip="{{(form.LastName.$dirty && (form.LastName.$error.required || form.LastName.$error.maxlength)) ? 'Your last name is required and must be less than 255 characters' : ''}}"         
-    	                ng-required="true" ng-maxlength="255" ng-model="$parent.LastName">
-    		</td></tr>
-
-    		<tr><td style="color:#fff;">
-    	        Email *
-    	    </td><td>
-    	        <input id="email" type="email" 
-    	                name="email" class="form-control" ne-hint="Email"
-    	                tooltip="{{(form.Email.$dirty && (form.Email.$error.required || form.Email.$error.maxlength || form.Email.$error.email)) ? 'A valid email address is required' : ''}}"         
-    	                ng-required="true" ng-maxlength="255" ng-model="$parent.Email">
-    		</td></tr>
-    	
-    		<tr><td style="color:#fff;">
-                            Phone *
-            </td><td>
-                            <input id="phone" type="tel" 
-                                    name="Phone" class="form-control" ne-hint="Phone (xxx-xxx-xxxx)"
-                                    tooltip="{{(form.Phone.$dirty && (form.Phone.$error.required || form.Phone.$error.maxlength || form.Phone.$error.minlength || form.Phone.$error.tel)) ? 'A valid phone number is required' : ''}}"         
-                                    ng-required="true" ng-minlength="10" ng-maxlength="16" ng-model="$parent.Phone">
-            </td></tr>
-            
-            <tr><td style="color:#fff;">
-                            Company Name *
-           	</td><td>
-                            <input id="companyName" type="text" 
-                                    name="Company" class="form-control" ne-hint="Company"
-                                    tooltip="{{(form.Company.$dirty && (form.Company.$error.required || form.Company.$error.maxlength)) ? 'Your company name is required and must be less than 255 characters' : ''}}"         
-                                    ng-required="true" ng-maxlength="255" ng-model="$parent.Company">
-             </td></tr>
-             
-             <tr><td style="color:#fff;">
-             				Company Location *
+                  <table>
+                  <tr><td style="color:#fff;">
+                            Company Location *
              </td><td>
                     
                                     <select id="companyLocation" name="Company_Headquarter_State__c" class="form-control"
@@ -309,7 +209,7 @@
                     </td></tr>
                     
                     <tr><td style="color:#fff;">
-                    				Business Type *
+                                    Business Type *
                     </td><td>
                                 
                                     <select id="busType" name="Job_Category__c" class="form-control"
@@ -331,7 +231,7 @@
                      </td></tr>
                      
                      <tr><td colspan="2">
-                               		<hr>
+                                    <hr>
                                     <p class="ne-11" style="color:#fff;">Do you sell energy projects and/or services to building owners?</p>
                                     <ul id="sellQ" class="list-inline">
                                         <li><input type="radio"
@@ -397,10 +297,10 @@
                      <% } %>
                                     
                                 
-    	<tr><td colspan="2">
-    	   <hr>
+        <tr><td colspan="2">
+           <hr>
            <button type="input" class="btn btn-primary">Register for Webinar</button>
-    	</td></tr>
+        </td></tr>
         <tr> <td colspan="2">
             <br>
             <a href="/webinarList.jsp"> << Back to webinar list </a>
@@ -409,7 +309,55 @@
             <td>
         </tr>    
     </table>
-    </form>
+
+                  <div class="form-group">
+                    <label class="col-lg-2 control-label">Radios</label>
+                    <div class="col-lg-10">
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                          Option one is this
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                          Option two can be something else
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="select" class="col-lg-2 control-label">Selects</label>
+                    <div class="col-lg-10">
+                      <select class="form-control" id="select">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                      <br>
+                      <select multiple="" class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                      <button class="btn btn-default">Cancel</button> 
+                      <button type="submit" class="btn btn-primary">Submit</button> 
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          
+    
 </div>
 
 
