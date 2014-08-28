@@ -103,6 +103,16 @@ public class DateAndTime implements Comparable<DateAndTime>{
 	public String getDate() {
 		return date;
 	}
+	
+	public String getPresentableDate(){
+		String presDate = date;
+		
+		if(date.charAt(4) == '0'){
+			presDate = date.substring(0, 4) + date.substring(5, date.length());
+		}
+		System.out.println("*****presDate = " + presDate);
+		return presDate;
+	}
 
 	public void setDate(String date) {
 		this.date = date;
