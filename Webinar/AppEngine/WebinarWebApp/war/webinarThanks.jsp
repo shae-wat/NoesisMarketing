@@ -75,7 +75,7 @@
 	</div>
 	<div class="col-md-6">
 		<center><h3 class="text-info">NEXT STEPS</h3></center>
-		<h3 class="ne-11 handwritten">1. Check out other resources by Noesis Energy</h3>
+		<h3 class="handwritten">1. Check out other resources by Noesis Energy</h3>
 		<center>
 		<br>
 		<table>
@@ -117,14 +117,14 @@
 		<br>
 		<br>
 
-		<h3 class="ne-11 handwritten">2. Email invitation for this webinar to friends and colleagues</h3>
+		<h3 class="handwritten">2. Email invitation for this webinar to friends and colleagues</h3>
 		<center>	
 			
 			<img src="email.png"></img>
 		</center>
 
 		<br>
-		<h3 class="ne-11 handwritten">3. Share your registration with your social networks</h3>
+		<h3 class="handwritten">3. Share your registration with your social networks</h3>
 		<center>
 			<table>
 			<tr>
