@@ -84,37 +84,45 @@
                 <fieldset>
                   <h3 class="ne-11 handwritten" style="margin-top: 0px;">Register for this webinar : </h3>
                     <span style="font-size:12px; color:#fff;"> (all fields required)</span>
-                    <hr class="dashed-line-lt" />
-                  <div class="form-group ne-8-bg">
-                    
-                    <div class="col-md-1" >
-                       
-                        <i class="fa fa-user fa-lg"></i>
-                        
-                    </div>
-                    <div class="col-md-11">
-                      <input type="text" class="form-control" id="inputEmail" placeholder="Email">
-                    </div>
-                    
-                  </div>
+                    <hr class="dashed-line-lt" /><br>
+
                   <div class="form-group">
-                    <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-                    <div class="col-lg-10">
-                      <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"> Checkbox
-                        </label>
-                      </div>
+                    <div class="input-group margin-bottom-sm">
+                      <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                      <input class="form-control" type="text" placeholder="First Name">
                     </div>
                   </div>
+
                   <div class="form-group">
-                    <label for="textArea" class="col-lg-2 control-label">Textarea</label>
-                    <div class="col-lg-10">
-                      <textarea class="form-control" rows="3" id="textArea"></textarea>
-                      <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+                    <div class="input-group margin-bottom-sm">
+                      <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                      <input class="form-control" type="text" placeholder="Last Name">
                     </div>
                   </div>
+
+                  <div class="form-group">
+                    <div class="input-group margin-bottom-sm">
+                      <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                      <input class="form-control" type="text" placeholder="Email">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="input-group margin-bottom-sm">
+                      <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
+                      <input class="form-control" type="text" placeholder="Phone (xxx-xxx-xxxx)">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="input-group margin-bottom-sm">
+                      <span class="input-group-addon"><i class="fa fa-building-o fa-fw"></i></span>
+                      <input class="form-control" type="text" placeholder="Company Name">
+                    </div>
+                  </div>
+
+
+
                   <div class="form-group">
                     <label class="col-lg-2 control-label">Radios</label>
                     <div class="col-lg-10">
