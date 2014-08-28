@@ -86,7 +86,7 @@
                     <span style="font-size:12px; color:#fff;"> (all fields required)</span>
                     <hr class="dashed-line-lt" /><br>
 
-                  <div class="form-group">
+                  <div class="form-group col-lg-10">
                     <div class="input-group margin-bottom-sm">
                       <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
                       <input id="firstName" type="text" 
@@ -94,7 +94,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group col-lg-10">
                     <div class="input-group margin-bottom-sm">
                       <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
                       <input id="lastName" type="text" 
@@ -102,7 +102,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group col-lg-10">
                     <div class="input-group margin-bottom-sm">
                       <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
                       <input id="email" type="email" 
@@ -110,7 +110,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group col-lg-10">
                     <div class="input-group margin-bottom-sm">
                       <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
                       <input id="phone" type="tel" 
@@ -118,244 +118,188 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group col-lg-10">
                     <div class="input-group margin-bottom-sm">
                       <span class="input-group-addon"><i class="fa fa-building-o fa-fw"></i></span>
                       <input id="companyName" type="text" 
                         name="Company" class="form-control" ng-required="true" ng-maxlength="255" ng-model="$parent.Company" type="text" placeholder="Company Name">
                     </div>
                   </div>
-                  <table>
-                  <tr><td style="color:#fff;">
-                            Company Location *
-             </td><td>
-                    
-                                    <select id="companyLocation" name="Company_Headquarter_State__c" class="form-control"
-                                        ng-model="$parent.Company_Headquarter_State__c"
-                                        ng-required="true"
-                                        tooltip="{{(form.Company_Headquarter_State__c.$dirty && form.Company_Headquarter_State__c.$error.required) ? 'Select a valid Company Location' : ''}}">
-                                        <option value="">Select Company Location</option>
-                                        <option value="Alaska">USA/Alaska</option>
-                                        <option value="Alabama">USA/Alabama</option>
-                                        <option value="Arkansas">USA/Arkansas</option>
-                                        <option value="Arizona">USA/Arizona</option>
-                                        <option value="California">USA/California</option>
-                                        <option value="Colorado">USA/Colorado</option>
-                                        <option value="Connecticut">USA/Connecticut</option>
-                                        <option value="Delaware">USA/Delaware</option>
-                                        <option value="Florida">USA/Florida</option>
-                                        <option value="Georgia">USA/Georgia</option>
-                                        <option value="Hawaii">USA/Hawaii</option>
-                                        <option value="Iowa">USA/Iowa</option>
-                                        <option value="Idaho">USA/Idaho</option>
-                                        <option value="Illinois">USA/Illinois</option>
-                                        <option value="Indiana">USA/Indiana</option>
-                                        <option value="Kansas">USA/Kansas</option>
-                                        <option value="Kentucky">USA/Kentucky</option>
-                                        <option value="Louisiana">USA/Louisiana</option>
-                                        <option value="Massachusetts">USA/Massachusetts</option>
-                                        <option value="Maryland">USA/Maryland</option>
-                                        <option value="Maine">USA/Maine</option>
-                                        <option value="Michigan">USA/Michigan</option>
-                                        <option value="Minnesota">USA/Minnesota</option>
-                                        <option value="Missouri">USA/Missouri</option>
-                                        <option value="Mississippi">USA/Mississippi</option>
-                                        <option value="Montana">USA/Montana</option>
-                                        <option value="North Carolina">USA/North Carolina</option>
-                                        <option value="North Dakota">USA/North Dakota</option>
-                                        <option value="Nebraska">USA/Nebraska</option>
-                                        <option value="New Hampshire">USA/New Hampshire</option>
-                                        <option value="New Jersey">USA/New Jersey</option>
-                                        <option value="New Mexico">USA/New Mexico</option>
-                                        <option value="Nevada">USA/Nevada</option>
-                                        <option value="New York">USA/New York</option>
-                                        <option value="Ohio">USA/Ohio</option>
-                                        <option value="Oklahoma">USA/Oklahoma</option>
-                                        <option value="Oregon">USA/Oregon</option>
-                                        <option value="Pennsylvania">USA/Pennsylvania</option>
-                                        <option value="Puerto Rico">USA/Puerto Rico</option>
-                                        <option value="Rhode Island">USA/Rhode Island</option>
-                                        <option value="South Carolina">USA/South Carolina</option>
-                                        <option value="South Dakota">USA/South Dakota</option>
-                                        <option value="Tennessee">USA/Tennessee</option>
-                                        <option value="Texas">USA/Texas</option>
-                                        <option value="Utah">USA/Utah</option>
-                                        <option value="Virginia">USA/Virginia</option>
-                                        <option value="Vermont">USA/Vermont</option>
-                                        <option value="Washington">USA/Washington</option>
-                                        <option value="Washington DC">USA/Washington DC</option>
-                                        <option value="Wisconsin">USA/Wisconsin</option>
-                                        <option value="West Virginia">USA/West Virginia</option>
-                                        <option value="Wyoming">USA/Wyoming</option>
-                                        <option value="US Virgin Islands">US Virgin Islands</option>
-                                        <option value="Alberta">Canada/Alberta</option>
-                                        <option value="British Columbia">Canada/British
-                                            Columbia</option>
-                                        <option value="Manitoba">Canada/Manitoba</option>
-                                        <option value="New Brunswick">Canada/New Brunswick</option>
-                                        <option value="Newfoundland">Canada/Newfoundland</option>
-                                        <option value="Northwest Territories">Canada/Northwest
-                                            Territories</option>
-                                        <option value="Nova Scotia">Canada/Nova Scotia</option>
-                                        <option value="Ontario">Canada/Ontario</option>
-                                        <option value="Prince Edward Island">Canada/Prince
-                                            Edward Island</option>
-                                        <option value="Quebec">Canada/Quebec</option>
-                                        <option value="Saskatchewan">Canada/Saskatchewan</option>
-                                        <option value="Yukon">Canada/Yukon</option>
-                                        <option value="Canada">Canada</option>
 
-                                    </select>
-                    </td></tr>
+                  <div class="form-group col-lg-10">
+                        <select id="companyLocation" name="Company_Headquarter_State__c" class="form-control"
+                            ng-model="$parent.Company_Headquarter_State__c"
+                            ng-required="true"
+                            tooltip="{{(form.Company_Headquarter_State__c.$dirty && form.Company_Headquarter_State__c.$error.required) ? 'Select a valid Company Location' : ''}}">
+                            <option value="">Select Company Location</option>
+                            <option value="Alaska">USA/Alaska</option>
+                            <option value="Alabama">USA/Alabama</option>
+                            <option value="Arkansas">USA/Arkansas</option>
+                            <option value="Arizona">USA/Arizona</option>
+                            <option value="California">USA/California</option>
+                            <option value="Colorado">USA/Colorado</option>
+                            <option value="Connecticut">USA/Connecticut</option>
+                            <option value="Delaware">USA/Delaware</option>
+                            <option value="Florida">USA/Florida</option>
+                            <option value="Georgia">USA/Georgia</option>
+                            <option value="Hawaii">USA/Hawaii</option>
+                            <option value="Iowa">USA/Iowa</option>
+                            <option value="Idaho">USA/Idaho</option>
+                            <option value="Illinois">USA/Illinois</option>
+                            <option value="Indiana">USA/Indiana</option>
+                            <option value="Kansas">USA/Kansas</option>
+                            <option value="Kentucky">USA/Kentucky</option>
+                            <option value="Louisiana">USA/Louisiana</option>
+                            <option value="Massachusetts">USA/Massachusetts</option>
+                            <option value="Maryland">USA/Maryland</option>
+                            <option value="Maine">USA/Maine</option>
+                            <option value="Michigan">USA/Michigan</option>
+                            <option value="Minnesota">USA/Minnesota</option>
+                            <option value="Missouri">USA/Missouri</option>
+                            <option value="Mississippi">USA/Mississippi</option>
+                            <option value="Montana">USA/Montana</option>
+                            <option value="North Carolina">USA/North Carolina</option>
+                            <option value="North Dakota">USA/North Dakota</option>
+                            <option value="Nebraska">USA/Nebraska</option>
+                            <option value="New Hampshire">USA/New Hampshire</option>
+                            <option value="New Jersey">USA/New Jersey</option>
+                            <option value="New Mexico">USA/New Mexico</option>
+                            <option value="Nevada">USA/Nevada</option>
+                            <option value="New York">USA/New York</option>
+                            <option value="Ohio">USA/Ohio</option>
+                            <option value="Oklahoma">USA/Oklahoma</option>
+                            <option value="Oregon">USA/Oregon</option>
+                            <option value="Pennsylvania">USA/Pennsylvania</option>
+                            <option value="Puerto Rico">USA/Puerto Rico</option>
+                            <option value="Rhode Island">USA/Rhode Island</option>
+                            <option value="South Carolina">USA/South Carolina</option>
+                            <option value="South Dakota">USA/South Dakota</option>
+                            <option value="Tennessee">USA/Tennessee</option>
+                            <option value="Texas">USA/Texas</option>
+                            <option value="Utah">USA/Utah</option>
+                            <option value="Virginia">USA/Virginia</option>
+                            <option value="Vermont">USA/Vermont</option>
+                            <option value="Washington">USA/Washington</option>
+                            <option value="Washington DC">USA/Washington DC</option>
+                            <option value="Wisconsin">USA/Wisconsin</option>
+                            <option value="West Virginia">USA/West Virginia</option>
+                            <option value="Wyoming">USA/Wyoming</option>
+                            <option value="US Virgin Islands">US Virgin Islands</option>
+                            <option value="Alberta">Canada/Alberta</option>
+                            <option value="British Columbia">Canada/British
+                                Columbia</option>
+                            <option value="Manitoba">Canada/Manitoba</option>
+                            <option value="New Brunswick">Canada/New Brunswick</option>
+                            <option value="Newfoundland">Canada/Newfoundland</option>
+                            <option value="Northwest Territories">Canada/Northwest
+                                Territories</option>
+                            <option value="Nova Scotia">Canada/Nova Scotia</option>
+                            <option value="Ontario">Canada/Ontario</option>
+                            <option value="Prince Edward Island">Canada/Prince
+                                Edward Island</option>
+                            <option value="Quebec">Canada/Quebec</option>
+                            <option value="Saskatchewan">Canada/Saskatchewan</option>
+                            <option value="Yukon">Canada/Yukon</option>
+                            <option value="Canada">Canada</option>
+
+                        </select>
+                    </div>
                     
-                    <tr><td style="color:#fff;">
-                                    Business Type *
-                    </td><td>
-                                
-                                    <select id="busType" name="Job_Category__c" class="form-control"
-                                        ng-model="$parent.Job_Category__c" ng-required="true"
-                                        tooltip="{{(form.Job_Category__c.$dirty && form.Job_Category__c.$error.required) ? 'Select a valid job role' : ''}}">
-                                        <option value="">Select Business Type</option>
-                                        <option value="ESCO">ESCO</option>
-                                        <option value="Energy Consultant Services">Energy Consultant Services</option>
-                                        <option value="Design/Build (EPC)">Design/Build (EPC)</option>
-                                        <option value="Engineering Firm">Engineering Firm</option>
-                                        <option value="Distributor/Manufacture/Vendor/Agent">Distributor/Manufacture/Vendor/Agent</option>
-                                        <option value="Retail Energy/Utility">Retail Energy/Utility</option>
-                                        <option value="Property Management/Real-Estate">Property Management/Real-Estate</option>
-                                        <option value="Commercial/Industrial/Office Bldg/Retail">Commercial/Industrial/Office Bldg/Retail</option>
-                                        <option value="Public/State/Gov't">Public/State/Gov't</option>
-                                        <option value="Financial Services/Lending/Broker">Financial Services/Lending/Broker</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                     </td></tr>
+                    <div class="form-group col-lg-10">                
+                        <select id="busType" name="Job_Category__c" class="form-control"
+                            ng-model="$parent.Job_Category__c" ng-required="true"
+                            tooltip="{{(form.Job_Category__c.$dirty && form.Job_Category__c.$error.required) ? 'Select a valid job role' : ''}}">
+                            <option value="">Select Business Type</option>
+                            <option value="ESCO">ESCO</option>
+                            <option value="Energy Consultant Services">Energy Consultant Services</option>
+                            <option value="Design/Build (EPC)">Design/Build (EPC)</option>
+                            <option value="Engineering Firm">Engineering Firm</option>
+                            <option value="Distributor/Manufacture/Vendor/Agent">Distributor/Manufacture/Vendor/Agent</option>
+                            <option value="Retail Energy/Utility">Retail Energy/Utility</option>
+                            <option value="Property Management/Real-Estate">Property Management/Real-Estate</option>
+                            <option value="Commercial/Industrial/Office Bldg/Retail">Commercial/Industrial/Office Bldg/Retail</option>
+                            <option value="Public/State/Gov't">Public/State/Gov't</option>
+                            <option value="Financial Services/Lending/Broker">Financial Services/Lending/Broker</option>
+                            <option value="Other">Other</option>
+                        </select>
+                     </div>
                      
-                     <tr><td colspan="2">
-                                    <hr>
-                                    <p class="ne-11" style="color:#fff;">Do you sell energy projects and/or services to building owners?</p>
-                                    <ul id="sellQ" class="list-inline">
-                                        <li><input type="radio"
-                                            onChange="showSellSideQuestions();_gaq.push(['_trackEvent', 'MarketingForms', 'SellSideOptIn', 'Pro']);"
-                                            name="Sell_Side_Opt_In__c" value="Pro"
-                                            ng-model="$parent.Sell_Side_Opt_In__c"> <span
-                                            class="ne-11" style="color:#fff;"> Yes</span></li>
-                                        <li><input type="radio" onChange="hideSellSideQuestions();"
-                                            name="Sell_Side_Opt_In__c"
-                                            value="NA" ng-model="$parent.Sell_Side_Opt_In__c">
-                                            <span class="ne-11" style="color:#fff;"> No</span></li>
-                                    </ul>
-                     </td></tr>
+                     <div class="form-group col-lg-10">          
+                        <hr>
+                        <p class="ne-11" style="color:#fff;">Do you sell energy projects and/or services to building owners?</p>
+                        <ul id="sellQ" class="list-inline">
+                            <li><input type="radio"
+                                onChange="showSellSideQuestions();_gaq.push(['_trackEvent', 'MarketingForms', 'SellSideOptIn', 'Pro']);"
+                                name="Sell_Side_Opt_In__c" value="Pro"
+                                ng-model="$parent.Sell_Side_Opt_In__c"> <span
+                                class="ne-11" style="color:#fff;"> Yes</span></li>
+                            <li><input type="radio" onChange="hideSellSideQuestions();"
+                                name="Sell_Side_Opt_In__c"
+                                value="NA" ng-model="$parent.Sell_Side_Opt_In__c">
+                                <span class="ne-11" style="color:#fff;"> No</span></li>
+                        </ul>
+                    </div>
                      
-                     <tr><td colspan="2">
-                                
-                                    <select id="companySize" name="Company_Size__c" class="form-control"
-                                        ng-model="$parent.Company_Size__c" ng-required="false"
-                                        tooltip="{{(form.Company_Size__c.$dirty && form.Company_Size__c.$error.required) ? 'Select a valid company size' : ''}}">
-                                        <option value="">Select Number of Employees in Company</option>
-                                        <option value="1,001+">1,001+</option>
-                                         <option value="501-1,000">501-1,000</option>
-                                         <option value="251-500">251-500</option>
-                                         <option value="101-250">101-250</option>
-                                         <option value="51-100">51-100</option>
-                                         <option value="20-50">20-50</option>
-                                        <option value="11-19">11-19</option>
-                                        <option value="1-10">1-10</option>
-                                        
-                                    </select>
-                     </td></tr>
+                     <div>     
+                        <select id="companySize" name="Company_Size__c" class="form-control"
+                            ng-model="$parent.Company_Size__c" ng-required="false"
+                            tooltip="{{(form.Company_Size__c.$dirty && form.Company_Size__c.$error.required) ? 'Select a valid company size' : ''}}">
+                            <option value="">Select Number of Employees in Company</option>
+                            <option value="1,001+">1,001+</option>
+                             <option value="501-1,000">501-1,000</option>
+                             <option value="251-500">251-500</option>
+                             <option value="101-250">101-250</option>
+                             <option value="51-100">51-100</option>
+                             <option value="20-50">20-50</option>
+                            <option value="11-19">11-19</option>
+                            <option value="1-10">1-10</option>
+                            
+                        </select>
+                     </div>
                      
-                     <tr><td colspan="2">
-                                
-                                    <select id="companyRevenue" name="Annual_Revenue_Picklist__c" class="form-control"
-                                        ng-model="$parent.Annual_Revenue_Picklist__c" ng-required="false"
-                                        tooltip="{{(form.Annual_Revenue_Picklist__c.$dirty && form.Annual_Revenue_Picklist__c.$error.required) ? 'Select a valid annual revenue' : ''}}">
-                                            <option value="">Select Annual Company Revenue</option>
-                                            <option value="$10M+">$10M+</option>
-                                             <option value="$5M-$9.9M">$5M-$10M</option>
-                                             <option value="$2.5M-$4.9M">$2.5M-$4.9M</option>
-                                            <option value="&lt; $2.5M">&lt; $2.5M</option>
-                                            </select>
-                                           
-                                            
-                                    </select>
-                     </td></tr>
+                     <div>        
+                        <select id="companyRevenue" name="Annual_Revenue_Picklist__c" class="form-control"
+                            ng-model="$parent.Annual_Revenue_Picklist__c" ng-required="false"
+                            tooltip="{{(form.Annual_Revenue_Picklist__c.$dirty && form.Annual_Revenue_Picklist__c.$error.required) ? 'Select a valid annual revenue' : ''}}">
+                                <option value="">Select Annual Company Revenue</option>
+                                <option value="$10M+">$10M+</option>
+                                 <option value="$5M-$9.9M">$5M-$10M</option>
+                                 <option value="$2.5M-$4.9M">$2.5M-$4.9M</option>
+                                <option value="&lt; $2.5M">&lt; $2.5M</option>
+                        </select>
+                     </div>
 
                      <% if(!customQuestion.equals("")){   %>
-                     <tr><td colspan="2">
-                                    <hr>
-                                    <p class="ne-11" style="color:#fff;"><%=customQuestion%></p>
-                                    <ul id="customQuestion" class="list-inline">
-                                        <li><input type="radio" name="customQ" value="yes">
-                                            
-                                            <span
-                                            class="ne-11" style="color:#fff;"> Yes</span></li>
-                                        <li><input type="radio" name="customQ" value="no">
-                                            
-                                            <span class="ne-11" style="color:#fff;"> No</span></li>
-                                    </ul>
-                     </td></tr>
+                     <div>
+                        <hr>
+                        <p class="ne-11" style="color:#fff;"><%=customQuestion%></p>
+                        <ul id="customQuestion" class="list-inline">
+                            <li><input type="radio" name="customQ" value="yes">
+                                
+                                <span
+                                class="ne-11" style="color:#fff;"> Yes</span></li>
+                            <li><input type="radio" name="customQ" value="no">
+                                
+                                <span class="ne-11" style="color:#fff;"> No</span></li>
+                        </ul>
+                     </div>
                      <% } %>
                                     
                                 
-        <tr><td colspan="2">
+        <div>
            <hr>
            <button type="input" class="btn btn-primary">Register for Webinar</button>
-        </td></tr>
-        <tr> <td colspan="2">
+        </div>
+        <div>
             <br>
             <a href="/webinarList.jsp"> << Back to webinar list </a>
             <br>
             <br>
             <td>
-        </tr>    
-    </table>
-
-                  <div class="form-group">
-                    <label class="col-lg-2 control-label">Radios</label>
-                    <div class="col-lg-10">
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-                          Option one is this
-                        </label>
-                      </div>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                          Option two can be something else
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="select" class="col-lg-2 control-label">Selects</label>
-                    <div class="col-lg-10">
-                      <select class="form-control" id="select">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                      <br>
-                      <select multiple="" class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                      <button class="btn btn-default">Cancel</button> 
-                      <button type="submit" class="btn btn-primary">Submit</button> 
-                    </div>
-                  </div>
-                </fieldset>
-              </form>
-            </div>
+        </div>        
+        </fieldset>
+      </form>
+    </div>
           
     
 </div>
