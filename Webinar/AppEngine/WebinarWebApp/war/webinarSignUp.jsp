@@ -46,21 +46,9 @@
     %>
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="">
     <meta name="twitter:title" content="I just registered for <%=webinar.getSubject()%>">
     <meta name="twitter:description" content="<%=webinar.getDescription()%>">
-    <meta name="twitter:creator" content="">
     <meta name="twitter:image:src" content="https://noesisimg.s3.amazonaws.com/nb-images/brand/NoesisGlyph.png">
-    <meta name="twitter:domain" content="">
-    <meta name="twitter:app:name:iphone" content="">
-    <meta name="twitter:app:name:ipad" content="">
-    <meta name="twitter:app:name:googleplay" content="">
-    <meta name="twitter:app:url:iphone" content="">
-    <meta name="twitter:app:url:ipad" content="">
-    <meta name="twitter:app:url:googleplay" content="">
-    <meta name="twitter:app:id:iphone" content="">
-    <meta name="twitter:app:id:ipad" content="">
-    <meta name="twitter:app:id:googleplay" content="">
     
 </head>
 
@@ -314,7 +302,7 @@
 
 <div class="col-md-6">
     <div class="well">
-    <h3><span class="label label-info">About this webinar : </span></h3>
+    <h3 class="greeting text-primary">About this webinar : </h3>
     <p style="color:#444444"> <br>
         <%=webinar.getDescription()%> 
         <br> 

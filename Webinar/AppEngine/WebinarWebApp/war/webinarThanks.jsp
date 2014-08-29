@@ -74,7 +74,7 @@
 
 	</div>
 	<div class="col-md-6">
-		<center><h3 class="text-info">NEXT STEPS</h3></center>
+		<center><h3 class="greeting text-primary">Next Steps</h3></center>
 		
 		<br>
 	
@@ -89,7 +89,7 @@
 				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 				</td>
 				<td>
-					<script src="//platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script><script type="IN/Share" data-url="http://localhost:8888/webinarSignUp.jsp?webinarID="+webinarId></script>
+					<script src="//platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script><script type="IN/Share" data-url="/webinarSignUp.jsp?webinarID="+webinarId></script>
 				</td>
 			</tr>
 			
@@ -98,7 +98,7 @@
 		<br>
 		<br>
 
-		<h3 class="handwritten">2. Add event to your calendar</h3>
+		<h3 class="handwritten">2. Add this event to your calendar</h3>
 		<br>
 		<center>	
 			
@@ -114,9 +114,9 @@
 		<td style="padding-right:10px;">
 			<center>
 			<div>
-			<img src="https://noesisimg.s3.amazonaws.com/nb-images/content-type-icons/blog-icon.png"</img>
+			<a href="https://www.noesisenergy.com/site/noesis-blog"><img src="https://noesisimg.s3.amazonaws.com/nb-images/content-type-icons/blog-icon.png"</img></a>
 			<br>
-			<a href="https://www.noesisenergy.com/site/noesis-blog"><button type="input" class="btn btn-primary">Blog</button></a>
+			<p>Blog</button></p>
 			</div>
 			</center>
 		</td>
@@ -124,9 +124,9 @@
 		<td style="padding-right:10px;">
 			<center>
 			<div>
-			<img src="https://noesisimg.s3.amazonaws.com/nb-images/content-type-icons/downloads-icon.png"</img>
+			<a href="https://www.noesisenergy.com/site/content/noesis-resource-library"><img src="https://noesisimg.s3.amazonaws.com/nb-images/content-type-icons/downloads-icon.png"</img></a>
 			<br>
-			<a href="https://www.noesisenergy.com/site/content/noesis-resource-library"><button type="input" class="btn btn-primary">Resource Library</button></a>
+			<p>Resource Library</p>
 			</div>
 			</center>	
 		</td>
@@ -134,9 +134,9 @@
 		<td style="padding-right:10px;">
 			<center>
 			<div>
-			<img src="https://noesisimg.s3.amazonaws.com/nb-images/support-icons/sales-icon.png"</img>
+			<a href="https://www.noesisenergy.com/site/content/contact-us"><img src="https://noesisimg.s3.amazonaws.com/nb-images/support-icons/sales-icon.png"</img></a>
 			<br>
-			<a href="https://www.noesisenergy.com/site/content/contact-us"><button type="input" class="btn btn-primary">Contact Us</button></a>
+			<p>Contact Us</p>
 			</div>
 			</center>
 		</td>
