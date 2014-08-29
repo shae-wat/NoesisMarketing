@@ -90,7 +90,7 @@
                   </div>
 
                   <div class="form-group col-lg-10">
-                  <div class="input-group formedit ng-scope has-error margin-bottom-sm" ng-class="{'has-error' : form.Last_Name_Casual__c.$dirty && (form.Last_Name_casual__c.$error.required || form.Last_Name_Casual__c.$error.maxlangth)}">
+                  <div class="input-group formedit ng-scope margin-bottom-sm" ng-class="{'has-error' : form.Last_Name_Casual__c.$dirty && (form.Last_Name_casual__c.$error.required || form.Last_Name_Casual__c.$error.maxlangth)}">
                     <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
                     
                       <input id="lastName" type="text" 
@@ -324,8 +324,8 @@
 				first_name: "required",
 				last_name: "required",
 				email: "required",
-				phone: "required",
-				companyName: "required",
+				Phone: "required",
+				Company: "required",
 				Company_Headquarter_State__c: "required",
 				Job_Category__c: "required"
 			},
@@ -334,10 +334,8 @@
 			errorPlacement: function(error, element) {
 				if (element.is(":radio"))
 					error.appendTo(element.parent().next().next());
-				else if (element.is(":checkbox"))
-					error.appendTo(element.next());
 				else
-					error.appendTo(element.parent().next());
+					element.parent().addClass("has-error");
 			},
 
 			success: function(label) {
@@ -365,8 +363,6 @@
 
 <script>var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-25040971-4"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();</script>
 
-<script type="text/javascript" language="javascript" src="/bootstrap-angular/bootstrap.nocache.js?timestamp=1409241218"></script>
-<script type="text/javascript" src="/bootstrap-angular/bootstrap-20140827011247.min.js"></script>
 
 
 </body>
