@@ -82,7 +82,7 @@
                     <hr class="dashed-line-lt" /><br>
 
                   <div class="form-group col-lg-10">
-                    <div class="input-group margin-bottom-sm">
+                  <div class="input-group formedit ng-scope margin-bottom-sm" ng-class="{'has-error' : form.First_Name_Casual__c.$dirty && (form.First_Name_casual__c.$error.required || form.First_Name_Casual__c.$error.maxlangth)}">
                       <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
                       <input id="firstName" type="text" 
                         name="first_name" class="form-control" ng-required="true" ng-maxlength="255" ng-model="$parent.First_Name_Casual__c" type="text" placeholder="First Name">
@@ -266,15 +266,15 @@
                      </div>
 
                      <% if(!customQuestion.equals("")){   %>
-                     <div>
+                     <div class="form-group col-lg-10">
                         <hr>
                         <p class="ne-11" style="color:#fff;"><%=customQuestion%></p>
                         <ul id="customQuestion" class="list-inline">
-                            <li><input type="radio" name="customQ" value="yes">
+                            <li><input type="radio" name="customQ" value="yes" name="customQ">
                                 
                                 <span
                                 class="ne-11" style="color:#fff;"> Yes</span></li>
-                            <li><input type="radio" name="customQ" value="no">
+                            <li><input type="radio" name="customQ" value="no" name="customQ">
                                 
                                 <span class="ne-11" style="color:#fff;"> No</span></li>
                         </ul>
@@ -327,10 +327,11 @@
 				Phone: "required",
 				Company: "required",
 				Company_Headquarter_State__c: "required",
-				Job_Category__c: "required"
+				Job_Category__c: "required",
+                Sell_Side_Opt_In__c: "required",
+                customQ: "required"
 			},
 			
-			// the errorPlacement has to take the table layout into account
 			errorPlacement: function(error, element) {
 				if (element.is(":radio"))
 					error.appendTo(element.parent().next().next());
@@ -338,14 +339,7 @@
 					element.parent().addClass("has-error");
 			},
 
-			success: function(label) {
-				// set &nbsp; as text for IE
-				label.html("&nbsp;").addClass("checked");
-			},
-
-			highlight: function(element, errorClass) {
-				$(element).parent().next().find("." + errorClass).removeClass("checked");
-			}
+			
 		});
     });
 
