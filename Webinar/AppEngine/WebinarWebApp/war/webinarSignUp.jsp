@@ -89,12 +89,13 @@
                     </div>
                   </div>
 
-                  <div class="input-group formedit form-group ng-scope has-error col-lg-10" ng-class="{'has-error' : form.Last_Name_Casual__c.$dirty && (form.Last_Name_casual__c.$error.required || form.Last_Name_Casual__c.$error.maxlangth)}">
+                  <div class="form-group col-lg-10">
+                  <div class="input-group formedit ng-scope has-error margin-bottom-sm" ng-class="{'has-error' : form.Last_Name_Casual__c.$dirty && (form.Last_Name_casual__c.$error.required || form.Last_Name_Casual__c.$error.maxlangth)}">
                     <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                    <div class="input-group margin-bottom-sm">
+                    
                       <input id="lastName" type="text" 
                         name="last_name" class="form-control ng-scope ng-invalid ng-invalid-required ng-valid-maxlength ng-dirty" tooltip="Your last name is required and must be less that 255 characters" ng-required="true" ng-maxlength="255" ng-model="$parent.LastName" type="text" placeholder="Last Name">
-                    </div>
+                  </div>
                   </div>
 
                   <div class="form-group col-lg-10">
