@@ -101,7 +101,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group col-lg-10">
+                  <div class="input-group formedit form-group ng-scope has-error col-lg-10" ng-class="{'has-error' : form.First_Name_Casual__c.$dirty && (form.First_Name_casual__c.$error.required || form.First_Name_Casual__c.$error.maxlangth)}">
                     <div class="input-group margin-bottom-sm">
                       <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
                       <input id="lastName" type="text" 
