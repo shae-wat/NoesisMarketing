@@ -320,6 +320,7 @@
         <br> 
     </p>
     </div>
+    <img src="noesisEmail.jpg"></img>
 </div>
 </div> <!-- end container -->
 
