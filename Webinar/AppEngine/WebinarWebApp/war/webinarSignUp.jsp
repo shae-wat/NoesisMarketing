@@ -229,16 +229,17 @@
                                 name="Sell_Side_Opt_In__c" value="Pro"
                                 ng-model="$parent.Sell_Side_Opt_In__c"> <span
                                 class="ne-11" style="color:#fff;"> Yes</span></li>
-                            <li><input type="radio" onChange="hideSellSideQuestions();"
-                                name="Sell_Side_Opt_In__c"
-                                value="NA" ng-model="$parent.Sell_Side_Opt_In__c">
+                            <li><input type="radio" 
+                                onChange="showSellSideQuestions();_gaq.push(['_trackEvent', 'MarketingForms', 'SellSideOptIn', 'Pro']);"
+                                name="Sell_Side_Opt_In__c" value="Pro"
+                                ng-model="$parent.Sell_Side_Opt_In__c">
                                 <span class="ne-11" style="color:#fff;"> No</span></li>
                         </ul>
                     </div>
                      
                      <div>     
                         <select id="companySize" name="Company_Size__c" class="form-control"
-                            ng-model="$parent.Company_Size__c" ng-required="false"
+                            ng-model="$parent.Company_Size__c" ng-required="true"
                             tooltip="{{(form.Company_Size__c.$dirty && form.Company_Size__c.$error.required) ? 'Select a valid company size' : ''}}">
                             <option value="">Select Number of Employees in Company</option>
                             <option value="1,001+">1,001+</option>
@@ -255,7 +256,7 @@
                      
                      <div>        
                         <select id="companyRevenue" name="Annual_Revenue_Picklist__c" class="form-control"
-                            ng-model="$parent.Annual_Revenue_Picklist__c" ng-required="false"
+                            ng-model="$parent.Annual_Revenue_Picklist__c" ng-required="true"
                             tooltip="{{(form.Annual_Revenue_Picklist__c.$dirty && form.Annual_Revenue_Picklist__c.$error.required) ? 'Select a valid annual revenue' : ''}}">
                                 <option value="">Select Annual Company Revenue</option>
                                 <option value="$10M+">$10M+</option>
@@ -329,7 +330,9 @@
 				Company_Headquarter_State__c: "required",
 				Job_Category__c: "required",
                 Sell_Side_Opt_In__c: "required",
-                customQ: "required"
+                customQ: "required",
+                Company_Size__c: "required",
+                Annual_Revenue_Picklist__c: "required"
 			},
 			
 			errorPlacement: function(error, element) {
