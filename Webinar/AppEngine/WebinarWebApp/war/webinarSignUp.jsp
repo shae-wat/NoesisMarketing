@@ -101,9 +101,9 @@
                     </div>
                   </div>
 
-                  <div class="input-group formedit form-group ng-scope has-error col-lg-10" ng-class="{'has-error' : form.First_Name_Casual__c.$dirty && (form.First_Name_casual__c.$error.required || form.First_Name_Casual__c.$error.maxlangth)}">
+                  <div class="input-group formedit form-group ng-scope has-error col-lg-10" ng-class="{'has-error' : form.Last_Name_Casual__c.$dirty && (form.Last_Name_casual__c.$error.required || form.Last_Name_Casual__c.$error.maxlangth)}">
+                    <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
                     <div class="input-group margin-bottom-sm">
-                      <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
                       <input id="lastName" type="text" 
                         name="last_name" class="form-control ng-scope ng-invalid ng-invalid-required ng-valid-maxlength ng-dirty" tooltip="Your last name is required and must be less that 255 characters" ng-required="true" ng-maxlength="255" ng-model="$parent.LastName" type="text" placeholder="Last Name">
                     </div>
@@ -375,6 +375,9 @@
 </script>
 
 <script>var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-25040971-4"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();</script>
+
+<script type="text/javascript" language="javascript" src="/bootstrap-angular/bootstrap.nocache.js?timestamp=1409241218"></script>
+<script type="text/javascript" src="/bootstrap-angular/bootstrap-20140827011247.min.js"></script>
 
 
 </body>

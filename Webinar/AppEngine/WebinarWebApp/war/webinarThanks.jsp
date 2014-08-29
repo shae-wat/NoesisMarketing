@@ -75,7 +75,38 @@
 	</div>
 	<div class="col-md-6">
 		<center><h3 class="text-info">NEXT STEPS</h3></center>
-		<h3 class="handwritten">1. Check out other resources by Noesis Energy</h3>
+		
+		<br>
+	
+		<h3 class="handwritten">1. Share your registration with your social networks</h3>
+		<br>
+		<center>
+			<table>
+			<tr>
+				<td style="padding-right:20px;">
+
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="<%=webinarUrl%>" data-count="none">Tweet</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+				</td>
+				<td>
+					<script src="//platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script><script type="IN/Share" data-url="http://localhost:8888/webinarSignUp.jsp?webinarID="+webinarId></script>
+				</td>
+			</tr>
+			
+			</table>
+		</center>
+		<br>
+		<br>
+
+		<h3 class="handwritten">2. Add event to your calendar</h3>
+		<br>
+		<center>	
+			
+			<img src="email.png"></img>
+		</center>
+
+		<br>
+		<h3 class="handwritten">3. Check out other resources by Noesis Energy</h3>
 		<center>
 		<br>
 		<table>
@@ -111,34 +142,6 @@
 		</td>
 		</tr>
 		</table>
-		</center>
-
-		<br>
-		<br>
-		<br>
-
-		<h3 class="handwritten">2. Email invitation for this webinar to friends and colleagues</h3>
-		<center>	
-			
-			<img src="email.png"></img>
-		</center>
-
-		<br>
-		<h3 class="handwritten">3. Share your registration with your social networks</h3>
-		<center>
-			<table>
-			<tr>
-				<td style="padding-right:20px;">
-
-				<a href="https://twitter.com/share" class="twitter-share-button" data-url="<%=webinarUrl%>" data-count="none">Tweet</a>
-				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-				</td>
-				<td>
-					<script src="//platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script><script type="IN/Share" data-url="http://localhost:8888/webinarSignUp.jsp?webinarID="+webinarId></script>
-				</td>
-			</tr>
-			
-			</table>
 		</center>
 
 
