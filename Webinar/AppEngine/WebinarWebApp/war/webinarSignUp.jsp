@@ -69,7 +69,7 @@
     <img src="webinarPic.jpg"></img>
     </td>
     </tr></table>
-    <hr>
+    
 </header>
 
 <div class="row">
@@ -237,7 +237,7 @@
                         </ul>
                     </div>
                      
-                     <div>     
+                     <div class="form-group col-lg-10">     
                         <select id="companySize" name="Company_Size__c" class="form-control"
                             ng-model="$parent.Company_Size__c" ng-required="true"
                             tooltip="{{(form.Company_Size__c.$dirty && form.Company_Size__c.$error.required) ? 'Select a valid company size' : ''}}">
@@ -284,7 +284,6 @@
                                     
                                 
         <div>
-           <hr>
            <button type="input" class="btn btn-primary">Register for Webinar</button>
         </div>
         <div>
@@ -310,7 +309,9 @@
         <br> 
     </p>
     </div>
+    <center>
     <img src="noesisEmail.jpg"></img>
+    </center>
 </div>
 </div> <!-- end container -->
 
@@ -337,7 +338,7 @@
 			
 			errorPlacement: function(error, element) {
 				if (element.is(":radio"))
-					error.appendTo(element.parent().next().next());
+					element.parent().addClass("has-error");
 				else
 					element.parent().addClass("has-error");
 			},
