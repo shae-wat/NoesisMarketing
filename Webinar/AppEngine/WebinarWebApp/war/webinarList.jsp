@@ -77,7 +77,7 @@
 			<%for (DateAndTime when : times){
 				String url = "webinarSignUp.jsp?webinarID="+when.getWebinarKey();%>
 				
-					<a href=<%=url%>><button type="input" class="btn btn-info"><%=when.getDay()%> <%=when.getPresentableDate()%> <%=when.getStartTime()%>-<%=when.getEndTime()%> <%=when.getTimeZone()%></button></a>
+					<a href=<%=url%>><button type="input" class="btn btn-info" style="margin-bottom:5px"><%=when.getDay()%> <%=when.getPresentableDate()%> <%=when.getStartTime()%>-<%=when.getEndTime()%> <%=when.getTimeZone()%></button></a>
 				
 
 			<%}%>
