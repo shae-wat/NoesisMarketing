@@ -20,7 +20,7 @@
 	  <%
 		String webinarId = request.getParameter("webinarID");
 		pageContext.setAttribute("webinarId", webinarId);
-		String webinarUrl="http://localhost:8888/webinarSignUp.jsp?webinarID="+webinarId;
+		String webinarUrl="http:/localhost:8888/webinarSignUp.jsp?webinarID="+webinarId;
 		pageContext.setAttribute("webinarUrl", webinarUrl);
 
 		WebinarConnector wc = new WebinarConnector();
@@ -39,10 +39,6 @@
 
 	%>
 
-	<meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="I just registered for <%=webinar.getSubject()%>">
-    <meta name="twitter:description" content="<%=webinar.getDescription()%>">
-    <meta name="twitter:image:src" content="https://noesisimg.s3.amazonaws.com/nb-images/brand/NoesisGlyph.png">
 
 </head>
 

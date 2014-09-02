@@ -45,6 +45,10 @@
         DateAndTime when = new DateAndTime(webinar.getTimes().get(0), webinar.getTimeZone());
     %>
     
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="I just registered for <%=webinar.getSubject()%>">
+    <meta name="twitter:description" content="<%=webinar.getDescription()%>">
+    <meta name="twitter:image:src" content="https://noesisimg.s3.amazonaws.com/nb-images/brand/NoesisGlyph.png">
 </head>
 
 
@@ -229,7 +233,7 @@
                                 onChange="showSellSideQuestions();_gaq.push(['_trackEvent', 'MarketingForms', 'SellSideOptIn', 'Pro']);"
                                 name="Sell_Side_Opt_In__c" value="Pro"
                                 ng-model="$parent.Sell_Side_Opt_In__c">
-                                <span class="ne-11" style="color:#fff;"> No</span></li>
+                                <span class="ne-11" style="color:#fff;"> No   </span></li>
                         </ul>
                     </div>
                      
@@ -273,7 +277,7 @@
                                 class="ne-11" style="color:#fff;"> Yes</span></li>
                             <li><input type="radio" name="customQ" value="no" name="customQ">
                                 
-                                <span class="ne-11" style="color:#fff;"> No</span></li>
+                                <span class="ne-11" style="color:#fff;"> No   </span></li>
                         </ul>
                      </div>
                      <% } %>
@@ -335,9 +339,11 @@
 			
 			errorPlacement: function(error, element) {
 				if (element.is(":radio"))
-					error.appendTo(element.parent().next().next());
-				else
+					error.appendTo(element.parent().next());
+				else{
+                    error.appendTo(element.parent());
 					element.parent().addClass("has-error");
+                }
 			},
 
 			
