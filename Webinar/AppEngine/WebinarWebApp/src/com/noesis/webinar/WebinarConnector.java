@@ -10,10 +10,17 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import net.fortuna.ical4j.model.Dur;
+import net.fortuna.ical4j.model.component.VEvent;
+import net.fortuna.ical4j.model.component.VTimeZone;
+import net.fortuna.ical4j.model.property.Description;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -196,6 +203,70 @@ public class WebinarConnector {
 				
 				
 		return user;
+	}
+	
+	public String getCalEvent(){
+		//Initilize values
+	  String calFile = "TestCalendar.ics";
+	  
+	  //start time
+	  java.util.Calendar startCal = java.util.Calendar.getInstance();
+	  startCal.set(2012, 04, 23, 20, 00);
+	  
+	  //end time
+	  java.util.Calendar endCal = java.util.Calendar.getInstance();
+	  endCal.set(2012, 04, 23, 20, 30);
+	  
+	  String subject = "Meeting Subject";
+	  String location = "Location - Mumbai";
+	  String description = "This goes in decription section of the metting like agenda etc.";
+	  
+	  String hostEmail = "admin@javaxp.com";
+	  
+	  //Creating a new calendar
+	  net.fortuna.ical4j.model.Calendar calendar = new net.fortuna.ical4j.model.Calendar();
+
+	  
+	  SimpleDateFormat sdFormat =  new SimpleDateFormat("yyyyMMdd'T'hhmmss'Z'");
+	  String strDate = sdFormat.format(startCal.getTime());
+	  
+	  net.fortuna.ical4j.model.Date startDt = null;
+	  try {
+	   startDt = new net.fortuna.ical4j.model.Date(strDate,"yyyyMMdd'T'hhmmss'Z'");
+	  } catch (ParseException e) {
+	   e.printStackTrace();
+	  }
+	  
+	  long diff = endCal.getTimeInMillis() - startCal.getTimeInMillis();
+	  int min = (int)(diff / (1000 * 60));
+	  
+	  Dur dur = new Dur(0,0,min,0);
+	  
+	  //Creating a meeting event
+	  VEvent meeting = new VEvent(startDt,dur,subject);
+	  
+
+	  meeting.getProperties().add(new Description());
+	  
+//	  try {
+//	   meeting.getProperties().getProperty(Property.DESCRIPTION).setValue(description);
+//	  } catch (IOException e) {
+//	   e.printStackTrace();
+//	  } catch (URISyntaxException e) {
+//	   e.printStackTrace();
+//	  } catch (ParseException e) {
+//	   e.printStackTrace();
+//	  }
+//	  
+//	  try {
+//	   meeting.getProperties().add(new Organizer("MAILTO:"+hostEmail));
+//	  } catch (URISyntaxException e) {
+//	   e.printStackTrace();
+//	  }
+	  
+	  calendar.getComponents().add(meeting);
+		 
+		 return "works";
 	}
 	
 }

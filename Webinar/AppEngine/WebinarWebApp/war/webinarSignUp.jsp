@@ -255,7 +255,7 @@
                      </div>
                      
                      <div>        
-                        <select id="companyRevenue" name="Annual_Revenue_Picklist__c" class="form-control"
+                        <select id="companyRevenue" name="Annual_Revenue_Picklist__c" class="form-control" style="margin-bottom:10px"
                             ng-model="$parent.Annual_Revenue_Picklist__c" ng-required="true"
                             tooltip="{{(form.Annual_Revenue_Picklist__c.$dirty && form.Annual_Revenue_Picklist__c.$error.required) ? 'Select a valid annual revenue' : ''}}">
                                 <option value="">Select Annual Company Revenue</option>
@@ -284,7 +284,7 @@
                                     
                                 
         <div>
-           <button type="input" class="btn btn-primary">Register for Webinar</button>
+           <button type="input" class="btn btn-primary" style="margin-top:10px">Register for Webinar</button>
         </div>
         <div>
             <br>

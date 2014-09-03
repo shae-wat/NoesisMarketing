@@ -1,6 +1,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.List" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.io.*" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="com.noesis.webinar.*" %>
 
@@ -37,6 +38,9 @@
 		DateAndTime when = new DateAndTime(webinar.getTimes().get(0), webinar.getTimeZone());
 		String timeZone = webinar.getTimeZone();
 
+
+		//Calendar event
+		System.out.println(wc.getCalEvent());
 	%>
 
 
