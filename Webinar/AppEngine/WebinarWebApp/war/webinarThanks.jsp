@@ -46,7 +46,7 @@
 
 <body class="ne-11-bg">
 
-	<div class="container">
+	<div class="container" style="padding:0;margin:0;">
 	<!-- <header>
 		<div id="success">	
 	        <h4 style="color:#fff;">Successful Registration for</h4>

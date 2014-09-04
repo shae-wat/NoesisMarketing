@@ -54,7 +54,7 @@
 
 
 <body class="ne-11-bg">
-<div class="container">
+<div class="container" style="margin:0;padding:0;">
 <header>
     <table><tr>
     <td style="padding-right:50px;">
@@ -313,7 +313,9 @@
     <img src="noesisEmail.jpg"></img>
     </center>
 </div>
-</div> <!-- end container -->
+</div> 
+</div>
+<!-- end container -->
 
 <script>
     $(document).ready(function() {

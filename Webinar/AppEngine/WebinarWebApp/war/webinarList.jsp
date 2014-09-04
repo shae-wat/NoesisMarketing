@@ -35,7 +35,7 @@
 </head>
 
 <body class="ne-11-bg">
-<div class="container">
+<div class="container" style="margin:0;padding:0;">
 	<header>
 		
         <div class="media">
