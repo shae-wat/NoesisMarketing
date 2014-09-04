@@ -1,6 +1,7 @@
 package com.noesis.webinar;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -19,11 +20,13 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
+import net.fortuna.ical4j.data.CalendarOutputter;
 import net.fortuna.ical4j.model.DateTime;
 import net.fortuna.ical4j.model.Dur;
 import net.fortuna.ical4j.model.TimeZone;
 import net.fortuna.ical4j.model.TimeZoneRegistry;
 import net.fortuna.ical4j.model.TimeZoneRegistryFactory;
+import net.fortuna.ical4j.model.ValidationException;
 import net.fortuna.ical4j.model.component.VEvent;
 import net.fortuna.ical4j.model.component.VTimeZone;
 import net.fortuna.ical4j.model.property.Attendee;
@@ -216,7 +219,7 @@ public class WebinarConnector {
 		return user;
 	}
 	
-	public String getCalEvent(){
+	public String getCalEvent(WebinarData webinar){
 //		//Initilize values
 //	  String calFile = "TestCalendar.ics";
 //	  
@@ -235,7 +238,7 @@ public class WebinarConnector {
 //	  String hostEmail = "shaelynjoy@gmail.com";
 //	  
 //	  //Creating a new calendar
-//	  net.fortuna.ical4j.model.Calendar calendar = new net.fortuna.ical4j.model.Calendar();
+	  net.fortuna.ical4j.model.Calendar calendar = new net.fortuna.ical4j.model.Calendar();
 //
 //	  
 //	  SimpleDateFormat sdFormat =  new SimpleDateFormat("yyyyMMdd'T'hhmmss'Z'");
@@ -303,7 +306,7 @@ public class WebinarConnector {
 		endDate.set(java.util.Calendar.SECOND, 0);
 
 		// Create the event
-		String eventName = "Progress Meeting";
+		String eventName = webinar.getSubject();
 		DateTime start = new DateTime(startDate.getTime());
 		DateTime end = new DateTime(endDate.getTime());
 		VEvent meeting = new VEvent(start, end, eventName);
@@ -332,6 +335,19 @@ public class WebinarConnector {
 		// Add the event and print
 		icsCalendar.getComponents().add(meeting);
 		System.out.println(icsCalendar);
+		
+		ByteArrayOutputStream fout = new ByteArrayOutputStream();
+
+		CalendarOutputter outputter = new CalendarOutputter();
+		try {
+			outputter.output(calendar, fout);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ValidationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		 
 		 return "works";
 	}

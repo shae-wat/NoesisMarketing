@@ -40,7 +40,7 @@
 
 
 		//Calendar event
-		System.out.println(wc.getCalEvent());
+		System.out.println("*** = " + wc.getCalEvent(webinar));
 	%>
 
 

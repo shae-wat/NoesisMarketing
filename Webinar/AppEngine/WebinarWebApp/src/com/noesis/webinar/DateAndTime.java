@@ -159,6 +159,10 @@ public class DateAndTime implements Comparable<DateAndTime>{
 			return timeZone;
 	}
 	
+	public String getLongTimeZone(){
+		return timeZone;
+	}
+	
 	public void setTimeZone(String timeZone) {
 		this.timeZone = timeZone;
 	}
