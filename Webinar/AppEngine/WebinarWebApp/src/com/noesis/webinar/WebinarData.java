@@ -60,6 +60,15 @@ public class WebinarData implements Comparable<WebinarData>{
 		else
 			return timeZone;
 	}
+	
+	public String getLongTimeZone() {
+		if (timeZone.equals("America/Chicago"))
+			return "CDT";
+		else if (timeZone.equals("America/New_York"))
+			return "EDT";
+		else
+			return timeZone;
+	}
 
 	public void setTimeZone(String timeZone) {
 		this.timeZone = timeZone;

@@ -1,19 +1,40 @@
 package com.noesis.webinar;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.SocketException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
+
+import net.fortuna.ical4j.data.CalendarOutputter;
+import net.fortuna.ical4j.model.DateTime;
+import net.fortuna.ical4j.model.Dur;
+import net.fortuna.ical4j.model.TimeZone;
+import net.fortuna.ical4j.model.TimeZoneRegistry;
+import net.fortuna.ical4j.model.TimeZoneRegistryFactory;
+import net.fortuna.ical4j.model.ValidationException;
+import net.fortuna.ical4j.model.component.VEvent;
+import net.fortuna.ical4j.model.component.VTimeZone;
+import net.fortuna.ical4j.model.property.Attendee;
+import net.fortuna.ical4j.model.property.CalScale;
+import net.fortuna.ical4j.model.property.Description;
+import net.fortuna.ical4j.model.property.ProdId;
+import net.fortuna.ical4j.model.property.Uid;
+import net.fortuna.ical4j.util.UidGenerator;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -196,6 +217,139 @@ public class WebinarConnector {
 				
 				
 		return user;
+	}
+	
+	public String getCalEvent(WebinarData webinar){
+//		//Initilize values
+//	  String calFile = "TestCalendar.ics";
+//	  
+//	  //start time
+//	  java.util.Calendar startCal = java.util.Calendar.getInstance();
+//	  startCal.set(2012, 04, 23, 20, 00);
+//	  
+//	  //end time
+//	  java.util.Calendar endCal = java.util.Calendar.getInstance();
+//	  endCal.set(2012, 04, 23, 20, 30);
+//	  
+//	  String subject = "Meeting Subject";
+//	  String location = "Location - Mumbai";
+//	  String description = "This goes in decription section of the metting like agenda etc.";
+//	  
+//	  String hostEmail = "shaelynjoy@gmail.com";
+//	  
+//	  //Creating a new calendar
+	  net.fortuna.ical4j.model.Calendar calendar = new net.fortuna.ical4j.model.Calendar();
+//
+//	  
+//	  SimpleDateFormat sdFormat =  new SimpleDateFormat("yyyyMMdd'T'hhmmss'Z'");
+//	  String strDate = sdFormat.format(startCal.getTime());
+//	  
+//	  net.fortuna.ical4j.model.Date startDt = null;
+//	  try {
+//	   startDt = new net.fortuna.ical4j.model.Date(strDate,"yyyyMMdd'T'hhmmss'Z'");
+//	  } catch (ParseException e) {
+//	   e.printStackTrace();
+//	  }
+//	  
+//	  long diff = endCal.getTimeInMillis() - startCal.getTimeInMillis();
+//	  int min = (int)(diff / (1000 * 60));
+//	  
+//	  Dur dur = new Dur(0,0,min,0);
+//	  
+//	  //Creating a meeting event
+//	  VEvent meeting = new VEvent(startDt,dur,subject);
+//	  
+//
+//	  meeting.getProperties().add(new Description());
+//	  
+////	  try {
+////	   meeting.getProperties().getProperty(Property.DESCRIPTION).setValue(description);
+////	  } catch (IOException e) {
+////	   e.printStackTrace();
+////	  } catch (URISyntaxException e) {
+////	   e.printStackTrace();
+////	  } catch (ParseException e) {
+////	   e.printStackTrace();
+////	  }
+////	  
+////	  try {
+////	   meeting.getProperties().add(new Organizer("MAILTO:"+hostEmail));
+////	  } catch (URISyntaxException e) {
+////	   e.printStackTrace();
+////	  }
+//	  
+//	  calendar.getComponents().add(meeting);
+		
+		// Create a TimeZone
+		TimeZoneRegistry registry = TimeZoneRegistryFactory.getInstance().createRegistry();
+		TimeZone timezone = registry.getTimeZone("America/Mexico_City");
+		VTimeZone tz = timezone.getVTimeZone();
+
+		 // Start Date is on: April 1, 2008, 9:00 am
+		java.util.Calendar startDate = new GregorianCalendar();
+		startDate.setTimeZone(timezone);
+		startDate.set(java.util.Calendar.MONTH, java.util.Calendar.APRIL);
+		startDate.set(java.util.Calendar.DAY_OF_MONTH, 1);
+		startDate.set(java.util.Calendar.YEAR, 2008);
+		startDate.set(java.util.Calendar.HOUR_OF_DAY, 9);
+		startDate.set(java.util.Calendar.MINUTE, 0);
+		startDate.set(java.util.Calendar.SECOND, 0);
+
+		 // End Date is on: April 1, 2008, 13:00
+		java.util.Calendar endDate = new GregorianCalendar();
+		endDate.setTimeZone(timezone);
+		endDate.set(java.util.Calendar.MONTH, java.util.Calendar.APRIL);
+		endDate.set(java.util.Calendar.DAY_OF_MONTH, 1);
+		endDate.set(java.util.Calendar.YEAR, 2008);
+		endDate.set(java.util.Calendar.HOUR_OF_DAY, 13);
+		endDate.set(java.util.Calendar.MINUTE, 0);	
+		endDate.set(java.util.Calendar.SECOND, 0);
+
+		// Create the event
+		String eventName = webinar.getSubject();
+		DateTime start = new DateTime(startDate.getTime());
+		DateTime end = new DateTime(endDate.getTime());
+		VEvent meeting = new VEvent(start, end, eventName);
+
+		// add timezone info..
+		meeting.getProperties().add(tz.getTimeZoneId());
+
+		// generate unique identifier..
+		UidGenerator ug;
+		try {
+			ug = new UidGenerator("uidGen");
+			Uid uid = ug.generateUid();
+			meeting.getProperties().add(uid);
+		} catch (SocketException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		// Create a calendar
+		net.fortuna.ical4j.model.Calendar icsCalendar = new net.fortuna.ical4j.model.Calendar();
+		icsCalendar.getProperties().add(new ProdId("-//Events Calendar//iCal4j 1.0//EN"));
+		icsCalendar.getProperties().add(CalScale.GREGORIAN);
+
+
+		// Add the event and print
+		icsCalendar.getComponents().add(meeting);
+		System.out.println(icsCalendar);
+		
+		ByteArrayOutputStream fout = new ByteArrayOutputStream();
+
+		CalendarOutputter outputter = new CalendarOutputter();
+		try {
+			outputter.output(calendar, fout);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ValidationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		 return "works";
 	}
 	
 }
