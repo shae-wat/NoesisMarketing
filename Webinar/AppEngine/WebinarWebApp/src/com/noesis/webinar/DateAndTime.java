@@ -110,7 +110,7 @@ public class DateAndTime implements Comparable<DateAndTime>{
 		if(date.charAt(4) == '0'){
 			presDate = date.substring(0, 4) + date.substring(5, date.length());
 		}
-		System.out.println("*****presDate = " + presDate);
+		//System.out.println("*****presDate = " + presDate);
 		return presDate;
 	}
 

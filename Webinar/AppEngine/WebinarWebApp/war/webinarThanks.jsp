@@ -38,9 +38,6 @@
 		DateAndTime when = new DateAndTime(webinar.getTimes().get(0), webinar.getTimeZone());
 		String timeZone = webinar.getTimeZone();
 
-
-		//Calendar event
-		System.out.println("*** = " + wc.getCalEvent(webinar));
 	%>
 
 
