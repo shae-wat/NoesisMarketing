@@ -75,11 +75,13 @@
 
 	</div>
 	<div class="col-md-6">
+		<br>
+		<br>
 		<center><h3 class="greeting text-primary">Next Steps</h3></center>
-		
+		<br>
 		<br>
 	
-		<h3 class="handwritten">1. Share your registration with your social networks</h3>
+		<h3 class="handwritten">Share your registration with your social networks</h3>
 		<br>
 		<center>
 			<table>
@@ -97,17 +99,9 @@
 			</table>
 		</center>
 		<br>
-		<br>
-
-		<h3 class="handwritten">2. Add this event to your calendar</h3>
-		<br>
-		<center>	
-			
-			<img src="email.png"></img>
-		</center>
 
 		<br>
-		<h3 class="handwritten">3. Check out other resources by Noesis Energy</h3>
+		<h3 class="handwritten">Check out other resources by Noesis Energy</h3>
 		<center>
 		<br>
 		<table>
