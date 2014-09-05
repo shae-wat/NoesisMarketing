@@ -105,11 +105,8 @@
 			<h2 class="greeting text-primary">Webinars by Noesis Energy</h2>
 			<br>
 			<center>
-			<p>kdjfbnksjv ns hbsdvjjdsnvjn kjd nkjnv</p>
-			<p>kdjfbnksjv ns hbsdvjjdsnvjn kjd nkjnv</p>
-			<p>kdjfbnksjv ns hbsdvjjdsnvjn kjd nkjnv</p>
-			<p>kdjfbnksjv ns hbsdvjjdsnvjn kjd nkjnv</p>
-			<p>kdjfbnksjv ns hbsdvjjdsnvjn kjd nkjnv</p>
+			<p>Noesis Energy's series of educational webinars are designed for professionals who propose and implement efficiency projects, providing training on tools, techniques, and financing options – all to help get more projects approved – and approved faster.</p>
+			<p>We have seen over 9,500 registrations for our webinars!</p>
 			</center>
 
 		</div>
@@ -119,7 +116,12 @@
 
 	
 
-
+<script>
+$(".btn").click(function () {
+    if (window != window.top) // the page is inside iframe
+        window.top.scrollFrame(0); // change the position if any. 0 is top
+});
+</script>
 
 </body>
 </html>
