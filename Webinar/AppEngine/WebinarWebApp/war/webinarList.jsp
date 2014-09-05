@@ -106,7 +106,7 @@
 			<br>
 			<center>
 			<p>Noesis Energy's series of educational webinars are designed for professionals who propose and implement efficiency projects, providing training on tools, techniques, and financing options – all to help get more projects approved – and approved faster.</p>
-			<p>We have seen over 9,500 registrations for our webinars!</p>
+			<p>We have seen <strong>over 9,500 registrations</strong> for our webinars! Find out why.</p>
 			</center>
 
 		</div>
