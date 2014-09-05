@@ -94,7 +94,25 @@
 	</nav>
 	<br>
 	<br>
+
 	
+	</div>
+	<div class="col-md-6">
+		<br>
+		<br>
+
+	<div class="jumbotron ne-cloud-bg">
+			<h2 class="greeting text-primary">Webinars by Noesis Energy</h2>
+			<br>
+			<center>
+			<p>kdjfbnksjv ns hbsdvjjdsnvjn kjd nkjnv</p>
+			<p>kdjfbnksjv ns hbsdvjjdsnvjn kjd nkjnv</p>
+			<p>kdjfbnksjv ns hbsdvjjdsnvjn kjd nkjnv</p>
+			<p>kdjfbnksjv ns hbsdvjjdsnvjn kjd nkjnv</p>
+			<p>kdjfbnksjv ns hbsdvjjdsnvjn kjd nkjnv</p>
+			</center>
+
+		</div>
 	</div>
 	</div>
 	</div> <!-- end container -->
