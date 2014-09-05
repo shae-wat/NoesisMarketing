@@ -21,7 +21,7 @@
 	  <%
 		String webinarId = request.getParameter("webinarID");
 		pageContext.setAttribute("webinarId", webinarId);
-		String webinarUrl="http:/localhost:8888/webinarSignUp.jsp?webinarID="+webinarId;
+		String webinarUrl="/webinarSignUp.jsp?webinarID="+webinarId;
 		pageContext.setAttribute("webinarUrl", webinarUrl);
 
 		WebinarConnector wc = new WebinarConnector();

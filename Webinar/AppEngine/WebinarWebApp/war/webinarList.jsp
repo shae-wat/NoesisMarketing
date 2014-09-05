@@ -104,10 +104,29 @@
 	<div class="jumbotron ne-cloud-bg">
 			<h2 class="greeting text-primary">Webinars by Noesis Energy</h2>
 			<br>
-			<center>
-			<p>Noesis Energy's series of educational webinars are designed for professionals who propose and implement efficiency projects, providing training on tools, techniques, and financing options – all to help get more projects approved – and approved faster.</p>
-			<p>We have seen <strong>over 9,500 registrations</strong> for our webinars! Find out why.</p>
-			</center>
+			<table>
+				<tr>
+					<td style="padding-right:10px;">
+						<p>Noesis Energy's series of educational webinars are designed for professionals who propose and implement efficiency projects.</p>
+					</td>
+					<td>
+						<img src="https://noesisimg.s3.amazonaws.com/nb-images/content-type-icons/utility-types-icon.png"</img>
+					</td>
+				</tr>
+			</table>
+			<br>
+			<table>
+				<tr>
+					<td style="padding-right:10px;">
+						<img src="https://noesisimg.s3.amazonaws.com/nb-images/content-type-icons/approved-folder.png"</img>
+					</td>
+					<td>
+						<p>The webinars provide training on tools, techniques, and financing options – all to help you get more projects approved – and approved faster.</p>
+					</td>
+				</tr>
+			</table>
+			<br>
+			<p><strong>Over 9,500 registrations for our webinars so far, find out why!</strong></p>
 
 		</div>
 	</div>
