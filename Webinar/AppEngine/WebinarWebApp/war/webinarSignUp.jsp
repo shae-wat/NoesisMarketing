@@ -349,7 +349,6 @@
 			},
 
             success: function(element) {
-                // set &nbsp; as text for IE
                 element.parent().removeClass("has-error");
             },
 
