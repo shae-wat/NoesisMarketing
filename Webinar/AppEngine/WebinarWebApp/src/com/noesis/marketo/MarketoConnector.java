@@ -17,7 +17,7 @@ import com.noesis.webinar.WebinarUser;
 public class MarketoConnector {
 	
 	Gson gson; 
-	Auth auth;
+	MarketoAuth auth;
 	
 	String restUrl = "https://716-WKH-023.mktorest.com/rest/";
 	String identityUrl = "https://716-WKH-023.mktorest.com/identity/";
@@ -50,7 +50,7 @@ public class MarketoConnector {
 		    reader.close();
 		    
 		    System.out.println(line);
-		    auth = gson.fromJson(line, Auth.class);
+		    auth = gson.fromJson(line, MarketoAuth.class);
 		    System.out.println(auth.getAccess_token());
 		    this.accessToken = auth.getAccess_token();
 		    
@@ -58,7 +58,30 @@ public class MarketoConnector {
 		} catch (Exception e) { e.printStackTrace(); }
 	}
 	
-	public void addLeadToWebinarAttendence (WebinarLeadList leads) throws IOException {
+	public void addLead (String fname, String lname, String email, 
+			String phone, String company, String location,
+			String jobType, String companySize, String annualRevenue,
+			String customQuestion)
+	{
+		WebinarLead wl = new WebinarLead();
+		wl.setFirst_Name_Casual__c(fname);
+		wl.setLastName(lname);
+		wl.setEmail(email);
+		wl.setPhone(phone);
+		wl.setCompany(company);
+		wl.setCompany_Headquarter_State__c(location);
+		wl.setJob_Category__c(jobType);
+		wl.setCompany_Size__c(companySize);
+		wl.setAnnual_Revenue_Picklist__c(annualRevenue);
+		wl.setCustomQuestion(customQuestion);
+		
+		WebinarLeadList wll = createListOfOne (wl);
+		try {
+			addLeadToWebinarAttendence(wll);
+		} catch (Exception e) { e.printStackTrace(); }
+	}
+	
+	private void addLeadToWebinarAttendence (WebinarLeadList leads) throws IOException {
 		
 		String leadJsonStr = gson.toJson(leads, WebinarLeadList.class);
 		System.out.println(leadJsonStr);
@@ -85,14 +108,14 @@ public class MarketoConnector {
 		
 	}
 	
-	public WebinarLeadList createListOfOne (WebinarLead wl)
+	private WebinarLeadList createListOfOne (WebinarLead wl)
 	{
 		WebinarLeadList wll = new WebinarLeadList();
 		wll.addLead(wl);
 		return wll;
 	}
 	
-	public WebinarLead populateTestLead ()
+	private WebinarLead populateTestLead ()
 	{
 		WebinarLead wl = new WebinarLead();
 		wl.setFirst_Name_Casual__c("Scott");
@@ -108,7 +131,7 @@ public class MarketoConnector {
 		return wl;
 	}
 	
-	public class WebinarLeadList {
+	private class WebinarLeadList {
 		
 		String action = "createOrUpdate";
 		List<WebinarLead> input = new ArrayList<WebinarLead>();
@@ -143,7 +166,7 @@ public class MarketoConnector {
 		String Job_Category__c = "";
 		String Company_Size__c = "";
 		String Annual_Revenue_Picklist__c = "";
-		
+		String customQuestion = "";
 		
 		
 		public String getFirst_Name_Casual__c() {
@@ -200,13 +223,24 @@ public class MarketoConnector {
 		public void setAnnual_Revenue_Picklist__c(String annual_Revenue_Picklist__c) {
 			Annual_Revenue_Picklist__c = annual_Revenue_Picklist__c;
 		}
+		public String getCustomQuestion() {
+			return customQuestion;
+		}
+		public void setCustomQuestion(String customQuestion) {
+			this.customQuestion = customQuestion;
+		}
+		
 		
 	}
 	
-	public class Auth {
+	public class MarketoAuth {
 		
 		String access_token = "";
 		String token_type = "";
+		
+		public MarketoAuth () {
+			// empty constructor
+		}
 		
 		public String getAccess_token() {
 			return access_token;
