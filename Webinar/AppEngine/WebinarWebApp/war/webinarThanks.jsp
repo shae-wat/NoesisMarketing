@@ -39,6 +39,7 @@
 		String companySize = request.getParameter("Company_Size__c");
 		String revenue = request.getParameter("Annual_Revenue_Picklist__c");
 		String customQuestion = request.getParameter("customQ");
+		String webinarName = webinar.getSubject();
 
 		WebinarUser user = new WebinarUser(first_name,last_name,email);
 		user = wc.registerUser(webinarId, user);
@@ -47,7 +48,7 @@
 		String timeZone = webinar.getTimeZone();
 		
 		MarketoConnector mc = new MarketoConnector();
-		mc.addLead(first_name, last_name, email, phone, company, location, biztype, companySize, revenue, customQuestion);
+		mc.addLead(first_name, last_name, email, phone, company, location, biztype, companySize, revenue, customQuestion, webinarName);
 
 	%>
 

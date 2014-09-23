@@ -61,7 +61,7 @@ public class MarketoConnector {
 	public void addLead (String fname, String lname, String email, 
 			String phone, String company, String location,
 			String jobType, String companySize, String annualRevenue,
-			String customQuestion)
+			String customQuestion, String webinarName)
 	{
 		WebinarLead wl = new WebinarLead();
 		wl.setFirst_Name_Casual__c(fname);
@@ -73,7 +73,8 @@ public class MarketoConnector {
 		wl.setJob_Category__c(jobType);
 		wl.setCompany_Size__c(companySize);
 		wl.setAnnual_Revenue_Picklist__c(annualRevenue);
-		wl.setCustomQuestion(customQuestion);
+		wl.setWebinar_Custom_Question_Answer__c(customQuestion);
+		wl.setWebinar_Name__c(webinarName);
 		
 		WebinarLeadList wll = createListOfOne (wl);
 		try {
@@ -166,7 +167,8 @@ public class MarketoConnector {
 		String Job_Category__c = "";
 		String Company_Size__c = "";
 		String Annual_Revenue_Picklist__c = "";
-		String customQuestion = "";
+		String Webinar_Name__c = "";
+		String Webinar_Custom_Question_Answer__c = "";
 		
 		
 		public String getFirst_Name_Casual__c() {
@@ -223,37 +225,20 @@ public class MarketoConnector {
 		public void setAnnual_Revenue_Picklist__c(String annual_Revenue_Picklist__c) {
 			Annual_Revenue_Picklist__c = annual_Revenue_Picklist__c;
 		}
-		public String getCustomQuestion() {
-			return customQuestion;
+		public String getWebinar_Name__c() {
+			return Webinar_Name__c;
 		}
-		public void setCustomQuestion(String customQuestion) {
-			this.customQuestion = customQuestion;
+		public void setWebinar_Name__c(String webinar_Name__c) {
+			Webinar_Name__c = webinar_Name__c;
 		}
-		
-		
-	}
-	
-	public class MarketoAuth {
-		
-		String access_token = "";
-		String token_type = "";
-		
-		public MarketoAuth () {
-			// empty constructor
+		public String getWebinar_Custom_Question_Answer__c() {
+			return Webinar_Custom_Question_Answer__c;
+		}
+		public void setWebinar_Custom_Question_Answer__c(
+				String webinar_Custom_Question_Answer__c) {
+			Webinar_Custom_Question_Answer__c = webinar_Custom_Question_Answer__c;
 		}
 		
-		public String getAccess_token() {
-			return access_token;
-		}
-		public void setAccess_token(String access_token) {
-			this.access_token = access_token;
-		}
-		public String getToken_type() {
-			return token_type;
-		}
-		public void setToken_type(String token_type) {
-			this.token_type = token_type;
-		}
 		
 		
 	}
