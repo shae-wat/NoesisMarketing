@@ -2,12 +2,8 @@ package com.noesis.webinar;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-import java.util.TimeZone;
 
 
 public class DateAndTime implements Comparable<DateAndTime>{
@@ -19,6 +15,7 @@ public class DateAndTime implements Comparable<DateAndTime>{
 	public String endTime;
 	public String monthNum;
 	public String year;
+	public String ampm;
 	
 	public Date dateObj;
 	public Date startDateObj;
@@ -57,13 +54,15 @@ public class DateAndTime implements Comparable<DateAndTime>{
 		    	
 			    if (timeZone.equals("EDT")){
 			    	h = h - 16;
+			    	ampm = "pm";
 			    	if(h < 0){
 			    		h = h + 12;
+			    		ampm ="am";
 			    	}
 			    	if(h==0)
 			    		h=12;
-			    	startTime = Integer.toString(h) + ":" + m;
-			    	System.out.println("startTime = " + startTime);
+			    	startTime = Integer.toString(h) + ":" + m + ampm;
+			    	System.out.println("startTime = " + startTime + ampm);
 			    	try {
 						startDateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTiempo.replaceAll("Z$", "-0100"));
 					} catch (ParseException e) {
@@ -72,13 +71,15 @@ public class DateAndTime implements Comparable<DateAndTime>{
 			    }
 			    if (timeZone.equals("CDT")){
 			    	h = h - 17;
+			    	ampm ="pm";
 			    	if(h < 0){
 			    		h = h + 12;
+			    		ampm ="am";
 			    	}
 			    	if(h==0)
 			    		h=12;
-			    	startTime = Integer.toString(h) + ":" + m;
-			    	System.out.println("startTime = " + startTime);
+			    	startTime = Integer.toString(h) + ":" + m + ampm;
+			    	System.out.println("startTime = " + startTime + ampm);
 			    	try {
 						startDateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTiempo.replaceAll("Z$", "-0000"));
 					} catch (ParseException e) {
@@ -100,15 +101,18 @@ public class DateAndTime implements Comparable<DateAndTime>{
 		    	String m = eTime.substring(3, 5);
 		    	System.out.println("m = " + m);
 		    	
+		    	
 			    if (timeZone.equals("EDT")){
 			    	h = h - 16;
+			    	ampm ="pm";
 			    	if(h < 0){
 			    		h = h + 12;
+			    		ampm ="am";
 			    	}
 			    	if(h==0)
 			    		h=12;
-			    	endTime = Integer.toString(h) + ":" + m;
-			    	System.out.println("endTime = " + endTime);
+			    	endTime = Integer.toString(h) + ":" + m + ampm;
+			    	System.out.println("endTime = " + endTime + ampm);
 			    	try {
 						endDateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(endTiempo.replaceAll("Z$", "-0100"));
 					} catch (ParseException e) {
@@ -117,13 +121,15 @@ public class DateAndTime implements Comparable<DateAndTime>{
 			    }
 			    if (timeZone.equals("CDT")){
 			    	h = h - 17;
+			    	ampm ="pm";
 			    	if(h < 0){
 			    		h = h + 12;
+			    		ampm ="am";
 			    	}
 			    	if(h==0)
 			    		h=12;
-			    	endTime = Integer.toString(h) + ":" + m;
-			    	System.out.println("endTime = " + endTime);
+			    	endTime = Integer.toString(h) + ":" + m + ampm;
+			    	System.out.println("endTime = " + endTime + ampm);
 			    	try {
 						endDateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(endTiempo.replaceAll("Z$", "-0000"));
 					} catch (ParseException e) {
