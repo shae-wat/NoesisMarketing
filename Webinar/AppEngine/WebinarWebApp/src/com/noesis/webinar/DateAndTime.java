@@ -17,77 +17,136 @@ public class DateAndTime implements Comparable<DateAndTime>{
 	public String date;
 	public String startTime;
 	public String endTime;
+	public String monthNum;
+	public String year;
+	
 	public Date dateObj;
+	public Date startDateObj;
+	public Date endDateObj;
+	
+	
 	public String webinarKey;
 	public String timeZone;
 	
 	public DateAndTime(Map<String,String> data, String timeZone) {
 
-		Date startDate = null;
-		Date endDate = null;
+		
+		int c = 0;
+		for (Map.Entry<String, String> entry : data.entrySet())
+		{
+		    System.out.println("\n"+ entry.getKey() + ": " + entry.getValue() + " " + timeZone);
+		    if (c==0){
+		    	String startTiempo = entry.getValue();
+		    	String[] startInfo0 = startTiempo.split("-");
+		    	String[] startInfo1 = startInfo0[2].split("T");
+		    	
+		    	year = startInfo0[0];
+		    	monthNum = startInfo0[1];
+		    	date = monthNum + "/" + startInfo1[0];
+		    	String sTime = startInfo1[1];
+		    	
+		    	System.out.println("year = " + year);
+		    	System.out.println("monthNum = " + monthNum);
+		    	System.out.println("date = " + date);
+		    	System.out.println("sTime = " + sTime);
+		    	int h = Integer.parseInt(sTime.substring(0, 2));
+		    	System.out.println("h = " + h);
+		    	String m = sTime.substring(3, 5);
+		    	System.out.println("m = " + m);
+		    	
+		    	
+			    if (timeZone.equals("EDT")){
+			    	h = h - 16;
+			    	if(h < 0){
+			    		h = h + 12;
+			    	}
+			    	if(h==0)
+			    		h=12;
+			    	startTime = Integer.toString(h) + ":" + m;
+			    	System.out.println("startTime = " + startTime);
+			    	try {
+						startDateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTiempo.replaceAll("Z$", "-0100"));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+			    }
+			    if (timeZone.equals("CDT")){
+			    	h = h - 17;
+			    	if(h < 0){
+			    		h = h + 12;
+			    	}
+			    	if(h==0)
+			    		h=12;
+			    	startTime = Integer.toString(h) + ":" + m;
+			    	System.out.println("startTime = " + startTime);
+			    	try {
+						startDateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTiempo.replaceAll("Z$", "-0000"));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+			    }
+			    dateObj = startDateObj;
+		    }
+		    if (c==1){
+		    	String endTiempo = entry.getValue();
+		    	String[] endInfo0 = endTiempo.split("-");
+		    	String[] endInfo1 = endInfo0[2].split("T");
+		    	
+		    	String eTime = endInfo1[1];
 
-		Iterator<Map.Entry<String,String>> it = data.entrySet().iterator();
-		int counter = 0;
-	    while (it.hasNext()) {
-	        Map.Entry<String,String> pairs = (Map.Entry<String,String>)it.next();
-	        //System.out.println(pairs.getKey() + " *= " + pairs.getValue());
-	        if (counter == 0){
-	        	startTime = pairs.getValue();
-	        	try {
-	        		if (timeZone.equals("CDT")){
-	        			startDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0000"));
-						dateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0000"));
-	        		}
-	        		else if (timeZone.equals("EDT")){
-	        			startDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0100"));
-						dateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0100"));
-	        		}
-	        		else{
-	        			startDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0000"));
-						dateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTime.replaceAll("Z$", "-0000"));
-	        		}
-        		} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	        }
-	        else if (counter == 1){
-	        	endTime= pairs.getValue();
-	        	try {
-	        		if (timeZone.equals("CDT")){
-	        			endDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(endTime.replaceAll("Z$", "-0000"));
-	        		}
-	        		else if (timeZone.equals("EDT")){
-	        			endDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(endTime.replaceAll("Z$", "-0100"));	
-	        		}
-	        		else{
-	        			endDate = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(endTime.replaceAll("Z$", "-0000"));
-	        		}
-        		} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	        }
-	        counter++;
-	    }
+		    	System.out.println("end time = " +eTime);
+		    	int h = Integer.parseInt(eTime.substring(0, 2));
+		    	System.out.println("h = " + h);
+		    	String m = eTime.substring(3, 5);
+		    	System.out.println("m = " + m);
+		    	
+			    if (timeZone.equals("EDT")){
+			    	h = h - 16;
+			    	if(h < 0){
+			    		h = h + 12;
+			    	}
+			    	if(h==0)
+			    		h=12;
+			    	endTime = Integer.toString(h) + ":" + m;
+			    	System.out.println("endTime = " + endTime);
+			    	try {
+						endDateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(endTiempo.replaceAll("Z$", "-0100"));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+			    }
+			    if (timeZone.equals("CDT")){
+			    	h = h - 17;
+			    	if(h < 0){
+			    		h = h + 12;
+			    	}
+			    	if(h==0)
+			    		h=12;
+			    	endTime = Integer.toString(h) + ":" + m;
+			    	System.out.println("endTime = " + endTime);
+			    	try {
+						endDateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(endTiempo.replaceAll("Z$", "-0000"));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+			    }
+		    	
+		    }
+		    c++;
+		}
 
 		
-		day = (new SimpleDateFormat("EEEEEEEE")).format(startDate);
-		//System.out.println("day = " + day);
-
-		date = (new SimpleDateFormat("MMM' 'dd,' 'yyyy")).format(startDate);
-		//System.out.println("date = " + date);
+		day = (new SimpleDateFormat("EEEEEEEE")).format(startDateObj);
+		System.out.println("day = " + day);
 		
-		startTime = (new SimpleDateFormat("hh:mm a")).format(startDate);
 		if (startTime.startsWith("0"))
 			startTime = startTime.substring(1);
-		//System.out.println("startTime = " + startTime);
+		System.out.println("startTime = " + startTime);
 
 		
-		endTime = (new SimpleDateFormat("hh:mm a")).format(endDate);
 		if (endTime.startsWith("0"))
 			endTime = endTime.substring(1);
-		//System.out.println("endTime = " + endTime);
+		System.out.println("endTime = " + endTime);
 
 		
 	}
@@ -107,10 +166,10 @@ public class DateAndTime implements Comparable<DateAndTime>{
 	public String getPresentableDate(){
 		String presDate = date;
 		
-		if(date.charAt(4) == '0'){
-			presDate = date.substring(0, 4) + date.substring(5, date.length());
+		if(date.charAt(0) == '0'){
+			presDate = date.substring(1);
 		}
-		//System.out.println("*****presDate = " + presDate);
+		System.out.println("*****presDate = " + presDate);
 		return presDate;
 	}
 
@@ -169,6 +228,22 @@ public class DateAndTime implements Comparable<DateAndTime>{
 
 	public int compareTo(DateAndTime d){
 		return this.getDateObj().compareTo(d.getDateObj());
+	}
+
+	public Date getStartDateObj() {
+		return startDateObj;
+	}
+
+	public void setStartDateObj(Date startDateObj) {
+		this.startDateObj = startDateObj;
+	}
+
+	public Date getEndDateObj() {
+		return endDateObj;
+	}
+
+	public void setEndDateObj(Date endDateObj) {
+		this.endDateObj = endDateObj;
 	}
 
 }
