@@ -160,6 +160,35 @@ public class DateAndTime implements Comparable<DateAndTime>{
 	public String getDay() {
 		return day;
 	}
+	
+	public String getPresentableDay() {
+		String pDay = "";
+        switch (day) {
+            case "Monday":
+                 pDay = "Mon";
+                 break;
+            case "Tuesday":
+            	 pDay = "Tues";
+            	 break;
+            case "Wednesday":
+            	 pDay = "Wed";
+            	 break;
+            case "Thursday":
+            	 pDay = "Thurs";
+            	 break;
+            case "Friday":
+            	 pDay = "Fri";
+            	 break;
+            case "Saturday":
+            	 pDay = "Sat";
+            	 break;
+            case "Sunday":
+            	 pDay = "Sun";
+            	 break;
+        }
+        return pDay;
+		
+	}
 
 	public void setDay(String day) {
 		this.day = day;
@@ -175,7 +204,7 @@ public class DateAndTime implements Comparable<DateAndTime>{
 		if(date.charAt(0) == '0'){
 			presDate = date.substring(1);
 		}
-		System.out.println("*****presDate = " + presDate);
+		//System.out.println("*****presDate = " + presDate);
 		return presDate;
 	}
 

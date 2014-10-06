@@ -77,9 +77,12 @@
     <div class="well ne-6-bg">
               <form id="regForm" name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" class="bs-example form-horizontal">
                 <fieldset>
+                    
                   <h3 class="ne-11 handwritten" style="margin-top: 0px;">Register for this webinar : </h3>
+
                     <span style="font-size:12px; color:#fff;"> (all fields required)</span>
                     <hr class="dashed-line-lt" /><br>
+
 
                   <div class="form-group col-lg-10">
                   <div class="input-group formedit ng-scope margin-bottom-sm" ng-class="{'has-error' : form.First_Name_Casual__c.$dirty && (form.First_Name_casual__c.$error.required || form.First_Name_Casual__c.$error.maxlangth)}">
@@ -310,7 +313,10 @@
     </p>
     </div>
     <center>
-    <img src="noesisEmail.jpg"></img>
+    <section>
+        <img class="visible-xs" style="padding:10px;" src="noesisEmailXS.jpg"></img>
+        <img class="hidden-xs" style="padding:10px;" src="noesisEmail.jpg"></img>
+    </section>
     </center>
 </div>
 </div> 
