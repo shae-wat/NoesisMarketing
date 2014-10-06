@@ -107,55 +107,6 @@ public class Utils {
 		return responseStr;
 	}
 
-	// public static String httpsTest (String urlStr) throws KeyStoreException,
-	// IOException, Exception, CertificateException
-	// {
-	// String responseStr = "";
-	//
-	// KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
-	// FileInputStream instream = new FileInputStream(new File("my.keystore"));
-	// try {
-	// trustStore.load(instream, "nopassword".toCharArray());
-	// } finally {
-	// instream.close();
-	// }
-	//
-	// // Trust own CA and all self-signed certs
-	// SSLContext sslcontext = SSLContexts.custom()
-	// .loadTrustMaterial(trustStore, new TrustSelfSignedStrategy())
-	// .build();
-	// // Allow TLSv1 protocol only
-	// SSLConnectionSocketFactory sslsf = new
-	// SSLConnectionSocketFactory(sslcontext);
-	// CloseableHttpClient httpclient = HttpClients.custom()
-	// .setSSLSocketFactory(sslsf)
-	// .build();
-	// try {
-	//
-	// HttpGet httpget = new HttpGet("https://www.noesisenergy.com/");
-	//
-	// System.out.println("executing request" + httpget.getRequestLine());
-	//
-	// CloseableHttpResponse response = httpclient.execute(httpget);
-	// try {
-	// HttpEntity entity = response.getEntity();
-	//
-	// System.out.println("----------------------------------------");
-	// System.out.println(response.getStatusLine());
-	// if (entity != null) {
-	// System.out.println("Response content length: " +
-	// entity.getContentLength());
-	// }
-	// EntityUtils.consume(entity);
-	// } finally {
-	// response.close();
-	// }
-	// } finally {
-	// httpclient.close();
-	// }
-	//
-	// return responseStr;
-	// }
 
 	public static String httpPost(String urlStr)
 			throws ClientProtocolException, IOException {
