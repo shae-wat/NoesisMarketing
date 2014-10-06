@@ -29,6 +29,11 @@ public class App
              if (input.attr("name").equals("Landing_Page_Opt_In__c")){
             	 optInQ = true;
              }
+             
+         }
+         Elements otros = doc.select("p");
+         for (Element p : otros){
+        	 System.out.println(p.select("p"));
          }
     	
     	
@@ -41,6 +46,7 @@ public class App
     	
     	/*  Is there an 'opt in' question on the form? What is the text of the opt in question?  */
          System.out.println("\nIs there an 'opt in' question on the form? " + optInQ);
+         
          
     	}
     	System.out.println( "\nForm Validator!" );
