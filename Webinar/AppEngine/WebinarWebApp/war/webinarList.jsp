@@ -68,8 +68,23 @@
 		String timeZone = webinar.getTimeZone();	
 		%>
 
-		
-        <div class="well ne-8-bg">
+		<div class="well ne-8-bg visible-xs">
+		<h4><%=webinar.getSubject()%></h4>
+
+
+		<ul>
+			<%for (DateAndTime when : times){
+				String url = "webinarSignUp.jsp?webinarID="+when.getWebinarKey();%>
+				
+					<a href=<%=url%>><button type="input" class="btn btn-info" style="margin-bottom:5px"><%=when.getDay()%> <%=when.getPresentableDate()%> <%=when.getStartTime()%> <%=when.getTimeZone()%></button></a>
+				
+
+			<%}%>
+		</ul>
+			
+		</div>
+
+        <div class="well ne-8-bg hidden-xs">
 		<h4><%=webinar.getSubject()%></h4>
 
 
