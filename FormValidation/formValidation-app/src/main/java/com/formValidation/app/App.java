@@ -18,7 +18,7 @@ public class App
     	urlList.add("https://www.noesisenergy.com/site/content/energy-efficient-lighting-explained-0?");
     	urlList.add("https://www.noesisenergy.com/site/content/energy-project-finance-cheat-sheet");
     	
-    	boolean optInQ = false;
+    	
     	List<String> fieldList = new ArrayList<String>();
     	
     	for(String url : urlList){
@@ -42,12 +42,18 @@ public class App
          
     	
     	/*  Does the form include the Google Analytics fields?  */
+         boolean analyticsQ = false;
+         if(fieldList.contains("GASourceLatest__c") && fieldList.contains("GAMediumLatest__c") && fieldList.contains("GACampaignLatest__c")){
+        	 analyticsQ = true;
+         }
+         System.out.println("\nDoes the form include the Google Analytics fields? " + analyticsQ);
     	
     	
     	/*  What is the value of the hidden 'source' field?  */
          
     	
     	/*  Is there an 'opt in' question on the form? What is the text of the opt in question?  */
+         boolean optInQ = false;
          if(fieldList.contains("Landing_Page_Opt_In__c")){
         	 optInQ = true;
          }
