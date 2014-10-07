@@ -77,8 +77,8 @@
     <div class="well ne-6-bg">
               <form id="regForm" name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" class="bs-example form-horizontal">
                 <fieldset>
-                    
-                  <h3 class="ne-11 handwritten" style="margin-top: 0px;">Register for this webinar : </h3>
+                  <h3 class="ne-11 handwritten visible-xs" style="margin-top: 0px;">Register for this webinar</h3>  
+                  <h3 class="ne-11 handwritten hidden-xs" style="margin-top: 0px;">Register for this webinar : </h3>
 
                     <span style="font-size:12px; color:#fff;"> (all fields required)</span>
                     <hr class="dashed-line-lt" /><br>
