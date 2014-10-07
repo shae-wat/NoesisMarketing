@@ -20,6 +20,7 @@ public class App
     	
     	
     	List<String> fieldList = new ArrayList<String>();
+    	String sourceField = "";
     	
     	for(String url : urlList){
     	 Document doc = Jsoup.connect(url).get();
@@ -32,7 +33,9 @@ public class App
              
              fieldList.add(input.attr("name"));
              fieldList.add(input.attr("ng-init"));
-             
+             if(input.attr("ng-init").startsWith("Source__c=")){
+            	 sourceField = input.attr("ng-init").substring(9);
+             }
 
              
          }
@@ -50,6 +53,7 @@ public class App
     	
     	
     	/*  What is the value of the hidden 'source' field?  */
+         System.out.println("\nWhat is the value of the hidden 'source' field? " + sourceField);
          
     	
     	/*  Is there an 'opt in' question on the form? What is the text of the opt in question?  */
