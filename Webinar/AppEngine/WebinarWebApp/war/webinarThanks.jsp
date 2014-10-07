@@ -152,6 +152,10 @@
 		</td>
 		</tr>
 		</table>
+		 <br>
+            <a href="/webinarList.jsp"> << Back to webinar list </a>
+            <br>
+            <br>
 		</center>
 
 
