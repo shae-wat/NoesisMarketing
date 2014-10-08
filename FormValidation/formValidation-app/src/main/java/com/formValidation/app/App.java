@@ -28,8 +28,8 @@ public class App
          System.out.println("\n========\nForm url: " + url + "\n");
          
          for(Element input : inputs) {
-        	 System.out.println(input.attr("name"));
-             System.out.println(input.attr("ng-init"));
+//        	 System.out.println(input.attr("name"));
+//             System.out.println(input.attr("ng-init"));
              
              fieldList.add(input.attr("name"));
              fieldList.add(input.attr("ng-init"));
@@ -63,10 +63,14 @@ public class App
          }
          System.out.println("\nIs there an 'opt in' question on the form? " + optInQ);
          
+         
+         /*  What is the text of the opt in question?  */
          Elements otros = doc.select("p");
          for (Element p : otros){
-        	 System.out.println(p.select("p[style=color:#FFFFFF]"));
+        	 if (!p.select("p[style=color:#FFFFFF;]").toString().equals(""))
+        			 System.out.println("\nOpt in question = " + p.select("p[style=color:#FFFFFF;]") + "!");
          }
+         
          
          
         // end loop over urls 
