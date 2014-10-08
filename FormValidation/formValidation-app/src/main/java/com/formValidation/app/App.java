@@ -68,7 +68,7 @@ public class App
          Elements otros = doc.select("p");
          for (Element p : otros){
         	 if (!p.select("p[style=color:#FFFFFF;]").toString().equals(""))
-        			 System.out.println("\nOpt in question = " + p.select("p[style=color:#FFFFFF;]") + "!");
+        			 System.out.println("\nOpt in question = " + formatOptInQ(p.select("p[style=color:#FFFFFF;]").toString()));
          }
          
          
@@ -76,5 +76,10 @@ public class App
         // end loop over urls 
     	}
     	System.out.println( "\n======Form validation complete" );
+    }
+    
+    private static String formatOptInQ(String s){
+    	
+    	return s.substring(27,s.length()-4);
     }
 }
