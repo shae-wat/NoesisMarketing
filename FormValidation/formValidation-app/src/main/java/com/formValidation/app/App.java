@@ -1,6 +1,9 @@
 package com.formValidation.app;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +17,20 @@ public class App
 {
     public static void main( String[] args ) throws IOException
     {
+    	//Read from file of form URLs
+    	FileInputStream inputText = new FileInputStream("formURLS.txt");
+    	BufferedReader br = new BufferedReader(new InputStreamReader(inputText));
     	List<String> urlList = new ArrayList<String>();
-    	urlList.add("https://www.noesisenergy.com/site/content/energy-efficient-lighting-explained-0?");
-    	urlList.add("https://www.noesisenergy.com/site/content/energy-project-finance-cheat-sheet");
+    	String line = null;
+    	while ((line = br.readLine()) != null) {
+    		urlList.add("https://www.noesisenergy.com/site/" + line);
+    		System.out.println("https://www.noesisenergy.com/site/" + line);
+    	}
+     
+    	br.close();
+    	
+    	
+    	
     	
     	
     	List<String> fieldList = new ArrayList<String>();
