@@ -68,7 +68,7 @@
 	</header> -->
 	
 	<div class="row">
-	<div class="col-md-6">
+	<div class="col-sm-6">
 
 		<div class="jumbotron ne-cloud-bg">
 			<h2 class="text-info">Successful Registration for <%=webinar.getSubject()%> </h2>
@@ -87,7 +87,7 @@
 		</div>
 
 	</div>
-	<div class="col-md-6">
+	<div class="col-sm-6">
 		<br>
 		<br>
 		<center><h3 class="greeting text-primary">Next Steps</h3></center>

@@ -73,7 +73,7 @@
 </header>
 
 <div class="row">
-<div class="col-md-6">
+<div class="col-sm-6">
     <div class="well ne-6-bg">
               <form id="regForm" name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" class="bs-example form-horizontal">
                 <fieldset>
@@ -304,7 +304,7 @@
 </div>
 
 
-<div class="col-md-6">
+<div class="col-sm-6">
     <div class="well">
     <h3 class="greeting text-primary">About this webinar : </h3>
     <p style="color:#444444"> <br>

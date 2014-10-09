@@ -57,7 +57,7 @@
 
 
 <div class="row">
-<main class="col-md-6">
+<main class="col-sm-6">
 	<nav>
 		<ul>
 <% if (upcomingWebinars != null)
@@ -112,7 +112,7 @@
 
 	
 	</main>
-	<aside class="col-md-6">
+	<aside class="col-sm-6">
 		<br>
 		<br>
 
