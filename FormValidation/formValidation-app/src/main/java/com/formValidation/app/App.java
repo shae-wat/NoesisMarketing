@@ -50,14 +50,23 @@ public class App
              if(input.attr("ng-init").startsWith("Source__c=")){
             	 sourceField = input.attr("ng-init").substring(9);
              }
+             
 
              
          }
          
     	
          /*  How many fields are on the form?  */
+         int numFields = 0;
+         Elements fields = doc.select("div");
+         for(Element f : fields){
+        	 if (!f.attr("ng-include").toString().equals("")){
+        		 System.out.println("Page ng-include's " + f.attr("ng-include").toString()); 
+        		 numFields += 11;
+        	 }
+         }
+    	System.out.println("Num fields = " + numFields);
          
-    	
     	/*  Does the form include the Google Analytics fields?  */
          boolean analyticsQ = false;
          if(fieldList.contains("GASourceLatest__c") && fieldList.contains("GAMediumLatest__c") && fieldList.contains("GACampaignLatest__c")){
