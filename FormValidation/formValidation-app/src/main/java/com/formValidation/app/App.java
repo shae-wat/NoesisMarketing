@@ -24,13 +24,10 @@ public class App
     	String line = null;
     	while ((line = br.readLine()) != null) {
     		urlList.add("https://www.noesisenergy.com/site/" + line);
-    		System.out.println("https://www.noesisenergy.com/site/" + line);
+    		//System.out.println("https://www.noesisenergy.com/site/" + line);
     	}
      
     	br.close();
-    	
-    	
-    	
     	
     	
     	List<String> fieldList = new ArrayList<String>();
@@ -41,18 +38,12 @@ public class App
          Elements inputs = doc.select("input");
          System.out.println("\n========\nForm url: " + url + "\n");
          
-         for(Element input : inputs) {
-//        	 System.out.println(input.attr("name"));
-//             System.out.println(input.attr("ng-init"));
-             
+         for(Element input : inputs) {          
              fieldList.add(input.attr("name"));
              fieldList.add(input.attr("ng-init"));
              if(input.attr("ng-init").startsWith("Source__c=")){
             	 sourceField = input.attr("ng-init").substring(9);
              }
-             
-
-             
          }
          
     	
@@ -65,7 +56,14 @@ public class App
         		 numFields += 11;
         	 }
          }
-    	System.out.println("Num fields = " + numFields);
+    	if (numFields == 0){
+    		System.out.println("XX Num fields = " + numFields);
+    		break;
+    	}
+    	else
+    		System.out.println("Num fields = " + numFields);
+    		
+    	
          
     	/*  Does the form include the Google Analytics fields?  */
          boolean analyticsQ = false;
