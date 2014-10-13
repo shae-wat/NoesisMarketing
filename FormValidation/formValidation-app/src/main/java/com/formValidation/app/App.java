@@ -46,6 +46,8 @@ public class App
              }
          }
          
+         /*  What is the value of the hidden 'source' field?  */
+         System.out.println("Value of the hidden 'source' field: " + sourceField + "\n");
     	
          /*  How many fields are on the form?  */
          int numFields = 0;
@@ -70,26 +72,24 @@ public class App
          if(fieldList.contains("GASourceLatest__c") && fieldList.contains("GAMediumLatest__c") && fieldList.contains("GACampaignLatest__c")){
         	 analyticsQ = true;
          }
-         System.out.println("\nDoes the form include the Google Analytics fields? " + analyticsQ);
+         System.out.println("\nIncludes the Google Analytics fields: " + analyticsQ);
     	
-    	
-    	/*  What is the value of the hidden 'source' field?  */
-         System.out.println("\nWhat is the value of the hidden 'source' field? " + sourceField);
          
     	
     	/*  Is there an 'opt in' question on the form? What is the text of the opt in question?  */
-         boolean optInQ = false;
-         if(fieldList.contains("Landing_Page_Opt_In__c")){
-        	 optInQ = true;
-         }
-         System.out.println("\nIs there an 'opt in' question on the form? " + optInQ);
+        
          
          
          /*  What is the text of the opt in question?  */
          Elements otros = doc.select("p");
          for (Element p : otros){
+        	 boolean optInQ = false;
+             if(fieldList.contains("Landing_Page_Opt_In__c") && !p.select("p[style=color:#FFFFFF;]").toString().equals("")){
+            	 optInQ = true;
+            	 System.out.println("\n'Opt in' question on the form: " + optInQ);
+             }
         	 if (!p.select("p[style=color:#FFFFFF;]").toString().equals(""))
-        			 System.out.println("\nOpt in question = " + formatOptInQ(p.select("p[style=color:#FFFFFF;]").toString()));
+        			 System.out.println("\nOpt in question:  " + formatOptInQ(p.select("p[style=color:#FFFFFF;]").toString()));
          }
          
          
