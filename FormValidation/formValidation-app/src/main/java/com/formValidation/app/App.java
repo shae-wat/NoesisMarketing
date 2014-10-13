@@ -36,7 +36,10 @@ public class App
     	for(String url : urlList){
     	 Document doc = Jsoup.connect(url).get();
          Elements inputs = doc.select("input");
+         Elements selects = doc.select("select");
          System.out.println("\n========\nForm url: " + url + "\n");
+         fieldList.clear();
+         int numFields = 0;
          
          for(Element input : inputs) {          
              fieldList.add(input.attr("name"));
@@ -45,22 +48,79 @@ public class App
             	 sourceField = input.attr("ng-init").substring(9);
              }
          }
+         for(Element select : selects) {          
+             fieldList.add(select.attr("name"));
+             
+         }
+         
          
          /*  What is the value of the hidden 'source' field?  */
-         System.out.println("Value of the hidden 'source' field: " + sourceField + "\n");
+         System.out.println("Value of the hidden 'source' field: " + sourceField);
+         
+         
+         /*  What is the text of the opt in question?  */
+         Elements otros = doc.select("p");
+         for (Element p : otros){
+        	 boolean optInQ = false;
+             if(fieldList.contains("Landing_Page_Opt_In__c") && !p.select("p[style=color:#FFFFFF;]").toString().equals("") && !p.select("p[style=color:#FFFFFF;]").toString().contains("All Fields Required")){
+            	 optInQ = true;
+            	 System.out.println("\n'Opt in' question on the form: " + optInQ);
+            	 numFields += 1;
+             }
+        	 if (!p.select("p[style=color:#FFFFFF;]").toString().equals("") && !p.select("p[style=color:#FFFFFF;]").toString().contains("All Fields Required"))
+        			 System.out.println("Opt in question:  " + formatOptInQ(p.select("p[style=color:#FFFFFF;]").toString()));
+         }
+         
     	
          /*  How many fields are on the form?  */
-         int numFields = 0;
+         boolean formHtml = false;
          Elements fields = doc.select("div");
          for(Element f : fields){
         	 if (!f.attr("ng-include").toString().equals("")){
-        		 System.out.println("Page ng-include's " + f.attr("ng-include").toString()); 
-        		 numFields += 11;
+        		 System.out.println("\nPage ng-include's " + f.attr("ng-include").toString()); 
+        		 numFields += 10;
+        		 //System.out.println("numFields = " + numFields);
+        		 formHtml = true;
         	 }
+         }
+         for (String field : fieldList){
+        	 //System.out.println(field);
+        	 if(!formHtml){
+	        	 if(field.equals("First_Name_Casual__c")){
+	        		 numFields += 1;
+	        		 System.out.println("First_Name_Casual__c numFields = " + numFields);
+	        	 }
+	        	 if(field.equals("LastName")){
+	        		 numFields += 1;
+	        		 System.out.println("LastName numFields = " + numFields);
+	        	 }
+	        	 if(field.equals("Email")){
+	        		 numFields += 1;
+	        		 System.out.println("Email numFields = " + numFields);
+	        	 }
+	        	 if(field.equals("Phone")){
+	        		 numFields += 1;
+	        		 System.out.println("Phone numFields = " + numFields);
+	        	 }
+	        	 if(field.equals("Company")){
+	        		 numFields += 1;
+	        		 System.out.println("Company numFields = " + numFields);
+	        	 }
+	        	 if(field.equals("Company_Headquarter_State__c")){
+	        		 numFields += 1;
+	        		 System.out.println("Company_Headquarter_State__c numFields = " + numFields);
+	        	 }
+	        	 if(field.equals("Company_Size__c")){
+	        		 numFields += 1;
+	        		 System.out.println("Company_Size__c numFields = " + numFields);
+	        	 }
+        	 }
+        	 
+        	 
          }
     	if (numFields == 0){
     		System.out.println("XX Num fields = " + numFields);
-    		break;
+    		
     	}
     	else
     		System.out.println("Num fields = " + numFields);
@@ -79,18 +139,7 @@ public class App
     	/*  Is there an 'opt in' question on the form? What is the text of the opt in question?  */
         
          
-         
-         /*  What is the text of the opt in question?  */
-         Elements otros = doc.select("p");
-         for (Element p : otros){
-        	 boolean optInQ = false;
-             if(fieldList.contains("Landing_Page_Opt_In__c") && !p.select("p[style=color:#FFFFFF;]").toString().equals("")){
-            	 optInQ = true;
-            	 System.out.println("\n'Opt in' question on the form: " + optInQ);
-             }
-        	 if (!p.select("p[style=color:#FFFFFF;]").toString().equals(""))
-        			 System.out.println("\nOpt in question:  " + formatOptInQ(p.select("p[style=color:#FFFFFF;]").toString()));
-         }
+     
          
          
          
