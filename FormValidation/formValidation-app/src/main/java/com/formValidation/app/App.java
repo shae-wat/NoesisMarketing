@@ -66,6 +66,7 @@ public class App
             	 optInQ = true;
             	 System.out.println("\n'Opt in' question on the form: " + optInQ);
             	 numFields += 1;
+            	 System.out.println("Opt in Q numFields = " + numFields);
              }
         	 if (!p.select("p[style=color:#FFFFFF;]").toString().equals("") && !p.select("p[style=color:#FFFFFF;]").toString().contains("All Fields Required"))
         			 System.out.println("Opt in question:  " + formatOptInQ(p.select("p[style=color:#FFFFFF;]").toString()));
@@ -74,6 +75,7 @@ public class App
     	
          /*  How many fields are on the form?  */
          boolean formHtml = false;
+         boolean sellOptin = false;
          Elements fields = doc.select("div");
          for(Element f : fields){
         	 if (!f.attr("ng-include").toString().equals("")){
@@ -113,6 +115,11 @@ public class App
 	        	 if(field.equals("Company_Size__c")){
 	        		 numFields += 1;
 	        		 System.out.println("Company_Size__c numFields = " + numFields);
+	        	 }
+	        	 if(field.equals("Sell_Side_Opt_In__c") && !sellOptin){
+	        		 numFields += 1;
+	        		 sellOptin = true;
+	        		 System.out.println("Sell_Side_Opt_In__c numFields = " + numFields);
 	        	 }
         	 }
         	 
