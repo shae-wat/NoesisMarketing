@@ -2,6 +2,7 @@ package com.formValidation.app;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import au.com.bytecode.opencsv.CSVWriter;
 
 
 public class App 
@@ -29,7 +32,7 @@ public class App
      
     	br.close();
     	
-    	
+    	CSVWriter writer = new CSVWriter(new FileWriter("formValidation.csv"), '\t');
     	List<String> fieldList = new ArrayList<String>();
     	String sourceField = "";
     	
@@ -40,6 +43,8 @@ public class App
          System.out.println("\n========\nForm url: " + url + "\n");
          fieldList.clear();
          int numFields = 0;
+         String[] urlOutputArr = new String[5];
+         urlOutputArr[0] = url;
          
          for(Element input : inputs) {          
              fieldList.add(input.attr("name"));
@@ -151,13 +156,17 @@ public class App
          System.out.println("\nIncludes the Google Analytics fields: " + analyticsQ);
  
          
-        // end loop over urls 
+        // end loop over urls
+         writer.writeNext(urlOutputArr);
     	}
+    	writer.close();
     	System.out.println( "\n======Form validation complete" );
     }
+    
     
     private static String formatOptInQ(String s){
     	
     	return s.substring(27,s.length()-4);
     }
+    
 }
