@@ -145,7 +145,7 @@ public class App
     		
     	}
     	else
-    		System.out.println("Num fields = " + numFields);
+    		System.out.println("\nNum fields = " + numFields);
     	urlOutputArr[2] = Integer.toString(numFields);	
     	
          
