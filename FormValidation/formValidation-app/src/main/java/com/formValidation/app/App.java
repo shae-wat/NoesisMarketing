@@ -121,6 +121,15 @@ public class App
 	        		 sellOptin = true;
 	        		 System.out.println("Sell_Side_Opt_In__c numFields = " + numFields);
 	        	 }
+	        	 if(field.equals("Job_Category__c")){
+	        		 numFields += 1;
+	        		 System.out.println("Job_Category__c numFields = " + numFields);
+	        	 }
+	        	 if(field.equals("Landing_Page_Opt_In__c") && !sellOptin){
+	        		 numFields += 1;
+	        		 sellOptin = true;
+	        		 System.out.println("Landing_Page_Opt_In__c numFields = " + numFields);
+	        	 }
         	 }
         	 
         	 
@@ -140,15 +149,7 @@ public class App
         	 analyticsQ = true;
          }
          System.out.println("\nIncludes the Google Analytics fields: " + analyticsQ);
-    	
-         
-    	
-    	/*  Is there an 'opt in' question on the form? What is the text of the opt in question?  */
-        
-         
-     
-         
-         
+ 
          
         // end loop over urls 
     	}
