@@ -44,7 +44,7 @@ public class App
          fieldList.clear();
          int numFields = 0;
          String[] urlOutputArr = new String[5];
-         urlOutputArr[0] = url;
+         urlOutputArr[4] = url;
          
          for(Element input : inputs) {          
              fieldList.add(input.attr("name"));
@@ -60,7 +60,8 @@ public class App
          
          
          /*  What is the value of the hidden 'source' field?  */
-         System.out.println("Value of the hidden 'source' field: " + sourceField);
+         urlOutputArr[0] = sourceField.substring(2,sourceField.length()-1);
+         System.out.println(sourceField.substring(2,sourceField.length()-1));
          
          
          /*  What is the text of the opt in question?  */
@@ -71,10 +72,10 @@ public class App
             	 optInQ = true;
             	 System.out.println("\n'Opt in' question on the form: " + optInQ);
             	 numFields += 1;
-            	 System.out.println("Opt in Q numFields = " + numFields);
+            	 //System.out.println("Opt in Q numFields = " + numFields);
              }
         	 if (!p.select("p[style=color:#FFFFFF;]").toString().equals("") && !p.select("p[style=color:#FFFFFF;]").toString().contains("All Fields Required"))
-        			 System.out.println("Opt in question:  " + formatOptInQ(p.select("p[style=color:#FFFFFF;]").toString()));
+        			 System.out.println(formatOptInQ(p.select("p[style=color:#FFFFFF;]").toString()));
          }
          
     	
@@ -84,7 +85,7 @@ public class App
          Elements fields = doc.select("div");
          for(Element f : fields){
         	 if (!f.attr("ng-include").toString().equals("")){
-        		 System.out.println("\nPage ng-include's " + f.attr("ng-include").toString()); 
+        		 //System.out.println("\nPage ng-include's " + f.attr("ng-include").toString()); 
         		 numFields += 10;
         		 //System.out.println("numFields = " + numFields);
         		 formHtml = true;
@@ -95,45 +96,45 @@ public class App
         	 if(!formHtml){
 	        	 if(field.equals("First_Name_Casual__c")){
 	        		 numFields += 1;
-	        		 System.out.println("First_Name_Casual__c numFields = " + numFields);
+	        		 //System.out.println("First_Name_Casual__c numFields = " + numFields);
 	        	 }
 	        	 if(field.equals("LastName")){
 	        		 numFields += 1;
-	        		 System.out.println("LastName numFields = " + numFields);
+	        		 //System.out.println("LastName numFields = " + numFields);
 	        	 }
 	        	 if(field.equals("Email")){
 	        		 numFields += 1;
-	        		 System.out.println("Email numFields = " + numFields);
+	        		 //System.out.println("Email numFields = " + numFields);
 	        	 }
 	        	 if(field.equals("Phone")){
 	        		 numFields += 1;
-	        		 System.out.println("Phone numFields = " + numFields);
+	        		 //System.out.println("Phone numFields = " + numFields);
 	        	 }
 	        	 if(field.equals("Company")){
 	        		 numFields += 1;
-	        		 System.out.println("Company numFields = " + numFields);
+	        		 //System.out.println("Company numFields = " + numFields);
 	        	 }
 	        	 if(field.equals("Company_Headquarter_State__c")){
 	        		 numFields += 1;
-	        		 System.out.println("Company_Headquarter_State__c numFields = " + numFields);
+	        		 //System.out.println("Company_Headquarter_State__c numFields = " + numFields);
 	        	 }
 	        	 if(field.equals("Company_Size__c")){
 	        		 numFields += 1;
-	        		 System.out.println("Company_Size__c numFields = " + numFields);
+	        		 //System.out.println("Company_Size__c numFields = " + numFields);
 	        	 }
 	        	 if(field.equals("Sell_Side_Opt_In__c") && !sellOptin){
 	        		 numFields += 1;
 	        		 sellOptin = true;
-	        		 System.out.println("Sell_Side_Opt_In__c numFields = " + numFields);
+	        		 //System.out.println("Sell_Side_Opt_In__c numFields = " + numFields);
 	        	 }
 	        	 if(field.equals("Job_Category__c")){
 	        		 numFields += 1;
-	        		 System.out.println("Job_Category__c numFields = " + numFields);
+	        		 //System.out.println("Job_Category__c numFields = " + numFields);
 	        	 }
 	        	 if(field.equals("Landing_Page_Opt_In__c") && !sellOptin){
 	        		 numFields += 1;
 	        		 sellOptin = true;
-	        		 System.out.println("Landing_Page_Opt_In__c numFields = " + numFields);
+	        		 //System.out.println("Landing_Page_Opt_In__c numFields = " + numFields);
 	        	 }
         	 }
         	 
@@ -145,7 +146,7 @@ public class App
     	}
     	else
     		System.out.println("Num fields = " + numFields);
-    		
+    	urlOutputArr[2] = Integer.toString(numFields);	
     	
          
     	/*  Does the form include the Google Analytics fields?  */
@@ -154,6 +155,7 @@ public class App
         	 analyticsQ = true;
          }
          System.out.println("\nIncludes the Google Analytics fields: " + analyticsQ);
+         urlOutputArr[3] = "GA = " + analyticsQ;
  
          
         // end loop over urls
