@@ -286,10 +286,10 @@
                      <% } %>
                                     
                                 
-        <div>
+        <div class="form-group col-lg-10">
            <button type="input" class="btn btn-primary" style="margin-top:10px">Register for Webinar</button>
         </div>
-        <div>
+        <div class="form-group col-lg-10">
             <br>
             <a href="/webinarList.jsp"> << Back to webinar list </a>
             <br>
