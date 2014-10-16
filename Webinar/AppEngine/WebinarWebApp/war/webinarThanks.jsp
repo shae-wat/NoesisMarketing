@@ -124,7 +124,7 @@
 		<td style="padding-right:10px;">
 			<center>
 			<div>
-			<a target="_blank" href="https://www.noesisenergy.com/site/noesis-blog"><img src="https://noesisimg.s3.amazonaws.com/nb-images/content-type-icons/blog-icon.png"</img></a>
+			<a target="_blank" href="https://www.noesisenergy.com/site/noesis-blog"><img src="https://noesisimg.s3.amazonaws.com/nb-images/content-type-icons/discussion-icon.png"</img></a>
 			<br>
 			<p>Blog</button></p>
 			</div>
@@ -134,7 +134,7 @@
 		<td style="padding-right:10px;">
 			<center>
 			<div>
-			<a target="_blank" href="https://www.noesisenergy.com/site/content/noesis-resource-library"><img src="https://noesisimg.s3.amazonaws.com/nb-images/content-type-icons/downloads-icon.png"</img></a>
+			<a target="_blank" href="https://www.noesisenergy.com/site/content/noesis-resource-library"><img src="https://noesisimg.s3.amazonaws.com/nb-images/content-type-icons/reports-icon.png"</img></a>
 			<br>
 			<p>Resource Library</p>
 			</div>
