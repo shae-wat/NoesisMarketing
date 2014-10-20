@@ -53,7 +53,7 @@
 
 
 
-<body class="ne-11-bg">
+<body class="ne-11-bg" onload="parent.postMessage('Hello World','*')">
 <div class="container" style="margin:0;padding:0;">
 <header>
     <table><tr>
