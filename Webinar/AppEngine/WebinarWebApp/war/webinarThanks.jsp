@@ -56,7 +56,7 @@
 </head>
 
 
-<body class="ne-11-bg">
+<body class="ne-11-bg" onload="parent.postMessage('Hello World','*')">
 
 	<div class="container" style="padding:0;margin:0;">
 	<!-- <header>
