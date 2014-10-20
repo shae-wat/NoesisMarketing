@@ -88,15 +88,15 @@
 		<h4><%=webinar.getSubject()%></h4>
 
 
-		<ul>
+		<table>
 			<%for (DateAndTime when : times){
 				String url = "webinarSignUp.jsp?webinarID="+when.getWebinarKey();%>
-				
+					<tr><td>
 					<a href=<%=url%>><button type="input" class="btn btn-info" style="margin-bottom:5px"><%=when.getDay()%> <%=when.getPresentableDate()%> <%=when.getStartTime()%>-<%=when.getEndTime()%> <%=when.getTimeZone()%></button></a>
-				
+					</td></tr>				
 
 			<%}%>
-		</ul>
+		</table>
 			
 		</div>
 		
