@@ -1,0 +1,238 @@
+<style type="text/css">
+.ne-money-bg {
+    background: url(http://noesisimg.s3.amazonaws.com/nb-images/dollars.svg);
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: 40px bottom;
+    background-color: #deeff1;
+}
+</style>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+var GATrafficSource = (function() {
+    var pairs = (/(?:^|; )__utmz=([^;]*)/.exec(document.cookie) || []).slice(1).pop().split('.').slice(4).join('.').split('|');
+    var vals = {};
+    for (var i = 0; i < pairs.length; i++) {
+        var temp = pairs[i].split('=');
+        vals[temp[0]] = temp[1];
+    }
+    return {
+        'utm_source': (vals.utmgclid) ? "google" : vals.utmcsr,
+        'utm_medium': (vals.utmgclid) ? "cpc" : vals.utmcmd,
+        'utm_campaign': vals.utmccn,
+        'utm_content': vals.utmcct,
+        'utm_term': vals.utmctr
+    };
+}());
+
+$(document).ready(function() {
+    $("#companysize").hide();
+    $("#companyrevenue").hide();
+
+    document.getElementById("GASourceLatest__c").setAttribute("ng-init", "GASourceLatest__c='" + GATrafficSource.utm_source + "'");
+    document.getElementById("GAMediumLatest__c").setAttribute("ng-init", "GAMediumLatest__c='" + GATrafficSource.utm_medium + "'");
+    document.getElementById("GACampaignLatest__c").setAttribute("ng-init", "GACampaignLatest__c='" + GATrafficSource.utm_campaign + "'");
+});
+
+function showSellSideQuestions() {
+    $("#companysize").show();
+    $("#companyrevenue").show();
+
+    document.getElementById("companysize").setAttribute("ng-required", "true");
+    document.getElementById("companyrevenue").setAttribute("ng-required", "true");
+}
+
+function hideSellSideQuestions() {
+    $("#companysize").hide();
+    $("#companyrevenue").hide();
+    document.getElementById("companysize").setAttribute("ng-required", "false");
+    document.getElementById("companyrevenue").setAttribute("ng-required", "false");
+}
+</script>
+
+<div class="ne-money-bg">
+    <div class="container">
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-md-7">
+                <h1 style="font-size:35px">Do you have a project that needs financing?</h1>
+                <p class="lead">If you have an immediate need to finance one or more energy efficiency projects and would like to speak to a project finance specialist, we can help. A Noesis project finance experts will discuss your project with you, understand the financing preferences and then work with you and the borrower (if different) in the application, underwriting and closing process.
+                </p>
+                <p class="lead">Don’t Forget: simply adding financing to your proposals is not enough. You must be able to present your project’s investment opportunity to the CFO using his or her language (i.e. dollars, not kilowatts). Financing is a means to an end. That is, it is a way for the CFO to take advantage of your proposed investment opportunity without using company cash. Presenting this business case with financing is where Noesis excels. We help you win the CFO’s approval. Let us help you!
+                </p>
+                <p class="lead">Fill out all fields in the form below and a Noesis representative will contact you. We look forward to speaking with you.
+                </p>
+
+            </div>
+            <div class="col-md-5">
+                <br />
+                <br />
+                <img class="img-responsive em-margin-y em-margin-x hidden-sm hidden-xs" src="https://noesisimg.s3.amazonaws.com/Marketing/pages/projects-with-lenders.svg" style="max-width: 385px;" />
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+<div class="ne-6-bg">
+    <div class="container">
+
+        <div class="row">
+            <div class="ne-marketo-form form-group" ng-controller="noesis.bootstrap.marketing.controllers.marketingController">
+                <form name="form" class="formborder" ng-submit="submitForm('/NOESIS::app-m.marketo.com/index.php/leadCapture/save')" novalidate>
+
+                    <div class="col-md-6 form-group">
+                        <br>
+                        <h3 class="ne-11 handwritten" style="margin-top: 0px;">About You</h3>
+                        <hr class="dashed-line-lt">
+                        <br>
+                        <!--  start form -->
+
+                        <input name="GASourceLatest__c" ng-model="GASourceLatest__c" type="hidden" id="GASourceLatest__c">
+                        <input name="GAMediumLatest__c" ng-model="GAMediumLatest__c" type="hidden" id="GAMediumLatest__c">
+                        <input name="GACampaignLatest__c" ng-model="GACampaignLatest__c" type="hidden" id="GACampaignLatest__c">
+
+                        <input name="Source__c" type="hidden" ng-model="Source__c" ng-init="Source__c='financeaproject'">
+                        <input name="_marketo_comments" type="hidden" ng-model="_marketo_comments" ng-init="_marketo_comments=''">
+                        <input name="lpId" type="hidden" ng-model="lpId" ng-init="lpId=160">
+                        <input name="subId" type="hidden" ng-model="subId" ng-init="subId=159">
+                        <input name="kw" type="hidden" ng-model="kw" ng-init="kw=''">
+                        <input name="cr" type="hidden" ng-model="cr" ng-init="cr=''">
+                        <input name="searchstr" type="hidden" ng-model="searchstr" ng-init="searchstr=''">
+                        <input name="lpurl" type="hidden" ng-model="lpurl" ng-init="lpurl='https://info.noesisenergy.com/stdemailnameform.html?cr={creative}&amp;kw={keyword}'">
+                        <input name="formid" type="hidden" ng-model="formid" ng-init="formid=1012">
+                        <input name="returnURL" type="hidden" ng-model="returnURL" ng-init="returnURL=getCurrentPage()">
+                        <input name="retURL" type="hidden" ng-model="retURL" ng-init="retURL=getCurrentPage()">
+                        <input name="_mkt_disp" type="hidden" ng-model="_mkt_disp" ng-init="_mkt_disp='return'">
+                        <input name="_mkt_trk" type="hidden" ng-model="_mkt_trk" ng-init="_mkt_trk='id:716-WKH-023&amp;token:_mch-noesisenergy.com-1360354278221-60737'">
+
+                        <div ng-include="'https://jennyd.noesisenergy.com:4430/form.html'"></div>
+
+
+                    </div>
+                    <div class="col-md-6 form-group"><br>
+
+                        <h3 class="ne-11 handwritten" style="margin-top: 0px;">About Your Project hello</h3>
+                        <hr class="dashed-line-lt">
+
+                        
+                        <div class="form-group row" ng-class="{'has-error': hasError(financeDetails.sector) }">
+                            <div class="col-md-6">
+                                    <label class="ne-11">Sector</label>
+                                    <ne-sector-select required name="Project_Sector__c" ng-model="financeEst.facility.sector" filter="true">
+                                    </ne-sector-select>
+                                
+                            </div>
+
+                        <!-- <div class="col-md-6">
+                                        <label class="ne-11">Project Typ0</label>
+                                        <ne-select name="projectType" required placeholder="Select Project Type" ng-model="financeEst.project.typeName" options="projectType for projectType in projectTypes">
+                                        </ne-select>
+                                    </div> -->
+                            <div class="col-md-6">
+                                <div ng-class="{'has-error': hasError(financeDetails.life) }">
+                                    <label class="ne-11">Equipment Life</label>
+                                    <div class="input-group margin-bottom-sm">
+                                        <span class="input-group-addon"><i class="fa fa-clock-o fa-fw"></i>
+                                        </span>
+                                        <input class="form-control" ne-number type="text" min="1" ng-min="1" required ng-model="financeEst.project.life" name="Project_Equipment_Life__c" ne-hint="in years">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <div ng-class="{'has-error': hasError(financeDetails.projectCost) }">
+                                    <label class="ne-11">Project Costs <i class="fa fa-info-circle" tooltip-append-to-dom tooltip="Remember to include 1.5% finance fee into the Project Costs."></i>
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-dollar fa-fw"></i>
+                                        </span>
+                                        <input class="form-control" type="text" min="1" ng-min="1" required ne-number ng-model="financeEst.project.projectCost" name="Project_Costs__c" placeholder="Enter the project cost">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div ng-class="{'has-error': hasError(financeDetails.annualSavings) }">
+                                    <label class="ne-11">Annual Savings</label>
+                                    <div class="input-group formedit">
+                                        <span class="input-group-addon"><i class="fa fa-dollar fa-fw"></i>
+                                        </span>
+                                        <input class="form-control" type="text" min="1" ng-min="1" required ne-number ng-model="financeEst.project.annualSavings" name="Project_Annual_Savings__c" placeholder="Enter the annual savings">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label class="ne-11">When do you expect this project to be awarded / approved? (That is, when the funds will be required.)</label>
+                                <select name="Project_Timeline__c" class="form-control formedit" tooltip="">
+                                    <option value="">Select One</option>
+                                    <option value="1 to 10">Already been awarded / approved</option>
+                                    <option value="11-19">Over next 30 days</option>
+                                    <option value="20-39">Within 1 to 2 months</option>
+                                    <option value="40-100">Within 2 to 3 months</option>
+                                    <option value="101-250">More than 3 months from now</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label class="ne-11">Have you already proposed this project to the building's financial decision maker (e.g. the building owner)?</label>
+                                <ul class="list-inline">
+                                    <li>
+                                        <input name="Project_Proposed_Decision_Maker__c" type="radio">
+                                        <span class="ne-11">&nbsp;Yes</span</li>
+                                            <li>
+                                                <input name="Project_Proposed_Decision_Maker__c" type="radio">
+                                                <span class="ne-11">&nbsp;No</span>
+                                            </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label class="ne-11">Have you already discussed 3rd party financing with the financial decision maker?</label>
+                                <ul class="list-inline">
+                                    <li>
+                                        <input name="Project_Financing_Discussed__c" type="radio">
+                                        <span class="ne-11">&nbsp;Yes</span</li>
+                                            <li>
+                                                <input name="Project_Financing_Discussed__c" type="radio">
+                                                <span class="ne-11">&nbsp;No</span>
+                                            </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <button onClick="_gaq.push(['_trackEvent', 'MarketingForms', 'Submit', 'FinanceAProject']);" type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Finance Your Project</button>
+
+                    </div>
+
+                    <div class="h3 ne-11" ng-show="submissionComplete">
+                        <span class="text-danger greeting text-normal">
+                            <i class="icon-ok-sign"></i> Thank you!
+                        </span>
+                        <span class="h4">Thank you for your interest. We will be in contact soon to discuss financing your project!</span>
+                    </div>
+
+
+                </form>
+            </div>
+
+        </div>
+        <!-- End Row -->
+
+    </div>
+    <!-- End Container -->
+
+    <!-- end form -->
+    <ne-scroll-top></ne-scroll-top>
+</div>
