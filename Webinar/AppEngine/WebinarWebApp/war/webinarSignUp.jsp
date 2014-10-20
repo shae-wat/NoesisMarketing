@@ -56,18 +56,37 @@
 <body class="ne-11-bg">
 <div class="container" style="margin:0;padding:0;">
 <header>
-    <table><tr>
-    <td style="padding-right:50px;">
-	<div id="reg">
-        <h1 class="text-info"><%=webinar.getSubject()%></h1>
+    <div class="hidden-xs">
+        <table><tr>
+        <td style="padding-right:50px;">
+    	<div id="reg">
+            <h1 class="text-info"><%=webinar.getSubject()%></h1>
+        </div>
+        <h4>Join us on <%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> <%=webinar.getTimeZone()%>
+        </h4>
+        </td>
+        <td>
+        <img src="webinarPic.jpg"></img>
+        </td>
+        </tr></table>
     </div>
-    <h4>Join us on <%=when.getDay()%> <%=when.getDate()%> <%=when.getStartTime()%> - <%=when.getEndTime()%> <%=webinar.getTimeZone()%>
-    </h4>
-    </td>
-    <td>
-    <img src="webinarPic.jpg"></img>
-    </td>
-    </tr></table>
+    <div class="visible-xs">
+        <table><tr>
+        <td style="padding-right:30px;">
+        <div id="reg">
+            <h1 class="text-info"><%=webinar.getSubject()%></h1>
+        </div>
+        </td>
+        <td>
+        <img src="webinarPic.jpg"></img>
+        </td>
+        </tr></table>
+        <h4>Join us on <%=when.getDay()%> <%=when.getDate()%></h4>
+        <h4> <%=when.getStartTime()%> - <%=when.getEndTime()%> <%=webinar.getTimeZone()%>
+        </h4>
+        
+    </div>
+
     <hr>
     
 </header>
