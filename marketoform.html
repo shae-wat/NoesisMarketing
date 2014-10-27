@@ -1,4 +1,12 @@
 <style type="text/css">
+
+<!-- RTP tag --> 
+(function(c,h,a,f,e,i){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].p=e;c[a].a=i;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b)})
+(window,document,"rtp","[rtp-js-cdn-url]","[pod-url]","[accountId]");
+<!-- End of RTP tag -->
+
 .ne-money-bg {
     background: url(http://noesisimg.s3.amazonaws.com/nb-images/dollars.svg);
     background-size: cover;
@@ -8,17 +16,13 @@
 }
 </style>
 
-<script src="https://munchkin.marketo.net/munchkin.js"type="text/javascript"></script>
 <script>
-  Munchkin.init("716-WKH-023");
-  function MarketoUpdate() {
-     Munchkin.munchkinFunction('associateLead',
-       { Email:'<%=Request.Form("EmailField")%>',
-       FirstName:'<%=Request.Form("FirstNameField")%>',
-       LastName:'<%=Request.Form("LastNameField")%>' },
-      '<%=encryptedEmailResult%>');
-    
-   }
+  function getVisitor(visitor) {
+      console.log("RTP is awesome!");
+      console.log(visitor);
+      document.getElementById("firstName").innerHTML = "WORLDPEACE";
+  }
+  rtp('get','visitor',getVisitor(visitor));
 </script>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -70,7 +74,7 @@ function hideSellSideQuestions() {
         <br />
         <div class="row">
             <div class="col-md-7">
-                <h1 style="font-size:35px">Do you have a project that needs financing?</h1>
+                <h1 style="font-size:35px">Do you have a project that needs financing???????</h1>
                 <p class="lead">If you have an immediate need to finance one or more energy efficiency projects and would like to speak to a project finance specialist, we can help. A Noesis project finance experts will discuss your project with you, understand the financing preferences and then work with you and the borrower (if different) in the application, underwriting and closing process.
                 </p>
                 <p class="lead">Don’t Forget: simply adding financing to your proposals is not enough. You must be able to present your project’s investment opportunity to the CFO using his or her language (i.e. dollars, not kilowatts). Financing is a means to an end. That is, it is a way for the CFO to take advantage of your proposed investment opportunity without using company cash. Presenting this business case with financing is where Noesis excels. We help you win the CFO’s approval. Let us help you!
@@ -106,7 +110,7 @@ function hideSellSideQuestions() {
                         <input name="GAMediumLatest__c" ng-model="GAMediumLatest__c" type="hidden" id="GAMediumLatest__c">
                         <input name="GACampaignLatest__c" ng-model="GACampaignLatest__c" type="hidden" id="GACampaignLatest__c">
 
-                        <input name="Source__c" type="hidden" ng-model="Source__c" ng-init="Source__c='financeaproject'">
+                        <input name="Source__c" type="hidden" ng-model="Source__c" ng-init="Source__c='vdnkjdnv'">
                         <input name="_marketo_comments" type="hidden" ng-model="_marketo_comments" ng-init="_marketo_comments=''">
                         <input name="lpId" type="hidden" ng-model="lpId" ng-init="lpId=160">
                         <input name="subId" type="hidden" ng-model="subId" ng-init="subId=159">
@@ -123,7 +127,7 @@ function hideSellSideQuestions() {
                          <div class="input-group formedit form-group" 
                         ng-class="{'has-error' : form.First_Name_Casual__c.$dirty && (form.First_Name_Casual__c.$error.required || form.First_Name_Casual__c.$error.maxlength)}" >
                         <span class="input-group-addon add-on ne-10"><i class="fa fa-user fa-fw"></i></span> 
-                        <input type="text" 
+                        <input type="text" id="firstName"
                                 name="First_Name_Casual__c" class="form-control" ne-hint="First Name" 
                                 tooltip="{{(form.First_Name_Casual__c.$dirty && (form.First_Name_Casual__c.$error.required || form.First_Name_Casual__c.$error.maxlength)) ? 'Your first name is required and must be less than 255 characters' : ''}}"         
                                 ng-required="true" ng-maxlength="255" ng-model="$parent.First_Name_Casual__c">
