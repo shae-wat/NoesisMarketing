@@ -52,14 +52,16 @@ function hideSellSideQuestions() {
 }
 </script>
 
-
+<!-- Cookie Handling -->
 <script type="text/javascript">
 
     function setCookie(cFirstName, cLastName, cEmail) {
-        document.cookie = "cFirstName = " + cFirstName + "; "
+        document.cookie = "username=" + cFirstName + cLastName.toString() + "; " 
+                            + "cFirstName = " + cFirstName.toString() + "; "
                             + "cLastName = " + cLastName + "; "
                             + "cEmail = " + cEmail + "; ";
         console.log("****document.cookie = \n" + document.cookie);
+        console.log(cFirstName.toString() + " " + cLastName.toString())
     }
 
     function getCookie(cFirstName) {
@@ -74,36 +76,36 @@ function hideSellSideQuestions() {
     }
 
     function checkCookie() {
-        var user = getCookie("cFirstName");
+        var user = getCookie("NoesisUsername");
         if (user != "") {
             alert("Welcome again " + user);
+            return true;
         } else {
             alert("We dont know each other....");
+            return false;
         }
     }
 
     function userController($scope) {
-        $scope.$parent.First_Name_Casual__c = getCookie(),
+        //$scope.$parent.First_Name_Casual__c = getCookie(),
         $scope.$parent.LastName  = "Doe"
         $scope.$parent.Email  = "doe@gmail.com"
     }
 
-    // angular.module('cookieStoreExample', ['ngCookies'])
-    // .controller('ExampleController', ['$cookieStore', function($cookieStore) {
-    //   // Put cookie
-    //   $cookieStore.put('myFavorite','oatmeal');
-    //   // Get cookie
-    //   var favoriteCookie = $cookieStore.get('myFavorite');
-    //   console.log("Angular cookie = " + favoriteCookie);
-    //   // Removing a cookie
-    //   $cookieStore.remove('myFavorite');
-    // }]);
 
 </script>
 
 
 <div class="ne-money-bg" ng-app="" ng-controller="userController">
-    <script type="text/javascript">checkCookie()</script>
+    <!-- Cookie Handling -->
+    <script type="text/javascript">
+        if (checkCookie() == true){
+            console.log("checkCookie() == true\n");
+        }
+        else{
+            console.log("checkCookie() == FALSE\n");
+        }
+        </script>
     <div class="container">
         <br />
         <br />
@@ -287,8 +289,8 @@ function hideSellSideQuestions() {
                             </div>
 
                         </div>
-
-                        <button onClick="setCookie(First_Name_Casual__c, LastName, Email);"
+                        <!-- Cookie Handling -->
+                        <button onClick="setCookie(First_Name_Casual__c.toString(), LastName, Email);"
                         type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Finance Your Project</button>
 
 
