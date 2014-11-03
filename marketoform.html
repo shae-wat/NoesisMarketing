@@ -78,10 +78,7 @@ function hideSellSideQuestions() {
         if (user != "") {
             alert("Welcome again " + user);
         } else {
-            user = prompt("Please enter your name:", "");
-            if (user != "" && user != null) {
-                setCookie("username", user, 365);
-            }
+            alert("We dont know each other....");
         }
     }
 
@@ -91,21 +88,22 @@ function hideSellSideQuestions() {
         $scope.$parent.Email  = "doe@gmail.com"
     }
 
-    angular.module('cookieStoreExample', ['ngCookies'])
-    .controller('ExampleController', ['$cookieStore', function($cookieStore) {
-      // Put cookie
-      $cookieStore.put('myFavorite','oatmeal');
-      // Get cookie
-      var favoriteCookie = $cookieStore.get('myFavorite');
-      console.log("Angular cookie = " + favoriteCookie);
-      // Removing a cookie
-      $cookieStore.remove('myFavorite');
-    }]);
+    // angular.module('cookieStoreExample', ['ngCookies'])
+    // .controller('ExampleController', ['$cookieStore', function($cookieStore) {
+    //   // Put cookie
+    //   $cookieStore.put('myFavorite','oatmeal');
+    //   // Get cookie
+    //   var favoriteCookie = $cookieStore.get('myFavorite');
+    //   console.log("Angular cookie = " + favoriteCookie);
+    //   // Removing a cookie
+    //   $cookieStore.remove('myFavorite');
+    // }]);
 
 </script>
 
 
 <div class="ne-money-bg" ng-app="" ng-controller="userController">
+    <script type="text/javascript">checkCookie()</script>
     <div class="container">
         <br />
         <br />
@@ -290,7 +288,10 @@ function hideSellSideQuestions() {
 
                         </div>
 
-                        <button onClick="_gaq.push(['_trackEvent', 'MarketingForms', 'Submit', 'FinanceAProject']); " type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Finance Your Project</button>
+                        <button onClick="setCookie(First_Name_Casual__c, LastName, Email);"
+                        type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Finance Your Project</button>
+
+
 
                     </div>
 
