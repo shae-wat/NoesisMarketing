@@ -9,6 +9,7 @@
 </style>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
 <script>
 var GATrafficSource = (function() {
     var pairs = (/(?:^|; )__utmz=([^;]*)/.exec(document.cookie) || []).slice(1).pop().split('.').slice(4).join('.').split('|');
@@ -51,6 +52,7 @@ function hideSellSideQuestions() {
 }
 </script>
 
+
 <script type="text/javascript">
 
     function setCookie(cFirstName, cLastName, cEmail) {
@@ -59,9 +61,51 @@ function hideSellSideQuestions() {
                             + "cEmail = " + cEmail + "; ";
         console.log("****document.cookie = \n" + document.cookie);
     }
+
+    function getCookie(cFirstName) {
+        var name = cFirstName + " = ";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1);
+            if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+
+    function checkCookie() {
+        var user = getCookie("cFirstName");
+        if (user != "") {
+            alert("Welcome again " + user);
+        } else {
+            user = prompt("Please enter your name:", "");
+            if (user != "" && user != null) {
+                setCookie("username", user, 365);
+            }
+        }
+    }
+
+    function userController($scope) {
+        $scope.$parent.First_Name_Casual__c = getCookie(),
+        $scope.$parent.LastName  = "Doe"
+        $scope.$parent.Email  = "doe@gmail.com"
+    }
+
+    angular.module('cookieStoreExample', ['ngCookies'])
+    .controller('ExampleController', ['$cookieStore', function($cookieStore) {
+      // Put cookie
+      $cookieStore.put('myFavorite','oatmeal');
+      // Get cookie
+      var favoriteCookie = $cookieStore.get('myFavorite');
+      console.log("Angular cookie = " + favoriteCookie);
+      // Removing a cookie
+      $cookieStore.remove('myFavorite');
+    }]);
+
 </script>
 
-<div class="ne-money-bg">
+
+<div class="ne-money-bg" ng-app="" ng-controller="userController">
     <div class="container">
         <br />
         <br />
@@ -123,7 +167,8 @@ function hideSellSideQuestions() {
                         <input type="text" id="firstName"
                                 name="First_Name_Casual__c" class="form-control" ne-hint="First Name" 
                                 tooltip="{{(form.First_Name_Casual__c.$dirty && (form.First_Name_Casual__c.$error.required || form.First_Name_Casual__c.$error.maxlength)) ? 'Your first name is required and must be less than 255 characters' : ''}}"         
-                                ng-required="true" ng-maxlength="255" ng-model="$parent.First_Name_Casual__c">
+                                ng-required="true" ng-maxlength="255" 
+                                ng-model="$parent.First_Name_Casual__c">
                 </div>
 
                 <div class="input-group formedit form-group"
@@ -132,7 +177,8 @@ function hideSellSideQuestions() {
                         <input type="text" 
                                 name="LastName" class="form-control" ne-hint="Last Name"
                                 tooltip="{{(form.LastName.$dirty && (form.LastName.$error.required || form.LastName.$error.maxlength)) ? 'Your last name is required and must be less than 255 characters' : ''}}"         
-                                ng-required="true" ng-maxlength="255" ng-model="$parent.LastName">
+                                ng-required="true" ng-maxlength="255" 
+                                ng-model="$parent.LastName">
                 </div>
 
                 <div class="input-group formedit"
@@ -141,7 +187,8 @@ function hideSellSideQuestions() {
                         <input type="email" 
                                 name="Email" class="form-control" ne-hint="Email"
                                 tooltip="{{(form.Email.$dirty && (form.Email.$error.required || form.Email.$error.maxlength || form.Email.$error.email)) ? 'A valid email address is required' : ''}}"         
-                                ng-required="true" ng-maxlength="255" ng-model="$parent.Email">
+                                ng-required="true" ng-maxlength="255" 
+                                ng-model="$parent.Email">
                 </div>
 
 
@@ -243,7 +290,7 @@ function hideSellSideQuestions() {
 
                         </div>
 
-                        <button onClick="_gaq.push(['_trackEvent', 'MarketingForms', 'Submit', 'FinanceAProject']);" type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Finance Your Project</button>
+                        <button onClick="_gaq.push(['_trackEvent', 'MarketingForms', 'Submit', 'FinanceAProject']); " type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Finance Your Project</button>
 
                     </div>
 
