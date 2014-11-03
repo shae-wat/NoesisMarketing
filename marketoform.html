@@ -1,33 +1,12 @@
 <style type="text/css">
 .ne-money-bg {
-    background: url(http://noesisimg.s3.amazonaws.com/nb-images/dollars.svg);
+    background: url(https://noesisimg.s3.amazonaws.com/nb-images/dollars.svg);
     background-size: cover;
     background-repeat: repeat;
     background-position: 40px bottom;
     background-color: #deeff1;
 }
 </style>
-
-<script>
-    // <!-- RTP tag --> 
-    // (function(c,h,a,f,e,i){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-    // c[a].p=e;c[a].a=i;var g=h.createElement("script");g.async=true;g.type="text/javascript";
-    // g.src=f;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b)})
-    // (window,document,"rtp","[rtp-js-cdn-url]","[pod-url]","716-WKH-023");
-    // <!-- End of RTP tag -->
-
-    (function(c,h,a,f,i){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        c[a].a=i;var g=h.createElement("script");g.async=true;g.type="text/javascript";
-        g.src=f+'?rh='+c.location.hostname+'&aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
-    })(window,document,"rtp","//xyz.marketo.com/rtp-api/v1/rtp.js","xyz");
-
-  function getVisitor(visitor) {
-      console.log("RTP is awesome!");
-      console.log(visitor);
-      document.getElementById("firstName").innerHTML = "WORLDPEACE";
-  }
-  rtp('get','visitor',getVisitor);
-</script>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script>
@@ -70,6 +49,16 @@ function hideSellSideQuestions() {
     document.getElementById("companysize").setAttribute("ng-required", "false");
     document.getElementById("companyrevenue").setAttribute("ng-required", "false");
 }
+</script>
+
+<script type="text/javascript">
+
+    function setCookie(cFirstName, cLastName, cEmail) {
+        document.cookie = "cFirstName = " + cFirstName + "; "
+                            + "cLastName = " + cLastName + "; "
+                            + "cEmail = " + cEmail + "; ";
+        console.log("****document.cookie = \n" + document.cookie);
+    }
 </script>
 
 <div class="ne-money-bg">
