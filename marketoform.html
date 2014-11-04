@@ -55,28 +55,33 @@ function hideSellSideQuestions() {
 <!-- Cookie Handling -->
 <script type="text/javascript">
 
-    function setCookie(cFirstName, cLastName, cEmail) {
-        document.cookie = "username=" + cFirstName + cLastName.toString() + "; " 
+    function setCookie(cFirstName) {
+        document.cookie = "username=" + cFirstName + "; " 
                             + "cFirstName = " + cFirstName.toString() + "; "
-                            + "cLastName = " + cLastName + "; "
-                            + "cEmail = " + cEmail + "; ";
+                           
         console.log("****document.cookie = \n" + document.cookie);
-        console.log(cFirstName.toString() + " " + cLastName.toString())
+        console.log("setcookie = " + cFirstName.toString())
     }
 
-    function getCookie(cFirstName) {
-        var name = cFirstName + " = ";
+    function getCookie(cname) {
+        var name = cname + "=";
         var ca = document.cookie.split(';');
+        console.log("ca = " + ca);
         for(var i=0; i<ca.length; i++) {
             var c = ca[i];
+            console.log("c = " + c);
             while (c.charAt(0)==' ') c = c.substring(1);
-            if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+            if (c.indexOf(name) != -1) {
+                console.log("c.substring(name.length, c.length) = " + c.substring(name.length, c.length));
+                return c.substring(name.length, c.length);
+            }
         }
         return "";
     }
 
+
     function checkCookie() {
-        var user = getCookie("NoesisUsername");
+        var user = getCookie("username");
         if (user != "") {
             alert("Welcome again " + user);
             return true;
@@ -164,11 +169,11 @@ function hideSellSideQuestions() {
                          <div class="input-group formedit form-group" 
                         ng-class="{'has-error' : form.First_Name_Casual__c.$dirty && (form.First_Name_Casual__c.$error.required || form.First_Name_Casual__c.$error.maxlength)}" >
                         <span class="input-group-addon add-on ne-10"><i class="fa fa-user fa-fw"></i></span> 
-                        <input type="text" id="firstName"
-                                name="First_Name_Casual__c" class="form-control" ne-hint="First Name" 
-                                tooltip="{{(form.First_Name_Casual__c.$dirty && (form.First_Name_Casual__c.$error.required || form.First_Name_Casual__c.$error.maxlength)) ? 'Your first name is required and must be less than 255 characters' : ''}}"         
-                                ng-required="true" ng-maxlength="255" 
-                                ng-model="$parent.First_Name_Casual__c">
+                <input type="text" id="firstName"
+                        name="First_Name_Casual__c" class="form-control" ne-hint="First Name" 
+                        tooltip="{{(form.First_Name_Casual__c.$dirty && (form.First_Name_Casual__c.$error.required || form.First_Name_Casual__c.$error.maxlength)) ? 'Your first name is required and must be less than 255 characters' : ''}}"         
+                        ng-required="true" ng-maxlength="255" 
+                        ng-model="$parent.First_Name_Casual__c">
                 </div>
 
                 <div class="input-group formedit form-group"
@@ -290,7 +295,7 @@ function hideSellSideQuestions() {
 
                         </div>
                         <!-- Cookie Handling -->
-                        <button onClick="setCookie(First_Name_Casual__c.toString(), LastName, Email);"
+                        <button onClick="setCookie(input[First_Name_Casual__c], LastName, Email);"
                         type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Finance Your Project</button>
 
 
