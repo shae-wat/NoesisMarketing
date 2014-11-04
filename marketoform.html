@@ -99,6 +99,8 @@ function hideSellSideQuestions() {
 
         $scope.autofillForm = function(firstName)
         {
+            console.log("userController firstName = " + firstName);
+            //setCookie(firstName.modelValue);
             debugger;
         };
     }
@@ -301,7 +303,7 @@ function hideSellSideQuestions() {
 
                     </div>
                     <!-- Cookie Handling -->
-                    <button ng-click="autofillForm(form.First_Name_Casual__c);"
+                    <button ng-click="autofillForm(form.First_Name_Casual__c.$modelValue);"
                     type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Finance Your Project</button>
 
 
