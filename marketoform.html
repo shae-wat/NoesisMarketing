@@ -56,6 +56,7 @@ function hideSellSideQuestions() {
 <script type="text/javascript">
 
     function setCookie(cFirstName) {
+        console.log("setting cookie with " + cFirstName + "\n");
         document.cookie = "username=" + cFirstName + "; " 
                             + "cFirstName = " + cFirstName.toString() + "; "
                            
@@ -95,13 +96,18 @@ function hideSellSideQuestions() {
         //$scope.$parent.First_Name_Casual__c = getCookie(),
         $scope.$parent.LastName  = "Doe"
         $scope.$parent.Email  = "doe@gmail.com"
+
+        $scope.autofillForm = function(firstName)
+        {
+            debugger;
+        };
     }
 
 
 </script>
 
 
-<div class="ne-money-bg" ng-app="" ng-controller="userController">
+<div class="ne-money-bg"v>
     <!-- Cookie Handling -->
     <script type="text/javascript">
         if (checkCookie() == true){
@@ -135,7 +141,7 @@ function hideSellSideQuestions() {
     <br>
 </div>
 <div class="ne-6-bg">
-    <div class="container">
+    <div class="container" ng-controller="userController">
 
         <div class="row">
             <div class="ne-marketo-form form-group" ng-controller="noesis.bootstrap.marketing.controllers.marketingController">
@@ -166,10 +172,10 @@ function hideSellSideQuestions() {
                         <input name="_mkt_disp" type="hidden" ng-model="_mkt_disp" ng-init="_mkt_disp='return'">
                         <input name="_mkt_trk" type="hidden" ng-model="_mkt_trk" ng-init="_mkt_trk='id:716-WKH-023&amp;token:_mch-noesisenergy.com-1360354278221-60737'">
 
-                         <div class="input-group formedit form-group" 
+                 <div class="input-group formedit form-group" 
                         ng-class="{'has-error' : form.First_Name_Casual__c.$dirty && (form.First_Name_Casual__c.$error.required || form.First_Name_Casual__c.$error.maxlength)}" >
                         <span class="input-group-addon add-on ne-10"><i class="fa fa-user fa-fw"></i></span> 
-                <input type="text" id="firstName"
+                    <input type="text" id="firstName"
                         name="First_Name_Casual__c" class="form-control" ne-hint="First Name" 
                         tooltip="{{(form.First_Name_Casual__c.$dirty && (form.First_Name_Casual__c.$error.required || form.First_Name_Casual__c.$error.maxlength)) ? 'Your first name is required and must be less than 255 characters' : ''}}"         
                         ng-required="true" ng-maxlength="255" 
@@ -179,128 +185,128 @@ function hideSellSideQuestions() {
                 <div class="input-group formedit form-group"
                         ng-class="{'has-error' : form.LastName.$dirty && (form.LastName.$error.required || form.LastName.$error.maxlength)}" >
                         <span class="input-group-addon add-on ne-10"><i class="fa fa-user fa-fw"></i></span>
-                        <input type="text" 
-                                name="LastName" class="form-control" ne-hint="Last Name"
-                                tooltip="{{(form.LastName.$dirty && (form.LastName.$error.required || form.LastName.$error.maxlength)) ? 'Your last name is required and must be less than 255 characters' : ''}}"         
-                                ng-required="true" ng-maxlength="255" 
-                                ng-model="$parent.LastName">
+                    <input type="text" id="lastName"
+                        name="LastName" class="form-control" ne-hint="Last Name"
+                        tooltip="{{(form.LastName.$dirty && (form.LastName.$error.required || form.LastName.$error.maxlength)) ? 'Your last name is required and must be less than 255 characters' : ''}}"         
+                        ng-required="true" ng-maxlength="255" 
+                        ng-model="$parent.LastName">
                 </div>
 
                 <div class="input-group formedit"
                         ng-class="{'has-error' : form.Email.$dirty && (form.Email.$error.required || form.Email.$error.maxlength || form.Email.$error.email)}" >
                         <span class="input-group-addon add-on ne-10"><i class="fa fa-envelope fa-fw"></i></span>
-                        <input type="email" 
-                                name="Email" class="form-control" ne-hint="Email"
-                                tooltip="{{(form.Email.$dirty && (form.Email.$error.required || form.Email.$error.maxlength || form.Email.$error.email)) ? 'A valid email address is required' : ''}}"         
-                                ng-required="true" ng-maxlength="255" 
-                                ng-model="$parent.Email">
+                    <input type="email" 
+                        name="Email" class="form-control" ne-hint="Email"
+                        tooltip="{{(form.Email.$dirty && (form.Email.$error.required || form.Email.$error.maxlength || form.Email.$error.email)) ? 'A valid email address is required' : ''}}"         
+                        ng-required="true" ng-maxlength="255" 
+                        ng-model="$parent.Email">
                 </div>
 
 
 
+                </div>
+                <div class="col-md-6 form-group"><br>
+
+                    <h3 class="ne-11 handwritten" style="margin-top: 0px;">About Your Project</h3>
+                    <hr class="dashed-line-lt">
+
+                    
+                    <div class="form-group row" ng-class="{'has-error': hasError(financeDetails.sector) }">
+                        <div class="col-md-6">
+                                <label class="ne-11">Sector</label>
+                                <ne-sector-select required name="Project_Sector__c" ng-model="financeEst.facility.sector" filter="true">
+                                </ne-sector-select>
+                            
+                        </div>
+
+                        <div class="col-md-6">
+                            <div ng-class="{'has-error': hasError(financeDetails.life) }">
+                                <label class="ne-11">Equipment Life</label>
+                                <div class="input-group margin-bottom-sm">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o fa-fw"></i>
+                                    </span>
+                                    <input class="form-control" ne-number type="text" min="1" ng-min="1" required ng-model="financeEst.project.life" name="Project_Equipment_Life__c" ne-hint="in years">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-6 form-group"><br>
-
-                        <h3 class="ne-11 handwritten" style="margin-top: 0px;">About Your Project</h3>
-                        <hr class="dashed-line-lt">
-
-                        
-                        <div class="form-group row" ng-class="{'has-error': hasError(financeDetails.sector) }">
-                            <div class="col-md-6">
-                                    <label class="ne-11">Sector</label>
-                                    <ne-sector-select required name="Project_Sector__c" ng-model="financeEst.facility.sector" filter="true">
-                                    </ne-sector-select>
-                                
-                            </div>
-
-                            <div class="col-md-6">
-                                <div ng-class="{'has-error': hasError(financeDetails.life) }">
-                                    <label class="ne-11">Equipment Life</label>
-                                    <div class="input-group margin-bottom-sm">
-                                        <span class="input-group-addon"><i class="fa fa-clock-o fa-fw"></i>
-                                        </span>
-                                        <input class="form-control" ne-number type="text" min="1" ng-min="1" required ng-model="financeEst.project.life" name="Project_Equipment_Life__c" ne-hint="in years">
-                                    </div>
+                    
+                    
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <div ng-class="{'has-error': hasError(financeDetails.projectCost) }">
+                                <label class="ne-11">Project Costs <i class="fa fa-info-circle" tooltip-append-to-dom tooltip="Remember to include 1.5% finance fee into the Project Costs."></i>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-dollar fa-fw"></i>
+                                    </span>
+                                    <input class="form-control" type="text" min="1" ng-min="1" required ne-number ng-model="financeEst.project.projectCost" name="Project_Costs__c" placeholder="Enter the project cost">
                                 </div>
                             </div>
                         </div>
-                        
-                        
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                                <div ng-class="{'has-error': hasError(financeDetails.projectCost) }">
-                                    <label class="ne-11">Project Costs <i class="fa fa-info-circle" tooltip-append-to-dom tooltip="Remember to include 1.5% finance fee into the Project Costs."></i>
-                                    </label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-dollar fa-fw"></i>
-                                        </span>
-                                        <input class="form-control" type="text" min="1" ng-min="1" required ne-number ng-model="financeEst.project.projectCost" name="Project_Costs__c" placeholder="Enter the project cost">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div ng-class="{'has-error': hasError(financeDetails.annualSavings) }">
-                                    <label class="ne-11">Annual Savings</label>
-                                    <div class="input-group formedit">
-                                        <span class="input-group-addon"><i class="fa fa-dollar fa-fw"></i>
-                                        </span>
-                                        <input class="form-control" type="text" min="1" ng-min="1" required ne-number ng-model="financeEst.project.annualSavings" name="Project_Annual_Savings__c" placeholder="Enter the annual savings">
-                                    </div>
+                        <div class="col-md-6">
+                            <div ng-class="{'has-error': hasError(financeDetails.annualSavings) }">
+                                <label class="ne-11">Annual Savings</label>
+                                <div class="input-group formedit">
+                                    <span class="input-group-addon"><i class="fa fa-dollar fa-fw"></i>
+                                    </span>
+                                    <input class="form-control" type="text" min="1" ng-min="1" required ne-number ng-model="financeEst.project.annualSavings" name="Project_Annual_Savings__c" placeholder="Enter the annual savings">
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-12">
-                                <label class="ne-11">When do you expect this project to be awarded / approved? (That is, when the funds will be required.)</label>
-                                <select name="Project_Timeline__c" class="form-control formedit" tooltip="">
-                                    <option value="">Select One</option>
-                                    <option value="1 to 10">Already been awarded / approved</option>
-                                    <option value="11-19">Over next 30 days</option>
-                                    <option value="20-39">Within 1 to 2 months</option>
-                                    <option value="40-100">Within 2 to 3 months</option>
-                                    <option value="101-250">More than 3 months from now</option>
-                                </select>
-                            </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label class="ne-11">When do you expect this project to be awarded / approved? (That is, when the funds will be required.)</label>
+                            <select name="Project_Timeline__c" class="form-control formedit" tooltip="">
+                                <option value="">Select One</option>
+                                <option value="1 to 10">Already been awarded / approved</option>
+                                <option value="11-19">Over next 30 days</option>
+                                <option value="20-39">Within 1 to 2 months</option>
+                                <option value="40-100">Within 2 to 3 months</option>
+                                <option value="101-250">More than 3 months from now</option>
+                            </select>
                         </div>
+                    </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-12">
-                                <label class="ne-11">Have you already proposed this project to the building's financial decision maker (e.g. the building owner)?</label>
-                                <ul class="list-inline">
-                                    <li>
-                                        <input name="Project_Proposed_Decision_Maker__c" type="radio">
-                                        <span class="ne-11">&nbsp;Yes</span</li>
-                                            <li>
-                                                <input name="Project_Proposed_Decision_Maker__c" type="radio">
-                                                <span class="ne-11">&nbsp;No</span>
-                                            </li>
-                                </ul>
-                            </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label class="ne-11">Have you already proposed this project to the building's financial decision maker (e.g. the building owner)?</label>
+                            <ul class="list-inline">
+                                <li>
+                                    <input name="Project_Proposed_Decision_Maker__c" type="radio">
+                                    <span class="ne-11">&nbsp;Yes</span</li>
+                                        <li>
+                                            <input name="Project_Proposed_Decision_Maker__c" type="radio">
+                                            <span class="ne-11">&nbsp;No</span>
+                                        </li>
+                            </ul>
                         </div>
+                    </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-12">
-                                <label class="ne-11">Have you already discussed 3rd party financing with the financial decision maker?</label>
-                                <ul class="list-inline">
-                                    <li>
-                                        <input name="Project_Financing_Discussed__c" type="radio">
-                                        <span class="ne-11">&nbsp;Yes</span</li>
-                                            <li>
-                                                <input name="Project_Financing_Discussed__c" type="radio">
-                                                <span class="ne-11">&nbsp;No</span>
-                                            </li>
-                                </ul>
-                            </div>
-
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label class="ne-11">Have you already discussed 3rd party financing with the financial decision maker?</label>
+                            <ul class="list-inline">
+                                <li>
+                                    <input name="Project_Financing_Discussed__c" type="radio">
+                                    <span class="ne-11">&nbsp;Yes</span</li>
+                                        <li>
+                                            <input name="Project_Financing_Discussed__c" type="radio">
+                                            <span class="ne-11">&nbsp;No</span>
+                                        </li>
+                            </ul>
                         </div>
-                        <!-- Cookie Handling -->
-                        <button onClick="setCookie(input[First_Name_Casual__c], LastName, Email);"
-                        type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Finance Your Project</button>
-
-
 
                     </div>
+                    <!-- Cookie Handling -->
+                    <button ng-click="autofillForm(form.First_Name_Casual__c);"
+                    type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Finance Your Project</button>
+
+
+
+                </div>
 
                     <div class="h3 ne-11" ng-show="submissionComplete">
                         <span class="text-danger greeting text-normal">
