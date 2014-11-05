@@ -85,6 +85,7 @@ function hideSellSideQuestions() {
         var user = getCookie("username");
         if (user != "") {
             alert("Welcome again " + user);
+            autofillForm($scope);
             return true;
         } else {
             alert("We dont know each other....");
@@ -93,11 +94,14 @@ function hideSellSideQuestions() {
     }
 
     function userController($scope) {
-        //$scope.$parent.First_Name_Casual__c = getCookie(),
-        $scope.$parent.LastName  = "Doe"
-        $scope.$parent.Email  = "doe@gmail.com"
 
-        $scope.autofillForm = function(firstName)
+        $scope.autofillForm = function($scope){
+            $scope.$parent.First_Name_Casual__c = getCookie(),
+            $scope.$parent.LastName  = "Doe"
+            $scope.$parent.Email  = "doe@gmail.com"
+        }
+
+        $scope.setCookies = function(firstName)
         {
             console.log("userController firstName = " + firstName);
             setCookie(firstName);
@@ -303,7 +307,7 @@ function hideSellSideQuestions() {
 
                     </div>
                     <!-- Cookie Handling -->
-                    <button ng-click="autofillForm(form.First_Name_Casual__c.$modelValue);"
+                    <button ng-click="setCookies(form.First_Name_Casual__c.$modelValue);"
                     type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Finance Your Project</button>
 
 
