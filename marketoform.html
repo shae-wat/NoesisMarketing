@@ -57,28 +57,31 @@ function hideSellSideQuestions() {
 
     function userController($scope) {
 
-        $scope.$parent.First_Name_Casual__c = getCookie("firstName"),
-        $scope.$parent.LastName  = "Doe";
-        $scope.$parent.Email  = "doe@gmail.com";
+        $scope.$parent.First_Name_Casual__c = getCookie("firstName");
+        $scope.$parent.LastName  = getCookie("lastName");
+        $scope.$parent.Email  = getCookie("email");
 
         // $scope.autofillForm = function($scope){
             
         // }
 
-        $scope.setCookies = function(firstName)
+        $scope.setCookies = function(firstName, lastName, email)
         {
-            console.log("userController firstName = " + firstName);
-            setCookie(firstName);
+            console.log("setCookies: firstName = " + firstName + "lastName = " + lastName + "email = " + email);
+            //setCookie(firstName, lastName, email);
+            document.cookie = "firstName = " + firstName + "; ";
+            document.cookie = "lastName = " + lastName + "; ";
+             document.cookie = "email = " + email + "; ";
             debugger;
         };
     }
 
-    function setCookie(firstName) {
-        console.log("firstName = " + firstName + "\n");
-        document.cookie = "firstName = " + firstName + "; "
+    // function setCookie(firstName) {
+    //     console.log("firstName = " + firstName + "\n");
+    //     document.cookie = "firstName = " + firstName + "; "
                            
-        console.log("****document.cookie = \n" + document.cookie);
-    }
+    //     console.log("****document.cookie = \n" + document.cookie);
+    // }
 
     function getCookie(cname) {
         var name = cname + "=";
@@ -287,7 +290,7 @@ function hideSellSideQuestions() {
 
                     </div>
                     <!-- Cookie Handling -->
-                    <button ng-click="setCookies(form.First_Name_Casual__c.$modelValue);"
+                    <button ng-click="setCookies(form.First_Name_Casual__c.$modelValue, form.LastName.$modelValue, form.Email.$modelValue);"
                     type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Finance Your Project</button>
 
 
