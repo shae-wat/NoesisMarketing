@@ -57,34 +57,21 @@ function hideSellSideQuestions() {
 
     function userController($scope) {
 
+        // autofill functionality using angular, runs on page load
         $scope.$parent.First_Name_Casual__c = getCookie("firstName");
         $scope.$parent.LastName  = getCookie("lastName");
         $scope.$parent.Email  = getCookie("email");
 
-        // $scope.autofillForm = function($scope){
-            
-        // }
-
         $scope.setCookies = function(firstName, lastName, email)
         {
-            console.log("setCookies: firstName = " + firstName + "lastName = " + lastName + "email = " + email);
-            //setCookie(firstName, lastName, email);
             document.cookie = "firstName = " + firstName + "; ";
             document.cookie = "lastName = " + lastName + "; ";
-             document.cookie = "email = " + email + "; ";
-            debugger;
+            document.cookie = "email = " + email + "; ";
         };
     }
 
-    // function setCookie(firstName) {
-    //     console.log("firstName = " + firstName + "\n");
-    //     document.cookie = "firstName = " + firstName + "; "
-                           
-    //     console.log("****document.cookie = \n" + document.cookie);
-    // }
-
-    function getCookie(cname) {
-        var name = cname + "=";
+    function getCookie(cookieVar) {
+        var name = cookieVar + "=";
         var ca = document.cookie.split(';');
         console.log("ca = " + ca);
         for(var i=0; i<ca.length; i++) {
