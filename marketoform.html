@@ -73,13 +73,13 @@ function hideSellSideQuestions() {
     function getCookie(cookieVar) {
         var name = cookieVar + "=";
         var ca = document.cookie.split(';');
-        console.log("ca = " + ca);
+        //console.log("ca = " + ca);
         for(var i=0; i<ca.length; i++) {
             var c = ca[i];
-            console.log("c = " + c);
+            //console.log("c = " + c);
             while (c.charAt(0)==' ') c = c.substring(1);
             if (c.indexOf(name) != -1) {
-                console.log("c.substring(name.length, c.length) = " + c.substring(name.length, c.length));
+                //console.log("c.substring(name.length, c.length) = " + c.substring(name.length, c.length));
                 return c.substring(name.length, c.length);
             }
         }
