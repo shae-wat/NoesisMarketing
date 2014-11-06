@@ -55,13 +55,29 @@ function hideSellSideQuestions() {
 <!-- Cookie Handling -->
 <script type="text/javascript">
 
-    function setCookie(cFirstName) {
-        console.log("setting cookie with " + cFirstName + "\n");
-        document.cookie = "username=" + cFirstName + "; " 
-                            + "cFirstName = " + cFirstName.toString() + "; "
+    function userController($scope) {
+
+        $scope.$parent.First_Name_Casual__c = getCookie("firstName"),
+        $scope.$parent.LastName  = "Doe";
+        $scope.$parent.Email  = "doe@gmail.com";
+
+        // $scope.autofillForm = function($scope){
+            
+        // }
+
+        $scope.setCookies = function(firstName)
+        {
+            console.log("userController firstName = " + firstName);
+            setCookie(firstName);
+            debugger;
+        };
+    }
+
+    function setCookie(firstName) {
+        console.log("firstName = " + firstName + "\n");
+        document.cookie = "firstName = " + firstName + "; "
                            
         console.log("****document.cookie = \n" + document.cookie);
-        console.log("setcookie = " + cFirstName.toString())
     }
 
     function getCookie(cname) {
@@ -81,48 +97,11 @@ function hideSellSideQuestions() {
     }
 
 
-    function checkCookie() {
-        var user = getCookie("username");
-        if (user != "") {
-            alert("Welcome again " + user);
-            autofillForm($scope);
-            return true;
-        } else {
-            alert("We dont know each other....");
-            return false;
-        }
-    }
-
-    function userController($scope) {
-
-        $scope.autofillForm = function($scope){
-            $scope.$parent.First_Name_Casual__c = getCookie(),
-            $scope.$parent.LastName  = "Doe"
-            $scope.$parent.Email  = "doe@gmail.com"
-        }
-
-        $scope.setCookies = function(firstName)
-        {
-            console.log("userController firstName = " + firstName);
-            setCookie(firstName);
-            debugger;
-        };
-    }
-
 
 </script>
 
 
 <div class="ne-money-bg"v>
-    <!-- Cookie Handling -->
-    <script type="text/javascript">
-        if (checkCookie() == true){
-            console.log("checkCookie() == true\n");
-        }
-        else{
-            console.log("checkCookie() == FALSE\n");
-        }
-        </script>
     <div class="container">
         <br />
         <br />
@@ -181,7 +160,7 @@ function hideSellSideQuestions() {
                  <div class="input-group formedit form-group" 
                         ng-class="{'has-error' : form.First_Name_Casual__c.$dirty && (form.First_Name_Casual__c.$error.required || form.First_Name_Casual__c.$error.maxlength)}" >
                         <span class="input-group-addon add-on ne-10"><i class="fa fa-user fa-fw"></i></span> 
-                    <input type="text" id="firstName"
+                    <input type="text"
                         name="First_Name_Casual__c" class="form-control" ne-hint="First Name" 
                         tooltip="{{(form.First_Name_Casual__c.$dirty && (form.First_Name_Casual__c.$error.required || form.First_Name_Casual__c.$error.maxlength)) ? 'Your first name is required and must be less than 255 characters' : ''}}"         
                         ng-required="true" ng-maxlength="255" 
@@ -220,7 +199,8 @@ function hideSellSideQuestions() {
                     <div class="form-group row" ng-class="{'has-error': hasError(financeDetails.sector) }">
                         <div class="col-md-6">
                                 <label class="ne-11">Sector</label>
-                                <ne-sector-select required name="Project_Sector__c" ng-model="financeEst.facility.sector" filter="true">
+                                <ne-sector-select required name="Project_Sector__c" 
+                                ng-model="financeEst.facility.sector" filter="true">
                                 </ne-sector-select>
                             
                         </div>
