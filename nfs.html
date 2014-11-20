@@ -19,6 +19,8 @@
 <link type="text/css" rel="stylesheet" href="https://www.noesisenergy.com/site/sites/default/files/css/css_PQfIEeB4t-FBNfSkpbxVSLOIeNvueNs7taglZBkRELQ.css" media="all">
   <script src="https://www.noesisenergy.com/site/sites/default/files/js/js_-z-2lAhufzBeVjYseT6cTzSICUy9vnoLBpu1sF_zZrs.js"></script>
 <script src="https://www.noesisenergy.com/site/sites/default/files/js/js_dS_MLZ8n9BHjsqpfj4mS8MCfnxIlTUy9QZFy5xDljWM.js"></script>
+<!-- Cookie Handling -->
+<script type="text/javascript" src="formAutofill.js"></script>
 <script>window.CKEDITOR_BASEPATH = '/site/sites/all/libraries/ckeditor/'</script>
 <script src="https://www.noesisenergy.com/site/sites/default/files/js/js_lgAAOlplEun7p_8Pb-8dM079wtvnfwLZ0hAK0mH7Dto.js"></script>
 <script>var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-25040971-4"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();</script>
@@ -74,6 +76,7 @@
 </ul>			<div class="ne-auth-bar ne-header-avatar">
     <form ng-show="sessionService.initialized &amp;&amp; !sessionService.loggedIn" class="navbar-form navbar-right ng-pristine ng-valid ng-hide">
 		<!-- ngIf: !proPortal && allowToCreateAccount -->
+    <!-- Cookie Handling -->
 		<button id="nt-btn-signin" class="btn btn-default" ng-click="openLogin() setCookies(form.First_Name_Casual__c.$modelValue, form.LastName.$modelValue, form.Email.$modelValue);">
 			Sign In
 		</button>
