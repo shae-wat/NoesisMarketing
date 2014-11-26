@@ -1,0 +1,757 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+var GATrafficSource = (function() {
+    var pairs = (/(?:^|; )__utmz=([^;]*)/.exec(document.cookie) || []).slice(1).pop().split('.').slice(4).join('.').split('|');
+    var vals = {};
+    for (var i = 0; i < pairs.length; i++) {
+        var temp = pairs[i].split('=');
+        vals[temp[0]] = temp[1];
+    }
+    return {
+        'utm_source': (vals.utmgclid) ? "google" : vals.utmcsr,
+        'utm_medium': (vals.utmgclid) ? "cpc" : vals.utmcmd,
+        'utm_campaign': vals.utmccn,
+        'utm_content': vals.utmcct,
+        'utm_term': vals.utmctr
+    };
+}());
+
+$(document).ready(function() {
+    $("#companysize").hide();
+    $("#companyrevenue").hide();
+
+    document.getElementById("GASourceLatest__c").setAttribute("ng-init", "GASourceLatest__c='" + GATrafficSource.utm_source + "'");
+    document.getElementById("GAMediumLatest__c").setAttribute("ng-init", "GAMediumLatest__c='" + GATrafficSource.utm_medium + "'");
+    document.getElementById("GACampaignLatest__c").setAttribute("ng-init", "GACampaignLatest__c='" + GATrafficSource.utm_campaign + "'");
+});
+
+function showSellSideQuestions() {
+    $("#companysize").show();
+    $("#companyrevenue").show();
+
+    document.getElementById("companysize").setAttribute("ng-required", "true");
+    document.getElementById("companyrevenue").setAttribute("ng-required", "true");
+}
+
+function hideSellSideQuestions() {
+    $("#companysize").hide();
+    $("#companyrevenue").hide();
+    document.getElementById("companysize").setAttribute("ng-required", "false");
+    document.getElementById("companyrevenue").setAttribute("ng-required", "false");
+}
+</script>
+
+<div class="ne-11-bg">
+    <div class="container">
+        <div class="row">
+            <br>
+            <br>
+            <br>
+            <div class="col-md-6">
+                <h1>Noesis Financing Services</h1>
+                <p class="lead">Over 60% of energy efficiency projects do not get funded because of budget.  Most project proposals do not include options for 3rd party financing</p>
+
+                <h3 class="handwritten text-primary">Noesis Financing Services is here to help.</h3>
+                <br>
+
+                <p class="lead"><b>Noesis Financing Services</b> makes financing energy efficiency equipment easy. Noesis’ team of energy efficiency (EE) project finance specialists and our unique technology help professionals get more projects approved – and approved faster – by including competitive 3rd party financing options with all of your proposals. With NFS, you’re not alone. We will help each step of the way, from equipping you with estimates and quotes to presenting financing options to the building owner.</p>
+                <p class="lead">What makes NFS unique?  Noesis’ financing offering is different from other equipment finance programs because Noesis’ lenders can offer more competitive rates because they factor in the energy savings from the project – in addition to the credit of the borrower – when calculating the financing terms. </p>
+                <br>
+            </div>
+            <div class="col-md-6"><br><br><br>
+                <div class="well ne-6-bg">
+                    <h3 class="ne-11 handwritten" style="margin-top: 0px;">Please complete this form for more information about NFS</h3>
+                    <hr class="dashed-line-lt">
+                    <br>
+                    <!--  start form -->
+                    <div class="ne-marketo-form" ng-controller="noesis.bootstrap.marketing.controllers.marketingController">
+                                                <form name="form" class="formborder" ng-submit="submitForm('/NOESIS::app-m.marketo.com/index.php/leadCapture/save')" novalidate>
+
+                            <input name="GASourceLatest__c" ng-model="GASourceLatest__c" type="hidden" id="GASourceLatest__c">
+                            <input name="GAMediumLatest__c" ng-model="GAMediumLatest__c" type="hidden" id="GAMediumLatest__c">
+                            <input name="GACampaignLatest__c" ng-model="GACampaignLatest__c" type="hidden" id="GACampaignLatest__c">
+
+                            <input name="Source__c" type="hidden" ng-model="Source__c" ng-init="Source__c='efficiencyfinancingsolutionform'">
+                            <input name="_marketo_comments" type="hidden" ng-model="_marketo_comments" ng-init="_marketo_comments=''">
+                            <input name="lpId" type="hidden" ng-model="lpId" ng-init="lpId=160">
+                            <input name="subId" type="hidden" ng-model="subId" ng-init="subId=159">
+                            <input name="kw" type="hidden" ng-model="kw" ng-init="kw=''">
+                            <input name="cr" type="hidden" ng-model="cr" ng-init="cr=''">
+                            <input name="searchstr" type="hidden" ng-model="searchstr" ng-init="searchstr=''">
+                            <input name="lpurl" type="hidden" ng-model="lpurl" ng-init="lpurl='https://info.noesisenergy.com/stdemailnameform.html?cr={creative}&amp;kw={keyword}'">
+                            <input name="formid" type="hidden" ng-model="formid" ng-init="formid=1012">
+                            <input name="returnURL" type="hidden" ng-model="returnURL" ng-init="returnURL=getCurrentPage()">
+                            <input name="retURL" type="hidden" ng-model="retURL" ng-init="retURL=getCurrentPage()">
+                            <input name="_mkt_disp" type="hidden" ng-model="_mkt_disp" ng-init="_mkt_disp='return'">
+                            <input name="_mkt_trk" type="hidden" ng-model="_mkt_trk" ng-init="_mkt_trk='id:716-WKH-023&amp;token:_mch-noesisenergy.com-1360354278221-60737'">
+
+                            <div class="input-group formedit form-group" ng-class="{'has-error' : form.First_Name_Casual__c.$dirty && (form.First_Name_Casual__c.$error.required || form.First_Name_Casual__c.$error.maxlength)}">
+                                <span class="input-group-addon add-on ne-10"><i class="icon-user icon-fixed-width"></i>
+                                </span>
+                                <input type="text" name="First_Name_Casual__c" class="form-control" ne-hint="First Name" tooltip="{{(form.First_Name_Casual__c.$dirty && (form.First_Name_Casual__c.$error.required || form.First_Name_Casual__c.$error.maxlength)) ? 'Your first name is required and must be less than 255 characters' : ''}}" ng-required="true" ng-maxlength="255" ng-model="$parent.First_Name_Casual__c">
+                            </div>
+
+                            <div class="input-group formedit form-group" ng-class="{'has-error' : form.LastName.$dirty && (form.LastName.$error.required || form.LastName.$error.maxlength)}">
+                                <span class="input-group-addon add-on ne-10"><i class="icon-user icon-fixed-width"></i>
+                                </span>
+                                <input type="text" name="LastName" class="form-control" ne-hint="Last Name" tooltip="{{(form.LastName.$dirty && (form.LastName.$error.required || form.LastName.$error.maxlength)) ? 'Your last name is required and must be less than 255 characters' : ''}}" ng-required="true" ng-maxlength="255" ng-model="$parent.LastName">
+                            </div>
+
+                            <div class="input-group formedit" ng-class="{'has-error' : form.Email.$dirty && (form.Email.$error.required || form.Email.$error.maxlength || form.Email.$error.email)}">
+                                <span class="input-group-addon add-on ne-10"><i class="icon-envelope icon-fixed-width"></i>
+                                </span>
+                                <input type="email" name="Email" class="form-control" ne-hint="Email" tooltip="{{(form.Email.$dirty && (form.Email.$error.required || form.Email.$error.maxlength || form.Email.$error.email)) ? 'A valid email address is required' : ''}}" ng-required="true" ng-maxlength="255" ng-model="$parent.Email">
+                            </div>
+
+                            <div class="input-group formedit" ng-class="{'has-error' : form.Phone.$dirty && (form.Phone.$error.required || form.Phone.$error.maxlength || form.Phone.$error.minlength || form.Phone.$error.tel)}">
+                                <span class="input-group-addon add-on ne-10"><i class="icon-phone icon-fixed-width"></i>
+                                </span>
+                                <input type="tel" name="Phone" class="form-control" ne-hint="Phone (xxx-xxx-xxxx)" tooltip="{{(form.Phone.$dirty && (form.Phone.$error.required || form.Phone.$error.maxlength || form.Phone.$error.minlength || form.Phone.$error.tel)) ? 'A valid phone number is required' : ''}}" ng-required="true" ng-minlength="10" ng-maxlength="16" ng-model="$parent.Phone">
+                            </div>
+
+                            <div class="input-group formedit" ng-class="{'has-error' : form.Company.$dirty && (form.Company.$error.required || form.Company.$error.maxlength)}">
+                                <span class="input-group-addon add-on ne-10"><i class="icon-building icon-fixed-width"></i>
+                                </span>
+                                <input type="text" name="Company" class="form-control" ne-hint="Company" tooltip="{{(form.Company.$dirty && (form.Company.$error.required || form.Company.$error.maxlength)) ? 'Your company name is required and must be less than 255 characters' : ''}}" ng-required="true" ng-maxlength="255" ng-model="$parent.Company">
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error' : form.Company_Headquarter_State__c.$dirty && form.Company_Headquarter_State__c.$error.required}">
+                                <select name="Company_Headquarter_State__c" class="form-control" ng-model="$parent.Company_Headquarter_State__c" ng-required="true" tooltip="{{(form.Company_Headquarter_State__c.$dirty && form.Company_Headquarter_State__c.$error.required) ? 'Select a valid Company Location' : ''}}">
+                                    <option value="">Select Company Location</option>
+                                    <option value="Alaska">USA/Alaska</option>
+                                    <option value="Alabama">USA/Alabama</option>
+                                    <option value="Arkansas">USA/Arkansas</option>
+                                    <option value="Arizona">USA/Arizona</option>
+                                    <option value="California">USA/California</option>
+                                    <option value="Colorado">USA/Colorado</option>
+                                    <option value="Connecticut">USA/Connecticut</option>
+                                    <option value="Delaware">USA/Delaware</option>
+                                    <option value="Florida">USA/Florida</option>
+                                    <option value="Georgia">USA/Georgia</option>
+                                    <option value="Hawaii">USA/Hawaii</option>
+                                    <option value="Iowa">USA/Iowa</option>
+                                    <option value="Idaho">USA/Idaho</option>
+                                    <option value="Illinois">USA/Illinois</option>
+                                    <option value="Indiana">USA/Indiana</option>
+                                    <option value="Kansas">USA/Kansas</option>
+                                    <option value="Kentucky">USA/Kentucky</option>
+                                    <option value="Louisiana">USA/Louisiana</option>
+                                    <option value="Massachusetts">USA/Massachusetts</option>
+                                    <option value="Maryland">USA/Maryland</option>
+                                    <option value="Maine">USA/Maine</option>
+                                    <option value="Michigan">USA/Michigan</option>
+                                    <option value="Minnesota">USA/Minnesota</option>
+                                    <option value="Missouri">USA/Missouri</option>
+                                    <option value="Mississippi">USA/Mississippi</option>
+                                    <option value="Montana">USA/Montana</option>
+                                    <option value="North Carolina">USA/North Carolina</option>
+                                    <option value="North Dakota">USA/North Dakota</option>
+                                    <option value="Nebraska">USA/Nebraska</option>
+                                    <option value="New Hampshire">USA/New Hampshire</option>
+                                    <option value="New Jersey">USA/New Jersey</option>
+                                    <option value="New Mexico">USA/New Mexico</option>
+                                    <option value="Nevada">USA/Nevada</option>
+                                    <option value="New York">USA/New York</option>
+                                    <option value="Ohio">USA/Ohio</option>
+                                    <option value="Oklahoma">USA/Oklahoma</option>
+                                    <option value="Oregon">USA/Oregon</option>
+                                    <option value="Pennsylvania">USA/Pennsylvania</option>
+                                    <option value="Puerto Rico">USA/Puerto Rico</option>
+                                    <option value="Rhode Island">USA/Rhode Island</option>
+                                    <option value="South Carolina">USA/South Carolina</option>
+                                    <option value="South Dakota">USA/South Dakota</option>
+                                    <option value="Tennessee">USA/Tennessee</option>
+                                    <option value="Texas">USA/Texas</option>
+                                    <option value="Utah">USA/Utah</option>
+                                    <option value="Virginia">USA/Virginia</option>
+                                    <option value="Vermont">USA/Vermont</option>
+                                    <option value="Washington">USA/Washington</option>
+                                    <option value="Washington DC">USA/Washington DC</option>
+                                    <option value="Wisconsin">USA/Wisconsin</option>
+                                    <option value="West Virginia">USA/West Virginia</option>
+                                    <option value="Wyoming">USA/Wyoming</option>
+                                    <option value="US Virgin Islands">US Virgin Islands</option>
+                                    <option value="Alberta">Canada/Alberta</option>
+                                    <option value="British Columbia">Canada/British Columbia
+                                    </option>
+                                    <option value="Manitoba">Canada/Manitoba</option>
+                                    <option value="New Brunswick">Canada/New Brunswick</option>
+                                    <option value="Newfoundland">Canada/Newfoundland</option>
+                                    <option value="Northwest Territories">Canada/Northwest Territories
+                                    </option>
+                                    <option value="Nova Scotia">Canada/Nova Scotia</option>
+                                    <option value="Ontario">Canada/Ontario</option>
+                                    <option value="Prince Edward Island">Canada/Prince Edward Island</option>
+                                    <option value="Quebec">Canada/Quebec</option>
+                                    <option value="Saskatchewan">Canada/Saskatchewan</option>
+                                    <option value="Yukon">Canada/Yukon</option>
+                                    <option value="Afghanistan">Afghanistan</option>
+                                    <option value="Albania">Albania</option>
+                                    <option value="Algeria">Algeria</option>
+                                    <option value="American Samoa">American Samoa</option>
+                                    <option value="Andorra">Andorra</option>
+                                    <option value="Angola">Angola</option>
+                                    <option value="Anguilla">Anguilla</option>
+                                    <option value="Antarctica">Antarctica</option>
+                                    <option value="Antigua and Barbuda">Antigua and Barbuda
+                                    </option>
+                                    <option value="Argentina">Argentina</option>
+                                    <option value="Armenia">Armenia</option>
+                                    <option value="Aruba">Aruba</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="Austria">Austria</option>
+                                    <option value="Azerbaijan">Azerbaijan</option>
+                                    <option value="Bahamas">Bahamas</option>
+                                    <option value="Bahrain">Bahrain</option>
+                                    <option value="Bangladesh">Bangladesh</option>
+                                    <option value="Barbados">Barbados</option>
+                                    <option value="Belarus">Belarus</option>
+                                    <option value="Belgium">Belgium</option>
+                                    <option value="Belize">Belize</option>
+                                    <option value="Benin">Benin</option>
+                                    <option value="Bermuda">Bermuda</option>
+                                    <option value="Bhutan">Bhutan</option>
+                                    <option value="Bolivia">Bolivia</option>
+                                    <option value="Bosnia and Herzegovina">Bosnia and Herzegovina
+                                    </option>
+                                    <option value="Botswana">Botswana</option>
+                                    <option value="Bouvet Island">Bouvet Island</option>
+                                    <option value="Brazil">Brazil</option>
+                                    <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                                    <option value="Brunei Darussalam">Brunei Darussalam</option>
+                                    <option value="Bulgaria">Bulgaria</option>
+                                    <option value="Burkina Faso">Burkina Faso</option>
+                                    <option value="Burundi">Burundi</option>
+                                    <option value="Cambodia">Cambodia</option>
+                                    <option value="Cameroon">Cameroon</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="Cape Verde">Cape Verde</option>
+                                    <option value="Cayman Islands">Cayman Islands</option>
+                                    <option value="Central African Republic">Central African Republic</option>
+                                    <option value="Chad">Chad</option>
+                                    <option value="Chile">Chile</option>
+                                    <option value="China">China</option>
+                                    <option value="Christmas Island">Christmas Island</option>
+                                    <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+                                    <option value="Colombia">Colombia</option>
+                                    <option value="Comoros">Comoros</option>
+                                    <option value="Congo">Congo</option>
+                                    <option value="Cook Islands">Cook Islands</option>
+                                    <option value="Costa Rica">Costa Rica</option>
+                                    <option value="Cote D'ivoire">Cote D'ivoire</option>
+                                    <option value="Croatia">Croatia</option>
+                                    <option value="Cuba">Cuba</option>
+                                    <option value="Cyprus">Cyprus</option>
+                                    <option value="Czech Republic">Czech Republic</option>
+                                    <option value="Denmark">Denmark</option>
+                                    <option value="Djibouti">Djibouti</option>
+                                    <option value="Dominica">Dominica</option>
+                                    <option value="Dominican Republic">Dominican Republic</option>
+                                    <option value="Ecuador">Ecuador</option>
+                                    <option value="Egypt">Egypt</option>
+                                    <option value="El Salvador">El Salvador</option>
+                                    <option value="Equatorial Guinea">Equatorial Guinea</option>
+                                    <option value="Eritrea">Eritrea</option>
+                                    <option value="Estonia">Estonia</option>
+                                    <option value="Ethiopia">Ethiopia</option>
+                                    <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
+                                    <option value="Faroe Islands">Faroe Islands</option>
+                                    <option value="Fiji">Fiji</option>
+                                    <option value="Finland">Finland</option>
+                                    <option value="France">France</option>
+                                    <option value="French Guiana">French Guiana</option>
+                                    <option value="French Polynesia">French Polynesia</option>
+                                    <option value="French Southern Territories">French Southern Territories</option>
+                                    <option value="Gabon">Gabon</option>
+                                    <option value="Gambia">Gambia</option>
+                                    <option value="Georgia">Georgia</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="Ghana">Ghana</option>
+                                    <option value="Gibraltar">Gibraltar</option>
+                                    <option value="Greece">Greece</option>
+                                    <option value="Greenland">Greenland</option>
+                                    <option value="Grenada">Grenada</option>
+                                    <option value="Guadeloupe">Guadeloupe</option>
+                                    <option value="Guam">Guam</option>
+                                    <option value="Guatemala">Guatemala</option>
+                                    <option value="Guinea">Guinea</option>
+                                    <option value="Guinea-bissau">Guinea-bissau</option>
+                                    <option value="Guyana">Guyana</option>
+                                    <option value="Haiti">Haiti</option>
+                                    <option value="Honduras">Honduras</option>
+                                    <option value="Hong Kong">Hong Kong</option>
+                                    <option value="Hungary">Hungary</option>
+                                    <option value="Iceland">Iceland</option>
+                                    <option value="India">India</option>
+                                    <option value="Indonesia">Indonesia</option>
+                                    <option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
+                                    <option value="Iraq">Iraq</option>
+                                    <option value="Ireland">Ireland</option>
+                                    <option value="Israel">Israel</option>
+                                    <option value="Italy">Italy</option>
+                                    <option value="Jamaica">Jamaica</option>
+                                    <option value="Japan">Japan</option>
+                                    <option value="Jordan">Jordan</option>
+                                    <option value="Kazakhstan">Kazakhstan</option>
+                                    <option value="Kenya">Kenya</option>
+                                    <option value="Kiribati">Kiribati</option>
+                                    <option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
+                                    <option value="Korea, Republic of">Korea, Republic of</option>
+                                    <option value="Kuwait">Kuwait</option>
+                                    <option value="Kyrgyzstan">Kyrgyzstan</option>
+                                    <option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+                                    <option value="Latvia">Latvia</option>
+                                    <option value="Lebanon">Lebanon</option>
+                                    <option value="Lesotho">Lesotho</option>
+                                    <option value="Liberia">Liberia</option>
+                                    <option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya
+                                    </option>
+                                    <option value="Liechtenstein">Liechtenstein</option>
+                                    <option value="Lithuania">Lithuania</option>
+                                    <option value="Luxembourg">Luxembourg</option>
+                                    <option value="Macao">Macao</option>
+                                    <option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of</option>
+                                    <option value="Madagascar">Madagascar</option>
+                                    <option value="Malawi">Malawi</option>
+                                    <option value="Malaysia">Malaysia</option>
+                                    <option value="Maldives">Maldives</option>
+                                    <option value="Mali">Mali</option>
+                                    <option value="Malta">Malta</option>
+                                    <option value="Marshall Islands">Marshall Islands</option>
+                                    <option value="Martinique">Martinique</option>
+                                    <option value="Mauritania">Mauritania</option>
+                                    <option value="Mauritius">Mauritius</option>
+                                    <option value="Mayotte">Mayotte</option>
+                                    <option value="Mexico">Mexico</option>
+                                    <option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
+                                    <option value="Moldova, Republic of">Moldova, Republic of
+                                    </option>
+                                    <option value="Monaco">Monaco</option>
+                                    <option value="Mongolia">Mongolia</option>
+                                    <option value="Montserrat">Montserrat</option>
+                                    <option value="Morocco">Morocco</option>
+                                    <option value="Mozambique">Mozambique</option>
+                                    <option value="Myanmar">Myanmar</option>
+                                    <option value="Namibia">Namibia</option>
+                                    <option value="Nauru">Nauru</option>
+                                    <option value="Nepal">Nepal</option>
+                                    <option value="Netherlands">Netherlands</option>
+                                    <option value="Netherlands Antilles">Netherlands Antilles
+                                    </option>
+                                    <option value="New Caledonia">New Caledonia</option>
+                                    <option value="New Zealand">New Zealand</option>
+                                    <option value="Nicaragua">Nicaragua</option>
+                                    <option value="Niger">Niger</option>
+                                    <option value="Nigeria">Nigeria</option>
+                                    <option value="Niue">Niue</option>
+                                    <option value="Norfolk Island">Norfolk Island</option>
+                                    <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                                    <option value="Norway">Norway</option>
+                                    <option value="Oman">Oman</option>
+                                    <option value="Pakistan">Pakistan</option>
+                                    <option value="Palau">Palau</option>
+                                    <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
+                                    <option value="Panama">Panama</option>
+                                    <option value="Papua New Guinea">Papua New Guinea</option>
+                                    <option value="Paraguay">Paraguay</option>
+                                    <option value="Peru">Peru</option>
+                                    <option value="Philippines">Philippines</option>
+                                    <option value="Pitcairn">Pitcairn</option>
+                                    <option value="Poland">Poland</option>
+                                    <option value="Portugal">Portugal</option>
+                                    <option value="Puerto Rico">Puerto Rico</option>
+                                    <option value="Qatar">Qatar</option>
+                                    <option value="Reunion">Reunion</option>
+                                    <option value="Romania">Romania</option>
+                                    <option value="Russian Federation">Russian Federation</option>
+                                    <option value="Rwanda">Rwanda</option>
+                                    <option value="Saint Helena">Saint Helena</option>
+                                    <option value="Saint Kitts and Nevis">Saint Kitts and Nevis
+                                    </option>
+                                    <option value="Saint Lucia">Saint Lucia</option>
+                                    <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+                                    <option value="Saint Vincent and The Grenadines">Saint Vincent and The Grenadines</option>
+                                    <option value="Samoa">Samoa</option>
+                                    <option value="San Marino">San Marino</option>
+                                    <option value="Sao Tome and Principe">Sao Tome and Principe
+                                    </option>
+                                    <option value="Saudi Arabia">Saudi Arabia</option>
+                                    <option value="Senegal">Senegal</option>
+                                    <option value="Serbia and Montenegro">Serbia and Montenegro
+                                    </option>
+                                    <option value="Seychelles">Seychelles</option>
+                                    <option value="Sierra Leone">Sierra Leone</option>
+                                    <option value="Singapore">Singapore</option>
+                                    <option value="Slovakia">Slovakia</option>
+                                    <option value="Slovenia">Slovenia</option>
+                                    <option value="Solomon Islands">Solomon Islands</option>
+                                    <option value="Somalia">Somalia</option>
+                                    <option value="South Africa">South Africa</option>
+                                    <option value="South Georgia and The South Sandwich Islands">South Georgia and The South Sandwich Islands</option>
+                                    <option value="Spain">Spain</option>
+                                    <option value="Sri Lanka">Sri Lanka</option>
+                                    <option value="Sudan">Sudan</option>
+                                    <option value="Suriname">Suriname</option>
+                                    <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
+                                    <option value="Swaziland">Swaziland</option>
+                                    <option value="Sweden">Sweden</option>
+                                    <option value="Switzerland">Switzerland</option>
+                                    <option value="Syrian Arab Republic">Syrian Arab Republic
+                                    </option>
+                                    <option value="Taiwan, Province of China">Taiwan, Province of China</option>
+                                    <option value="Tajikistan">Tajikistan</option>
+                                    <option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
+                                    <option value="Thailand">Thailand</option>
+                                    <option value="Timor-leste">Timor-leste</option>
+                                    <option value="Togo">Togo</option>
+                                    <option value="Tokelau">Tokelau</option>
+                                    <option value="Tonga">Tonga</option>
+                                    <option value="Trinidad and Tobago">Trinidad and Tobago
+                                    </option>
+                                    <option value="Tunisia">Tunisia</option>
+                                    <option value="Turkey">Turkey</option>
+                                    <option value="Turkmenistan">Turkmenistan</option>
+                                    <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+                                    <option value="Tuvalu">Tuvalu</option>
+                                    <option value="Uganda">Uganda</option>
+                                    <option value="Ukraine">Ukraine</option>
+                                    <option value="United Arab Emirates">United Arab Emirates
+                                    </option>
+                                    <option value="United Kingdom">United Kingdom</option>
+                                    <option value="United States">United States</option>
+                                    <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                                    <option value="Uruguay">Uruguay</option>
+                                    <option value="Uzbekistan">Uzbekistan</option>
+                                    <option value="Vanuatu">Vanuatu</option>
+                                    <option value="Venezuela">Venezuela</option>
+                                    <option value="Viet Nam">Viet Nam</option>
+                                    <option value="Virgin Islands, British">Virgin Islands, British</option>
+                                    <option value="Virgin Islands, U.S.">Virgin Islands, U.S.
+                                    </option>
+                                    <option value="Wallis and Futuna">Wallis and Futuna</option>
+                                    <option value="Western Sahara">Western Sahara</option>
+                                    <option value="Yemen">Yemen</option>
+                                    <option value="Zambia">Zambia</option>
+                                    <option value="Zimbabwe">Zimbabwe</option>
+
+                                </select>
+                            </div>
+
+                            <div id="biztype" class="form-group" ng-class="{'has-error' : form.Job_Category__c.$dirty && form.Job_Category__c.$error.required}">
+                                <select name="Job_Category__c" class="form-control" ng-model="$parent.Job_Category__c" ng-required="true" tooltip="{{(form.Job_Category__c.$dirty && form.Job_Category__c.$error.required) ? 'Select a valid job role' : ''}}">
+                                    <option value="">Select Business Type</option>
+                                    <option value="ESCO">ESCO</option>
+                                    <option value="Energy Consultant Services">Energy Consultant Services</option>
+                                    <option value="Design/Build (EPC)">Design/Build (EPC)</option>
+                                    <option value="Engineering Firm">Engineering Firm</option>
+                                    <option value="Distributor/Manufacture/Vendor/Agent">Distributor/Manufacture/Vendor/Agent</option>
+                                    <option value="Retail Energy/Utility">Retail Energy/Utility</option>
+                                    <option value="Property Management/Real-Estate">Property Management/Real-Estate</option>
+                                    <option value="Commercial/Industrial/Office Bldg/Retail">Commercial/Industrial/Office Bldg/Retail</option>
+                                    <option value="Public/State/Gov't">Public/State/Gov't</option>
+                                    <option value="Financial Services/Lending/Broker">Financial Services/Lending/Broker</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error' : form.Sell_Side_Opt_In__c.$dirty && form.Sell_Side_Opt_In__c.$error.required}">
+                                <p class="ne-11">Do you sell energy projects and/or services to building owners?</p>
+                                <ul class="list-inline">
+                                    <li>
+                                        <input type="radio" onChange="showSellSideQuestions();_gaq.push(['_trackEvent', 'MarketingForms', 'SellSideOptIn', 'Finance']);" name="Sell_Side_Opt_In__c" value="Pro" ng-model="$parent.Sell_Side_Opt_In__c">
+                                        <span class="ne-11">Yes</span</li>
+                                            <li>
+                                                <input type="radio" onChange="hideSellSideQuestions();" name="Sell_Side_Opt_In__c" value="NA" ng-model="$parent.Sell_Side_Opt_In__c">
+                                                <span class="ne-11">No</span>
+                                            </li>
+                                </ul>
+                            </div>
+
+
+
+                            <div id="companysize" class="form-group" ng-class="{'has-error' : form.Company_Size__c.$dirty}">
+                                <select name="Company_Size__c" class="form-control" ng-model="$parent.Company_Size__c" ng-required="false" tooltip="{{(form.Company_Size__c.$dirty && form.Company_Size__c.$error.required) ? 'Select a valid company size' : ''}}">
+                                    <option value="">Select Number of Employees in Company</option>
+                                    <option value="1 to 10">1 to 10</option>
+                                    <option value="11-19">11-19</option>
+                                    <option value="20-39">20-39</option>
+                                    <option value="40-100">40-100</option>
+                                    <option value="101-250">101-250</option>
+                                    <option value="251-500">251-500</option>
+                                    <option value="501-1,000">501-1,000</option>
+                                    <option value="1,000+">1,000+</option>
+
+                                </select>
+                            </div>
+
+                            <div id="companyrevenue" class="form-group" ng-class="{'has-error' : form.Company_Size__c.$dirty}">
+                                <select name="Annual_Revenue_Picklist__c" class="form-control" ng-model="$parent.Annual_Revenue_Picklist__c" ng-required="false" tooltip="{{(form.Annual_Revenue_Picklist__c.$dirty && form.Annual_Revenue_Picklist__c.$error.required) ? 'Select a valid annual revenue' : ''}}">
+                                    <option value="">Select Annual Company Revenue</option>
+                                    <option value="&lt; $2.5M">&lt; $2.5M</option>
+                                    <option value="$2.5M-$4.9M">$2.5M-$4.9M</option>
+                                    <option value="$5M-$9.9M">$5M-$10M</option>
+                                    <option value="$10M+">$10M+</option>
+                                </select>
+                                </select>
+
+                            </div>
+
+                            <button onClick="_gaq.push(['_trackEvent', 'MarketingForms', 'Submit', 'Finance']);" type="submit" class="btn btn-warning btn-md" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Submit</button>
+                        </form>
+                        <br />
+                        <div class="h3 ne-11" ng-show="submissionComplete">
+                            <span class="text-danger greeting text-normal">
+                                <i class="icon-ok-sign"></i> Thanks for your interest!
+                            </span>
+                            <span class="h4">We will contact you shortly with more information.</span>
+                        </div>
+                        <br>
+                    </div>
+                </div> <!--  end form -->
+                
+                <br>
+                <br>
+                <br>
+            </div>
+
+        </div>
+        <h3 class="handwritten text-primary text-center">It’s simple and obvious &ndash; the better the project, the better the rate.</h3><br><br>
+    </div>
+
+
+
+    <div class="ne-2-bg">
+
+        <div class="container">
+            <img class="arrowdown" src="https://noesisimg.s3.amazonaws.com/Marketing/pages/wht-arrow-down.svg">
+            <div class="row">
+                <div class="col-md-5 col-sm-5"><br><br><br><br>
+                <img class="img-responsive" src="https://noesisimg.s3.amazonaws.com/Marketing/pages/bigmoney.svg">
+                </div>
+                <div class="col-md-7">
+                        <br><br><br>
+                        <h2 class="ne-11">What is NFS?</h2>
+                        <br>
+                        <p class="ne-11 lead"><b>Noesis Financing Services (NFS)</b> is a full-service financing program for energy efficiency project developers (such as consultants, contractors, manufacturers and distributors) that provides the lowest rates on a wide range of EE financing vehicles, access to Noesis’ team of project financing specialists and online EE projects sales tools.  Working with NFS, project developers can win more deals – and win them faster – by offering 3rd party financing on every energy efficiency project proposal.</p>
+                        <p class="ne-11 lead">There are two tiers of Noesis Financing Services: <i>Advantage and Advantage Plus.</i></p>
+                        <p class="ne-11 lead"><b>NFS Advantage</b> is designed for small to mid-sized companies looking to offer simple efficiency financing vehicles, access Noesis team of finance specialists and receive unlimited use of Noesis’ easy-to-use, online sales tools for accelerating and improving their sales process.  </p>
+                        <p class="ne-11 lead"><b>NFS Advantage Plus</b> is designed for large energy efficiency companies looking for a full-service financing program with access to a range of simple to performance-based efficiency financing vehicles and unlimited use of Noesis’ easy-to-use, online selling tools for accelerating and improving the sales process.  </p>
+
+                </div>
+
+            </div><br><br>
+        </div>
+
+        
+    </div>
+</div>
+<div class="ne-5-bg">
+    <div class="container">
+      <div class="row"><br><br>
+        
+          <div class="col-md-7 ne-10"><a name="section1"></a>
+              <h2 class="ne-10">How does Noesis get the best financing terms?  </h2>
+              <p class="ne-10 lead">The lending industry historically looked at the borrower’s credit and, in asset-backed lending, the resale value of the equipment to price the risk associated with a particular project and then determine the financing terms.  This leads to, for example, two people with the same credit rating getting the same terms for a $100K equipment purchase (assuming similar resale rates).  What if one piece of equipment generates $50,000 in incremental annual cash flow and the other results in $5,000 in incremental cash flow?  Are both equally as riWhat has not been done in the past – until Noesis – is factoring in the project economics into the pricing of risk.  This lets the lender adjust their terms downward or upward, depending on the project savings.  So, in the example above, the project with the $50,000 in savings should be less risky than the other and, as a result, would receive more favorable loan or lease terms.</p>
+              <p class="ne-10 lead">Second, Noesis also gets multiple bids for leases to ensure that the estimates are competitive, but also to advantage those lenders who are offering better terms because of the project economics.  So, the better the projects, the better the terms.</p>
+              
+          </div>
+          <div class="col-md-5"><br><br>
+            <img class="img-responsive"  src="https://noesisimg.s3.amazonaws.com/Marketing/pages/projects-with-lenders.svg">
+          </div>
+          
+      </div><br><br>
+    </div>
+  </div>         
+<div class="ne-11-bg">
+    <div class="container">
+        <div class="row">
+                <br>
+                <br>
+                <h2 class="ne-13">What’s Included in Noesis Financing Services?</h2>
+                    <p class="lead handwritten text-info">The following are available to all NFS Advantage and Advantage Plus partners.</p>
+                <div class="col-md-6"><br>
+                 <p class="lead"><b>Competitive EE Project Financing </b> &ndash; Range of EE financing vehicles sourced from Noesis’ syndicate of efficiency lenders who offer the most competitive EE equipment financing terms because of both competitive bidding (multiple estimates per project) and the consideration of the forecast incremental cash flows from the new EE equipment when determining financing terms.  Financing vehicles for NFS include:</p>
+                    <div class="media">
+                            <p class="pull-left">
+                                 <img class="media-object"><i class="fa fa-chevron-right fa-fw"></i>
+                            </p>
+                            <div style="font-size:16px" class="media-body">EE equipment leases (operating, capital and municipal)
+                            </div>
+                    </div>
+                    <div class="media">
+                            <p class="pull-left">
+                                <img class="media-object"><i class="fa fa-chevron-right fa-fw"></i>
+                            </p>
+                            <div style="font-size:16px" class="media-body">Financial agreements (e.g. bank loans)
+                            </div>
+                    </div>
+                    <div class="media">
+                            <p class="pull-left">
+                               <img class="media-object"><i class="fa fa-chevron-right fa-fw"></i>
+                            </p>
+                            <div style="font-size:16px" class="media-body">3rd party specialized EE vehicles (solar PPA, PACE)
+                            </div>
+                    </div>
+                    <div class="media">
+                            <p class="pull-left">
+                                <img class="media-object"><i class="fa fa-chevron-right fa-fw"></i>
+                            </p>
+                            <div style="font-size:16px" class="media-body">C&amp;I performance contracts (Efficiency Performance Lease, Shared Savings Agreements) – <span class="text-danger">FOR ELIGIBLE ADVANTAGE PLUS PARTNERS ONLY</span>
+                            </div>
+                    </div>
+                   
+                </div>
+                <div class="col-md-6"><br>
+                    <img class="img-responsive" src="https://noesisimg.s3.amazonaws.com/Marketing/images/sales-tool-fan.svg">
+                   
+                </div>
+        </div>
+    </div>
+</div>
+<div class="ne-11-bg">
+    <div class="container">
+        <div class="row">
+               
+                <div class="col-md-6"><br>
+                    
+                    <p class="lead"><b>Financing Help Desk</b> &ndash; Direct access to our Noesis team of efficiency project financing experts and online resources, including:</p>
+                    <div class="media">
+                            <p class="pull-left">
+                                <img class="media-object"><i class="fa fa-chevron-right fa-fw"></i>
+                            </p>
+                            <div style="font-size:16px" class="media-body">Unlimited phone and email support of our finance team
+                            </div>
+                    </div>
+                    <div class="media">
+                            <p class="pull-left">
+                                <img class="media-object"><i class="fa fa-chevron-right fa-fw"></i>
+                            </p>
+                            <div style="font-size:16px" class="media-body">Full-service – from financing estimate to funds transfer
+                            </div>
+                    </div>
+                    <div class="media">
+                            <p class="pull-left">
+                                <img class="media-object"><i class="fa fa-chevron-right fa-fw"></i>
+                            </p>
+                            <div style="font-size:16px" class="media-body">Centralized online applications (apply once, multiple quotes) &amp; quick turnarounds
+                            </div>
+                    </div>
+                    <div class="media">
+                            <p class="pull-left">
+                                <img class="media-object"><i class="fa fa-chevron-right fa-fw"></i>
+                            </p>
+                            <div style="font-size:16px" class="media-body">Unlimited estimates and quotes
+                            </div>
+                    </div>
+                    <div class="media">
+                            <p class="pull-left">
+                                <img class="media-object"><i class="fa fa-chevron-right fa-fw"></i>
+                            </p>
+                            <div style="font-size:16px" class="media-body">Direct assistance with building owner – let us help you close!
+                            </div>
+                    </div>
+               
+                </div>
+                <div class="col-md-6">
+                 <img class="img-responsive" src="https://noesisimg.s3.amazonaws.com/Marketing/images/help-desk.svg">
+                </div>
+        </div>
+    </div>
+</div>
+<div class="ne-11-bg">
+    <div class="container">
+        <div class="row"><br>
+                <div class="col-md-6"><br>
+                 <p class="lead"><b>Online EE Project Sales Tools</b> &ndash; Unlimited access to Noesis’ suite of web-based tools for identifying, evaluating and proposing efficiency projects, including:</p>
+                    <div class="media">
+                            <p class="pull-left">
+                                 <img class="media-object"><i class="fa fa-chevron-right fa-fw"></i>
+                            </p>
+                            <div style="font-size:16px" class="media-body"><i>Savings Estimator</i> &ndash; Get the building owner interested early-on through automated, one-page efficiency savings estimates
+                            </div>
+                    </div>
+                    <div class="media">
+                            <p class="pull-left">
+                                <img class="media-object"><i class="fa fa-chevron-right fa-fw"></i>
+                            </p>
+                            <div style="font-size:16px" class="media-body"><i>Finance Estimator</i> &ndash; Introduce up to 100% financing through instant cash flow analysis of the proposed efficiency investment
+                            </div>
+                    </div>
+                    <div class="media">
+                            <p class="pull-left">
+                               <img class="media-object"><i class="fa fa-chevron-right fa-fw"></i>
+                            </p>
+                            <div style="font-size:16px" class="media-body"><i>Business Proposal Generator</i> &ndash; Secure CFO approval through automated Efficiency Business Proposals for your project that summarize energy and financial savings forecasts
+                            </div>
+                    </div>
+                    <div class="media">
+                            <p class="pull-left">
+                                <img class="media-object"><i class="fa fa-chevron-right fa-fw"></i>
+                            </p>
+                            <div style="font-size:16px" class="media-body"><i>Finance Finder</i> &ndash; Find most leases through multiple, competitive bids from Noesis’ syndicate of efficiency finance lenders 
+                            </div>
+                    </div>
+                   
+                </div>
+                <div class="col-md-6"><br>
+                    <img class="img-responsive" src="https://noesisimg.s3.amazonaws.com/Marketing/images/sales-tool-fan.svg">
+                   
+                </div>
+        </div>
+    </div>
+</div>
+<div class="ne-11-bg">
+    <div class="container">
+        <div class="row">
+                <br>
+                <br>
+                <p class="lead handwritten text-info">In addition to the features above, <b>NFS Advantage Plus</b> partners receive:</p>
+                <div class="col-md-6"><br>
+                    <div class="media">
+                            <p class="pull-left">
+                                 <img class="media-object"><i class="fa fa-chevron-right fa-fw"></i>
+                            </p>
+                            <div style="font-size:16px" class="media-body"><i>Dedicated Project Financing Specialist</i> &ndash; Unlimited access to dedicated, full-service Noesis financing expert assigned to each Advantage Plus partner
+                            </div>
+                    </div>
+                    <div class="media">
+                            <p class="pull-left">
+                                <img class="media-object"><i class="fa fa-chevron-right fa-fw"></i>
+                            </p>
+                            <div style="font-size:16px" class="media-body"><i>Project Pre-Funding</i> &ndash; Working capital to fund equipment and construction (additional qualification necessary, funding limits vary based on eligibility)
+                            </div>
+                    </div>
+                    <div class="media">
+                            <p class="pull-left">
+                               <img class="media-object"><i class="fa fa-chevron-right fa-fw"></i>
+                            </p>
+                            <div style="font-size:16px" class="media-body"><i>0% Financing</i> &ndash; Offer 0% financing to provide the most attractive financing offer available and close more deals
+                            </div>
+                    </div>
+                    <div class="media">
+                            <p class="pull-left">
+                                <img class="media-object"><i class="fa fa-chevron-right fa-fw"></i>
+                            </p>
+                            <div style="font-size:16px" class="media-body"><i>Developer Rebates </i> &ndash; Earn money back as financing levels are acheived
+                            </div>
+                    </div>
+                    <div class="media">
+                            <p class="pull-left">
+                                <img class="media-object"><i class="fa fa-chevron-right fa-fw"></i>
+                            </p>
+                            <div style="font-size:16px" class="media-body"><i>Project Finance Training </i> &ndash; Unlimited, personalized training to educate organization on efficiency financing and using Noesis to finance efficiency projects
+                            </div>
+                    </div>
+                   
+                </div>
+                <div class="col-md-6"><br>
+                    <img class="img-responsive" src="https://noesisimg.s3.amazonaws.com/Marketing/pages/handshake.svg">
+                   
+                </div>
+        </div><br><br>
+    </div>
+</div>
+
+
+
+        <ne-scroll-top></ne-scroll-top>
