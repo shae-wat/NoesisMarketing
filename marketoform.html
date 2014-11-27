@@ -9,8 +9,6 @@
 </style>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<!-- Cookie Handling -->
-<script type="text/javascript" src="formAutofill.js"></script>
 
 <script>
 var GATrafficSource = (function() {
@@ -28,24 +26,19 @@ var GATrafficSource = (function() {
         'utm_term': vals.utmctr
     };
 }());
-
 $(document).ready(function() {
     $("#companysize").hide();
     $("#companyrevenue").hide();
-
     document.getElementById("GASourceLatest__c").setAttribute("ng-init", "GASourceLatest__c='" + GATrafficSource.utm_source + "'");
     document.getElementById("GAMediumLatest__c").setAttribute("ng-init", "GAMediumLatest__c='" + GATrafficSource.utm_medium + "'");
     document.getElementById("GACampaignLatest__c").setAttribute("ng-init", "GACampaignLatest__c='" + GATrafficSource.utm_campaign + "'");
 });
-
 function showSellSideQuestions() {
     $("#companysize").show();
     $("#companyrevenue").show();
-
     document.getElementById("companysize").setAttribute("ng-required", "true");
     document.getElementById("companyrevenue").setAttribute("ng-required", "true");
 }
-
 function hideSellSideQuestions() {
     $("#companysize").hide();
     $("#companyrevenue").hide();
@@ -54,16 +47,13 @@ function hideSellSideQuestions() {
 }
 </script>
 
-<!-- Cookie Handling
+<!-- Cookie Handling -->
 <script type="text/javascript">
-
     function userController($scope) {
-
         // autofill functionality using angular, runs on page load
         $scope.$parent.First_Name_Casual__c = getCookie("firstName");
         $scope.$parent.LastName  = getCookie("lastName");
         $scope.$parent.Email  = getCookie("email");
-
         $scope.setCookies = function(firstName, lastName, email)
         {
             document.cookie = "firstName = " + firstName + "; ";
@@ -71,26 +61,22 @@ function hideSellSideQuestions() {
             document.cookie = "email = " + email + "; ";
         };
     }
-
     function getCookie(cookieVar) {
         var name = cookieVar + "=";
         var ca = document.cookie.split(';');
-        //console.log("ca = " + ca);
+        console.log("ca = " + ca);
         for(var i=0; i<ca.length; i++) {
             var c = ca[i];
-            //console.log("c = " + c);
+            console.log("c = " + c);
             while (c.charAt(0)==' ') c = c.substring(1);
             if (c.indexOf(name) != -1) {
-                //console.log("c.substring(name.length, c.length) = " + c.substring(name.length, c.length));
+                console.log("c.substring(name.length, c.length) = " + c.substring(name.length, c.length));
                 return c.substring(name.length, c.length);
             }
         }
         return "";
     }
-
-
-
-</script>-->
+</script>
 
 
 <div class="ne-money-bg"v>
