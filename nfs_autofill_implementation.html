@@ -45,20 +45,22 @@ function hideSellSideQuestions() {
         $scope.$parent.Email  = getCookie("afEmail");
         $scope.$parent.Phone  = getCookie("afPhone");
         $scope.$parent.Company  = getCookie("afCompany");
-        $scope.$parent.Company_Headquarter_State__c = "Oregon";
-        $scope.$parent.Job_Category__c = "Other";
+        $scope.$parent.Company_Headquarter_State__c = getCookie("afHeadquarter");
+        $scope.$parent.Job_Category__c = getCookie("afCategory");
         //Annual_Revenue_Picklist__c = 
         //Company_Size__c
         //Sell_Side_Opt_In__c = 
 
-        $scope.setCookies = function(first, last, email, phone, company)
+        $scope.setCookies = function(first, last, email, phone, company, headquarter, category)
         {
-            alert("setCookies successfully called with " + last + " " + email);
+            // alert("setCookies successfully called with " + last + " " + email);
             document.cookie = "afFirstName = " + first + "; ";
             document.cookie = "afLastName = " + last + "; ";
             document.cookie = "afEmail = " + email + "; ";
             document.cookie = "afPhone = " + phone + "; ";
             document.cookie = "afCompany = " + company + "; ";
+            document.cookie = "afHeadquarter = " + headquarter + "; ";
+            document.cookie = "afCategory = " + category + "; ";
         };
     }
 
@@ -535,7 +537,7 @@ function hideSellSideQuestions() {
 
                             </div>
                             <!-- Cookie Handling -->
-                            <button ng-click="setCookies(form.First_Name_Casual__c.$modelValue, form.LastName.$modelValue, form.Email.$modelValue, form.Phone.$modelValue, form.Company.$modelValue);"
+                            <button ng-click="setCookies(form.First_Name_Casual__c.$modelValue, form.LastName.$modelValue, form.Email.$modelValue, form.Phone.$modelValue, form.Company.$modelValue, form.Company_Headquarter_State__c.$modelValue, form.Job_Category__c.$modelValue);"
                              type="submit" class="btn btn-warning btn-md" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Submit</button>
                         </form>
                         <br />
