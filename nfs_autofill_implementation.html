@@ -40,23 +40,25 @@ function hideSellSideQuestions() {
 <script type="text/javascript">
     function autofillController($scope) {
         // autofill functionality using angular, runs on page load
-        $scope.$parent.First_Name_Casual__c = getCookie("firstName");
-        $scope.$parent.LastName  = getCookie("lastName");
-        $scope.$parent.Email  = getCookie("email");
-        $scope.$parent.Phone  = "512-970-3233";
-        $scope.$parent.Company  = "Noesis Energy";
+        $scope.$parent.First_Name_Casual__c = getCookie("afFirstName");
+        $scope.$parent.LastName  = getCookie("afLastName");
+        $scope.$parent.Email  = getCookie("afEmail");
+        $scope.$parent.Phone  = getCookie("afPhone");
+        $scope.$parent.Company  = getCookie("afCompany");
         $scope.$parent.Company_Headquarter_State__c = "Oregon";
         $scope.$parent.Job_Category__c = "Other";
         //Annual_Revenue_Picklist__c = 
         //Company_Size__c
         //Sell_Side_Opt_In__c = 
 
-        $scope.setCookies = function(first, last, email)
+        $scope.setCookies = function(first, last, email, phone, company)
         {
             alert("setCookies successfully called with " + last + " " + email);
-            document.cookie = "firstName = " + $scope.$parent.First_Name_Casual__c + "; ";
-            document.cookie = "lastName = " + last + "; ";
-            document.cookie = "email = " + email + "; ";
+            document.cookie = "afFirstName = " + first + "; ";
+            document.cookie = "afLastName = " + last + "; ";
+            document.cookie = "afEmail = " + email + "; ";
+            document.cookie = "afPhone = " + phone + "; ";
+            document.cookie = "afCompany = " + company + "; ";
         };
     }
 
@@ -533,7 +535,7 @@ function hideSellSideQuestions() {
 
                             </div>
                             <!-- Cookie Handling -->
-                            <button ng-click="setCookies(form.First_Name_Casual__c.$modelValue, form.LastName.$modelValue, form.Email.$modelValue);"
+                            <button ng-click="setCookies(form.First_Name_Casual__c.$modelValue, form.LastName.$modelValue, form.Email.$modelValue, form.Phone.$modelValue, form.Company.$modelValue);"
                              type="submit" class="btn btn-warning btn-md" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Submit</button>
                         </form>
                         <br />
