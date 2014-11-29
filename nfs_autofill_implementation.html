@@ -40,9 +40,9 @@ function hideSellSideQuestions() {
 <script type="text/javascript">
     function autofillController($scope) {
         // autofill functionality using angular, runs on page load
-        $scope.$parent.First_Name_Casual__c = "Shaelyn";
-        $scope.$parent.LastName  = "Watson";
-        $scope.$parent.Email  = "shaelynjoy@gmail.com";
+        $scope.$parent.First_Name_Casual__c = getCookie("firstName");
+        $scope.$parent.LastName  = getCookie("lastName");
+        $scope.$parent.Email  = getCookie("email");
         $scope.$parent.Phone  = "512-970-3233";
         $scope.$parent.Company  = "Noesis Energy";
         $scope.$parent.Company_Headquarter_State__c = "Oregon";
@@ -53,11 +53,10 @@ function hideSellSideQuestions() {
 
         $scope.setCookies = function(first, last, email)
         {
-            alert("setCookies successfully called");
-            console.log("\nsetCookies successfully called\n");
-            // document.cookie = "firstName = " + firstName + "; ";
-            // document.cookie = "lastName = " + lastName + "; ";
-            // document.cookie = "email = " + email + "; ";
+            alert("setCookies successfully called with " + last + " " + email);
+            document.cookie = "firstName = " + $scope.$parent.First_Name_Casual__c + "; ";
+            document.cookie = "lastName = " + last + "; ";
+            document.cookie = "email = " + email + "; ";
         };
     }
 
@@ -80,7 +79,7 @@ function hideSellSideQuestions() {
 
 <div class="ne-11-bg">
     <!-- Cookie Handling -->
-    <div class="container" ng-controller="autofillController as autofill">
+    <div class="container" ng-controller="autofillController">
         <div class="row">
             <br>
             <br>
