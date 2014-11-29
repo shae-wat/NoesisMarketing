@@ -51,13 +51,16 @@ function hideSellSideQuestions() {
         //Company_Size__c
         //Sell_Side_Opt_In__c = 
 
-        $scope.setCookies = function(firstName, lastName, email)
+        $scope.setCookies = function(first, last, email)
         {
-            document.cookie = "firstName = " + firstName + "; ";
-            document.cookie = "lastName = " + lastName + "; ";
-            document.cookie = "email = " + email + "; ";
+            alert("setCookies successfully called");
+            console.log("\nsetCookies successfully called\n");
+            // document.cookie = "firstName = " + firstName + "; ";
+            // document.cookie = "lastName = " + lastName + "; ";
+            // document.cookie = "email = " + email + "; ";
         };
     }
+
     function getCookie(cookieVar) {
         var name = cookieVar + "=";
         var ca = document.cookie.split(';');
@@ -76,6 +79,7 @@ function hideSellSideQuestions() {
 </script>
 
 <div class="ne-11-bg">
+    <!-- Cookie Handling -->
     <div class="container" ng-controller="autofillController as autofill">
         <div class="row">
             <br>
@@ -521,7 +525,7 @@ function hideSellSideQuestions() {
                             <div id="companyrevenue" class="form-group" ng-class="{'has-error' : form.Company_Size__c.$dirty}">
                                 <select name="Annual_Revenue_Picklist__c" class="form-control" ng-model="$parent.Annual_Revenue_Picklist__c" ng-required="false" tooltip="{{(form.Annual_Revenue_Picklist__c.$dirty && form.Annual_Revenue_Picklist__c.$error.required) ? 'Select a valid annual revenue' : ''}}">
                                     <option value="">Select Annual Company Revenue</option>
-                                    <option value="&lt; $2.5M">&lt; $2.5M</option>
+                                    <option value="&lt; $2.5M">&lt; $2form.First_Name_Casual__c.$modelValue, form.LastName.$modelValue, form.Email.$modelValue.5M</option>
                                     <option value="$2.5M-$4.9M">$2.5M-$4.9M</option>
                                     <option value="$5M-$9.9M">$5M-$10M</option>
                                     <option value="$10M+">$10M+</option>
@@ -529,8 +533,9 @@ function hideSellSideQuestions() {
                                 </select>
 
                             </div>
-
-                            <button ng-click="autofill.setCookies(form.First_Name_Casual__c.$modelValue, form.LastName.$modelValue, form.Email.$modelValue);" type="submit" class="btn btn-warning btn-md" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Submit</button>
+                            <!-- Cookie Handling -->
+                            <button ng-click="setCookies(form.First_Name_Casual__c.$modelValue, form.LastName.$modelValue, form.Email.$modelValue);"
+                             type="submit" class="btn btn-warning btn-md" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Submit</button>
                         </form>
                         <br />
                         <div class="h3 ne-11" ng-show="submissionComplete">
