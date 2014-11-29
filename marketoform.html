@@ -49,7 +49,7 @@ function hideSellSideQuestions() {
 
 <!-- Cookie Handling -->
 <script type="text/javascript">
-    function userController($scope) {
+    function autofillController($scope) {
         // autofill functionality using angular, runs on page load
         $scope.$parent.First_Name_Casual__c = getCookie("firstName");
         $scope.$parent.LastName  = getCookie("lastName");
@@ -79,7 +79,7 @@ function hideSellSideQuestions() {
 </script>
 
 
-<div class="ne-money-bg"v>
+<div class="ne-money-bg">
     <div class="container">
         <br />
         <br />
@@ -104,7 +104,8 @@ function hideSellSideQuestions() {
     <br>
 </div>
 <div class="ne-6-bg">
-    <div class="container" ng-controller="userController">
+    <!-- Cookie Handling -->
+    <div class="container" ng-controller="autofillController as autofill">
 
         <div class="row">
             <div class="ne-marketo-form form-group" ng-controller="noesis.bootstrap.marketing.controllers.marketingController">
@@ -265,7 +266,7 @@ function hideSellSideQuestions() {
 
                     </div>
                     <!-- Cookie Handling -->
-                    <button ng-click="setCookies(form.First_Name_Casual__c.$modelValue, form.LastName.$modelValue, form.Email.$modelValue);"
+                    <button ng-click="autofill.setCookies(form.First_Name_Casual__c.$modelValue, form.LastName.$modelValue, form.Email.$modelValue);"
                     type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Finance Your Project</button>
 
 

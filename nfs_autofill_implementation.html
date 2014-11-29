@@ -1,5 +1,4 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
 <script>
 var GATrafficSource = (function() {
     var pairs = (/(?:^|; )__utmz=([^;]*)/.exec(document.cookie) || []).slice(1).pop().split('.').slice(4).join('.').split('|');
@@ -16,24 +15,19 @@ var GATrafficSource = (function() {
         'utm_term': vals.utmctr
     };
 }());
-
 $(document).ready(function() {
     $("#companysize").hide();
     $("#companyrevenue").hide();
-
     document.getElementById("GASourceLatest__c").setAttribute("ng-init", "GASourceLatest__c='" + GATrafficSource.utm_source + "'");
     document.getElementById("GAMediumLatest__c").setAttribute("ng-init", "GAMediumLatest__c='" + GATrafficSource.utm_medium + "'");
     document.getElementById("GACampaignLatest__c").setAttribute("ng-init", "GACampaignLatest__c='" + GATrafficSource.utm_campaign + "'");
 });
-
 function showSellSideQuestions() {
     $("#companysize").show();
     $("#companyrevenue").show();
-
     document.getElementById("companysize").setAttribute("ng-required", "true");
     document.getElementById("companyrevenue").setAttribute("ng-required", "true");
 }
-
 function hideSellSideQuestions() {
     $("#companysize").hide();
     $("#companyrevenue").hide();
@@ -44,12 +38,10 @@ function hideSellSideQuestions() {
 
 <!-- Cookie Handling -->
 <script type="text/javascript">
-
-    function userController($scope) {
-
+    function autofillController($scope) {
         // autofill functionality using angular, runs on page load
         $scope.$parent.First_Name_Casual__c = getCookie("firstName");
-        $scope.$parent.LastName  = getCookie("lastName");
+        $scope.$parent.LastName  = "WATTTTSON";
         $scope.$parent.Email  = getCookie("email");
 
         $scope.setCookies = function(firstName, lastName, email)
@@ -59,27 +51,25 @@ function hideSellSideQuestions() {
             document.cookie = "email = " + email + "; ";
         };
     }
-
     function getCookie(cookieVar) {
         var name = cookieVar + "=";
         var ca = document.cookie.split(';');
-        //console.log("ca = " + ca);
+        console.log("ca = " + ca);
         for(var i=0; i<ca.length; i++) {
             var c = ca[i];
-            //console.log("c = " + c);
+            console.log("c = " + c);
             while (c.charAt(0)==' ') c = c.substring(1);
             if (c.indexOf(name) != -1) {
-                //console.log("c.substring(name.length, c.length) = " + c.substring(name.length, c.length));
+                console.log("c.substring(name.length, c.length) = " + c.substring(name.length, c.length));
                 return c.substring(name.length, c.length);
             }
         }
         return "";
     }
-
 </script>
 
 <div class="ne-11-bg">
-    <div class="container">
+    <div class="container" ng-controller="autofillController as autofill">
         <div class="row">
             <br>
             <br>
@@ -533,7 +523,7 @@ function hideSellSideQuestions() {
 
                             </div>
 
-                            <button onClick="setCookies(form.First_Name_Casual__c.$modelValue, form.LastName.$modelValue, form.Email.$modelValue);_gaq.push(['_trackEvent', 'MarketingForms', 'Submit', 'Finance']);" type="submit" class="btn btn-warning btn-md" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Submit</button>
+                            <button ng-click="autofill.setCookies(form.First_Name_Casual__c.$modelValue, form.LastName.$modelValue, form.Email.$modelValue);" type="submit" class="btn btn-warning btn-md" ng-disabled="working"><i ng-show="working" class="icon-spinner icon-spin"></i> Submit</button>
                         </form>
                         <br />
                         <div class="h3 ne-11" ng-show="submissionComplete">
