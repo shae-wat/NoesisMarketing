@@ -1,6 +1,8 @@
 package com.noesis.app;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -164,6 +166,21 @@ public class Utils {
 		return content;
 	}
 	
+	public static String readTxtFile(String fileName) throws IOException {
+		File fin = new File(fileName);
+		FileInputStream fis = new FileInputStream(fin);
+		BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+	 
+		String line = null;
+		String result = ".";
+		while ((line = br.readLine()) != null) {
+			result += line;
+		}
+		//System.out.println("result = \n" + result);
+		br.close();
+		return result;
+	}
+	
 	public static List<String> pullEmailAddressesFromString (String input)
 	{
 		List<String> emails = new ArrayList<String>();
@@ -171,6 +188,27 @@ public class Utils {
 	    while (m.find()) {
 	    	if(!emails.contains(m.group()))
 	    		emails.add(m.group());
+	    }
+	    return emails;
+	}
+	
+	public static List<String> pullTrickyEmailAddressesFromString (String input)
+	{
+		List<String> emails = new ArrayList<String>();
+		Matcher m = Pattern.compile("[a-zA-Z0-9_.+-]+\\[at][a-zA-Z0-9-]+\\[dot][a-zA-Z0-9-.]+").matcher(input);
+	    System.out.println("Mgroups \n");
+	    String[] e;
+	    String email = "";
+		while (m.find()) {
+	    	if(!emails.contains(m.group())){
+	    		e = m.group().split("\\[at\\]");
+	    		email = e[0]+"@"+e[1];
+	    		//System.out.println("email0 = " + email);
+	    		e = email.split("\\[dot\\]");
+	    		email = e[0]+"."+e[1];
+	    		emails.add(email);
+	    		//System.out.println(email);
+	    	}
 	    }
 	    return emails;
 	}

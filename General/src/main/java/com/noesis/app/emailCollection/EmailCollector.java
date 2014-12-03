@@ -1,5 +1,6 @@
 package com.noesis.app.emailCollection;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,15 +14,35 @@ public class EmailCollector {
 	
 	public static void main(String args[]){
 		EmailCollector ec = new EmailCollector();
-		ec.collectPDF();
+		//ec.collectPDF();
 		//ec.collectHTML();
 		//ec.jsonLinkSearch();
+		ec.collectTxt();
 		
+	}
+	
+	public void collectTxt(){
+		String longStr;
+		try {
+			longStr = Utils.readTxtFile("web.txt");
+			//System.out.println("longStr=\n" + longStr);
+			List<String> emailList = Utils.pullEmailAddressesFromString(longStr);
+			
+			System.out.println("EMAILS: \n");
+			for (String email : emailList){
+				if(!email.equals("info@energytrust.org"))
+					System.out.println(email);
+			}
+			System.out.println("\nTxt file done");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void collectPDF(){
 		try {
-			String pdfFile = "nate.pdf";
+			String pdfFile = "web.pdf";
 			String pdfContent = Utils.pullPDFTextFromURL(pdfFile);
 			//System.out.println("pdf = " + pdfContent);  //Sanity check
 			List<String> emailList = Utils.pullEmailAddressesFromString(pdfContent);
@@ -40,7 +61,7 @@ public class EmailCollector {
 	
 	public void collectHTML(){
 		try{
-			String url = "http://www.hvacradvice.com/site/324/About-NATE/Find-A-NATE-Certified-Technician";
+			String url = "http://hvacreducation.net/xcel-co/public_search_proc.cfm";
 			String htmlContent = Utils.readFromURL(url);
 			System.out.println("web = " + htmlContent);  //Sanity check
 			List<String> emailList = Utils.pullEmailAddressesFromString(htmlContent);
@@ -48,7 +69,7 @@ public class EmailCollector {
 			System.out.println("EMAILS: \n");
 			for (String email : emailList){
 				if (!email.equals("info@dvgbc.org"))
-					System.out.println(email);
+					System.out.println(email.toLowerCase());
 			}
 			System.out.println("\nHTML done");
 			
@@ -68,6 +89,7 @@ public class EmailCollector {
 				try{
 				//System.out.println(url);
 				String htmlContent = Utils.readFromURL(url);
+				//System.out.println(htmlContent);
 				List<String> emails = Utils.pullEmailAddressesFromString(htmlContent);
 				for (String email : emails){
 					if (!email.endsWith(".gif") && !email.equals("xyz@abc.com"))
