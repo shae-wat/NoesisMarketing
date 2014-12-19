@@ -8,7 +8,54 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="/jquery.validate.min.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.23/angular.min.js"></script>
+    <!-- Cookie Handling -->
+    <script type="text/javascript">
+        var app = angular.module("FormAutofill", []);
+        app.controller("autofillController",autofillController);
+        function autofillController($scope) {
+            // autofill functionality using angular, runs on page load
+            $scope.$parent.First_Name_Casual__c = getCookie("afFirstName");
+            $scope.$parent.LastName  = getCookie("afLastName");
+            $scope.$parent.Email  = getCookie("afEmail");
+            $scope.$parent.Phone  = getCookie("afPhone");
+            $scope.$parent.Company  = getCookie("afCompany");
+            $scope.$parent.Company_Headquarter_State__c = getCookie("afHeadquarter");
+            $scope.$parent.Job_Category__c = getCookie("afCategory");
+            //Annual_Revenue_Picklist__c = 
+            //Company_Size__c
+            //Sell_Side_Opt_In__c = 
+
+            $scope.setCookies = function(first, last, email, phone, company, headquarter, category)
+            {
+                // alert("setCookies successfully called with " + last + " " + email);
+                document.cookie = "afFirstName = " + first + "; ";
+                document.cookie = "afLastName = " + last + "; ";
+                document.cookie = "afEmail = " + email + "; ";
+                document.cookie = "afPhone = " + phone + "; ";
+                document.cookie = "afCompany = " + company + "; ";
+                document.cookie = "afHeadquarter = " + headquarter + "; ";
+                document.cookie = "afCategory = " + category + "; ";
+            };
+        }
+
+        function getCookie(cookieVar) {
+            var name = cookieVar + "=";
+            var ca = document.cookie.split(';');
+            console.log("ca = " + ca);
+            for(var i=0; i<ca.length; i++) {
+                var c = ca[i];
+                console.log("c = " + c);
+                while (c.charAt(0)==' ') c = c.substring(1);
+                if (c.indexOf(name) != -1) {
+                    console.log("c.substring(name.length, c.length) = " + c.substring(name.length, c.length));
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+    </script>
+
     <title>Registration</title>
     <link rel="stylesheet" type="text/css" href="https://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/bootstrap.min.css"> 
     <link rel="stylesheet" type="text/css" href="https://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/noesis-theme.css">
@@ -54,7 +101,7 @@
 
 
 <body class="ne-11-bg" onload="parent.postMessage('Hello World','*')">
-<div class="container" style="margin:0;padding:0;">
+<div class="container" style="margin:0;padding:0;" ng-app="FormAutofill">
 <header>
     <div class="hidden-xs">
         <table><tr>
@@ -92,7 +139,7 @@
 </header>
 
 <div class="row">
-<div class="col-sm-6">
+<div class="col-sm-6" ng-controller="autofillController">
     <div class="well ne-6-bg">
               <form id="regForm" name="webinarRegistration" "${pageContext.request.contextPath}/WebinarWebAppServlet" action=<%=action%> method="POST" class="bs-example form-horizontal">
                 <fieldset>
@@ -306,7 +353,7 @@
                                     
                                 
         <div class="form-group col-lg-10">
-           <button type="input" class="btn btn-primary" style="margin-top:10px">Register for Webinar</button>
+           <button type="input" ng-click="setCookies(form.First_Name_Casual__c.$modelValue, form.LastName.$modelValue, form.Email.$modelValue, form.Phone.$modelValue, form.Company.$modelValue, form.Company_Headquarter_State__c.$modelValue, form.Job_Category__c.$modelValue);" class="btn btn-primary" style="margin-top:10px">Register for Webinar</button>
         </div>
         <div class="form-group col-lg-10">
             <br>

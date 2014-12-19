@@ -59,13 +59,6 @@
 <body class="ne-11-bg" onload="parent.postMessage('Hello World','*')">
 
 	<div class="container" style="padding:0;margin:0;">
-	<!-- <header>
-		<div id="success">	
-	        <h4 style="color:#fff;">Successful Registration for</h4>
-	        <h1 class="text-info"> <%=webinar.getSubject()%> </h1>
-        </div>
-		<hr>
-	</header> -->
 	
 	<div class="row">
 	<div class="col-sm-6">
