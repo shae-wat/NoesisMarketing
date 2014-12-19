@@ -31,7 +31,7 @@ public class DateAndTime implements Comparable<DateAndTime>{
 		int c = 0;
 		for (Map.Entry<String, String> entry : data.entrySet())
 		{
-		    System.out.println("\n"+ entry.getKey() + ": " + entry.getValue() + " " + timeZone);
+		    //System.out.println("\n"+ entry.getKey() + ": " + entry.getValue() + " " + timeZone);
 		    if (c==0){
 		    	String startTiempo = entry.getValue();
 		    	String[] startInfo0 = startTiempo.split("-");
@@ -42,14 +42,14 @@ public class DateAndTime implements Comparable<DateAndTime>{
 		    	date = monthNum + "/" + startInfo1[0];
 		    	String sTime = startInfo1[1];
 		    	
-		    	System.out.println("year = " + year);
-		    	System.out.println("monthNum = " + monthNum);
-		    	System.out.println("date = " + date);
-		    	System.out.println("sTime = " + sTime);
+//		    	System.out.println("year = " + year);
+//		    	System.out.println("monthNum = " + monthNum);
+//		    	System.out.println("date = " + date);
+//		    	System.out.println("sTime = " + sTime);
 		    	int h = Integer.parseInt(sTime.substring(0, 2));
-		    	System.out.println("h = " + h);
+		    	//System.out.println("h = " + h);
 		    	String m = sTime.substring(3, 5);
-		    	System.out.println("m = " + m);
+		    	//System.out.println("m = " + m);
 		    	
 		    	
 			    if (timeZone.equals("EDT")){
@@ -62,7 +62,7 @@ public class DateAndTime implements Comparable<DateAndTime>{
 			    	if(h==0)
 			    		h=12;
 			    	startTime = Integer.toString(h) + ":" + m + ampm;
-			    	System.out.println("startTime = " + startTime + ampm);
+			    	//System.out.println("startTime = " + startTime + ampm);
 			    	try {
 						startDateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTiempo.replaceAll("Z$", "-0100"));
 					} catch (ParseException e) {
@@ -79,7 +79,7 @@ public class DateAndTime implements Comparable<DateAndTime>{
 			    	if(h==0)
 			    		h=12;
 			    	startTime = Integer.toString(h) + ":" + m + ampm;
-			    	System.out.println("startTime = " + startTime + ampm);
+			    	//System.out.println("startTime = " + startTime + ampm);
 			    	try {
 						startDateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(startTiempo.replaceAll("Z$", "-0000"));
 					} catch (ParseException e) {
@@ -95,11 +95,11 @@ public class DateAndTime implements Comparable<DateAndTime>{
 		    	
 		    	String eTime = endInfo1[1];
 
-		    	System.out.println("end time = " +eTime);
+		    	//System.out.println("end time = " +eTime);
 		    	int h = Integer.parseInt(eTime.substring(0, 2));
-		    	System.out.println("h = " + h);
+		    	//System.out.println("h = " + h);
 		    	String m = eTime.substring(3, 5);
-		    	System.out.println("m = " + m);
+		    	//System.out.println("m = " + m);
 		    	
 		    	
 			    if (timeZone.equals("EDT")){
@@ -112,7 +112,7 @@ public class DateAndTime implements Comparable<DateAndTime>{
 			    	if(h==0)
 			    		h=12;
 			    	endTime = Integer.toString(h) + ":" + m + ampm;
-			    	System.out.println("endTime = " + endTime + ampm);
+			    	//System.out.println("endTime = " + endTime + ampm);
 			    	try {
 						endDateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(endTiempo.replaceAll("Z$", "-0100"));
 					} catch (ParseException e) {
@@ -129,7 +129,7 @@ public class DateAndTime implements Comparable<DateAndTime>{
 			    	if(h==0)
 			    		h=12;
 			    	endTime = Integer.toString(h) + ":" + m + ampm;
-			    	System.out.println("endTime = " + endTime + ampm);
+			    	//System.out.println("endTime = " + endTime + ampm);
 			    	try {
 						endDateObj = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(endTiempo.replaceAll("Z$", "-0000"));
 					} catch (ParseException e) {
@@ -143,16 +143,16 @@ public class DateAndTime implements Comparable<DateAndTime>{
 
 		
 		day = (new SimpleDateFormat("EEEEEEEE")).format(startDateObj);
-		System.out.println("day = " + day);
+		//System.out.println("day = " + day);
 		
 		if (startTime.startsWith("0"))
 			startTime = startTime.substring(1);
-		System.out.println("startTime = " + startTime);
+		//System.out.println("startTime = " + startTime);
 
 		
 		if (endTime.startsWith("0"))
 			endTime = endTime.substring(1);
-		System.out.println("endTime = " + endTime);
+		//System.out.println("endTime = " + endTime);
 
 		
 	}

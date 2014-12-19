@@ -15,9 +15,9 @@ public class EmailCollector {
 	public static void main(String args[]){
 		EmailCollector ec = new EmailCollector();
 		//ec.collectPDF();
-		//ec.collectHTML();
+		ec.collectHTML();
 		//ec.jsonLinkSearch();
-		ec.collectTxt();
+		//ec.collectTxt();
 		
 	}
 	

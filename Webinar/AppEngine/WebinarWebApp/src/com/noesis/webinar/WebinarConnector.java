@@ -71,7 +71,7 @@ public class WebinarConnector {
 		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 		while((line = in.readLine()) != null)
 		{
-			System.out.println("\nGET upcoming webinars = "+line);
+			System.out.println("\nGET upcoming webinars = "+line+"/n");
 			upcomingWebinars = gson.fromJson(line, new TypeToken<List<WebinarData>>(){}.getType());
 		}
 		in.close();
@@ -82,14 +82,14 @@ public class WebinarConnector {
 			
 			dateAndKey = new DateAndTime(webinar.times.get(0), webinar.getTimeZone());  //shouldbe only ele at this point
 			dateAndKey.setWebinarKey(webinar.getWebinarKey());
-			System.out.println(dateAndKey.getStartTime());
-			System.out.println(webinar.getTimeZone());
+			//System.out.println(dateAndKey.getStartTime());
+			System.out.println(webinar.getTimeZone() + "\n");
 			dateAndKey.setTimeZone(webinar.getTimeZone());
 			
 			//Remove list duplicates
 			for(WebinarData web:officialWebinars){
 				if (webinar.getSubject().equals(web.getSubject())){
-					System.out.println("Added " + webinar.getSubject() + " times to " + web.getSubject());
+					//System.out.println("Added " + webinar.getSubject() + " times to " + web.getSubject());
 					web.datesAndKeys.add(dateAndKey);
 					//web.times.add(webinar.times.get(0));
 					webinar.setSubject("NEEDED");  //filters this webinar out after adding its times
