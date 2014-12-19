@@ -11,8 +11,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.23/angular.min.js"></script>
     <!-- Cookie Handling -->
     <script type="text/javascript">
-        var app = angular.module("FormAutofill", []);
-        app.controller("autofillController",autofillController);
+        var app = angular.module('FormAutofill', []);
+        app.controller('autofillController',autofillController($scope));
         function autofillController($scope) {
             // autofill functionality using angular, runs on page load
             $scope.$parent.First_Name_Casual__c = getCookie("afFirstName");
@@ -22,13 +22,17 @@
             $scope.$parent.Company  = getCookie("afCompany");
             $scope.$parent.Company_Headquarter_State__c = getCookie("afHeadquarter");
             $scope.$parent.Job_Category__c = getCookie("afCategory");
+            $scope.$parent.Sell_Side_Opt_In__c = "Pro";
+            $scope.$parent.Company_Size__c = "1-10";
+            $scope.$parent.Annual_Revenue_Picklist__c = "$2.5M-$4.9M";
+            $scope.$parent.customQuestion = "yes";
             //Annual_Revenue_Picklist__c = 
             //Company_Size__c
             //Sell_Side_Opt_In__c = 
 
             $scope.setCookies = function(first, last, email, phone, company, headquarter, category)
             {
-                // alert("setCookies successfully called with " + last + " " + email);
+                alert("setCookies successfully called with " + first + " " + last);
                 document.cookie = "afFirstName = " + first + "; ";
                 document.cookie = "afLastName = " + last + "; ";
                 document.cookie = "afEmail = " + email + "; ";
@@ -100,8 +104,8 @@
 
 
 
-<body class="ne-11-bg" onload="parent.postMessage('Hello World','*')">
-<div class="container" style="margin:0;padding:0;" ng-app="FormAutofill">
+<body class="ne-11-bg" ng-app="FormAutofill">
+<div class="container" style="margin:0;padding:0;">
 <header>
     <div class="hidden-xs">
         <table><tr>
@@ -339,7 +343,7 @@
                      <div class="form-group col-lg-10">
                         <hr>
                         <p class="ne-11" style="color:#fff;"><%=customQuestion%></p>
-                        <ul id="customQuestion" class="list-inline">
+                        <ul id="customQuestion" class="list-inline" ng-model="$parent.customQuestion">
                             <li><input type="radio" name="customQ" value="yes" name="customQ">
                                 
                                 <span
@@ -353,7 +357,7 @@
                                     
                                 
         <div class="form-group col-lg-10">
-           <button type="input" ng-click="setCookies(form.First_Name_Casual__c.$modelValue, form.LastName.$modelValue, form.Email.$modelValue, form.Phone.$modelValue, form.Company.$modelValue, form.Company_Headquarter_State__c.$modelValue, form.Job_Category__c.$modelValue);" class="btn btn-primary" style="margin-top:10px">Register for Webinar</button>
+           <button type="input" class="btn btn-primary" style="margin-top:10px" ng-click="setCookies($parent.First_Name_Casual__c.$modelValue, $parent.form.LastName.$modelValue, form.Email.$modelValue, form.Phone.$modelValue, form.Company.$modelValue, form.Company_Headquarter_State__c.$modelValue, form.Job_Category__c.$modelValue);">Register for Webinar</button>
         </div>
         <div class="form-group col-lg-10">
             <br>
