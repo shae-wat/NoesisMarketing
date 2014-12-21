@@ -25,7 +25,7 @@
             $scope.$parent.Sell_Side_Opt_In__c = "Pro";
             $scope.$parent.Company_Size__c = "1-10";
             $scope.$parent.Annual_Revenue_Picklist__c = "$2.5M-$4.9M";
-            $scope.$parent.customQuestion = "yes";
+            $parent.customQuestion = "yes";
             //Annual_Revenue_Picklist__c = 
             //Company_Size__c
             //Sell_Side_Opt_In__c = 
@@ -346,10 +346,8 @@
                         <ul id="customQuestion" class="list-inline" ng-model="$parent.customQuestion">
                             <li><input type="radio" name="customQ" value="yes" name="customQ">
                                 
-                                <span
-                                class="ne-11" style="color:#fff;"> Yes</span></li>
-                            <li><input type="radio" name="customQ" value="no" name="customQ">
-                                
+                                <span class="ne-11" style="color:#fff;"> Yes</span></li>
+                            <li><input type="radio" name="customQ" value="No" name="customQ">
                                 <span class="ne-11" style="color:#fff;"> No   </span></li>
                         </ul>
                      </div>
@@ -357,7 +355,7 @@
                                     
                                 
         <div class="form-group col-lg-10">
-           <button type="input" class="btn btn-primary" style="margin-top:10px" ng-click="setCookies($parent.First_Name_Casual__c.$modelValue, $parent.form.LastName.$modelValue, form.Email.$modelValue, form.Phone.$modelValue, form.Company.$modelValue, form.Company_Headquarter_State__c.$modelValue, form.Job_Category__c.$modelValue);">Register for Webinar</button>
+           <button type="input" class="btn btn-primary" style="margin-top:10px" ng-click="setCookies(form.First_Name_Casual__c.$modelValue, form.LastName.$modelValue, form.Email.$modelValue, form.Phone.$modelValue, form.Company.$modelValue, form.Company_Headquarter_State__c.$modelValue, form.Job_Category__c.$modelValue);">Register for Webinar</button>
         </div>
         <div class="form-group col-lg-10">
             <br>

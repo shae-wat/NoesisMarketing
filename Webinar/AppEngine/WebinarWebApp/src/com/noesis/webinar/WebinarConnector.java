@@ -1,27 +1,15 @@
 package com.noesis.webinar;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.SocketException;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Map;
-
-
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -46,7 +34,10 @@ public class WebinarConnector {
 		    gson = new Gson();
 		    wa = gson.fromJson(line, WebinarAuth.class);
 			System.out.println("\nGET auth data = " + line);
+			
 			System.out.println("access token = " + wa.getAccess_token());
+			/* Access token is either stored or pulled from datastore  here*/
+			
 			System.out.println("organizer key = " + wa.getOrganizer_key());
 
 		} catch (MalformedURLException e) {
