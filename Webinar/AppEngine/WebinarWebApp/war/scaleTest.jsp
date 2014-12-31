@@ -9,7 +9,18 @@
     <link rel="stylesheet" type="text/css" href="https://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/bootstrap.min.css"> 
     <link rel="stylesheet" type="text/css" href="https://noesisimg.s3.amazonaws.com/HTML/ne-bootstrap/noesis-theme.css">
 </head>
-<body>
-
-	<button type="input" class="btn btn-primary" style="margin-top:10px">Run scale test</button>
+<body class="ne-11-bg">	
+<div class="container" style="margin:100;padding:0;">
+	<div class="row">
+	 
+	  <div class="col-lg-6">
+	    <div class="input-group">
+	      <input type="text" class="form-control" placeholder="Number of users">
+	      <span class="input-group-btn">
+	        <button class="btn btn-default" type="button">Run scale test</button>
+	      </span>
+	    </div><!-- /input-group -->
+	  </div><!-- /.col-lg-6 -->
+	</div><!-- /.row -->
+</div>
 </body>
