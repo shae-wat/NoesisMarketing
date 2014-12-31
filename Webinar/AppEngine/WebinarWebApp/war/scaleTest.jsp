@@ -14,12 +14,16 @@
 	<div class="row">
 	 
 	  <div class="col-lg-6">
+	  	<form>
 	    <div class="input-group">
 	      <input type="text" class="form-control" placeholder="Number of users">
+	      <!-- <input type="submit"> -->
 	      <span class="input-group-btn">
 	        <button class="btn btn-default" type="button">Run scale test</button>
 	      </span>
+	      <!-- </input> -->
 	    </div><!-- /input-group -->
+		</form>
 	  </div><!-- /.col-lg-6 -->
 	</div><!-- /.row -->
 </div>
