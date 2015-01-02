@@ -15,8 +15,8 @@ public class EmailCollector {
 	public static void main(String args[]){
 		EmailCollector ec = new EmailCollector();
 		//ec.collectPDF();
-		ec.collectHTML();
-		//ec.jsonLinkSearch();
+		//ec.collectHTML();
+		ec.jsonLinkSearch();
 		//ec.collectTxt();
 		
 	}
@@ -81,9 +81,12 @@ public class EmailCollector {
 	
 	public void jsonLinkSearch(){
 		List<String> emailList = new ArrayList<String>();
-		String jsonFile = "kimonoData.json";
-		List<String> links = Utils.jsonLinkExtractor(jsonFile);
 		System.out.println("EMAILS: \n");
+		for (int i=17; i<=20; i++){
+			String jsonFile = "kimonoData ("+i+").json";
+			//String jsonFile = "kimonoData.json";
+			List<String> links = Utils.jsonLinkExtractor(jsonFile);
+			
 		
 			for (String url : links){
 				try{
@@ -92,14 +95,19 @@ public class EmailCollector {
 				//System.out.println(htmlContent);
 				List<String> emails = Utils.pullEmailAddressesFromString(htmlContent);
 				for (String email : emails){
-					if (!email.endsWith(".gif") && !email.equals("xyz@abc.com"))
-						System.out.println(email);
+					if (!emailList.contains(email))
+						emailList.add(email);
 				}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
+			//second iteration to remove duplicates
+			for (String email : emailList){
+				System.out.println(email);
+			}
+		} //end huge loop over json files
 			System.out.println("\nJSON done");
 	}
 

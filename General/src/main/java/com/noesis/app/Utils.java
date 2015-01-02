@@ -186,8 +186,9 @@ public class Utils {
 		List<String> emails = new ArrayList<String>();
 		Matcher m = Pattern.compile("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+").matcher(input);
 	    while (m.find()) {
-	    	if(!emails.contains(m.group()))
+	    	if(!emails.contains(m.group())){
 	    		emails.add(m.group());
+	    	}
 	    }
 	    return emails;
 	}
@@ -261,6 +262,13 @@ public class Utils {
 		
 		return links;
 		
+	}
+	
+	public boolean isCanadian(String email){
+		if(email.endsWith(".ca")){
+			return true;
+		}
+		return false;
 	}
 
 }
