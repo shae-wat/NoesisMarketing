@@ -263,12 +263,5 @@ public class Utils {
 		return links;
 		
 	}
-	
-	public boolean isCanadian(String email){
-		if(email.endsWith(".ca")){
-			return true;
-		}
-		return false;
-	}
 
 }

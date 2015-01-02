@@ -30,7 +30,7 @@ public class EmailCollector {
 			
 			System.out.println("EMAILS: \n");
 			for (String email : emailList){
-				if(!email.equals("info@energytrust.org"))
+				if(!isCanadian(email))
 					System.out.println(email);
 			}
 			System.out.println("\nTxt file done");
@@ -49,7 +49,7 @@ public class EmailCollector {
 			
 			System.out.println("EMAILS: \n");
 			for (String email : emailList){
-				if(!email.equals("info@energytrust.org"))
+				if(!isCanadian(email))
 					System.out.println(email);
 			}
 			System.out.println("\nPDF done");
@@ -68,7 +68,7 @@ public class EmailCollector {
 			
 			System.out.println("EMAILS: \n");
 			for (String email : emailList){
-				if (!email.equals("info@dvgbc.org"))
+				if (!isCanadian(email))
 					System.out.println(email.toLowerCase());
 			}
 			System.out.println("\nHTML done");
@@ -82,7 +82,7 @@ public class EmailCollector {
 	public void jsonLinkSearch(){
 		List<String> emailList = new ArrayList<String>();
 		System.out.println("EMAILS: \n");
-		for (int i=17; i<=20; i++){
+		for (int i=21; i<=23; i++){
 			String jsonFile = "kimonoData ("+i+").json";
 			//String jsonFile = "kimonoData.json";
 			List<String> links = Utils.jsonLinkExtractor(jsonFile);
@@ -95,7 +95,7 @@ public class EmailCollector {
 				//System.out.println(htmlContent);
 				List<String> emails = Utils.pullEmailAddressesFromString(htmlContent);
 				for (String email : emails){
-					if (!emailList.contains(email))
+					if (!emailList.contains(email) && !isCanadian(email))
 						emailList.add(email);
 				}
 				} catch (Exception e) {
@@ -109,6 +109,13 @@ public class EmailCollector {
 			}
 		} //end huge loop over json files
 			System.out.println("\nJSON done");
+	}
+	
+	public boolean isCanadian(String email){
+		if(email.endsWith(".ca")){
+			return true;
+		}
+		return false;
 	}
 
 }
