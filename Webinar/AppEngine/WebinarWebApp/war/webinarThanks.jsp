@@ -22,7 +22,7 @@
 	  <%
 		String webinarId = request.getParameter("webinarID");
 		pageContext.setAttribute("webinarId", webinarId);
-		String webinarUrl="/webinarSignUp.jsp?webinarID="+webinarId;
+		String webinarUrl="/http://noesiswebinar.appspot.com/webinarSignUp.jsp?webinarID="+webinarId;
 		pageContext.setAttribute("webinarUrl", webinarUrl);
 
 		WebinarConnector wc = new WebinarConnector();

@@ -96,10 +96,6 @@
         DateAndTime when = new DateAndTime(webinar.getTimes().get(0), webinar.getTimeZone());
     %>
     
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="I just registered for <%=webinar.getSubject()%>">
-    <meta name="twitter:description" content="<%=webinar.getDescription()%>">
-    <meta name="twitter:image:src" content="https://noesisimg.s3.amazonaws.com/nb-images/brand/NoesisGlyph.png">
 </head>
 
 
