@@ -82,7 +82,7 @@ public class EmailCollector {
 	public void jsonLinkSearch(){
 		List<String> emailList = new ArrayList<String>();
 		System.out.println("EMAILS: \n");
-		for (int i=21; i<=23; i++){
+		for (int i=31; i<=33; i++){
 			String jsonFile = "kimonoData ("+i+").json";
 			//String jsonFile = "kimonoData.json";
 			List<String> links = Utils.jsonLinkExtractor(jsonFile);

@@ -12,6 +12,10 @@ import java.util.Collections;
 import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import java.util.Date;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 
 public class WebinarConnector {
 
@@ -20,6 +24,10 @@ public class WebinarConnector {
 	
 	public WebinarConnector ()
 	{
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		Entity accessToken = new Entity("webinarAuth");
+		
+		//access_token expired
 		try {
 		    URL url = new URL("https://api.citrixonline.com/oauth/access_token?grant_type=password&user_id=rallen@noesis.com&password=Austin2013&client_id=WUKeRBGxGEyH0gTEe2UG1ijANkaWL8Gy");
 		    BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -39,6 +47,12 @@ public class WebinarConnector {
 			/* Access token is either stored or pulled from datastore  here*/
 			
 			System.out.println("organizer key = " + wa.getOrganizer_key());
+			
+			//update access_token key
+			accessToken.setProperty("access_token", wa.getAccess_token());
+			//update expiration key
+			//accessToken.setProperty("expiration", wa.getExpires_in());
+			datastore.put(accessToken);
 
 		} catch (MalformedURLException e) {
 		    // ...

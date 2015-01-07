@@ -1,9 +1,12 @@
 package com.noesis.webinar;
 
+import java.util.Date;
+
 public class WebinarAuth {
 	/*Tokens needed to sign a user into the webinar*/
 	String access_token = "";
 	String organizer_key = "";
+	//Date
 
 	public String getAccess_token() {
 		return access_token;
