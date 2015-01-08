@@ -16,6 +16,9 @@ import java.util.List;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -24,10 +27,15 @@ public class WebinarConnector {
 	WebinarAuth wa;
 	Gson gson; 
 	
-	public WebinarConnector ()
+	public WebinarConnector () throws EntityNotFoundException
 	{
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		Entity accessToken = new Entity("webinarAuth");
+		Key authKey = KeyFactory.createKey("webinarAuth", "goto_access");
+		//Entity accessToken = new Entity("webinarAuth", authKey);
+		Entity accessToken = datastore.get(authKey);
+		System.out.println("**ENTITY.tostring = " + accessToken.toString());
+		System.out.println(accessToken.getProperty("access_token"));
+		
 		
 		Calendar calendar = new GregorianCalendar();
 		int year       = calendar.get(Calendar.YEAR);
