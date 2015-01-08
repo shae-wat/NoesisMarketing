@@ -25,8 +25,8 @@ import com.google.gson.reflect.TypeToken;
 
 public class WebinarConnector {
 
-	WebinarAuth wa;
-	Gson gson; 
+	WebinarAuth wa = new WebinarAuth();
+	Gson gson = new Gson(); 
 	
 	public WebinarConnector () throws EntityNotFoundException
 	{
@@ -36,13 +36,17 @@ public class WebinarConnector {
 		System.out.println("**ENTITY.tostring = " + accessToken.toString());
 		
 		Calendar calendar = new GregorianCalendar();
+		Date now = calendar.getTime();
 		System.out.println("The time right now is: " + calendar.getTime().toString());
 		Date expirationTime = (Date) accessToken.getProperty("expiration");
 		System.out.println("DS exp: " + expirationTime.toString());
 		
-		if(12<1){
+		if(now.compareTo(expirationTime) < 0){
+			System.out.println("Access token has not expired");
 			wa.setAccess_token(accessToken.getProperty("access_token").toString());
 			wa.setOrganizer_key("300000000000341311");
+			System.out.println("access token = " + wa.getAccess_token());				
+			System.out.println("organizer key = " + wa.getOrganizer_key());
 		}
 		else{			
 			//Regenerate access_token through GoToWebinar
@@ -57,10 +61,8 @@ public class WebinarConnector {
 			    }
 			    reader.close();
 			    
-			    gson = new Gson();
 			    wa = gson.fromJson(line, WebinarAuth.class);
 				System.out.println("\nGET auth data = " + line);
-				
 				System.out.println("access token = " + wa.getAccess_token());				
 				System.out.println("organizer key = " + wa.getOrganizer_key());
 				
