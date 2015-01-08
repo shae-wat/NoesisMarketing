@@ -8,14 +8,16 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.GregorianCalendar;
 import java.util.List;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import java.util.Date;
+
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class WebinarConnector {
 
@@ -27,7 +29,17 @@ public class WebinarConnector {
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		Entity accessToken = new Entity("webinarAuth");
 		
-		//access_token expired
+		Calendar calendar = new GregorianCalendar();
+		int year       = calendar.get(Calendar.YEAR);
+		int month      = calendar.get(Calendar.MONTH);
+		int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH); // Jan = 0, not 1
+		System.out.println("Today is: " + month + "/" + dayOfMonth + "/" + year);
+		
+		//Calendar retrievedExpiration = datastore.get(accessToken);
+		
+		//System.out.println("");
+		
+		//else access_token expired
 		try {
 		    URL url = new URL("https://api.citrixonline.com/oauth/access_token?grant_type=password&user_id=rallen@noesis.com&password=Austin2013&client_id=WUKeRBGxGEyH0gTEe2UG1ijANkaWL8Gy");
 		    BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -50,8 +62,16 @@ public class WebinarConnector {
 			
 			//update access_token key
 			accessToken.setProperty("access_token", wa.getAccess_token());
+			
 			//update expiration key
-			//accessToken.setProperty("expiration", wa.getExpires_in());
+//			calendar.add(Calendar.DAY_OF_MONTH, 1); //access token expiration is set for one day from now
+//			year       = calendar.get(Calendar.YEAR);
+//			month      = calendar.get(Calendar.MONTH);
+//			dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH); // Jan = 0, not 1
+//			System.out.println("Expiration set for: " + month + dayOfMonth + year);
+//			accessToken.setProperty("expiration", calendar);
+			
+			
 			datastore.put(accessToken);
 
 		} catch (MalformedURLException e) {

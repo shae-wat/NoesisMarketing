@@ -1,12 +1,20 @@
 package com.noesis.webinar;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class WebinarAuth {
 	/*Tokens needed to sign a user into the webinar*/
 	String access_token = "";
 	String organizer_key = "";
-	//Date
+	Calendar expirationDate;
+
+	public Calendar getExpirationDate() {
+		return expirationDate;
+	}
+
+	public void setExpirationDate(Calendar expirationDate) {
+		this.expirationDate = expirationDate;
+	}
 
 	public String getAccess_token() {
 		return access_token;
