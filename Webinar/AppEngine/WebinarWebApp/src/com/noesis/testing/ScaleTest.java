@@ -1,27 +1,45 @@
 package com.noesis.testing;
 
+import java.io.IOException;
+
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.noesis.webinar.WebinarConnector;
+import com.noesis.webinar.WebinarUser;
 
 public class ScaleTest{
 	
 	public ScaleTest(Integer nameInt) throws EntityNotFoundException{
-		//webinar connector
 		WebinarConnector wc = new WebinarConnector();
-		//registration for a webinar
+		String webinarId = "4762536079313296641";
+		WebinarUser user = new WebinarUser();
+		user.setFirstName("Test");
+		user.setLastName(nameInt.toString());
+		user.setEmail(nameInt.toString()+"@test.com");
+		try {
+			wc.registerUser(webinarId, user);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-	public static void runScaleTests(int numTests){
+	public static void runScaleTests(int numTests) throws EntityNotFoundException{
+		ScaleTest st;
 		for(int i = 0; i<numTests; i++){
 			System.out.println(i);
-			//create new scaleTest instance
-			//if fail, freak out
+			Integer testNum = (Integer)i;
+			st = new ScaleTest(testNum);
 		}
 	}
 	
 	public static void main(String [] args){
-		Integer numUsers = 5; //number of users to emulate w scale test (hard coded)
-		runScaleTests(numUsers);
-		System.out.println("Scale testing for " + numUsers.toString() + " users was SUCCESSFUL");
+		Integer numUsers = 1; //number of users to emulate w scale test (hard coded)
+		try {
+			runScaleTests(numUsers);
+			System.out.println("Scale testing for " + numUsers.toString() + " users was SUCCESSFUL");
+		} catch (EntityNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
