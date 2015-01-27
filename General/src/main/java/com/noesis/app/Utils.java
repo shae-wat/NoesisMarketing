@@ -155,13 +155,23 @@ public class Utils {
 		return result;
 	}
 	
+	public static String pullUrlFromUrlString(String input){
+		String desiredUrl = "";
+		Matcher m = Pattern.compile("/main/email.aspx?did=[a-zA-Z0-9-]").matcher(input);
+	    while (m.find()) {
+	    	desiredUrl = m.group();
+	    	System.out.println("pullUrlFromUrlString= " + m.group());
+	    }
+	    return desiredUrl;
+	}
+	
 	
 	public static String pullPDFTextFromURL (String urlStr) throws Exception
 	{
 		PDFTextStripper stripper = new PDFTextStripper();
 		PDDocument doc;
-		//URL url = new URL(urlStr);
-		doc = PDDocument.load(urlStr);
+		URL url = new URL(urlStr);
+		doc = PDDocument.load(url);
 		String content = stripper.getText(doc);
 		return content;
 	}

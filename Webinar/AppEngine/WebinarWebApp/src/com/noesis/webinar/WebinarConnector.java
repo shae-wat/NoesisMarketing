@@ -39,14 +39,14 @@ public class WebinarConnector {
 		Date now = calendar.getTime();
 		System.out.println("The time right now is: " + calendar.getTime().toString());
 		Date expirationTime = (Date) accessToken.getProperty("expiration");
-		System.out.println("DS exp: " + expirationTime.toString());
+		System.out.println("Access token expiration: " + expirationTime.toString());
 		
 		if(now.compareTo(expirationTime) < 0){
 			System.out.println("Access token has not expired");
 			wa.setAccess_token(accessToken.getProperty("access_token").toString());
 			wa.setOrganizer_key("300000000000341311");
-			System.out.println("access token = " + wa.getAccess_token());				
-			System.out.println("organizer key = " + wa.getOrganizer_key());
+			System.out.println("access_token = " + wa.getAccess_token());				
+			System.out.println("organizer_key = " + wa.getOrganizer_key());
 		}
 		else{			
 			//Regenerate access_token through GoToWebinar

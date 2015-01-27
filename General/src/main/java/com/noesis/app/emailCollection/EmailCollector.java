@@ -14,9 +14,9 @@ public class EmailCollector {
 	
 	public static void main(String args[]){
 		EmailCollector ec = new EmailCollector();
-		//ec.collectPDF();
+		ec.collectPDF();
 		//ec.collectHTML();
-		ec.jsonLinkSearch();
+		//ec.jsonLinkSearch();
 		//ec.collectTxt();
 		
 	}
@@ -42,7 +42,7 @@ public class EmailCollector {
 	
 	public void collectPDF(){
 		try {
-			String pdfFile = "web.pdf";
+			String pdfFile = "http://www.wrcog.cog.ca.us/uploads/media_items/hero-commercial-contractors.original.pdf";
 			String pdfContent = Utils.pullPDFTextFromURL(pdfFile);
 			//System.out.println("pdf = " + pdfContent);  //Sanity check
 			List<String> emailList = Utils.pullEmailAddressesFromString(pdfContent);
@@ -61,7 +61,7 @@ public class EmailCollector {
 	
 	public void collectHTML(){
 		try{
-			String url = "http://hvacreducation.net/xcel-co/public_search_proc.cfm";
+			String url = "http://www.wasatchsolar.com/contractors.html";
 			String htmlContent = Utils.readFromURL(url);
 			System.out.println("web = " + htmlContent);  //Sanity check
 			List<String> emailList = Utils.pullEmailAddressesFromString(htmlContent);
@@ -82,33 +82,32 @@ public class EmailCollector {
 	public void jsonLinkSearch(){
 		List<String> emailList = new ArrayList<String>();
 		System.out.println("EMAILS: \n");
-		for (int i=31; i<=33; i++){
-			String jsonFile = "kimonoData ("+i+").json";
-			//String jsonFile = "kimonoData.json";
-			List<String> links = Utils.jsonLinkExtractor(jsonFile);
-			
 		
-			for (String url : links){
-				try{
-				//System.out.println(url);
-				String htmlContent = Utils.readFromURL(url);
-				//System.out.println(htmlContent);
-				List<String> emails = Utils.pullEmailAddressesFromString(htmlContent);
-				for (String email : emails){
-					if (!emailList.contains(email) && !isCanadian(email))
-						emailList.add(email);
-				}
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		String jsonFile = "kimonoData.json";
+		List<String> links = Utils.jsonLinkExtractor(jsonFile);
+		
+	
+		for (String url : links){
+			try{
+			//System.out.println(url);
+			String htmlContent = Utils.readFromURL(url);
+			System.out.println(Utils.pullUrlFromUrlString(htmlContent));
+			//System.out.println(htmlContent);
+			List<String> emails = Utils.pullEmailAddressesFromString(htmlContent);
+			for (String email : emails){
+				if (!emailList.contains(email) && !isCanadian(email))
+					emailList.add(email);
 			}
-			//second iteration to remove duplicates
-			for (String email : emailList){
-				System.out.println(email);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} //end huge loop over json files
-			System.out.println("\nJSON done");
+		}
+//		//second iteration to remove duplicates
+//		for (String email : emailList){
+//			System.out.println(email);
+//		}
+		System.out.println("\nJSON done");
 	}
 	
 	public boolean isCanadian(String email){
