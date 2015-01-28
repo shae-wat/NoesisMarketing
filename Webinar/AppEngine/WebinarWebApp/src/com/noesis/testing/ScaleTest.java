@@ -12,9 +12,9 @@ public class ScaleTest{
 		WebinarConnector wc = new WebinarConnector();
 		String webinarId = "4762536079313296641";
 		WebinarUser user = new WebinarUser();
-		user.setFirstName("Test");
+		user.setFirstName("Testtest");
 		user.setLastName(nameInt.toString());
-		user.setEmail(nameInt.toString()+"@test.com");
+		user.setEmail(nameInt.toString()+"@testtest.com");
 		try {
 			wc.registerUser(webinarId, user);
 		} catch (IOException e) {
