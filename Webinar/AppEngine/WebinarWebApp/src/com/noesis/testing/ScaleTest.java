@@ -33,7 +33,7 @@ public class ScaleTest{
 	}
 	
 	public static void main(String [] args){
-		Integer numUsers = 1; //number of users to emulate w scale test (hard coded)
+		Integer numUsers = 60; //number of users to emulate w scale test (hard coded)
 		try {
 			runScaleTests(numUsers);
 			System.out.println("Scale testing for " + numUsers.toString() + " users was SUCCESSFUL");

@@ -29,61 +29,64 @@ public class WebinarConnector {
 	Gson gson = new Gson(); 
 	
 	public WebinarConnector () throws EntityNotFoundException
-	{
-		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		Key authKey = KeyFactory.createKey("webinarAuth", "goto_access");
-		Entity accessToken = datastore.get(authKey);
-		System.out.println("**ENTITY.tostring = " + accessToken.toString());
+	{	//Hard-coded tokens for scale testing
+		wa.setAccess_token("AOAZCGsEvYx8EM7nqFj7ArIHCu3r");
+		wa.setOrganizer_key("300000000000341311");
 		
-		Calendar calendar = new GregorianCalendar();
-		Date now = calendar.getTime();
-		System.out.println("The time right now is: " + calendar.getTime().toString());
-		Date expirationTime = (Date) accessToken.getProperty("expiration");
-		System.out.println("Access token expiration: " + expirationTime.toString());
-		
-		if(now.compareTo(expirationTime) < 0){
-			System.out.println("Access token has not expired");
-			wa.setAccess_token(accessToken.getProperty("access_token").toString());
-			wa.setOrganizer_key("300000000000341311");
-			System.out.println("access_token = " + wa.getAccess_token());				
-			System.out.println("organizer_key = " + wa.getOrganizer_key());
-		}
-		else{			
-			//Regenerate access_token through GoToWebinar
-			try {
-			    URL url = new URL("https://api.citrixonline.com/oauth/access_token?grant_type=password&user_id=rallen@noesis.com&password=Austin2013&client_id=WUKeRBGxGEyH0gTEe2UG1ijANkaWL8Gy");
-			    BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
-			    String line ="";
-			    String rline = "";
-	
-			    while ((rline = reader.readLine()) != null) {
-			        line = line + rline;
-			    }
-			    reader.close();
-			    
-			    wa = gson.fromJson(line, WebinarAuth.class);
-				System.out.println("\nGET auth data = " + line);
-				System.out.println("access token = " + wa.getAccess_token());				
-				System.out.println("organizer key = " + wa.getOrganizer_key());
-				
-				//update access_token key
-				System.out.println("Updating datastored accessToken to: " + wa.getAccess_token());
-				accessToken.setProperty("access_token", wa.getAccess_token());
-				
-				//update expiration key
-				calendar.add(Calendar.DAY_OF_MONTH, 1); //access token expiration is set for one day from now
-				System.out.println("Expiration set for: " + calendar.getTime().toString());
-				accessToken.setProperty("expiration", calendar.getTime());
-				
-				//update datastore
-				datastore.put(accessToken);
-	
-			} catch (MalformedURLException e) {
-			    // ...
-			} catch (IOException e) {
-			    // ...
-			}
-		}
+//		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+//		Key authKey = KeyFactory.createKey("webinarAuth", "goto_access");
+//		Entity accessToken = datastore.get(authKey);
+//		System.out.println("**ENTITY.tostring = " + accessToken.toString());
+//		
+//		Calendar calendar = new GregorianCalendar();
+//		Date now = calendar.getTime();
+//		System.out.println("The time right now is: " + calendar.getTime().toString());
+//		Date expirationTime = (Date) accessToken.getProperty("expiration");
+//		System.out.println("Access token expiration: " + expirationTime.toString());
+//		
+//		if(now.compareTo(expirationTime) < 0){
+//			System.out.println("Access token has not expired");
+//			wa.setAccess_token(accessToken.getProperty("access_token").toString());
+//			wa.setOrganizer_key("300000000000341311");
+//			System.out.println("access_token = " + wa.getAccess_token());				
+//			System.out.println("organizer_key = " + wa.getOrganizer_key());
+//		}
+//		else{			
+//			//Regenerate access_token through GoToWebinar
+//			try {
+//			    URL url = new URL("https://api.citrixonline.com/oauth/access_token?grant_type=password&user_id=rallen@noesis.com&password=Austin2013&client_id=WUKeRBGxGEyH0gTEe2UG1ijANkaWL8Gy");
+//			    BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+//			    String line ="";
+//			    String rline = "";
+//	
+//			    while ((rline = reader.readLine()) != null) {
+//			        line = line + rline;
+//			    }
+//			    reader.close();
+//			    
+//			    wa = gson.fromJson(line, WebinarAuth.class);
+//				System.out.println("\nGET auth data = " + line);
+//				System.out.println("access token = " + wa.getAccess_token());				
+//				System.out.println("organizer key = " + wa.getOrganizer_key());
+//				
+//				//update access_token key
+//				System.out.println("Updating datastored accessToken to: " + wa.getAccess_token());
+//				accessToken.setProperty("access_token", wa.getAccess_token());
+//				
+//				//update expiration key
+//				calendar.add(Calendar.DAY_OF_MONTH, 1); //access token expiration is set for one day from now
+//				System.out.println("Expiration set for: " + calendar.getTime().toString());
+//				accessToken.setProperty("expiration", calendar.getTime());
+//				
+//				//update datastore
+//				datastore.put(accessToken);
+//	
+//			} catch (MalformedURLException e) {
+//			    // ...
+//			} catch (IOException e) {
+//			    // ...
+//			}
+//		}
 	}
 	
 	public List<WebinarData> getUpcomingWebinars () throws IOException
