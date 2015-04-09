@@ -1,8 +1,11 @@
 package com.noesis.app.emailCollection;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.FileWriter;
 
 import com.noesis.app.Utils;
 
@@ -14,8 +17,8 @@ public class EmailCollector {
 	
 	public static void main(String args[]){
 		EmailCollector ec = new EmailCollector();
-		ec.collectPDF();
-		//ec.collectHTML();
+		//ec.collectPDF();
+		ec.collectHTML();
 		//ec.jsonLinkSearch();
 		//ec.collectTxt();
 		
@@ -42,16 +45,71 @@ public class EmailCollector {
 	
 	public void collectPDF(){
 		try {
-			String pdfFile = "http://www.wrcog.cog.ca.us/uploads/media_items/hero-commercial-contractors.original.pdf";
+			String pdfFile = "Registrants2013-Final.pdf";
 			String pdfContent = Utils.pullPDFTextFromURL(pdfFile);
 			//System.out.println("pdf = " + pdfContent);  //Sanity check
 			List<String> emailList = Utils.pullEmailAddressesFromString(pdfContent);
 			
-			System.out.println("EMAILS: \n");
-			for (String email : emailList){
-				if(!isCanadian(email))
-					System.out.println(email);
+			//Special, more targeted case
+			
+			BufferedReader bufReader = new BufferedReader(new StringReader(pdfContent));
+			String line=null;
+			FileWriter writer = new FileWriter("generatedLightingEmails.csv");
+			while( (line=bufReader.readLine()) != null )
+			{
+				line = line.replace(",", "");
+				String[] info = line.split(" ");
+				try
+				{
+			 
+				    writer.append(info[0]+","+info[1]+",");
+				    writer.append(info[2]);
+				    for(int i=3; i<20; i++){
+				    	try{
+				    		
+						    if(!info[i-1].equals("Suite") &&
+					    	   (info[i].startsWith("1")||info[i].startsWith("2")||
+						       info[i].startsWith("3")||info[i].startsWith("4")||
+						       info[i].startsWith("5")||info[i].startsWith("6")||
+						       info[i].startsWith("7")||info[i].startsWith("8")||
+						       info[i].startsWith("9")||info[i].startsWith("0"))){
+						    	writer.append(",");
+						    	if(info[i].startsWith("0"))
+						    		writer.append("z");
+						    }
+						    else{
+						    	writer.append(" ");
+						    }
+						    if(!emailList.contains(info[i]))
+						    	writer.append(info[i]);
+						    else
+						    	writer.append(",,,"+info[i]);
+				    	}
+				    	catch (Exception ArrayIndexOutOfBoundsException){
+				    		writer.append("");
+				    	}
+				    }
+				    
+				    writer.append('\n');
+			 
+			 
+				    //generate whatever data you want
+			 
+				 
+				}
+				catch(IOException e)
+				{
+				     e.printStackTrace();
+				} 
 			}
+			writer.flush();
+		    writer.close();
+			
+//			System.out.println("EMAILS: \n");
+//			for (String email : emailList){
+//				if(!isCanadian(email))
+//					System.out.println(email);
+//			}
 			System.out.println("\nPDF done");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -60,23 +118,52 @@ public class EmailCollector {
 	}
 	
 	public void collectHTML(){
+		System.out.println("EMAILS: \n");
+//		String[] urlSuffixes = {"AL", "AK", "AZ", "AR", "CA", "CO", "CT",
+//								 "DE", "FL", "GA", "HI", "ID", "IL", "IN",
+//								 "IA", "KS", "KY", "LA", "ME", "MD", "MA",
+//								 "MI", "MN", "MS", "MO", "MT", "NE", "NV",
+//								 "NH", "NJ", "NM", "NY", "NC", "ND", "OH",
+//								 "OK", "OR", "PA", "RI", "SC", "SD", "TN",
+//								 "TX", "UT", "VT", "VA", "WA", "WV", "WI",
+//								 "WY"
+//								};
+//		String[] urlSuffixes= {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+//							   "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
+//							   "W", "X", "Y", "Z"
+//							  };
+		String[] states = {"Alabama", "Arkansas", "Arizona", "California",
+						   "Connecticut", "Delaware", "Florida", "Georgia",
+						   "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
+						   "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland",
+						   "Massaschusetts", "Mississippi", "Minnesota", "Missouri",
+						   "Montana", "Michigan", "Nebraska", "Nevada", "New%20Hampshire",
+						   "New%20Jersey", "New%20Mexico", "New%20York", "North%20Carolina", 
+						   "North%20Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania",
+						   "Rhode%20Island", "South Carolina", "South Dakota", "Tennessee",
+						   "Texas", "utah", "Virgina", "Washington", "West%20Virginia",
+						   "Wisconsin", "Wyoming"
+						  };
+		for (int i = 1; i <= 50; i++){
+		
 		try{
-			String url = "http://www.wasatchsolar.com/contractors.html";
+			String url = "http://www.visionairelighting.com/findaRep.asp?location="+i;
 			String htmlContent = Utils.readFromURL(url);
-			System.out.println("web = " + htmlContent);  //Sanity check
+			//System.out.println("**" + s + " : url = " + url);
+			//System.out.println("web = " + htmlContent);  //Sanity check
 			List<String> emailList = Utils.pullEmailAddressesFromString(htmlContent);
 			
-			System.out.println("EMAILS: \n");
 			for (String email : emailList){
 				if (!isCanadian(email))
 					System.out.println(email.toLowerCase());
 			}
-			System.out.println("\nHTML done");
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		}
+		System.out.println("\nHTML done");
 	}
 	
 	public void jsonLinkSearch(){
@@ -91,22 +178,26 @@ public class EmailCollector {
 			try{
 			//System.out.println(url);
 			String htmlContent = Utils.readFromURL(url);
-			System.out.println(Utils.pullUrlFromUrlString(htmlContent));
+			//Utils.pullUrlFromUrlString(htmlContent);
 			//System.out.println(htmlContent);
 			List<String> emails = Utils.pullEmailAddressesFromString(htmlContent);
 			for (String email : emails){
-				if (!emailList.contains(email) && !isCanadian(email))
+				if (!emailList.contains(email) && !isCanadian(email) 
+						&& !email.endsWith(".gif") && !email.endsWith(".jpg") 
+						&& !email.equals("xyz@abc.com")){
 					emailList.add(email);
+					System.out.println(email);
+				}
 			}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 //		//second iteration to remove duplicates
-//		for (String email : emailList){
-//			System.out.println(email);
-//		}
+		for (String email : emailList){
+			System.out.println(email);
+		}
 		System.out.println("\nJSON done");
 	}
 	

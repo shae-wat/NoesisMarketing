@@ -156,8 +156,9 @@ public class Utils {
 	}
 	
 	public static String pullUrlFromUrlString(String input){
+		System.out.println("input = " + input);
 		String desiredUrl = "";
-		Matcher m = Pattern.compile("/main/email.aspx?did=[a-zA-Z0-9-]").matcher(input);
+		Matcher m = Pattern.compile("/main/email.aspx?did=[a-zA-Z0-9_.+-]&format=4").matcher(input);
 	    while (m.find()) {
 	    	desiredUrl = m.group();
 	    	System.out.println("pullUrlFromUrlString= " + m.group());
@@ -170,8 +171,8 @@ public class Utils {
 	{
 		PDFTextStripper stripper = new PDFTextStripper();
 		PDDocument doc;
-		URL url = new URL(urlStr);
-		doc = PDDocument.load(url);
+		//URL url = new URL(urlStr);
+		doc = PDDocument.load(urlStr);
 		String content = stripper.getText(doc);
 		return content;
 	}
@@ -206,19 +207,19 @@ public class Utils {
 	public static List<String> pullTrickyEmailAddressesFromString (String input)
 	{
 		List<String> emails = new ArrayList<String>();
-		Matcher m = Pattern.compile("[a-zA-Z0-9_.+-]+\\[at][a-zA-Z0-9-]+\\[dot][a-zA-Z0-9-.]+").matcher(input);
-	    System.out.println("Mgroups \n");
+		Matcher m = Pattern.compile("[a-zA-Z0-9_.+-]+ \\+ @ \\+ [a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+").matcher(input);
+	    //System.out.println("Mgroups \n");
 	    String[] e;
 	    String email = "";
 		while (m.find()) {
 	    	if(!emails.contains(m.group())){
-	    		e = m.group().split("\\[at\\]");
-	    		email = e[0]+"@"+e[1];
-	    		//System.out.println("email0 = " + email);
-	    		e = email.split("\\[dot\\]");
-	    		email = e[0]+"."+e[1];
+//	    		e = m.group().split("\\[at\\]");
+//	    		email = e[0]+"@"+e[1];
+//	    		//System.out.println("email0 = " + email);
+//	    		e = email.split("\\[dot\\]");
+//	    		email = e[0]+"."+e[1];
 	    		emails.add(email);
-	    		//System.out.println(email);
+	    		System.out.println(email);
 	    	}
 	    }
 	    return emails;
