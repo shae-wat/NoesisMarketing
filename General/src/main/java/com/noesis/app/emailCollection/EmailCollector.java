@@ -18,35 +18,37 @@ public class EmailCollector {
 	public static void main(String args[]){
 		EmailCollector ec = new EmailCollector();
 		//ec.collectPDF();
-		ec.collectHTML();
+		ec.collectDetailedCSV();
+		//ec.collectHTML();
 		//ec.jsonLinkSearch();
 		//ec.collectTxt();
-		
 	}
 	
-	public void collectTxt(){
-		String longStr;
+	
+	public void collectPDF(){
 		try {
-			longStr = Utils.readTxtFile("web.txt");
-			//System.out.println("longStr=\n" + longStr);
-			List<String> emailList = Utils.pullEmailAddressesFromString(longStr);
+			String pdfFile = "http://www.wrcog.cog.ca.us/uploads/media_items/hero-commercial-contractors.original.pdf";
+			String pdfContent = Utils.pullPDFTextFromURL(pdfFile);
+			//System.out.println("pdf = " + pdfContent);  //Sanity check
+			List<String> emailList = Utils.pullEmailAddressesFromString(pdfContent);
 			
 			System.out.println("EMAILS: \n");
 			for (String email : emailList){
 				if(!isCanadian(email))
 					System.out.println(email);
 			}
-			System.out.println("\nTxt file done");
-		} catch (IOException e) {
+			System.out.println("\nPDF done");
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public void collectPDF(){
+	
+	public void collectDetailedCSV(){
 		try {
-			String pdfFile = "Registrants2013-Final.pdf";
-			String pdfContent = Utils.pullPDFTextFromURL(pdfFile);
+			String pdfFile = "2012 LED Lighting TAG Members.pdf";
+			String pdfContent = Utils.pullPDFTextFromFile(pdfFile);
 			//System.out.println("pdf = " + pdfContent);  //Sanity check
 			List<String> emailList = Utils.pullEmailAddressesFromString(pdfContent);
 			
@@ -60,9 +62,7 @@ public class EmailCollector {
 				line = line.replace(",", "");
 				String[] info = line.split(" ");
 				try
-				{
-			 
-				    writer.append(info[0]+","+info[1]+",");
+				{	writer.append(info[0]+","+info[1]+",");
 				    writer.append(info[2]);
 				    for(int i=3; i<20; i++){
 				    	try{
@@ -117,6 +117,7 @@ public class EmailCollector {
 		}
 	}
 	
+	
 	public void collectHTML(){
 		System.out.println("EMAILS: \n");
 //		String[] urlSuffixes = {"AL", "AK", "AZ", "AR", "CA", "CO", "CT",
@@ -166,6 +167,7 @@ public class EmailCollector {
 		System.out.println("\nHTML done");
 	}
 	
+	
 	public void jsonLinkSearch(){
 		List<String> emailList = new ArrayList<String>();
 		System.out.println("EMAILS: \n");
@@ -201,7 +203,28 @@ public class EmailCollector {
 		System.out.println("\nJSON done");
 	}
 	
-	public boolean isCanadian(String email){
+	
+	public void collectTxt(){
+		String longStr;
+		try {
+			longStr = Utils.readTxtFile("web.txt");
+			//System.out.println("longStr=\n" + longStr);
+			List<String> emailList = Utils.pullEmailAddressesFromString(longStr);
+			
+			System.out.println("EMAILS: \n");
+			for (String email : emailList){
+				if(!isCanadian(email))
+					System.out.println(email);
+			}
+			System.out.println("\nTxt file done");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	private boolean isCanadian(String email){
 		if(email.endsWith(".ca")){
 			return true;
 		}

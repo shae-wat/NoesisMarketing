@@ -38,104 +38,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class Utils {
-
-	public static String simpleHttpGet(String urlStr) throws Exception,
-			IOException {
-		Content c = Request.Get(urlStr).execute().returnContent();
-		return c.toString();
-
-	}
-
-	public static String httpGet(String urlStr) throws IOException {
-		String responseStr = "";
-
-		CloseableHttpClient httpclient = HttpClients.createDefault();
-		// HttpGet httpGet = new HttpGet("http://targethost/homepage");
-		HttpGet httpGet = new HttpGet(urlStr);
-		CloseableHttpResponse response1 = httpclient.execute(httpGet);
-		// The underlying HTTP connection is still held by the response object
-		// to allow the response content to be streamed directly from the
-		// network socket.
-		// In order to ensure correct deallocation of system resources
-		// the user MUST call CloseableHttpResponse#close() from a finally
-		// clause.
-		// Please note that if response content is not fully consumed the
-		// underlying
-		// connection cannot be safely re-used and will be shut down and
-		// discarded
-		// by the connection manager.
-		try {
-			System.out.println(response1.getStatusLine());
-			HttpEntity entity1 = response1.getEntity();
-			responseStr = EntityUtils.toString(response1.getEntity());
-			// do something useful with the response body
-			// and ensure it is fully consumed
-			EntityUtils.consume(entity1);
-		} finally {
-			response1.close();
-		}
-
-		return responseStr;
-	}
-
-	public static String httpsGet(String https_url) {
-		// String https_url = "https://www.google.com/";
-		
-		URL url;
-		String responseStr = "";
-		
-		try {
-
-			url = new URL(https_url);
-			HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
-
-			// pull returned content
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					con.getInputStream()));
-
-			String input;
-
-			while ((input = br.readLine()) != null) {
-				responseStr = responseStr + input;
-			}
-			br.close();
-
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return responseStr;
-	}
-
-
-	public static String httpPost(String urlStr)
-			throws ClientProtocolException, IOException {
-		String responseStr = "";
-
-		CloseableHttpClient httpclient = HttpClients.createDefault();
-		HttpPost httpPost = new HttpPost("http://targethost/login");
-		List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-		nvps.add(new BasicNameValuePair("username", "vip"));
-		nvps.add(new BasicNameValuePair("password", "secret"));
-		httpPost.setEntity(new UrlEncodedFormEntity(nvps));
-		CloseableHttpResponse response2 = httpclient.execute(httpPost);
-
-		try {
-			System.out.println(response2.getStatusLine());
-			HttpEntity entity2 = response2.getEntity();
-			// do something useful with the response body
-			// and ensure it is fully consumed
-			EntityUtils.consume(entity2);
-		} finally {
-			response2.close();
-		}
-
-		return responseStr;
-	}
-
-
+	
 	public static String readFromURL(String urlStr) throws Exception {
 		// replace any spaces
 		urlStr = urlStr.replace(" ", "%20");
@@ -155,6 +58,8 @@ public class Utils {
 		return result;
 	}
 	
+	
+	/* Under Development: Trying to find urls to emails within the html content */
 	public static String pullUrlFromUrlString(String input){
 		System.out.println("input = " + input);
 		String desiredUrl = "";
@@ -171,11 +76,22 @@ public class Utils {
 	{
 		PDFTextStripper stripper = new PDFTextStripper();
 		PDDocument doc;
-		//URL url = new URL(urlStr);
+		URL url = new URL(urlStr);
 		doc = PDDocument.load(urlStr);
 		String content = stripper.getText(doc);
 		return content;
 	}
+	
+	
+	public static String pullPDFTextFromFile (String fileStr) throws Exception
+	{
+		PDFTextStripper stripper = new PDFTextStripper();
+		PDDocument doc;
+		doc = PDDocument.load(fileStr);
+		String content = stripper.getText(doc);
+		return content;
+	}
+	
 	
 	public static String readTxtFile(String fileName) throws IOException {
 		File fin = new File(fileName);
@@ -192,6 +108,7 @@ public class Utils {
 		return result;
 	}
 	
+	
 	public static List<String> pullEmailAddressesFromString (String input)
 	{
 		List<String> emails = new ArrayList<String>();
@@ -203,6 +120,7 @@ public class Utils {
 	    }
 	    return emails;
 	}
+	
 	
 	public static List<String> pullTrickyEmailAddressesFromString (String input)
 	{
@@ -225,6 +143,7 @@ public class Utils {
 	    return emails;
 	}
 	
+	
 	public static String trickyEmail(String input)
 	{
 		List<String> emails = new ArrayList<String>();
@@ -240,6 +159,7 @@ public class Utils {
 		
 	    return email;
 	}
+	
 	
 	public static List<String> jsonLinkExtractor(String jsonFile)
 	{
@@ -268,11 +188,9 @@ public class Utils {
 			e.printStackTrace();
 		} catch (ParseException e) {
 			e.printStackTrace();
-		}
-		
+		}	
 		
 		return links;
-		
 	}
 
 }
