@@ -52,65 +52,34 @@ public class EmailCollector {
 			//System.out.println("pdf = " + pdfContent);  //Sanity check
 			List<String> emailList = Utils.pullEmailAddressesFromString(pdfContent);
 			
-			//Special, more targeted case
-			
 			BufferedReader bufReader = new BufferedReader(new StringReader(pdfContent));
 			String line=null;
-			FileWriter writer = new FileWriter("generatedLightingEmails.csv");
+			FileWriter writer = new FileWriter("generatedLightingTagMembersEmails.csv");
+			int counter = 0;
 			while( (line=bufReader.readLine()) != null )
 			{
-				line = line.replace(",", "");
-				String[] info = line.split(" ");
-				try
-				{	writer.append(info[0]+","+info[1]+",");
-				    writer.append(info[2]);
-				    for(int i=3; i<20; i++){
-				    	try{
-				    		
-						    if(!info[i-1].equals("Suite") &&
-					    	   (info[i].startsWith("1")||info[i].startsWith("2")||
-						       info[i].startsWith("3")||info[i].startsWith("4")||
-						       info[i].startsWith("5")||info[i].startsWith("6")||
-						       info[i].startsWith("7")||info[i].startsWith("8")||
-						       info[i].startsWith("9")||info[i].startsWith("0"))){
-						    	writer.append(",");
-						    	if(info[i].startsWith("0"))
-						    		writer.append("z");
-						    }
-						    else{
-						    	writer.append(" ");
-						    }
-						    if(!emailList.contains(info[i]))
-						    	writer.append(info[i]);
-						    else
-						    	writer.append(",,,"+info[i]);
-				    	}
-				    	catch (Exception ArrayIndexOutOfBoundsException){
-				    		writer.append("");
-				    	}
-				    }
-				    
-				    writer.append('\n');
-			 
-			 
-				    //generate whatever data you want
-			 
-				 
+				if (counter > 2){
+					line = line.replace(",", "");
+					System.out.println("line = " + line);
+					String[] info = line.split(" ");
+					try
+					{	for (int i = 0; i < info.length; i++){
+							System.out.println("info["+i+"]= " + info[i]);
+						}
+						writer.append(info[0]+","+info[1]+",");
+						//writer.append(info[2]);
+					    writer.append('\n');				 
+					}
+					catch(IOException e)
+					{
+					     e.printStackTrace();
+					} 
 				}
-				catch(IOException e)
-				{
-				     e.printStackTrace();
-				} 
+				counter++;
 			}
 			writer.flush();
 		    writer.close();
-			
-//			System.out.println("EMAILS: \n");
-//			for (String email : emailList){
-//				if(!isCanadian(email))
-//					System.out.println(email);
-//			}
-			System.out.println("\nPDF done");
+			System.out.println("\nDetailed CSV done");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
