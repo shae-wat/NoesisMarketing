@@ -17,18 +17,21 @@ public class EmailCollector {
 	
 	public static void main(String args[]){
 		EmailCollector ec = new EmailCollector();
-		//ec.collectPDF();
-		ec.collectDetailedCSV();
-		//ec.collectHTML();
+		//ec.collectPDF("IESALC_2014_FC_Attendee_List.pdf", true);
+		ec.collectDetailedCSV("IESALC_2014_FC_Attendee_List.pdf", true);
+		//ec.collectHTML("http://www.micontrols.com/CONTACTUS.aspx");
 		//ec.jsonLinkSearch();
 		//ec.collectTxt();
 	}
 	
 	
-	public void collectPDF(){
+	public void collectPDF(String file, boolean isLocalFile){
+		String pdfContent;
 		try {
-			String pdfFile = "http://www.wrcog.cog.ca.us/uploads/media_items/hero-commercial-contractors.original.pdf";
-			String pdfContent = Utils.pullPDFTextFromURL(pdfFile);
+			if (isLocalFile)
+				pdfContent = Utils.pullPDFTextFromFile(file);
+			else
+				pdfContent = Utils.pullPDFTextFromURL(file);
 			//System.out.println("pdf = " + pdfContent);  //Sanity check
 			List<String> emailList = Utils.pullEmailAddressesFromString(pdfContent);
 			
@@ -45,20 +48,23 @@ public class EmailCollector {
 	}
 	
 	
-	public void collectDetailedCSV(){
+	public void collectDetailedCSV(String pdfFile, boolean isLocalFile){
+		String pdfContent;
 		try {
-			String pdfFile = "2012 LED Lighting TAG Members.pdf";
-			String pdfContent = Utils.pullPDFTextFromFile(pdfFile);
+			if (isLocalFile)
+				pdfContent = Utils.pullPDFTextFromFile(pdfFile);
+			else
+				pdfContent = Utils.pullPDFTextFromURL(pdfFile);
 			//System.out.println("pdf = " + pdfContent);  //Sanity check
 			List<String> emailList = Utils.pullEmailAddressesFromString(pdfContent);
 			
 			BufferedReader bufReader = new BufferedReader(new StringReader(pdfContent));
 			String line=null;
-			FileWriter writer = new FileWriter("generatedLightingTagMembersEmails.csv");
+			FileWriter writer = new FileWriter("iesConferenceAttendees.csv");
 			int counter = 0;
 			while( (line=bufReader.readLine()) != null )
 			{
-				if (counter > 2){
+				if (counter > 1){
 					line = line.replace(",", "");
 					System.out.println("line = " + line);
 					String[] info = line.split(" ");
@@ -67,7 +73,23 @@ public class EmailCollector {
 							System.out.println("info["+i+"]= " + info[i]);
 						}
 						writer.append(info[0]+","+info[1]+",");
-						//writer.append(info[2]);
+						for(int i=2; i<10; i++){
+					    	try{
+					    		
+							    if(!Utils.isEmail(info[i])){
+							    	writer.append(info[i] + " ");
+							    }
+							    else{
+							    	writer.append("," + info[i]);
+							    }
+							   
+					    	}
+					    	catch (Exception ArrayIndexOutOfBoundsException){
+					    		writer.append("");
+					    	}
+					    }
+						
+
 					    writer.append('\n');				 
 					}
 					catch(IOException e)
@@ -87,7 +109,7 @@ public class EmailCollector {
 	}
 	
 	
-	public void collectHTML(){
+	public void collectHTML(String url){
 		System.out.println("EMAILS: \n");
 //		String[] urlSuffixes = {"AL", "AK", "AZ", "AR", "CA", "CO", "CT",
 //								 "DE", "FL", "GA", "HI", "ID", "IL", "IN",
@@ -114,10 +136,9 @@ public class EmailCollector {
 						   "Texas", "utah", "Virgina", "Washington", "West%20Virginia",
 						   "Wisconsin", "Wyoming"
 						  };
-		for (int i = 1; i <= 50; i++){
+//		for (int i = 1; i <= 50; i++){
 		
 		try{
-			String url = "http://www.visionairelighting.com/findaRep.asp?location="+i;
 			String htmlContent = Utils.readFromURL(url);
 			//System.out.println("**" + s + " : url = " + url);
 			//System.out.println("web = " + htmlContent);  //Sanity check
@@ -127,14 +148,15 @@ public class EmailCollector {
 				if (!isCanadian(email))
 					System.out.println(email.toLowerCase());
 			}
+			System.out.println("\nHTML done");
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		}
-		System.out.println("\nHTML done");
-	}
+//		System.out.println("\nHTML done");
+	//}
 	
 	
 	public void jsonLinkSearch(){

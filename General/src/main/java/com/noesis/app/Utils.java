@@ -108,6 +108,13 @@ public class Utils {
 		return result;
 	}
 	
+	public static boolean isEmail(String str){
+		Matcher m = Pattern.compile("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+").matcher(str);
+	    if (m.find())
+	    	return true;
+	    else
+	    	return false;
+	}
 	
 	public static List<String> pullEmailAddressesFromString (String input)
 	{
